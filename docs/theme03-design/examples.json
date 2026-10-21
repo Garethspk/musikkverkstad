@@ -715,8 +715,8 @@
       "accepted": [
         "B"
       ],
-      "rule": "Count 1 & 2 & 3 & 4 &. Start the reply on the & of beat 4, then play E D C across the next bar.",
-      "feedback": "All replies use the same notes. B anticipates the next bar by half a beat, within the call\u2019s rest. Tap the pulse and say the subdivision first.",
+      "rule": "Count 1 & 2 & 3 & 4 &. Play G4(67) as a half-beat pickup on the & of beat 4, then E4(64) for one beat, D4(62) for one beat and C4(60) for two beats across the next bar.",
+      "feedback": "All replies use the same G4\u2013E4\u2013D4\u2013C4 notes and durations. In B, G4 is the half-beat pickup on &4; E4 lands on the next bar\u2019s beat 1, D4 on beat 2, and C4 lasts through beats 3\u20134. A starts half a beat early; C starts half a beat late. Tap the pulse and say the subdivision first.",
       "transfer": "Teacher and pupil alternate a three-beat call and a pickup answer; begin by clapping before using pitches.",
       "critique": "Timing is the sole assessed dimension. This is advanced and needs an audible count-in and pulse; is the subdivision usable without a teacher?",
       "responseStarts": [

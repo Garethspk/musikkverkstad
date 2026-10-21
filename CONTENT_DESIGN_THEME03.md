@@ -197,7 +197,7 @@ For example 7 each alternative track segment includes its own four-beat pulse co
 
 ### 07. Anticipate the next bar — level 4
 
-[Listen to call and all alternatives](docs/theme03-design/07.mp3). **Rule taught first:** Count 1 & 2 & 3 & 4 &. Start the reply on the & of beat 4, then play E D C across the next bar.
+[Listen to call and all alternatives](docs/theme03-design/07.mp3). **Rule taught first:** Count 1 & 2 & 3 & 4 &. Play G4(67) as a half-beat pickup on the & of beat 4, then E4(64) for one beat, D4(62) for one beat and C4(60) for two beats across the next bar.
 
 | Segment | Exact pitches and durations | Decision |
 | --- | --- | --- |
@@ -208,11 +208,13 @@ For example 7 each alternative track segment includes its own four-beat pulse co
 
 **Accepted set:** B. **Audio cues:** Call 0.00–2.92s; A 3.92–12.50s; B 13.50–22.08s; C 23.08–31.67s.
 
-**Misconception and proposed feedback:** All replies use the same notes. B anticipates the next bar by half a beat, within the call’s rest. Tap the pulse and say the subdivision first.
+**Misconception and proposed feedback:** All replies use the same G4–E4–D4–C4 notes and durations. In B, G4 is the half-beat pickup on &4; E4 lands on the next bar’s beat 1, D4 on beat 2, and C4 lasts through beats 3–4. A starts half a beat early; C starts half a beat late. Tap the pulse and say the subdivision first.
 
 **Instrument transfer:** Teacher and pupil alternate a three-beat call and a pickup answer; begin by clapping before using pitches.
 
 **Design self-critique / teacher question (not a teacher endorsement):** Timing is the sole assessed dimension. This is advanced and needs an audible count-in and pulse; is the subdivision usable without a teacher?
+
+The initial G4 is part of the response, not part of the call or a separate count-in. The response totals 4.5 beats: a half-beat pickup plus a four-beat bar. Only B places E4 at the next barline (call-relative beat offset 4); A places it at 3.5 and C at 4.5. All three keep the same note sequence, so their entry timing is the assessed difference. The existing recording already contains these notes and offsets and is unchanged. Automated document/event checks and decoded-audio checks are development evidence only; independent listening and educational approval remain pending. Subsequent curriculum architecture/adjudication belongs to [Issue #10](https://github.com/Garethspk/musikkverkstad/issues/10), before broader Theme 03 implementation.
 
 ### 08. Choose a specified tonal ending — level 3
 
@@ -301,3 +303,7 @@ No new content may become school-selectable or release-complete merely because t
 ## Verification record
 
 This design batch adds only this document and review audio/data. Application source, translations, generated pupil package, tests, workflows, settings schema and release decisions are unchanged. Arithmetic validation checked ten calls and thirty alternatives, their intended bar lengths and the explicit anticipation start offsets. Audio files were generated from the canonical event data; metadata/decodability can be checked automatically. These checks do not establish listening quality, pedagogical suitability or speaker output. A separate model reviewer checked all ten accepted sets and durations, including the pickup timing. One repair pass clarified example 4 notation, removed answer-label disclosure from example 7's proposed pupil prompt, kept example 1 distractors inside the level-1 pitch vocabulary, and corrected the description of current creation pitch choices. The reviewer did not listen to the tracks or independently retrieve sources. This non-human review is not independent music-teacher evidence. No human teacher/pupil approval is recorded; design review remains pending.
+
+### Example 7 consistency correction
+
+The omitted G4 pickup has now been named explicitly in the rule and feedback. The canonical MIDI events, correct answer B and MP3 were already consistent and remain musically unchanged. `node tests/theme03-design.cjs` parses the final written tables for all ten examples, including note-name/MIDI agreement, rules, feedback, accepted sets and audio cue offsets; it independently fixes Example 7’s G–E–D–C durations and A/B/C entry offsets. `tests/browser/design-audio.spec.cjs` decodes the committed MP3 in real Chromium, measures the call/reply pitches and pickup attack times against independently specified expectations, in desktop and mobile viewports. Both are automatically discovered by the existing quality workflow. Signal analysis does not establish speaker output, human perception or educational validity. PR remains draft; Issue #10 holds the next curriculum architecture/adjudication step.
