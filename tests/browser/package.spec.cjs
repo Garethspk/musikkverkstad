@@ -6,8 +6,15 @@ const setup='http://127.0.0.1:8766/';
 async function open(page){await page.goto(setup);await expect(page.locator('#schoolName')).toBeEnabled();}
 async function preview(page){await page.locator('#previewSchool').click();await expect(page.locator('#pupilPreview')).toBeVisible();return page.frameLocator('#pupilPreview');}
 async function download(page,info){
+ const button=page.locator('#downloadPackage');
+ // Chromium 154 can hit the old iframe surface immediately after auto-scroll.
+ // Let the scroll reach the compositor before ONE genuine pointer action.
+ // No timeout/retry, DOM click, forced action or change to browser security.
+ await button.scrollIntoViewIfNeeded();
+ await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+ await expect(button).toBeInViewport();await expect(button).toBeEnabled();
  const waiting=page.waitForEvent('download');
- if(info.project.use.hasTouch)await page.locator('#downloadPackage').tap();else await page.locator('#downloadPackage').click();
+ if(info.project.use.hasTouch)await button.tap();else await button.click();
  const file=await waiting;
  const folder=path.resolve('.quality/school-sites','zip-'+info.project.name+'-'+info.testId.replace(/[^a-z0-9]/gi,''));
  fs.mkdirSync(folder,{recursive:true});const zip=folder+'.zip';await file.saveAs(zip);
@@ -97,4 +104,20 @@ test('standalone downloaded setup needs no server or development tools',async({p
  await expect(page.locator('#schoolName')).toBeEnabled();await page.locator('#schoolName').fill('Frittståande skule');
  const frame=await preview(page);await expect(frame.locator('#schoolIdentity')).toHaveText('Frittståande skule');
  const result=await download(page,info);expect(result.manifest.pupilRelease).toBe('BLOCKED');
+});
+
+
+test('language replacement followed by scroll and one trusted pointer downloads the same candidate',async({page},info)=>{
+ await open(page);await page.locator('#schoolName').fill('Språktest');await page.locator('#defaultLanguage').selectOption('en');await preview(page);
+ const identity=await page.locator('#candidateIdentity').textContent();
+ for(const locale of ['nb','nn','en']){
+  const frame=page.frameLocator('#pupilPreview');await frame.locator('.toolbar-menu summary').click();await frame.locator(`[data-language="${locale}"]`).click();
+  await expect(page.frameLocator('#pupilPreview').locator('html')).toHaveAttribute('lang',locale);
+  await page.locator('#downloadPackage').evaluate(button=>{window.__zipClicks=[];button.addEventListener('click',event=>__zipClicks.push({trusted:event.isTrusted,detail:event.detail}),{once:true});});
+  const result=await download(page,info);
+  expect(await page.evaluate(()=>__zipClicks)).toEqual([{trusted:true,detail:1}]);
+  expect(identity).toContain(result.manifest.candidateHash);expect(result.manifest.pupilRelease).toBe('BLOCKED');
+  expect(JSON.parse(fs.readFileSync(path.join(result.folder,'school-settings.json'))).defaultLanguage).toBe('en');
+  await expect(page.locator('#pupilPreview')).toHaveAttribute('sandbox','allow-scripts');
+ }
 });

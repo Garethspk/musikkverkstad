@@ -15,7 +15,7 @@ schema/registry and pupil loader described below. See docs/school-setup.md for
 operation. The schema/registry, settings JSON import/export and pupil loader are
 implemented. No new curriculum is included.
 
-## Phase 2B — Prototype package and preview (implemented; acceptance blocked)
+## Phase 2B — Prototype package and preview (implemented; review pending)
 
 The separate standalone configurator now previews the same verified candidate files
 and exports a complete pupil ZIP in the browser. All output remains a private
@@ -23,6 +23,8 @@ prototype with pupilRelease BLOCKED. An opaque allow-scripts-only iframe uses
 transient storage and a local sample-byte transport with connect-src none; the
 exported app has no preview adapter or editor. Desktop/mobile are viewport checks.
 See docs/school-setup.md for hosting/update instructions and evidence limits.
+The local browser verification discrepancies are explained in
+[PR #5 verification](docs/pr-5-verification.md); file-policy failures remain visible.
 
 The implementation simplifies the original embedded-ZIP/library proposal below:
 a pinned inert allowlisted file map feeds a deterministic STORE-only ZIP writer.

@@ -14,13 +14,17 @@ candidate bytes to native decoding, while extracted-package tests load samples
 through real HTTP. Mobile viewport checks are not physical-phone tests. Current
 pupil release remains **BLOCKED**, without an override or inherited base PASS.
 The two existing Theme 01 quick-entry failures remain explicit expected failures.
-Stage 2 source review found no remaining security blocker after the bounded repair
-passes, but acceptance verification is incomplete: local Chromium policy rejects
-file:// navigation before the standalone setup runs; mobile preview-language→ZIP
-interaction does not produce a download. These checks remain failing, with no
-sandbox/policy bypass or assertion weakened. Keep the PR draft until resolved.
-Full-gate/CI results will be recorded in the PR; earlier
-milestone statements below describe their historical snapshots.
+Stage 2 source review found no remaining security blocker. Follow-up investigation
+classified the intermittent preview-language→download as input/scroll-render timing
+in alternate local Chromium 154: the input reached the old iframe surface rather
+than the enabled parent button. Rendering synchronisation before one genuine
+pointer action resolves the reproduced case without changing application code or
+security. A repeated three-language regression retains real ZIP/identity checks.
+Local managed URL policy explicitly excludes file://; the two standalone tests
+remain enabled and fail before execution locally. The matching CI browser runs
+those same standalone tests. See [PR #5 verification](docs/pr-5-verification.md)
+for evidence and limits; exact full-gate/CI results are recorded in the PR.
+Earlier milestone statements below describe historical snapshots.
 
 ---
 

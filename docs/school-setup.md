@@ -6,11 +6,13 @@ This is not permission to publish to pupils.
 
 ## Use the separate Nynorsk setup page
 
-**Validation status:** this implementation is awaiting acceptance. In the managed
-local environment, browser policy blocks file:// before the page runs, and the
-mobile-viewport preview-language→download test currently fails. These are not
-verified deployment instructions or pupil-release approval. See the Phase 2B PR
-for full-gate/CI results; keep distribution under private review until resolved.
+**Validation scope:** CI checks the real standalone setup and extracted pupil ZIP.
+Local managed Chromium policy prohibits file://, so those two tests remain locally
+unavailable/failing; they are never skipped or relabelled PASS. The intermittent
+preview-to-download test was traced to scroll/compositor input timing in alternate
+local Chromium and now waits for rendered scroll before the same native pointer
+input. See [PR #5 verification](pr-5-verification.md) and the PR's exact check results.
+No physical device/speaker or pupil-release approval is implied.
 
 The intended school workflow needs only the trusted `setup/index.html` file: save it locally and
 open it in a current Chromium browser (Chrome/Edge). No Python, Node, account or
