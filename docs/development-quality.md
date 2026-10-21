@@ -45,12 +45,12 @@ states, keyboard activation/menu/Escape/focus, and uncaught JavaScript and conso
 errors. The layout check covers the exercised theme screen, not every possible
 screen, zoom level or assistive technology.
 
-The known Theme 01 quick-entry activity-tab omission is an **expected failure**
-on both viewport profiles. It is named `KNOWN ISSUE` in the browser report and
-listed separately in `.quality/latest.json`; it is not reported as a fixed or
-passing requirement. Unexpectedly passing that test fails the run so a future
-UI repair must remove its expected-failure marker. No new expected-failure cases
-should be added merely to make a broken development check green.
+The former Theme 01 quick-entry activity-tab omission is fixed in Phase 3.
+Its two viewport cases are ordinary passing regressions; the matching expected-failure
+marker has been removed. New tests cover every entrance, keyboard selection and
+level preservation in all locales. Theme 02 tests cover versioned history, real
+browser persistence and backup round-trips, restricted-school history and injected
+storage failures. No new expected failure or skip is used to hide broken checks.
 
 Audio tests click real controls, initialise native Web Audio, fetch/decode the
 five actual MP3s, observe native buffer-source start/stop/ended events, and check

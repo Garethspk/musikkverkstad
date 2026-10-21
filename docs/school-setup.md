@@ -40,7 +40,8 @@ selections. Theme 03 and unknown/ineligible content cannot be enabled. Registry
 flags distinguish implementation, prototype eligibility and pupil-release readiness;
 missing flags or release FAIL exclude content. All current activities remain
 pupilRelease BLOCKED even though they are available for private prototype testing.
-Theme 02 remains session-only; eligible auxiliary activities remain available with their
+Theme 02 saves completed rounds and explicitly saved rhythms; unfinished rounds
+remain temporary. Eligible auxiliary activities remain available with their
 configured levels, and the free workshop has only one setting.
 
 The page runs locally without accounts, network services, analytics or pupil data.
@@ -114,8 +115,8 @@ direct or restored navigation, without deleting historical progress. A saved una
 route/level recovers to an enabled choice. Historical counts, saved melodies and
 backups are retained; archived Theme 01 reopening is disabled when its theme/level
 is unavailable. Completed work can still be exported. No school settings are added
-to the existing pupil progress Export/Import format. Theme 01's existing quick-entry
-tab discoverability issue remains explicitly expected-failing in browser tests.
+to the existing pupil progress Export/Import format. Theme 01's activity controls now remain visible at quick entry as well as Explore;
+its former expected failures are passing browser regressions.
 
 The selected pupil language takes precedence over the school's default when entering
 index.html. Directly selecting a language still remembers that choice. Configuration
