@@ -1,0 +1,287 @@
+{
+  "commit": "a05488709923114a3fa20011f1519b9c2561f198",
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 11,
+      "sha256": "eefc95b58c5cac979dad5037de204891502827b8c6a35b328820a1098377ca31",
+      "archivedPath": ".gitignore"
+    },
+    {
+      "path": ".openai/hosting.json",
+      "bytes": 105,
+      "sha256": "aa15a6f5617931ac1b449e538381f54e1fd8b89ba5ed542e527d9256e4e3edf0",
+      "archivedPath": ".openai/hosting.json"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 1120,
+      "sha256": "5ebab352fab399d3a5f236316a69beeb76310ee4b7c6886870de239f593abb9c",
+      "archivedPath": "AGENTS.md"
+    },
+    {
+      "path": "README.md",
+      "bytes": 6841,
+      "sha256": "978dd7f400965685f79cad7c110341ed3e5e4fc17f1f5f120cb5c13d5dab58c2",
+      "archivedPath": "docs/README_WORK_ORIGINAL.md"
+    },
+    {
+      "path": "dist/en.html",
+      "bytes": 131903,
+      "sha256": "d38881b86b7a8e0e6a08bbf67c822518b5968360eedf5ec35e66d60cacf90d24",
+      "archivedPath": "dist/en.html"
+    },
+    {
+      "path": "dist/index.html",
+      "bytes": 601,
+      "sha256": "09ed8d264c113140ae62414d5baed2638a37413ae91be570b1cc59162c2a1450",
+      "archivedPath": "dist/index.html"
+    },
+    {
+      "path": "dist/nb.html",
+      "bytes": 132041,
+      "sha256": "433e7130b66e13f6705b6f34c4a746b299095bacaef2440c90046b0cd9bde28d",
+      "archivedPath": "dist/nb.html"
+    },
+    {
+      "path": "dist/nn.html",
+      "bytes": 132025,
+      "sha256": "6f73d7ca0f6caad49fdc7b0482d3778d5d9dbad1caeddb75087d5efca1f7a2d8",
+      "archivedPath": "dist/nn.html"
+    },
+    {
+      "path": "dist/sound-compare.html",
+      "bytes": 13349,
+      "sha256": "0b78c8b9626cacb514dff97069ae8736e28172769a04ada3a29d622e749fdd12",
+      "archivedPath": "dist/sound-compare.html"
+    },
+    {
+      "path": "dist/sounds/ATTRIBUTION.txt",
+      "bytes": 456,
+      "sha256": "bdffdada5b7c4cefc5bae49b2dfc3f9b9d3da7dce6e35996b9013c6cdff8f51e",
+      "archivedPath": "dist/sounds/ATTRIBUTION.txt"
+    },
+    {
+      "path": "dist/sounds/C3.mp3",
+      "bytes": 78036,
+      "sha256": "bb70dd921d81b3dda561c19b5c029292ae5a6fba1947e364bf274218ce19a9d1",
+      "archivedPath": "dist/sounds/C3.mp3"
+    },
+    {
+      "path": "dist/sounds/C4.mp3",
+      "bytes": 78718,
+      "sha256": "689eaa4c2fd7f29a2cc0e386eec462156d523a87d701269e5e2458e66056f4f6",
+      "archivedPath": "dist/sounds/C4.mp3"
+    },
+    {
+      "path": "dist/sounds/C5.mp3",
+      "bytes": 68920,
+      "sha256": "2f5b0f7422063010fb379e684bfdf2daa3911dcd2251413d79fa2a53029fdc30",
+      "archivedPath": "dist/sounds/C5.mp3"
+    },
+    {
+      "path": "dist/sounds/Fs3.mp3",
+      "bytes": 77933,
+      "sha256": "960fefd90f56608b7edf958dadfeca893cff5744ab9034d61e419401fe45ce9c",
+      "archivedPath": "dist/sounds/Fs3.mp3"
+    },
+    {
+      "path": "dist/sounds/Fs4.mp3",
+      "bytes": 68219,
+      "sha256": "613652f5c96e35736ce6a46bc4ddb6ba1076d1fb16a35a4c22c14e67efdde57c",
+      "archivedPath": "dist/sounds/Fs4.mp3"
+    },
+    {
+      "path": "docs/quality-status.md",
+      "bytes": 6241,
+      "sha256": "912b62610716592cbe4b5a5ff1ef6eafdd17fd49e7bfd38a14649edc60272877",
+      "archivedPath": "docs/quality-status.md"
+    },
+    {
+      "path": "scripts/quality-gate.cjs",
+      "bytes": 2446,
+      "sha256": "280ab78b2b5162ba7f6576906da3ce8b2240295240096108dde359ce8663e459",
+      "archivedPath": "scripts/quality-gate.cjs"
+    },
+    {
+      "path": "src/app.nn.html",
+      "bytes": 44188,
+      "sha256": "0987723b7cc5243f41c8c39722fcf3a5e8d5c7c914488b960f538944d46f75f7",
+      "archivedPath": "src/app.nn.html"
+    },
+    {
+      "path": "src/groove.js",
+      "bytes": 11719,
+      "sha256": "c162bb49f745b89a6d344fc330b1d0ae75d1f2ba2a176cc6cf38776e1065e905",
+      "archivedPath": "src/groove.js"
+    },
+    {
+      "path": "src/navigation.js",
+      "bytes": 5937,
+      "sha256": "38141fe39ffd1569e2ee1fe197490062c7859f0ab48f5a28fa6323b5e34a5309",
+      "archivedPath": "src/navigation.js"
+    },
+    {
+      "path": "src/notation.js",
+      "bytes": 11336,
+      "sha256": "d51a5aac8abfd74b66d423e841cebf8540142301f79f676755cc6a82829f76c6",
+      "archivedPath": "src/notation.js"
+    },
+    {
+      "path": "src/practice.js",
+      "bytes": 3760,
+      "sha256": "c42e40bb9f7960bd42509a53bf98658ddac91a8f20d238625a99da5c6cbe40a1",
+      "archivedPath": "src/practice.js"
+    },
+    {
+      "path": "src/puzzle.js",
+      "bytes": 10428,
+      "sha256": "3991d0439719ec30240be1249c4667b7a47ac36040540ac7a3d42adac8b39890",
+      "archivedPath": "src/puzzle.js"
+    },
+    {
+      "path": "src/sound-compare.html",
+      "bytes": 13349,
+      "sha256": "0b78c8b9626cacb514dff97069ae8736e28172769a04ada3a29d622e749fdd12",
+      "archivedPath": "src/sound-compare.html"
+    },
+    {
+      "path": "src/sounds/ATTRIBUTION.txt",
+      "bytes": 456,
+      "sha256": "bdffdada5b7c4cefc5bae49b2dfc3f9b9d3da7dce6e35996b9013c6cdff8f51e",
+      "archivedPath": "src/sounds/ATTRIBUTION.txt"
+    },
+    {
+      "path": "src/sounds/C3.mp3",
+      "bytes": 78036,
+      "sha256": "bb70dd921d81b3dda561c19b5c029292ae5a6fba1947e364bf274218ce19a9d1",
+      "archivedPath": "src/sounds/C3.mp3"
+    },
+    {
+      "path": "src/sounds/C4.mp3",
+      "bytes": 78718,
+      "sha256": "689eaa4c2fd7f29a2cc0e386eec462156d523a87d701269e5e2458e66056f4f6",
+      "archivedPath": "src/sounds/C4.mp3"
+    },
+    {
+      "path": "src/sounds/C5.mp3",
+      "bytes": 68920,
+      "sha256": "2f5b0f7422063010fb379e684bfdf2daa3911dcd2251413d79fa2a53029fdc30",
+      "archivedPath": "src/sounds/C5.mp3"
+    },
+    {
+      "path": "src/sounds/Fs3.mp3",
+      "bytes": 77933,
+      "sha256": "960fefd90f56608b7edf958dadfeca893cff5744ab9034d61e419401fe45ce9c",
+      "archivedPath": "src/sounds/Fs3.mp3"
+    },
+    {
+      "path": "src/sounds/Fs4.mp3",
+      "bytes": 68219,
+      "sha256": "613652f5c96e35736ce6a46bc4ddb6ba1076d1fb16a35a4c22c14e67efdde57c",
+      "archivedPath": "src/sounds/Fs4.mp3"
+    },
+    {
+      "path": "src/studio.css",
+      "bytes": 8851,
+      "sha256": "ded1b58c86ce5a389cdad09303c72fa8c1765ff1feed0fa8df085e709665eb27",
+      "archivedPath": "src/studio.css"
+    },
+    {
+      "path": "src/theme.js",
+      "bytes": 35033,
+      "sha256": "04af5b05d0a3a961a03249203d3bfd4135c8c04baa234990dc2ba0cab4120504",
+      "archivedPath": "src/theme.js"
+    },
+    {
+      "path": "tests/audio.cjs",
+      "bytes": 8382,
+      "sha256": "f4e039e4274227d9e407e770c00f70e6d2cc6ccace364bb329df706ad1d3c239",
+      "archivedPath": "tests/audio.cjs"
+    },
+    {
+      "path": "tests/full-audit.cjs",
+      "bytes": 8337,
+      "sha256": "47d7611c07254604a861b8158022477ae6cd311e198400651c6528cf08968bd7",
+      "archivedPath": "tests/full-audit.cjs"
+    },
+    {
+      "path": "tests/groove.cjs",
+      "bytes": 4826,
+      "sha256": "032c75e00450649b81fa31d9d7676a32d4c374814d65895069408e73e447a3cd",
+      "archivedPath": "tests/groove.cjs"
+    },
+    {
+      "path": "tests/navigation.cjs",
+      "bytes": 4880,
+      "sha256": "543ebc0a31a81c2d5a7ac5032eafe779b5e2931854a5e24759402bb0066a7a4b",
+      "archivedPath": "tests/navigation.cjs"
+    },
+    {
+      "path": "tests/notation.cjs",
+      "bytes": 3179,
+      "sha256": "e1375c3ebbd22cdffda4944ea93da365d42ef92812dfd1ea427328bd89efeaad",
+      "archivedPath": "tests/notation.cjs"
+    },
+    {
+      "path": "tests/piano.cjs",
+      "bytes": 1492,
+      "sha256": "451ad16d2b18d75225bb049a7b910f0e11905c07346efad3af4a36b1be5195e1",
+      "archivedPath": "tests/piano.cjs"
+    },
+    {
+      "path": "tests/practice.cjs",
+      "bytes": 3656,
+      "sha256": "8978cdedd5c9c8bb59cfd01b055480dad37ed40fad91151306b80f4ba2c191d0",
+      "archivedPath": "tests/practice.cjs"
+    },
+    {
+      "path": "tests/puzzle.cjs",
+      "bytes": 3261,
+      "sha256": "84e4dce22074852fb17d2008531b88027b80c8369c99d7ee1e892af525ddf004",
+      "archivedPath": "tests/puzzle.cjs"
+    },
+    {
+      "path": "tests/quality-gate.cjs",
+      "bytes": 506,
+      "sha256": "4db476c45cacb90fb8829a10bdf336997c44af9e587eb21f777de97b3071bb07",
+      "archivedPath": "tests/quality-gate.cjs"
+    },
+    {
+      "path": "tests/quality-regressions.cjs",
+      "bytes": 3258,
+      "sha256": "b4fa47b5a38b58c6fb744c233b706d0b46fe4a09491c2137c04160f761db5565",
+      "archivedPath": "tests/quality-regressions.cjs"
+    },
+    {
+      "path": "tests/sound-compare.cjs",
+      "bytes": 6624,
+      "sha256": "e621b639cb198b991c964b5d441dcb8f67872b123d943bab548bd569ea67113e",
+      "archivedPath": "tests/sound-compare.cjs"
+    },
+    {
+      "path": "tests/studio.cjs",
+      "bytes": 4809,
+      "sha256": "364580ed2f6c154052d6e51ee8d90a79850d97a82ad0c00f95dba173511380fd",
+      "archivedPath": "tests/studio.cjs"
+    },
+    {
+      "path": "tests/theme.cjs",
+      "bytes": 9506,
+      "sha256": "8f5c3f2f1304d14278d517573a321bdc294b7161aecb8800231e3a4c8cc992c6",
+      "archivedPath": "tests/theme.cjs"
+    },
+    {
+      "path": "translate.py",
+      "bytes": 19751,
+      "sha256": "3db420e440a78b35bc9c44b6a3f6d61b948e013f0a2437a753367b346b010384",
+      "archivedPath": "translate.py"
+    },
+    {
+      "path": "translations-extra.txt",
+      "bytes": 11967,
+      "sha256": "1ccc0a9e739c5b8caa38e454e14f69ed1d10d1ff6a76118a090b4a59a77aadcf",
+      "archivedPath": "translations-extra.txt"
+    }
+  ]
+}

@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="nn">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Musikkverkstad · Høyr. Utforsk. Skap.</title>
+<style>
+:root{--bg:#101820;--panel:#1a2631;--edge:#344451;--text:#f3f5ef;--muted:#b8c6cd;--green:#c6f184;--blue:#95c9ff;--pink:#f4b3c1;--gold:#f4d48b;--r:20px}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}button,input,select{font:inherit}button{cursor:pointer;border:1px solid var(--edge);border-radius:11px;background:#243440;color:var(--text);padding:11px 17px;min-height:46px}button:hover{border-color:var(--green);background:#30434e}button:disabled{opacity:.45;cursor:default}button:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:4px}button.primary{background:var(--green);border-color:var(--green);color:#18241b;font-weight:750}button.quiet{background:transparent}button.active,[aria-pressed=true]{border-color:var(--green);box-shadow:inset 0 0 0 1px var(--green)}h1,h2,h3,p{margin:0}h1{font-size:clamp(34px,5vw,65px);line-height:1.07;letter-spacing:-2px}h2{font-size:clamp(26px,3vw,38px);line-height:1.2;letter-spacing:-1px}h3{font-size:20px}p+p{margin-top:12px}small,.muted{color:var(--muted)}header{max-width:1200px;margin:auto;padding:25px 28px;display:flex;align-items:center;justify-content:space-between;gap:18px;border-bottom:1px solid var(--edge)}.brand{border:0;padding:0;background:none;display:flex;gap:12px;align-items:center;font-weight:750;letter-spacing:-.5px}.logo{display:grid;place-items:center;width:38px;height:38px;background:var(--green);color:#17231b;border-radius:11px;font-size:23px}.top-actions,.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.wrap{max-width:1144px;margin:auto;padding:38px 24px 60px}.eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:12px;font-weight:750;color:var(--green);margin-bottom:14px}.hero{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:center;margin:12px 0 42px}.hero p{max-width:550px;color:var(--muted);font-size:18px;margin-top:20px}.sound-art{height:225px;display:flex;gap:12px;align-items:center;justify-content:center;background:radial-gradient(ellipse,#324b3b,transparent 67%);position:relative}.sound-art span{width:20px;border-radius:20px;background:var(--green);height:var(--h);transform:rotate(12deg)}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{border:1px solid var(--edge);border-radius:var(--r);padding:25px;background:var(--panel);display:flex;flex-direction:column;gap:16px}.card p{color:var(--muted);flex:1}.tag{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}.card-icon{font-size:32px;color:var(--accent);height:52px}.card button{align-self:flex-start}.section-head{display:flex;justify-content:space-between;align-items:center;gap:16px;margin:30px 0 18px}.strip{padding:21px 24px;background:#202f2a;border:1px solid #4d6249;border-radius:var(--r);margin-top:24px;display:flex;justify-content:space-between;align-items:center;gap:20px}.strip p{color:var(--muted);font-size:14px;margin-top:6px}.activity-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin:20px 0 24px}.activity-head p{color:var(--muted);margin-top:10px;max-width:650px}.levelbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:24px}.levelbar button{padding:7px 13px;min-height:40px}.layout{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:20px}.stage{border:1px solid var(--edge);border-radius:var(--r);background:var(--panel);padding:28px;min-width:0}.side{padding:24px;background:#17222b;border-radius:var(--r);border:1px solid var(--edge);align-self:start}.side p{font-size:14px;color:var(--muted);margin:12px 0}.side button{width:100%;margin-top:10px}.question{font-size:21px;margin:20px 0 8px;line-height:1.4}.transport{display:flex;gap:10px;flex-wrap:wrap;padding-bottom:20px;border-bottom:1px solid var(--edge)}.transport button{flex:0 1 auto}.progress-label{margin:0 0 18px;display:flex;justify-content:space-between;color:var(--muted);font-size:13px;gap:8px}.slots{display:flex;gap:8px;flex-wrap:wrap;margin:25px 0}.slot{min-width:55px;min-height:70px;background:#101a23;border:1px solid #607482;font-size:22px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px}.slot small{font-size:11px}.slot.selected{border:2px solid var(--gold)}.slot.playing{background:#3e5840;color:white}.choices{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}.choices button{min-width:90px;flex:1}.choices .symbol{font-family:Georgia,serif;font-size:29px;display:block}.feedback{padding:17px 20px;border-radius:12px;background:#233842;margin-top:22px;border:1px solid #537080}.feedback.good{background:#263d2a;border-color:#738e5a}.feedback.warn{background:#3b3426;border-color:#8d7951}.feedback p{font-size:14px;margin-top:5px}.feedback:empty{display:none}.bottom{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}.note{font-size:13px;color:var(--muted);margin-top:16px}.staff{background:#f2f0e8;border-radius:12px;margin:20px 0;padding:8px;color:#10202a;overflow:auto}.staff svg{display:block;max-width:100%;min-width:270px;height:120px}.pitch-choice{min-width:48px!important}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:25px 0}.stat{border:1px solid var(--edge);padding:22px;border-radius:16px;background:var(--panel)}.stat strong{font-size:36px;display:block;color:var(--green)}details{border-top:1px solid var(--edge);padding:17px 0}summary{cursor:pointer;font-weight:650}details p,details ul{margin-top:14px;color:var(--muted)}footer{max-width:1144px;margin:auto;padding:22px 24px;color:var(--muted);font-size:12px;border-top:1px solid var(--edge)}.badge{background:#334536;color:var(--green);border-radius:20px;padding:4px 11px;font-size:12px}.hidden{display:none!important}label{color:var(--muted);font-size:14px}input[type=range]{width:90px;accent-color:var(--green)}.alert{max-width:1096px;margin:15px auto 0;padding:12px 20px;color:var(--gold);border:1px solid #8d7951;border-radius:12px}.creative-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:22px 0}.creative-grid label{display:flex;flex-direction:column;gap:6px}.creative-grid select{padding:10px;background:#15232c;color:white;border:1px solid var(--edge);border-radius:8px}.saved{display:flex;justify-content:space-between;align-items:center;gap:15px;border-top:1px solid var(--edge);padding:15px 0}.saved .row{flex-shrink:0}@media(max-width:850px){.layout{grid-template-columns:1fr}.side{display:block}.side button{width:auto;margin-right:8px}.cards{grid-template-columns:1fr}.card{position:relative}.hero{grid-template-columns:1fr}.sound-art{display:none}.activity-head{flex-direction:column}.strip{align-items:flex-start}.top-actions .volume{display:flex;align-items:center;gap:6px}.wrap{padding-top:24px}}@media(max-width:480px){header{padding:16px}.brand{font-size:15px}.top-actions button{padding:8px 11px}.wrap{padding:22px 15px 40px}.stage{padding:18px}.stats{grid-template-columns:1fr}.strip{flex-direction:column}.slot{min-width:44px}.creative-grid{grid-template-columns:repeat(2,1fr)}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+.audio-tools{max-width:1144px;margin:16px auto 0;padding:0 24px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}.audio-tools span{font-size:13px;color:var(--muted)}@media(max-width:480px){header{flex-wrap:wrap}.top-actions{width:100%;justify-content:space-between}}
+
+.language-tabs{max-width:1144px;margin:12px auto 0;padding:0 24px;display:flex;gap:6px}.language-tabs a{display:inline-block;padding:10px 16px;border:1px solid var(--edge);border-radius:10px;color:var(--text);text-decoration:none;font-size:14px}.language-tabs a[aria-current]{background:var(--green);color:#18241b;font-weight:700}.language-tabs a:focus-visible{outline:3px solid var(--gold)}
+</style>
+<style>/* A quieter studio treatment, scoped to the weekly theme and its progress. */
+.th-theme{--studio-lime:#d5ed73;--studio-blue:#8ec7ff;--studio-coral:#ffab93;--studio-surface:#17293b;--studio-muted:#b4c3d1;color:#edf4fa;line-height:1.6}
+.th-theme h1{font-size:clamp(1.65rem,4vw,2.4rem);line-height:1.15;letter-spacing:-.035em;margin:24px 0 16px}
+.th-theme h2{font-size:1.45rem;margin:30px 0 14px}.th-theme h3{font-size:1.05rem;margin:24px 0 12px}.th-theme p{max-width:72ch}.th-theme .th-controls{gap:12px;margin:20px 0}
+.th-theme .th-primary{background:var(--studio-lime)!important;color:#142330!important;border-color:var(--studio-lime)!important;box-shadow:none!important}
+.th-theme .th-modecards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:28px 0}
+.th-theme .th-mode{display:flex;flex-direction:column;align-items:flex-start;gap:5px;min-height:106px;text-align:left;padding:18px;background:#152638;border:1px solid #3d5268;border-radius:18px;color:#eef4f8}
+.th-theme .th-mode>span{font-size:1.5rem;line-height:1}.th-theme .th-mode>strong{font-size:1.05rem}.th-theme .th-mode>small{font-size:.72rem}
+.th-theme .th-mode-listen{border-top:3px solid var(--studio-blue)}.th-theme .th-mode-listen>span{color:var(--studio-blue)}.th-theme .th-mode-rebuild{border-top:3px solid var(--studio-lime)}.th-theme .th-mode-rebuild>span{color:var(--studio-lime)}.th-theme .th-mode-create{border-top:3px solid var(--studio-coral)}.th-theme .th-mode-create>span{color:var(--studio-coral)}
+.th-theme button.th-mode[aria-pressed=true]{background:#243c51;outline:2px solid #f1f6fa;outline-offset:2px}
+.th-theme .th-pair,.th-theme .th-bar{background:var(--studio-surface);border:1px solid #496078;border-radius:20px;padding:18px}
+.th-theme .th-pair>strong{font-size:1.6rem;color:var(--studio-blue)}.th-theme .th-pair button[data-theme-action=play]{border-color:var(--studio-blue);color:var(--studio-blue)}
+.th-theme .th-slots button[aria-pressed=true]{background:var(--studio-lime);color:#142330;outline:3px solid #edf4fa;outline-offset:3px;box-shadow:0 0 0 6px #17293b}
+.th-theme .th-feedback{border:1px solid #435c65;background:#1d343d;border-radius:16px;margin:22px 0}.th-theme .th-feedback:empty{display:none}
+.th-theme details{margin:22px 0;padding:16px 18px;border:1px solid #3d5268;border-radius:16px;background:#152638}.th-theme summary{cursor:pointer;color:var(--studio-blue)}
+.th-theme .th-playback{padding:16px 18px;margin:18px 0 26px;background:#102131;border:1px solid #354c62;border-radius:18px}
+.th-playback-head{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:.83rem;color:#b4c3d1}.th-playback-head strong{color:#edf4fa}.th-playhead{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:7px;margin:14px 0}.th-beat{display:flex;align-items:center;justify-content:center;min-height:34px;border-radius:7px;background:#263e52;color:#c4d1dd;font-size:.8rem;font-variant-numeric:tabular-nums;transition:background-color .08s,color .08s}.th-beat:nth-child(5){box-shadow:-4px 0 0 #7890a4}.th-beat.is-current{background:#d5ed73;color:#142330;font-weight:800}.th-playback p{font-size:.82rem;margin:0;color:#b4c3d1;min-height:1.5em}
+.th-theme .th-reflect{border-color:var(--studio-coral);background:#26313e;border-radius:0 14px 14px 0}.th-theme .th-small,.th-theme .th-eyebrow{color:var(--studio-muted)}.th-eyebrow{text-transform:uppercase;letter-spacing:.1em;font-size:.73rem;font-weight:700}
+.th-progress{margin:30px 0;padding:24px;background:#142538;border:1px solid #3d5268;border-radius:22px}.th-completions{display:grid;gap:12px;margin:20px 0}.th-completions>div{display:flex;justify-content:space-between;align-items:center;gap:12px}.th-chip{display:inline-flex;min-width:34px;min-height:30px;align-items:center;justify-content:center;background:#263e52;border-radius:8px;margin-left:5px;color:#b4c3d1;font-size:.8rem}.th-chip.is-done{background:#d5ed73;color:#142330}.th-saved{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;border-top:1px solid #354c62;padding:10px 0}.th-saved .th-controls{margin:0}
+@media(max-width:560px){.th-theme .th-modecards{gap:8px}.th-theme .th-mode{padding:12px;min-height:100px}.th-theme .th-mode>strong{font-size:.95rem}.th-theme .th-pairs{gap:10px}.th-theme .th-pair{padding:12px}.th-theme .th-playback{padding:12px}.th-playhead{gap:5px}.th-progress{padding:18px}.th-completions>div{align-items:flex-start;flex-direction:column}.th-theme .th-welcome{padding:10px 0}}
+@media(prefers-reduced-motion:reduce){.th-theme *,.th-theme *::before,.th-theme *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* One toolbar row; optional controls expand without pushing the activity down. */
+.compact-header{padding:10px 16px;gap:8px;flex-wrap:nowrap;position:relative;z-index:5}
+.compact-header .top-actions{width:auto;flex-wrap:nowrap;gap:6px}
+.compact-header .brand{min-height:44px;flex-shrink:0}
+.compact-header .icon-control{display:flex;align-items:center;justify-content:center;gap:2px;width:46px;height:46px;min-height:46px;padding:0;border:1px solid var(--edge);border-radius:11px;font-size:24px;list-style:none;color:var(--text);background:transparent}
+.compact-header .icon-control small{font-size:10px;font-weight:750}
+.compact-header summary::-webkit-details-marker{display:none}
+.compact-header .toolbar-menu{margin:0;padding:0;border:0}
+.compact-header .toolbar-menu[open]>summary{background:#30434e;border-color:var(--green)}
+.compact-header .toolbar-panel{position:absolute;right:12px;top:calc(100% + 6px);width:min(320px,calc(100vw - 24px));padding:18px;background:var(--panel);border:1px solid var(--edge);border-radius:14px;box-shadow:0 12px 30px #0008}
+.compact-header .volume{display:flex;align-items:center;gap:12px}
+.compact-header .volume input{width:100%;min-width:0;min-height:44px}
+.compact-header .audio-tools{padding:0;margin:12px 0 0;gap:8px}
+.compact-header .language-tabs{padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+.compact-header .language-tabs a{min-height:44px}
+@media(max-width:600px){.compact-header .brand-name{display:none}.compact-header{padding:8px 12px}.compact-header .top-actions{gap:8px}.compact-header .brand{width:46px;justify-content:center}.compact-header .logo{width:40px;height:40px}}
+
+.compact-header .language-control{width:60px;font-size:14px;font-weight:650}
+
+.gr-stage{max-width:950px;margin:auto}.gr-stage h1{font-size:clamp(30px,5vw,48px);margin:12px 0}.gr-controls{margin:18px 0}.gr-bar{margin:20px 0}.gr-grid{display:grid;grid-template-columns:repeat(var(--gr-columns),minmax(0,1fr));gap:8px;margin-top:8px}.gr-cell{min-height:56px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#132431;border:1px solid var(--edge);border-radius:10px}.gr-cell strong{font-size:24px}.gr-current{background:var(--green)!important;color:#101820!important}.gr-current small{color:#101820}.gr-options{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}.gr-options>div{border:1px solid var(--edge);border-radius:12px;padding:14px}@media(max-width:480px){.gr-options{grid-template-columns:1fr}.gr-cell{padding:8px}.gr-stage .gr-controls{gap:8px}}
+
+/* Theme navigation occupies one row even at 320px; secondary tools share a menu. */
+.compact-header{justify-content:flex-start}.compact-header .brand-name{display:none}.compact-header .top-actions{margin-left:auto}
+.nv-navigation{display:flex;align-items:center;gap:2px}.nv-navigation button{width:44px;min-width:44px;padding:0;font-size:24px}
+.nv-select{position:relative;display:grid;place-items:center;width:88px;height:46px;border:1px solid var(--edge);border-radius:10px;color:var(--text);font-size:14px;font-weight:650;white-space:nowrap}
+.nv-select select{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}.nv-select:focus-within{outline:3px solid var(--gold);outline-offset:3px}
+.nv-theme-list{display:grid;gap:8px;margin-top:12px}.nv-theme-list button{text-align:left}.nv-welcome{padding:18px 0}.nv-welcome details{margin-top:16px}
+@media(max-width:600px){.compact-header{padding:8px;gap:4px}.compact-header .top-actions{gap:4px}.compact-header .brand{width:44px;min-width:44px}.compact-header .language-control{width:56px}.nv-navigation{gap:0}.nv-navigation button{width:40px;min-width:40px;min-height:46px}.nv-select{width:72px;font-size:12px}.compact-header .icon-control{width:44px}.compact-header .language-control{width:56px}}
+
+.compact-header .nv-language{margin-top:18px}.compact-header .nv-language strong{display:block;margin-bottom:8px}.compact-header .toolbar-panel{max-height:calc(100dvh - 90px);overflow:auto}.compact-header .toolbar-panel .volume{margin-top:14px}
+@media(max-width:600px){.nv-navigation button{width:44px;min-width:44px}.nv-select{width:88px;font-size:14px}}
+</style></head>
+<body>
+<header class="compact-header">
+<button class="brand" data-go="home" aria-label="Musikkverkstad · Heim" title="Heim"><span class="logo" aria-hidden="true">≋</span><span class="brand-name">Musikkverkstad</span></button>
+<div id="themeNavigation" class="nv-navigation"></div>
+<div class="top-actions">
+<details class="toolbar-menu"><summary class="icon-control" aria-label="Verktøy og hjelp" title="Verktøy og hjelp"><span aria-hidden="true">☰</span></summary><div class="toolbar-panel">
+<div class="row"><button data-go="progress">Mi øving</button><button data-go="about">Hjelp og informasjon</button></div>
+<label class="volume">Lyd <input id="volume" type="range" min="0" max="100" value="55" aria-label="Lydstyrke"></label><div class="audio-tools"><button data-test-audio>♫ Test lyd</button><span>Tre tonar · Start her om du ikkje høyrer lyd.</span></div>
+<div class="nv-language"><strong>Språk</strong><nav class="language-tabs" aria-label="Language / Språk"><a href="nn.html" lang="nn" data-language="nn" aria-current="page">Nynorsk</a><a href="nb.html" lang="nb" data-language="nb">Bokmål</a><a href="en.html" lang="en" data-language="en">English</a></nav></div>
+</div></details>
+</div></header>
+<div id="storageAlert" class="alert hidden" role="status"></div><div id="audioStatus" class="alert hidden" role="status"></div>
+<script>
+(()=>{const menus=[...document.querySelectorAll('.toolbar-menu')];
+function closeMenus(except){menus.forEach(m=>{if(m!==except)m.open=false})}
+menus.forEach(m=>m.querySelector('summary').addEventListener('click',()=>closeMenus(m)));
+document.addEventListener('click',e=>{if(!e.target.closest('.toolbar-menu')||e.target.closest('[data-go]'))closeMenus()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){const open=menus.find(m=>m.open);closeMenus();if(open)open.querySelector('summary').focus()}});
+})();
+</script>
+<main id="app" class="wrap"><p>Opnar Musikkverkstad …</p><noscript>Appen treng JavaScript. Opne denne nettadressa direkte i Safari eller ein annan nettlesar.</noscript></main>
+<footer>Musikkverkstad · Prototype 1.0 · Alt skjer på denne eininga. Ingen mikrofon eller elevkonto. Privat prototype.<br>Piano: Salamander Grand Piano · Alexander Holm · <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener">CC BY 3.0</a> · <a href="sounds/ATTRIBUTION.txt">Lydkjelder</a></footer>
+<input id="importFile" type="file" accept="application/json,.json" class="hidden">
+<script>
+'use strict';
+try{localStorage.setItem('musikkverkstad-language','nn')}catch(e){}
+
+const VERSION=1, STORAGE='musikkverkstad-v1';
+const $=id=>document.getElementById(id), clamp=(x,a,b)=>Math.min(b,Math.max(a,x));
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const rand=n=>Math.floor(Math.random()*n), pick=a=>a[rand(a.length)], shuffle=a=>{const b=[...a];for(let i=b.length-1;i>0;i--){let j=rand(i+1);[b[i],b[j]]=[b[j],b[i]]}return b};
+const NAMES=['C','C♯','D','D♯','E','F','F♯','G','G♯','A','B','H'];
+const noteName=m=>NAMES[m%12]+(Math.floor(m/12)-1), shortNote=m=>NAMES[m%12];
+const defs={rhythm:{name:'Rytmereparatøren',desc:'Høyr mønsteret. Finn delen som manglar.',color:'var(--green)',icon:'♩ ♫',skill:'Rytme og takt'},melody:{name:'Melodidetektiven',desc:'Fang melodien og bygg han opp att.',color:'var(--blue)',icon:'↗ ↘',skill:'Gehør og melodi'},harmony:{name:'Finn heim',desc:'Utforsk kva akkordane gjer i musikken.',color:'var(--pink)',icon:'Ⅰ · Ⅳ · Ⅴ',skill:'Toneart og harmoni'}};
+const bands=['Start','Utforsk','Utfordring','Fordjuping'];
+function emptyData(){return {version:VERSION,extraPractice:extraEmpty(),levels:{rhythm:1,melody:1,harmony:1},stats:{rhythm:{done:0,correct:0},melody:{done:0,correct:0},harmony:{done:0,correct:0}},observations:{},creations:[],volume:.55}}
+function validData(d){if(!d||d.version!==1||!d.levels||!d.stats||!d.observations||!Array.isArray(d.creations)||d.creations.length>30)throw Error('Ukjend filformat.');for(const k of Object.keys(defs)){if(!Number.isInteger(d.levels[k])||d.levels[k]<1||d.levels[k]>4)throw Error('Ugyldig nivå.');const s=d.stats[k];if(!s||!Number.isInteger(s.done)||!Number.isInteger(s.correct)||s.done<0||s.correct<0||s.correct>s.done||s.done>1000000)throw Error('Ugyldig framgang.')}for(const [k,v]of Object.entries(d.observations)){if(!/^(rhythm|melody|harmony)-[1-4]$/.test(k)||!Array.isArray(v)||v.length>10||v.some(x=>typeof x!=='boolean'))throw Error('Ugyldige øvingsdata.')}for(const c of d.creations){if(!c||!Array.isArray(c.notes)||c.notes.length!==8||c.notes.some(n=>![60,62,64,67,69].includes(n))||typeof c.title!=='string'||c.title.length>80)throw Error('Ugyldig melodi.')}if(d.creations.some(c=>c.notes.slice(0,6).some((n,i)=>n!==[60,62,64,67,60,62][i])))throw Error('Ugyldig start på melodivariant.');if(typeof d.volume!=='number'||!Number.isFinite(d.volume)||d.volume<0||d.volume>1)throw Error('Ugyldig lydstyrke.');d.extraPractice=extraValid(d.extraPractice);return d}
+let data=emptyData(), storageOK=true;
+try{const raw=localStorage.getItem(STORAGE);if(raw)data=validData(JSON.parse(raw))}catch(e){storageOK=false;$('storageAlert').textContent='Lagra framgang kunne ikkje lesast. Du kan øve, men bruk «Eksporter» for å ta vare på arbeidet.';$('storageAlert').classList.remove('hidden')}
+function save(){try{localStorage.setItem(STORAGE,JSON.stringify(data));storageOK=true}catch(e){storageOK=false;$('storageAlert').textContent='Nettlesaren tillèt ikkje lagring her. Eksporter framgangen før du lukkar appen.';$('storageAlert').classList.remove('hidden')}}
+let route='home',activity=null,q=null,answer=null,selected=0,attempts=0,hinted=false,firstRecorded=false,solved=false,revealed=false,suggestion=null,creative=[60,62,64,67,60,62,64,67];
+let ctx=null,master=null,sources=[],timers=[],audioRun=0;
+function stopAudio(){audioRun++;sources.forEach(s=>{try{s.stop()}catch(e){}});sources=[];timers.forEach(clearTimeout);timers=[];document.querySelectorAll('.playing').forEach(x=>x.classList.remove('playing'));document.querySelectorAll('[data-play]').forEach(x=>x.removeAttribute('aria-busy'));if(typeof thStopPlayback==='function')thStopPlayback();if(typeof ppStop==='function')ppStop();if(typeof nmStop==='function')nmStop();if(typeof grStop==='function')grStop()}
+function audioMessage(message){$('audioStatus').textContent=message;$('audioStatus').classList.remove('hidden')}
+async function ensureAudio(){
+ let resumeTimer;
+ try{
+  if(data.volume===0){audioMessage('Lydstyrken i appen er 0. Skru opp med lydkontrollen øvst.');return false}
+  // Request the media channel on supported iPhones, before creating/resuming audio.
+  try{if(typeof navigator!=='undefined'&&navigator.audioSession)navigator.audioSession.type='playback'}catch(e){}
+  if(!ctx||ctx.state==='closed'){ctx=new(window.AudioContext||window.webkitAudioContext)();master=ctx.createGain();master.connect(ctx.destination)}
+  master.gain.value=data.volume*.22;
+  if(ctx.state!=='running'){
+   audioMessage('Startar lyd …');
+   const resumed=ctx.resume();
+   await Promise.race([resumed,new Promise((_,reject)=>{resumeTimer=setTimeout(()=>reject(Error('Audio start timed out')),4000)})]);
+  }
+  if(ctx.state!=='running')throw Error('Audio not running');
+  $('audioStatus').classList.add('hidden');return true
+ }catch(e){audioMessage('Lyd kunne ikkje startast. Trykk Test lyd igjen. Om det framleis er stille, opne sida direkte i Safari og sjekk lydstyrken og lydutgangen på telefonen.');return false}
+ finally{if(resumeTimer)clearTimeout(resumeTimer)}
+}
+async function testAudio(){
+ const played=await sequence([60,64,67].map(n=>({notes:n,dur:.6})));
+ if(played)audioMessage('Tre testtonar er sende til lydutgangen. Høyrer du ingenting? Sjekk medielydstyrken og om lyden går til Bluetooth-høgtalarar eller hovudtelefonar. Prøv sida direkte i Safari. På eldre iPhone-versjonar kan du òg måtte slå av stillemodus.');
+}
+
+const sampleMap=[[48,'C3'],[54,'Fs3'],[60,'C4'],[66,'Fs4'],[72,'C5']];
+let buffers=null,loading=null;
+async function loadPiano(){
+ if(buffers)return buffers;if(loading)return loading;
+ loading=Promise.all(sampleMap.map(async([m,name])=>{
+ const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),15000);
+ try{
+ const response=await fetch('sounds/'+name+'.mp3',{signal:controller.signal});
+ if(!response.ok)throw Error('sample unavailable');
+ const bytes=await response.arrayBuffer();const buffer=await ctx.decodeAudioData(bytes);let peak=0;
+ for(let c=0;c<buffer.numberOfChannels;c++){const channel=buffer.getChannelData(c);for(let i=0;i<channel.length;i++)peak=Math.max(peak,Math.abs(channel[i]))}
+ if(!peak||buffer.duration<1)throw Error('invalid sample');return {m,buffer,peak};
+ }finally{clearTimeout(timer)}
+ })).then(items=>buffers=items).finally(()=>{loading=null});return loading;
+}
+function pianoTone(m,start,duration){
+ const sample=buffers.reduce((a,b)=>Math.abs(b.m-m)<Math.abs(a.m-m)?b:a),s=ctx.createBufferSource(),g=ctx.createGain();
+ s.buffer=sample.buffer;s.playbackRate.value=Math.pow(2,(m-sample.m)/12);
+ const level=.27/sample.peak;
+ g.gain.setValueAtTime(0,start);g.gain.linearRampToValueAtTime(level,start+.004);g.gain.setValueAtTime(level,start+Math.max(.01,duration-.06));g.gain.linearRampToValueAtTime(0,start+duration);
+ s.connect(g);g.connect(master);s.start(start);s.stop(start+duration+.04);s.onended=()=>{s.disconnect();g.disconnect()};sources.push(s);
+}
+async function sequence(events,bpm=90,highlight=false){stopAudio();const token=audioRun;if(!await ensureAudio()||token!==audioRun)return;
+if(events.some(e=>(Array.isArray(e.notes)?e.notes.some(n=>n!==null):e.notes!==null))){
+ try{if(!buffers)audioMessage('Lastar pianolydar …');await loadPiano()}
+ catch(e){if(token===audioRun)audioMessage('Pianolyden kunne ikkje lastast. Sjekk nettilkoplinga og trykk spel igjen.');return false}
+ if(token!==audioRun)return false;
+ $('audioStatus').classList.add('hidden');
+}
+const unit=60/bpm,start=ctx.currentTime+.1;let beat=0;for(const [i,e]of events.entries()){const ns=Array.isArray(e.notes)?e.notes:[e.notes];ns.forEach(n=>{if(n!==null)pianoTone(n,start+beat*unit,e.dur*unit*.86)});if(highlight){const index=e.slot??i;timers.push(setTimeout(()=>{if(token!==audioRun)return;document.querySelectorAll('.playing').forEach(x=>x.classList.remove('playing'));document.querySelector('[data-slot="'+index+'"]')?.classList.add('playing')},100+beat*unit*1000))}beat+=e.dur}timers.push(setTimeout(()=>{if(token===audioRun){document.querySelectorAll('.playing').forEach(x=>x.classList.remove('playing'));sources=[]}},150+beat*unit*1000));return true}
+function rhythmEvents(durations){return durations.map(d=>({notes:60,dur:d}))}
+function chord(root,quality){return [root-12,root,root+(quality==='minor'?3:4),root+7]}
+const chordDefs=[{label:'I',degree:0,quality:'major',meaning:'tonika · heim'},{label:'IV',degree:5,quality:'major',meaning:'subdominant'},{label:'V',degree:7,quality:'major',meaning:'dominant'},{label:'vi',degree:9,quality:'minor',meaning:'sjette trinn'}];
+function chordEvent(root,c,dur=2){return {notes:chord(root+c.degree,c.quality),dur}}
+function generate(type,level){if(type==='rhythm'){const patterns=level===1?[[1,1,1,1],[1,.5,.5,1,1],[.5,.5,1,1,1]]:level===2?[[2,1,1],[1,1.5,.5,1],[.5,.5,2,1],[1,.5,.5,2]]:level===3?[[.5,1,.5,1,1],[1.5,.5,.5,.5,1],[.5,.5,1.5,.5,1]]:[[1.5,1.5,1.5,1.5],[1,.5,1.5,.5,1,1.5],[.5,.5,.5,1.5,1.5,1.5]];const ds=[...pick(patterns)],index=rand(ds.length);return {type,level,durations:ds,index,correct:ds[index],choices:shuffle(level===1?[.5,1,2]:[.5,1,1.5,2]),meter:level===4?'6/8':'4/4',bars:level===4?2:1}}
+if(type==='melody'){const root=level>=3?pick([60,62,65,67]):60;const offsets=level===1?[0,2,4]:level===2?[0,2,4,7,9]:[0,2,4,5,7,9,11,12];const pool=offsets.map(n=>root+n),length=[3,4,5,6][level-1];const notes=Array.from({length},(_,i)=>i===0?root:pick(pool));if(notes.every(n=>n===root))notes[length-1]=pool[1];return{type,level,root,pool,notes,correct:notes}}
+const root=level>=3?pick([48,50,53,55]):48;const options=chordDefs.slice(0,level===1?2:level===4?4:3);if(level===1)options[1]=chordDefs[2];const target=level<=2?0:rand(options.length);return {type,level,root,options:shuffle(options),correct:options[target].label,target:options[target]}}
+function newQuestion(){stopAudio();q=generate(activity,data.levels[activity]);answer=activity==='melody'?Array(q.notes.length).fill(null):null;selected=0;attempts=0;hinted=false;firstRecorded=false;solved=false;revealed=false;suggestion=null;renderActivity()}
+function go(where){stopAudio();route=where;suggestion=null;if(defs[where]){activity=where;newQuestion()}else{activity=null;render()}window.scrollTo(0,0)}
+function home(){return `<section class="hero"><div><div class="eyebrow">Ditt eige musikklaboratorium</div><h1>Høyr noko nytt.<br>Finn ut kvifor.</h1><p>Vel ei musikalsk utfordring. Prøv deg fram og finn ditt nivå.</p></div><div class="sound-art" aria-hidden="true">${[45,85,145,200,120,165,70,105].map(h=>`<span style="--h:${h}px"></span>`).join('')}</div></section>${nvHome()}${ppCard()}${nmCard()}<div class="section-head"><h3>Vel ei utfordring</h3><span class="tag">Ingen fast rekkjefølgje</span></div><div class="cards">${Object.entries(defs).map(([k,d])=>`<article class="card" style="--accent:${d.color}"><div class="tag">${d.skill}</div><div class="card-icon" aria-hidden="true">${d.icon}</div><h3>${d.name}</h3><p>${d.desc}</p><small>Nivå ${data.levels[k]} · ${data.stats[k].done} oppgåver utforska</small><button class="primary" data-go="${k}">Start →</button></article>`).join('')}</div><section class="strip"><div><div class="eyebrow" style="margin:0">Skaparoppdrag</div><h3>Fri melodiverkstad</h3><p>Lag ein liten melodisk variasjon. Du bestemmer korleis han skal låte.</p></div><button data-go="create">Opne verkstaden →</button></section><p class="note">Du kan høyre om att så ofte du vil. Start lågt med lydstyrken, og vel eit nivå som passar deg.</p>`}
+function durationName(d){return ({'0.5':'Åttandedel','1':'Firedel','1.5':'Punktert firedel','2':'Halvnote'})[d]}
+function durationSymbol(d){return ({'0.5':'♪','1':'♩','1.5':'♩·','2':'𝅗𝅥'})[d]}
+function displayDuration(d){return durationName(d)+' · '+String(d).replace('.',',')+' firedelar'}
+function levelButtons(){return `<div class="levelbar"><span class="muted">Nivå</span>${bands.map((b,i)=>`<button data-level="${i+1}" aria-pressed="${data.levels[activity]===i+1}">${i+1} · ${b}</button>`).join('')}<small>Du kan alltid byte.</small></div>`}
+function intro(){return ({rhythm:'Lytt til heile rytmen. Vel noteverdien som manglar i mønsteret.',melody:'Lytt til melodien. Vel ei rute, og set inn tonen du høyrde.',harmony:q.level<=2?'Lytt til tonearten og prøv dei to eller tre avslutningane. Finn akkorden som fører frå V tilbake til I.':'Lytt til ein akkord i ein tydeleg toneart. Kva funksjon har han?'})[activity]}
+function staff(notes){const natural=[0,2,4,5,7,9,11];const y=m=>{let oct=Math.floor(m/12)-1,pc=m%12,idx=pc===10?6:natural.reduce((a,n,i)=>n<=pc?i:a,0);return 88-((oct-4)*7+idx-2)*5};const width=Math.max(300,notes.length*48+45);return `<div class="staff" aria-label="Notebilete av svaret ditt"><svg viewBox="0 0 ${width} 125" role="img" aria-label="Svaret ditt på notelinjer, G-nøkkel"><text x="7" y="83" font-size="51" font-family="serif">𝄞</text>${[48,58,68,78,88].map(v=>`<line x1="35" x2="${width-10}" y1="${v}" y2="${v}" stroke="#52616a"/>`).join('')}${notes.map((n,i)=>{if(n===null)return '';const x=52+i*44,yy=y(n),pc=n%12,acc=!natural.includes(pc);return `${yy>=98?`<line x1="${x-12}" x2="${x+12}" y1="98" y2="98" stroke="#17232c"/>`:''}${yy<=38?`<line x1="${x-12}" x2="${x+12}" y1="38" y2="38" stroke="#17232c"/>`:''}<ellipse cx="${x}" cy="${yy}" rx="6" ry="4.5" transform="rotate(-20 ${x} ${yy})" fill="#142531"/><line x1="${x+5}" x2="${x+5}" y1="${yy}" y2="${yy-27}" stroke="#142531" stroke-width="1.5"/>${acc?`<text x="${x-19}" y="${yy+5}" font-size="17">${pc===10?'♭':'♯'}</text>`:''}`}).join('')}</svg><small style="color:#45535c">G-nøkkel · C4 er midt-C · H = engelsk B, B = engelsk B♭</small></div>`}
+function questionBody(){if(activity==='rhythm')return `<p class="question">Kva note manglar?</p><p class="muted">${q.bars} ${q.bars===1?'takt':'takter'} i ${q.meter}. ${q.level===4?'Kvar 6/8-takt har seks åttandedelar, grupperte 3 + 3. Ei punktert firedel er eitt hovudslag.':'Ein firedel er eitt pulsslag.'}</p><div class="slots">${q.durations.map((d,i)=>`${q.level===4&&i>0&&q.durations.slice(0,i).reduce((a,b)=>a+b,0)===3?'<span aria-label="Taktstrek" style="border-left:2px solid var(--muted);margin:0 5px"></span>':''}<div class="slot ${i===q.index?'selected':''}" data-slot="${i}" aria-label="${i===q.index?'Manglande note':durationName(d)}"><span>${i===q.index?(answer?durationSymbol(answer):'?'):durationSymbol(d)}</span></div>`).join('')}</div><div class="choices">${q.choices.map(d=>`<button data-duration="${d}" aria-pressed="${answer===d}" ${solved||revealed?'disabled':''}><span class="symbol" aria-hidden="true">${durationSymbol(d)}</span>${durationName(d)}</button>`).join('')}</div>`;
+if(activity==='melody')return `<p class="note">Først høyrer du tre akkordar (I–V–I) som gir deg kjensla av tonearten og heimtonen. Etter ein kort pause kjem melodien. Fyll berre inn tonane i melodien, ikkje innleiingsakkordane.</p><p class="question">Bygg melodien du høyrde</p><p class="muted">${q.notes.length} tonar · ${shortNote(q.root)}-dur · Alle tonane er like lange. Dette er ei melodiøving utan taktstrekar.</p><div class="slots">${answer.map((n,i)=>`<button class="slot ${selected===i?'selected':''}" data-slot="${i}" data-select="${i}" ${solved||revealed?'disabled':''} aria-label="Tone ${i+1}: ${n===null?'ikkje vald':noteName(n)}"><small>${i+1}</small>${n===null?'?':noteName(n)}</button>`).join('')}</div><div class="choices">${q.pool.map(n=>`<button class="pitch-choice" data-note="${n}" ${solved||revealed?'disabled':''}>${noteName(n)}</button>`).join('')}</div><button data-play="answer">▶ Høyr svaret mitt</button><details><summary>Sjå svaret mitt som notar</summary>${staff(answer)}</details>`;
+return `<p class="question">${q.level<=2?'Kva avslutning går frå V til I?':'Kva akkordfunksjon høyrer du?'}</p><p class="muted">${shortNote(q.root)}-dur · ${q.level<=2?'I er tonika: den tonale heimen i denne øvinga.':'Høyr tonearten før du samanliknar akkordane.'}</p><div class="choices">${q.options.map((c,i)=>`<div style="flex:1;min-width:110px"><button data-chord="${c.label}" style="width:100%" aria-pressed="${answer===c.label}" ${solved||revealed?'disabled':''}><strong>${c.label}</strong><br><small>${c.meaning}</small></button><button data-audition="${i}" style="width:100%;margin-top:8px" aria-label="Høyr ${c.label}">▶ Høyr</button></div>`).join('')}</div><p class="note">Dette er funksjonar i vestleg durtonalitet. Andre musikalske tradisjonar kan organisere tonane annleis.</p>`}
+function renderActivity(){nvRemember();nvUpdate();const d=defs[activity];$('app').innerHTML=`<button class="quiet" data-go="home">← Alle aktivitetar</button><div class="activity-head"><div><div class="eyebrow" style="color:${d.color}">${d.skill}</div><h2>${d.name}</h2><p>${intro()}</p></div><span class="badge">${data.stats[activity].done} utforska</span></div>${levelButtons()}<div class="layout"><section class="stage"><div class="progress-label"><span>${bands[q.level-1]}</span><span>Øv i ditt tempo</span></div><div class="transport"><button class="primary" data-play="target">▶ ${activity==='harmony'?'Høyr toneart og oppgåve':'Høyr oppgåva'}</button><button data-play="slow">▷ Høyr rolegare</button><button data-stop>■ Stopp</button></div>${questionBody()}<div id="feedback" role="status" aria-live="polite"></div><div class="bottom"><button class="primary" data-check ${solved||revealed?'disabled':''}>Sjekk svaret</button><button data-next>${solved||revealed?'Neste oppgåve →':'Ny oppgåve'}</button></div><div id="suggestion"></div></section><aside class="side"><h3>Du har verktøy</h3><p>Å lytte fleire gonger er ein del av øvinga. Bruk hjelp når du treng det.</p><button data-hint>Gje meg eit hint</button><button data-demo>Sjå eit døme</button><button data-reveal>Vis og forklar svaret</button><p>Hint som røper delar av svaret blir ikkje brukte til å vurdere nivået ditt.</p><details><summary>Kva øver eg på?</summary><p>${({rhythm:'Å knyte noteverdiar og høyrde rytmar saman. Å telje verdiar er ikkje det same som å halde ein jamn puls.',melody:'Å hugse og finne tonehøgder i ein melodi. Prøv å høyre etter retninga mellom tonane.',harmony:'Å kjenne att akkordfunksjonar i ein toneart. Ein akkord åleine fortel ikkje kva funksjon han har.'})[activity]}</p></details></aside></div>`}
+function feedback(title,body,kind=''){const el=$('feedback');el.className='feedback '+kind;el.innerHTML='<strong>'+esc(title)+'</strong><p>'+esc(body)+'</p>'}
+function recordObservation(correct){if(firstRecorded)return;firstRecorded=true;if(hinted)return;const key=activity+'-'+q.level,arr=data.observations[key]||[];arr.push(correct);data.observations[key]=arr;if(arr.length===10){const n=arr.filter(Boolean).length;data.observations[key]=[];if(n>=8&&q.level<4)suggestion={level:q.level+1,text:'Du fekk til '+n+' av 10 nye oppgåver utan svarhint. Vil du prøve neste nivå?'};else if(n<=4&&q.level>1)suggestion={level:q.level-1,text:'Vil du prøve eit rolegare steg eller halde fram her? Du bestemmer.'}}save()}
+function showSuggestion(){if(suggestion)$('suggestion').innerHTML=`<div class="feedback"><p>${esc(suggestion.text)}</p><div class="row" style="margin-top:10px"><button data-level="${suggestion.level}">Prøv nivå ${suggestion.level}</button><button data-dismiss>Hald fram her</button></div></div>`}
+function check(){if(solved||revealed)return;if(answer===null||(Array.isArray(answer)&&answer.includes(null))){feedback('Vel eit svar først.','Fyll ut alle rutene før du sjekkar.');return}const correct=activity==='melody'?answer.every((n,i)=>n===q.notes[i]):answer===q.correct;recordObservation(correct);attempts++;if(correct){solved=true;data.stats[activity].done++;if(attempts===1&&!hinted)data.stats[activity].correct++;save();renderActivity();feedback('Det stemmer!',explanation(),'good');showSuggestion()}else{let tip=activity==='melody'?'Høyr ein gong til. Samanlikn melodien med svaret ditt.':activity==='rhythm'?'Samanlikn lengda på noten med plassen som manglar. Høyr mønsteret ein gong til.':'Denne akkorden finst i tonearten, men svarar ikkje på denne oppgåva. Samanlikn heile frasen.';feedback('Prøv ei justering.',tip,'warn');showSuggestion()}}
+function explanation(){if(activity==='rhythm')return 'Den manglande noten er ein '+durationName(q.correct).toLowerCase()+'. '+(q.level===4?'Dei to 6/8-taktene har til saman tolv åttandedelar.':'Noteverdiane i takta blir til saman fire firedelar.');if(activity==='melody')return 'Melodien er '+q.notes.map(noteName).join(' – ')+'. Lytt til heile melodien igjen og legg merke til stega og spranga.';return q.correct==='I'?(q.level<=2?'I er durakkorden på første trinn. Etter V fører han tilbake til tonika i denne frasen.':'I er durakkorden på første trinn: tonika i tonearten du høyrde.'):'Dette er '+q.correct+': '+q.target.meaning+'. Samanlikn han med I etter at du har høyrt tonearten.'}
+function hint(){if(solved||revealed){feedback('Lytt og samanlikn.',explanation());return}hinted=true;if(activity==='melody'){const i=answer.findIndex((n,j)=>n!==q.notes[j]);selected=Math.max(0,i);answer[selected]=q.notes[selected];renderActivity();feedback('Ein tone er på plass.','Tone '+(selected+1)+' er '+noteName(q.notes[selected])+'. Høyr igjen og finn dei andre.')}else if(activity==='rhythm')feedback('Sjå på lengda.','Plassen som manglar er '+String(q.correct).replace('.',',')+' firedelar lang. Ein åttandedel er ein halv firedel.');else feedback('Lytt etter funksjonen.',q.correct==='I'?'Målet er tonika, akkorden på første trinn. Samanlikn med den siste akkorden i innleiinga.':'Målet er '+q.target.meaning+'. Prøv å samanlikne kandidatane etter innleiinga.')}
+function reveal(){if(solved||revealed)return;hinted=true;revealed=true;answer=activity==='melody'?[...q.notes]:q.correct;renderActivity();feedback('Her er eit løysingsforslag.',explanation()+' Denne oppgåva tel ikkje som sjølvstendig løyst.');}
+function demo(){hinted=true;const body=activity==='rhythm'?'I 4/4 fyller ein halvnote to slag. To firedelar fyller dei to siste: 2 + 1 + 1 = 4. I 6/8 kan to punkterte firedelar fylle éi takt.':activity==='melody'?'C4 – D4 – E4 går opp to gonger. C4 – E4 – D4 går først opp, så ned. Vel ei rute før du set inn tonen.':'I C-dur er I = C-dur, IV = F-dur og V = G-dur. Høyr C–F–G–C: den siste akkorden kjem tilbake til tonika.';feedback('Døme',body);if(activity==='rhythm')sequence(rhythmEvents([2,1,1]));else if(activity==='melody')sequence([60,62,64].map(n=>({notes:n,dur:1})));else sequence([0,1,2,0].map(i=>chordEvent(48,chordDefs[i]))) }
+function playTarget(slow=false){const bpm=slow?65:90;if(activity==='rhythm')sequence(rhythmEvents(q.durations),bpm,true);else if(activity==='melody'){const context=[0,2,0].map(i=>chordEvent(q.root-12,chordDefs[i],.65));sequence([...context,{notes:null,dur:.65},...q.notes.map((n,i)=>({notes:n,dur:1,slot:i}))],bpm,false)}else{const context=[0,1,2,0].map(i=>chordEvent(q.root,chordDefs[i],1.2));const tail=q.level<=2?[0,1,2].map(i=>chordEvent(q.root,chordDefs[i],1.5)):[chordEvent(q.root,q.target,2)];sequence([...context,{notes:null,dur:1},...tail],bpm)}}
+function audition(i){const c=q.options[i];const events=q.level<=2?[0,1,2].map(j=>chordEvent(q.root,chordDefs[j],1.5)).concat([chordEvent(q.root,c,2)]):[0,1,2,0].map(j=>chordEvent(q.root,chordDefs[j],1)).concat([{notes:null,dur:.6},chordEvent(q.root,c,2)]);sequence(events)}
+function createView(){return `<button class="quiet" data-go="home">← Alle aktivitetar</button><div class="activity-head"><div><div class="eyebrow">Skaparoppdrag</div><h2>Same start. Ny slutt.</h2><p>To takter, fire firedelar i kvar. Behald starten, og lag ein ny slutt på den andre takta.</p></div><span class="badge">Ingen poeng · Ditt uttrykk</span></div><section class="stage"><h3>Oppdraget</h3><p class="muted">Første takt og dei to første tonane i andre takt er låste. Endre minst éin av dei to siste tonane. Alle tonane er firedelar.</p><div class="creative-grid">${creative.map((n,i)=>`<label>Takt ${i<4?1:2} · slag ${i%4+1}<select data-create="${i}" ${i<6?'disabled':''} aria-label="Takt ${i<4?1:2}, slag ${i%4+1}">${[60,62,64,67,69].map(v=>`<option value="${v}" ${v===n?'selected':''}>${noteName(v)}</option>`).join('')}</select></label>`).join('')}</div>${staff(creative)}<div class="row"><button class="primary" data-play="creation">▶ Høyr melodien</button><button data-play="original">▶ Samanlikn med originalen</button><button data-stop>■ Stopp</button><button data-save-creation>Lagre varianten</button></div><div id="creativeFeedback" role="status"></div><p class="note">Kva endra seg då du valde ein annan slutt? Kva versjon vil du behalde? Det finst fleire gode svar.</p></section>`}
+function progressView(){const all=[...Object.values(data.stats),...Object.values(data.extraPractice).map(s=>({done:s.done,correct:s.first}))];return `<div class="eyebrow">Di eiga reise</div><h2>Mi øving</h2><p class="muted" style="margin-top:12px">Framgangen ligg i denne nettlesaren på denne eininga. Han er ikkje sendt til ein lærar.</p><div class="stats"><div class="stat"><strong>${all.reduce((a,s)=>a+s.done,0)}</strong>Oppgåver løyste</div><div class="stat"><strong>${all.reduce((a,s)=>a+s.correct,0)}</strong>Rett på første forsøk utan svarhint</div><div class="stat"><strong>${data.creations.length+thStore.creations.length}</strong>Lagra melodivariantar</div></div><div class="cards">${Object.entries(defs).map(([k,d])=>`<div class="card"><h3>${d.name}</h3><p>Nivå ${data.levels[k]} · ${data.stats[k].done} løyste</p><button data-go="${k}">Hald fram →</button></div>`).join('')}</div><section class="stage" style="margin-top:24px"><h3>Mine melodivariantar</h3>${data.creations.length?data.creations.map((c,i)=>`<div class="saved"><span>${esc(c.title)}</span><div class="row"><button data-play-saved="${i}" aria-label="Spel ${esc(c.title)}">▶ Høyr</button><button data-open-saved="${i}">Opne</button></div></div>`).join(''):'<p class="muted" style="margin-top:12px">Lag din første variant i skaparverkstaden.</p>'}</section>${extraView()}${thProgressView()}<section class="strip"><div><h3>Ta vare på arbeidet</h3><p>Eksporter ein kopi før du flyttar appen, byter nettlesar eller slettar nettlesardata.</p></div><div class="row"><button data-export>Eksporter</button><button data-import>Importer</button></div></section><div id="importFeedback" role="status"></div>`}
+function about(){return `<div class="eyebrow">For deg og dei vaksne</div><h2>Eit lite rom for musikk.</h2><p class="muted" style="margin:20px 0">For 11–13-åringar med litt musikalsk erfaring. Ei frivillig utforsking av gehør, rytme og teori — i ditt tempo.</p><section class="stage"><details open><summary>Kom i gang</summary><p>Vel ein aktivitet og trykk «Høyr oppgåva». Vel svar eller bygg melodien, og trykk «Sjekk svaret». Bruk hint, døme og gjenteken lytting når du treng det. I harmonioppgåvene spelar innleiinga først tonearten; oppgåva kjem etter ein kort pause.</p></details><details><summary>Kva tyder nivåa?</summary><p>Kvar aktivitet har fire nivå. Du vel sjølv og kan byte når som helst. Etter ti samanliknbare førstesvar utan svarhint kan appen føreslå eit anna nivå. Dette er ei enkel, førebels rettleiing, ikkje ein test av musikaliteten din.</p></details><details><summary>Nettversjon og nedlasting</summary><p>Dette er nettversjonen av prototypen. Opne nettadressa direkte i Safari eller ein annan nettlesar. Den private sida kan krevje innlogging med eigaren sin ChatGPT-konto. Ho har ikkje elevkontoar. Offline-installasjon er ikkje aktivert. Ein separat HTML-versjon finst for nedlasting og lokal bruk på datamaskin.</p></details><details><summary>Lagring og personvern</summary><p>Appen brukar lokal nettlesarlagring. Sjølve musikkappen lagrar ingen namn og brukar ingen mikrofon, annonser eller analyseverktøy. Tilgangen til den private nettsida blir handtert av vertstenesta. Framgang kan forsvinne når nettlesardata blir sletta, i privat modus eller ved flytting av fila. Bruk eksport/import i «Mi øving». Ein import erstattar den lokale framgangen; du får stadfeste dette først.</p></details><details><summary>Notenamn</summary><p>Me brukar norske namn: H er engelsk B, og B er engelsk B♭. C4 er midt-C. Talet viser oktaven. Melodioppgåvene brukar G-nøkkel. Forteikn blir viste ved kvar endra tone i denne prototypen, utan faste forteikn.</p></details><details><summary>Kva er kontrollert?</summary><p>Oppgåvelogikken blir gjennomgått av ein separat KI-agent i lærarrolla. Dette er ikkje ei godkjenning frå ein menneskeleg lærar. Prototypen må prøvast på dei faktiske einingane og med elevar før ordinær bruk. Appen erstattar ikkje instrumentalundervisning eller samspel.</p></details><details><summary>Kjelder og pedagogisk retning</summary><p>Planen byggjer på internasjonale musikkfaglege rammeverk og forsking på digital og uformell musikklæring. Aktivitetane knyter lytting, forståing og utprøving saman. Harmonioppgåvene gjeld vestleg durtonalitet; dei representerer ikkje alle musikalske system. Den separate læreplanen inneheld kjeldelista.</p></details><button data-go="home" class="primary" style="margin-top:20px">Til aktivitetane →</button></section>`}
+function render(){nvRemember();nvUpdate(); if(route==='groove'){$('app').innerHTML=grView();return} if(route==='notation'){$('app').innerHTML=nmView();return} if(route==='puzzle'){$('app').innerHTML=ppView();return} if(route==='theme'){$('app').innerHTML=themeView();return} $('app').innerHTML=route==='home'?home():route==='create'?createView():route==='progress'?progressView():about()}
+function exportData(){const blob=new Blob([JSON.stringify({...data,themeEnding:thStore},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='Musikkverkstad-framgang.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b||b.disabled)return;if(b.hasAttribute('data-test-audio')){testAudio();return}if(b.dataset.go){go(b.dataset.go);return}if(b.dataset.level){data.levels[activity]=Number(b.dataset.level);save();newQuestion();return}if(b.hasAttribute('data-next')){newQuestion();return}if(b.hasAttribute('data-stop')){stopAudio();return}if(b.dataset.duration){answer=Number(b.dataset.duration);renderActivity();return}if(b.dataset.select){selected=Number(b.dataset.select);renderActivity();return}if(b.hasAttribute('data-select')){selected=0;renderActivity();return}if(b.dataset.note){answer[selected]=Number(b.dataset.note);const next=answer.findIndex((n,i)=>i>selected&&n===null);if(next>=0)selected=next;renderActivity();return}if(b.dataset.chord){answer=b.dataset.chord;renderActivity();return}if(b.hasAttribute('data-check')){check();return}if(b.hasAttribute('data-hint')){hint();return}if(b.hasAttribute('data-demo')){demo();return}if(b.hasAttribute('data-reveal')){reveal();return}if(b.hasAttribute('data-audition')){audition(Number(b.dataset.audition));return}if(b.hasAttribute('data-dismiss')){suggestion=null;$('suggestion').innerHTML='';return}if(b.dataset.play){const mode=b.dataset.play;if(mode==='target'||mode==='slow')playTarget(mode==='slow');else if(mode==='answer')sequence(answer.map((n,i)=>({notes:n,dur:1,slot:i})),90,true);else if(mode==='creation'||mode==='original')sequence((mode==='creation'?creative:[60,62,64,67,60,62,64,67]).map(n=>({notes:n,dur:1})));return}if(b.hasAttribute('data-save-creation')){const changed=creative[6]!==64||creative[7]!==67;if(!changed){$('creativeFeedback').className='feedback';$('creativeFeedback').textContent='Endre minst éin av dei to siste tonane for å lage ein variasjon.';return}if(data.creations.length>=30){$('creativeFeedback').className='feedback';$('creativeFeedback').textContent='Du har 30 lagra variantar. Eksporter ein kopi; denne prototypen har plass til 30.';return}data.creations.push({title:'Melodivariant '+(data.creations.length+1),notes:[...creative]});save();$('creativeFeedback').className='feedback good';$('creativeFeedback').textContent=storageOK?'Varianten er lagra i «Mi øving».':'Varianten er i denne økta. Eksporter framgangen for å ta vare på han.';return}if(b.hasAttribute('data-play-saved')){sequence(data.creations[Number(b.dataset.playSaved)].notes.map(n=>({notes:n,dur:1})));return}if(b.hasAttribute('data-open-saved')){creative=[...data.creations[Number(b.dataset.openSaved)].notes];go('create');return}if(b.hasAttribute('data-export'))exportData();if(b.hasAttribute('data-import'))$('importFile').click()});
+document.addEventListener('change',e=>{if(e.target.hasAttribute('data-create')){const i=Number(e.target.dataset.create);if(i>=6&&i<8)creative[i]=Number(e.target.value);stopAudio();render()}});
+$('volume').value=data.volume*100;$('volume').addEventListener('input',e=>{data.volume=Number(e.target.value)/100;if(master)master.gain.value=data.volume*.22;save()});
+$('importFile').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;try{if(file.size>200000)throw Error('Fila er for stor.');const parsed=JSON.parse(await file.text());const legacyExtra=parsed.extraPractice===undefined;const imported=validData(parsed);const importedTheme=imported.themeEnding===undefined?null:thValid(imported.themeEnding);if(legacyExtra&&!confirm(extraText('legacy')))return;if(!confirm('Import erstattar framgangen på denne eininga. Har du eksportert det du vil behalde?'))return;stopAudio();delete imported.themeEnding;data=imported;pp.level=data.extraPractice.puzzle.level;nm.level=data.extraPractice.notation.level;ppNew();nmNew();if(importedTheme){thStore=importedTheme;thCorrupt=false;thPersist()}save();$('volume').value=data.volume*100;if(master)master.gain.value=data.volume*.22;go('progress');$('importFeedback').className='feedback good';$('importFeedback').textContent=importedTheme&&!thSaveOK?thText('storage'):'Framgangen er importert.'}catch(err){go('progress');$('importFeedback').className='feedback warn';$('importFeedback').textContent='Kunne ikkje importere: '+err.message}finally{e.target.value=''}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden)stopAudio()});
+/* Backward-compatible progress extension; no pupil identifiers. */
+function extraEmpty(){return {puzzle:{level:1,done:0,first:0,supported:0},notation:{level:1,done:0,first:0,supported:0}}}
+function extraValid(v){
+ if(v===undefined)return extraEmpty();
+ if(!v||typeof v!=='object'||Array.isArray(v)||Object.keys(v).some(k=>!['puzzle','notation'].includes(k)))throw Error('Invalid activity progress');
+ for(const k of ['puzzle','notation']){const s=v[k];if(!s||typeof s!=='object'||Array.isArray(s)||Object.keys(s).some(x=>!['level','done','first','supported'].includes(x))||!Number.isInteger(s.level)||s.level<1||s.level>4)throw Error('Invalid activity level');
+ for(const n of ['done','first','supported'])if(!Number.isInteger(s[n])||s[n]<0||s[n]>1000000)throw Error('Invalid activity count');
+ if(s.first+s.supported>s.done)throw Error('Invalid activity totals');
+ }return v;
+}
+const extraWords={
+ firstPuzzle:['rette på første sjekk','riktige på første sjekk','correct on first check'],
+ title:['Fleire aktivitetar','Flere aktiviteter','More activities'],
+ done:['fullførte rundar','fullførte runder','completed rounds'],
+ first:['rette på første sjekk utan notenamn','riktige på første sjekk uten notenavn','correct on first check without note names'],
+ supported:['fullførte med notenamn som støtte','fullførte med notenavn som støtte','completed with note-name support'],
+ note:['Dette viser øving, ikkje meistring. Å høyre om att er lov. Uferdige rundar blir ikkje lagra.','Dette viser øving, ikke mestring. Du kan høre om igjen. Uferdige runder lagres ikke.','This records practice, not mastery. Replaying is allowed. Unfinished rounds are not saved.'],
+ local:['Fullførte rundar og valt nivå blir lagra i denne nettlesaren og er med i Eksporter/Importer. Den uferdige runden blir ikkje lagra.','Fullførte runder og valgt nivå lagres i denne nettleseren og er med i Eksporter/Importer. Den uferdige runden lagres ikke.','Completed rounds and your level are saved in this browser and included in Export/Import. The unfinished round is not saved.'],
+ error:['Framgangen kunne ikkje lagrast. Eksporter før du lukkar sida.','Fremgangen kunne ikke lagres. Eksporter før du lukker siden.','Progress could not be saved. Export before closing the page.'],
+ legacy:['Denne eldre kopien har ikkje framgang for Melodipuslespel eller Lyd og notar. Import vil setje desse tala til null. Vil du halde fram?','Denne eldre kopien har ikke fremgang for Melodipuslespill eller Lyd og noter. Import vil sette disse tallene til null. Vil du fortsette?','This older backup has no Phrase Puzzle or Notation Match progress. Import will reset those counts to zero. Continue?']
+};
+function extraText(k){return extraWords[k][document.documentElement.lang==='en'?2:document.documentElement.lang==='nb'?1:0]}
+function extraLevel(key,level){data.extraPractice[key].level=level;save()}
+function extraComplete(key,state){
+ if(state.recorded)return;
+ const s=data.extraPractice[key];if(s.done>=1000000)return;
+ state.recorded=true;s.done++;
+ if(state.supportUsed)s.supported++;else if(state.checks===1)s.first++;
+ save();
+}
+function extraView(){return `<section class="stage" style="margin-top:24px"><h3>${extraText('title')}</h3><p>${extraText('note')}</p><div class="cards">${['puzzle','notation'].map(k=>{const s=data.extraPractice[k],name=k==='puzzle'?ppText('title'):nmText('title');return `<article class="card"><h3>${name}</h3><p>${s.done} ${extraText('done')}</p><p>${s.first} ${extraText(k==='puzzle'?'firstPuzzle':'first')}</p>${k==='notation'?`<p>${s.supported} ${extraText('supported')}</p>`:''}<p>${nmText('level')} ${s.level}</p><button data-go="${k==='puzzle'?'puzzle':'notation'}">${name} →</button></article>`}).join('')}</div></section>`}
+
+/* Weekly theme: no external services; separate, validated local-only storage. */
+const thWords = {
+ welcome:['Klar for ei lita lytteutfordring?','Klar for en liten lytteutfordring?','Ready for a quick listening challenge?'],
+ welcomeHelp:['Høyr ein melodi, og finn den som er lik. Du kan prøve så mange gonger du vil.','Hør en melodi, og finn den som er lik. Du kan prøve så mange ganger du vil.','Hear a melody and find its match. Take as many tries as you like.'],
+ quick:['Prøv ei kort utfordring','Prøv en kort utfordring','Try a quick challenge'], explore:['Vel aktivitet og nivå','Velg aktivitet og nivå','Choose activity and level'],
+ step1:['1 · Høyr melodien','1 · Hør melodien','1 · Hear the melody'], step2:['2 · Finn den som er lik','2 · Finn den som er lik','2 · Find the matching melody'],
+ another:['Prøv ein til','Prøv en til','Try another'], harder:['Gjer det vanskelegare','Gjør det vanskeligere','Make it harder'], own:['Lag din eigen slutt','Lag din egen slutt','Create your own ending'],
+ forSlot:['Vel tone til plass','Velg tone til plass','Choose a note for slot'],
+ rebuiltCount:['Slutten din med {n} tonar er lik førebiletet! Høyr førebiletet og din melodi ein gong til.','Slutten din med {n} toner er lik forbildet! Hør forbildet og din melodi en gang til.','Your {n}-note ending matches the reference! Replay the reference and your melody to compare.'],
+
+ back:['Til framsida','Til forsiden','Back to home'], stop:['Stopp lyd','Stopp lyd','Stop sound'], demo:['Vis eit døme','Vis et eksempel','Show an example'],
+ demoHelp:['Dette er eit eige døme, ikkje svaret på oppgåva. Først sluttar melodien på C4. I varianten er berre siste tone endra til A4. Høyr begge, og samanlikn. I byggjeoppgåva ville du valt C4 for å kopiere den første melodien. I skapande arbeid kan du velje den slutten du sjølv likar.','Dette er et eget eksempel, ikke svaret på oppgaven. Først slutter melodien på C4. I varianten er bare siste tone endret til A4. Hør begge, og sammenlign. I byggeoppgaven ville du valgt C4 for å kopiere den første melodien. I skapende arbeid kan du velge den slutten du selv liker.','This is a separate example, not the answer to your task. The first melody ends on C4. In the second, only the last note changes to A4. Listen to both and compare. To rebuild the first melody, you would choose C4. When creating, choose the ending you prefer.'],
+ audioError:['Lyden kunne ikkje startast. Prøv Test lyd øvst på sida.','Lyden kunne ikke startes. Prøv Test lyd øverst på siden.','Sound could not start. Try Test sound at the top of the page.'],
+ title:['Same start, ulik slutt','Samme start, ulik slutt','Same start, different ending'],
+ intro:['Utforsk korleis nokre få tonar kan endre ein melodi. Vel ei oppgåve og eit nivå – du treng ikkje følgje ei fast rekkjefølgje.','Utforsk hvordan noen få toner kan endre en melodi. Velg en oppgave og et nivå – du trenger ikke følge en fast rekkefølge.','Explore how a few notes can change a melody. Choose any task and level; there is no required order.'],
+ listen:['Lytt og samanlikn','Lytt og sammenlign','Listen and compare'], rebuild:['Bygg slutten','Bygg slutten','Rebuild the ending'], create:['Lag din variant','Lag din variant','Create your version'],
+ level:['Nivå','Nivå','Level'], explored:['Utforska','Utforsket','Explored'], new:['Ny melodi','Ny melodi','New melody'],
+ guide:['Alle melodiane har åtte firedelar i to 4/4-taktar. Første takt er alltid C–D–E–G. Me brukar tonane C, D, E, G og A i C-dur.','Alle melodiene har åtte firedeler i to 4/4-takter. Første takt er alltid C–D–E–G. Vi bruker tonene C, D, E, G og A i C-dur.','Each melody has eight quarter notes in two bars of 4/4. The first bar is always C–D–E–G. We use C, D, E, G and A in C major.'],
+ range:['På dette nivået arbeider du med dei siste','På dette nivået arbeider du med de siste','At this level, work with the final'], notes:['tonane. Resten er fast.','tonene. Resten er fast.','notes. The rest stays fixed.'],
+ context:['Høyr C-dur','Hør C-dur','Hear C major'], contextHelp:['Denne C-durakkorden gir deg ein toneart å lytte ut frå.','Denne C-durakkorden gir deg en toneart å lytte ut fra.','This C major chord gives you a tonal reference before you listen.'],
+ listenHelp:['Høyr førebiletet, så A og B. Kva for ein er heilt lik førebiletet?','Hør forbildet, så A og B. Hvilken er helt lik forbildet?','Hear the reference, then A and B. Which one exactly matches the reference?'],
+ reference:['Høyr førebiletet','Hør forbildet','Play reference'], play:['Høyr','Hør','Play'], choose:['Vel','Velg','Choose'], heard:['Høyrt','Hørt','Played'], needHear:['Høyr førebiletet og begge alternativa før du vel.','Hør forbildet og begge alternativene før du velger.','Play the reference and both options before choosing.'],
+ right:['Ja! Du fann melodien som er lik førebiletet. Høyr gjerne ein gong til.','Ja! Du fant melodien som er lik forbildet. Hør gjerne en gang til.','Yes! You found the matching melody. Listen again to compare.'], wrong:["Denne slutten er ulik førebiletet. Høyr slutten igjen og samanlikn tone for tone.", "Denne slutten er ulik forbildet. Hør slutten igjen og sammenlign tone for tone.", "This ending differs from the reference. Replay the ending and compare one note at a time."],
+ rebuildHelp:['Høyr melodien og fyll inn dei tomme plassane. Trykk på ein plass, så ein tone. Du høyrer tonen med ein gong.','Hør melodien og fyll inn de tomme plassene. Trykk på en plass, så en tone. Du hører tonen med en gang.','Listen and fill the empty slots. Select a slot, then a note. Each note sounds as you choose it.'],
+ createHelp:['Behald starten og lag ein ny slutt. Prøv to ulike variantar og lytt til skilnaden. Her finst det ikkje éin rett slutt.','Behold starten og lag en ny slutt. Prøv to ulike varianter og lytt til forskjellen. Her finnes det ikke én riktig slutt.','Keep the opening and make a new ending. Try two versions and listen to the difference. There is no single correct ending.'],
+ original:['Høyr utgangspunktet','Hør utgangspunktet','Play starting version'], mine:['Høyr din melodi','Hør din melodi','Play your melody'], check:['Sjekk svaret','Sjekk svaret','Check answer'], hint:['Få eit tips','Få et tips','Get a hint'],
+ hintText:['Lytt berre til slutten. Går tonane opp, ned eller ligg dei på same tone? Bruk «Høyr berre slutten» og samanlikn.','Lytt bare til slutten. Går tonene opp, ned eller ligger de på samme tone? Bruk «Hør bare slutten» og sammenlign.','Listen to just the ending. Do the notes rise, fall or repeat? Use “Play just the ending” and compare.'], ending:['Høyr berre slutten','Hør bare slutten','Play just the ending'],
+ incomplete:['Fyll inn alle plassane først.','Fyll inn alle plassene først.','Fill all the slots first.'], rebuilt:['Melodien stemmer! Du har bygd slutten du høyrde.','Melodien stemmer! Du har bygd slutten du hørte.','That matches! You rebuilt the ending you heard.'], retry:['Ikkje heilt enno. Høyr førebiletet og din melodi. Samanlikn éin tone om gongen.','Ikke helt ennå. Hør forbildet og din melodi. Sammenlign én tone om gangen.','Not quite yet. Play the reference and your melody. Compare one note at a time.'],
+ fixed:['Fast tone','Fast tone','Fixed note'], slot:['Toneplass','Toneplass','Note slot'], empty:['Tom','Tom','Empty'], bar:['Takt','Takt','Bar'], save:['Lagre varianten','Lagre varianten','Save version'], saved:['Varianten er lagra på denne eininga.','Varianten er lagret på denne enheten.','Version saved on this device.'], changeFirst:['Endre minst éin av dei opne tonane for å lage din eigen variant.','Endre minst én av de åpne tonene for å lage din egen variant.','Change at least one editable note to make your own version.'], collection:['Dine variantar','Dine varianter','Your versions'], version:['Variant','Variant','Version'],
+ reflection:['Kva endra seg då du endra slutten? Kva variant likar du best, og kvifor? Du kan tenkje over det utan å skrive noko.','Hva endret seg da du endret slutten? Hvilken variant liker du best, og hvorfor? Du kan tenke over det uten å skrive noe.','What changed when you changed the ending? Which version do you prefer, and why? Reflect without needing to write anything.'],
+ support:['Tips brukt. «Utforska» betyr at du har gjennomført oppgåva, ikkje at du må kunne henne utan hjelp.','Tips brukt. «Utforsket» betyr at du har gjennomført oppgaven, ikke at du må kunne den uten hjelp.','Hint used. “Explored” means you completed the task, not that you must do it without support.'],
+ storage:['Lagring er ikkje tilgjengeleg. Du kan øve, men nytt arbeid kan gå tapt når du lukkar sida.','Lagring er ikke tilgjengelig. Du kan øve, men nytt arbeid kan gå tapt når du lukker siden.','Saving is unavailable. You can practise, but new work may be lost when you close this page.'],
+ corrupt:['Tidlegare temaarbeid kunne ikkje lesast. Det er ikkje overskrive. Du kan framleis øve.','Tidligere temaarbeid kunne ikke leses. Det er ikke overskrevet. Du kan fortsatt øve.','Previous theme work could not be read and has not been overwritten. You can still practise.'],
+ local:['Framgang og opptil 20 variantar blir lagra i denne nettlesaren. Dei nyaste blir tekne vare på. Bruk Eksporter under Mi øving for å ta sikkerheitskopi.','Fremgang og opptil 20 varianter lagres i denne nettleseren. De nyeste beholdes. Bruk Eksporter under Min øving for å ta sikkerhetskopi.','Progress and up to 20 versions are saved in this browser. The newest are kept. Use Export under My practice to make a backup.'],
+ next:['Vil du ha meir utfordring? Vel eit høgare nivå. Du kan alltid gå tilbake.','Vil du ha mer utfordring? Velg et høyere nivå. Du kan alltid gå tilbake.','Want more challenge? Choose a higher level. You can always move back.']
+};
+Object.assign(thWords,{
+ ready:['Klar til å lytte','Klar til å lytte','Ready to listen'], source:['Lydkjelde','Lydkilde','Audio source'],
+ pulse:['Toneplass i melodien','Toneplass i melodien','Note position in the melody'],
+ tabListen:['Lytt','Lytt','Listen'], tabBuild:['Bygg','Bygg','Build'], tabCreate:['Skap','Skap','Create'],
+ themeProgress:['Temaarbeidet ditt','Temaarbeidet ditt','Your theme progress'],
+ completed:['aktivitetar utforska på tvers av nivå','aktiviteter utforsket på tvers av nivå','activities explored across levels'],
+ progressNote:['Dette viser kva du har utforska, ikkje ein prøvekarakter.','Dette viser hva du har utforsket, ikke en prøvekarakter.','This shows what you have explored, not a test grade.'],
+ noVersions:['Ingen temavariantar enno. Prøv å lage din eigen slutt.','Ingen temavarianter ennå. Prøv å lage din egen slutt.','No theme versions yet. Try creating your own ending.'],
+ openVersion:['Opne','Åpne','Open'], alreadySaved:['Denne varianten er allereie lagra.','Denne varianten er allerede lagret.','This version is already saved.'],
+
+ playing:['Spelar {name}. Vent til slutten. Bruk Stopp for å avbryte.','Spiller {name}. Vent til slutten. Bruk Stopp for å avbryte.','Playing {name}. Wait for the ending. Use Stop to cancel.'],
+ finished:['Avspelinga er ferdig. No kan du samanlikne eller velje eit svar.','Avspillingen er ferdig. Nå kan du sammenligne eller velge et svar.','Playback finished. You can now compare or choose an answer.'],
+ excerpt:['Høyr berre slutten','Hør bare slutten','Play ending only']
+});
+Object.assign(thWords,{"audioGuide": ["Heile melodiar: først ein C-durakkord, så ein kort pause og åtte meloditonar. Svar berre på melodien. «Berre slutten» hoppar over akkorden og pausen.", "Hele melodier: først en C-durakkord, så en kort pause og åtte meloditoner. Svar bare på melodien. «Bare slutten» hopper over akkorden og pausen.", "Full melodies: first a C major chord, then a short pause and eight melody notes. Answer only about the melody. “Ending only” skips the chord and pause."], "phaseIntro": ["Innleiing: C-durakkord. Melodien kjem etter pausen.", "Innledning: C-durakkord. Melodien kommer etter pausen.", "Introduction: C major chord. The melody follows the pause."], "phasePause": ["Kort pause — melodien kjem no.", "Kort pause — melodien kommer nå.", "Short pause — the melody is next."], "phaseMelody": ["No kjem melodien: {name}.", "Nå kommer melodien: {name}.", "Now playing the melody: {name}."], "phaseEnding": ["Spelar berre slutten: {name}.", "Spiller bare slutten: {name}.", "Playing only the ending: {name}."], "phaseContext": ["Spelar berre C-durakkorden, utan melodi.", "Spiller bare C-durakkorden, uten melodi.", "Playing only the C major chord, without a melody."], "listenLevel1": ["Finn den like melodien. Berre den siste tonen kan vere ulik.", "Finn den like melodien. Bare den siste tonen kan være ulik.", "Find the matching melody. Only the last note can differ."], "listenLevel2": ["Finn den like melodien. Éin av dei to siste tonane kan vere ulik.", "Finn den like melodien. Én av de to siste tonene kan være ulik.", "Find the matching melody. One of the last two notes can differ."], "listenLevel3": ["Finn den like melodien. Finn så plassen til den endra tonen i det andre alternativet.", "Finn den like melodien. Finn så plassen til den endrede tonen i det andre alternativet.", "Find the matching melody. Then locate the changed note in the other option."], "listenLevel4": ["Finn den like melodien, plassen til den endra tonen og om han er høgare eller lågare enn førebiletet.", "Finn den like melodien, plassen til den endrede tonen og om den er høyere eller lavere enn forbildet.", "Find the matching melody, locate the changed note, and say whether it is higher or lower than the reference."], "locate": ["I alternativ {name}: Kva toneplass er endra?", "I alternativ {name}: Hvilken toneplass er endret?", "In option {name}: which note position changed?"], "direction": ["Er den endra tonen høgare eller lågare enn same toneplass i førebiletet?", "Er den endrede tonen høyere eller lavere enn samme toneplass i forbildet?", "Is the changed note higher or lower than the note at the same position in the reference?"], "higher": ["Høgare", "Høyere", "Higher"], "lower": ["Lågare", "Lavere", "Lower"], "compareCue": ["Lytt til førebiletet og alternativet éin tone om gongen. Bruk tala 1–8 til å finne skilnaden.", "Lytt til forbildet og alternativet én tone om gangen. Bruk tallene 1–8 til å finne forskjellen.", "Compare the reference and option one note at a time. Use positions 1–8 to locate the difference."], "directionCue": ["Spel førebiletet og det endra alternativet igjen. Samanlikn tonehøgda på plassen du fann.", "Spill forbildet og det endrede alternativet igjen. Sammenlign tonehøyden på plassen du fant.", "Replay the reference and changed option. Compare the pitch at the position you found."], "finish": ["Ferdig for no", "Ferdig for nå", "Finish for now"], "savedFinish": ["Varianten er lagra. Du kan avslutte no eller halde fram med å utforske.", "Varianten er lagret. Du kan avslutte nå eller fortsette å utforske.", "Your version is saved. You can finish now or keep exploring."]});
+Object.assign(thWords,{foundPosition:['Endra toneplass: {n}','Endret toneplass: {n}','Changed note position: {n}']});
+function thText(key){const lang=document.documentElement.lang;return thWords[key][lang==='en'?2:lang==='nb'?1:0]}
+const TH_KEY='musikkverkstad-theme-ending-v1', TH_POOL=[60,62,64,67,69], TH_BASE=[60,62,64,67,60,62,64,60];
+function thValid(d){
+ if(!d||d.version!==1||!d.done||typeof d.done!=='object'||Array.isArray(d.done)||!Array.isArray(d.creations)||d.creations.length>20)throw Error('Invalid theme data');
+ for(const [k,v]of Object.entries(d.done))if(!/^(listen|rebuild|create)-[1-4]$/.test(k)||v!==true)throw Error('Invalid theme progress');
+ for(const c of d.creations)if(!c||!Number.isInteger(c.level)||c.level<1||c.level>4||!Array.isArray(c.notes)||c.notes.length!==8||c.notes.some(n=>!TH_POOL.includes(n))||c.notes.slice(0,8-c.level).some((n,i)=>n!==TH_BASE[i]))throw Error('Invalid theme melody');
+ return d;
+}
+let thStore={version:1,done:{},creations:[]},thSaveOK=true,thCorrupt=false;
+try{const raw=localStorage.getItem(TH_KEY);if(raw)thStore=thValid(JSON.parse(raw))}catch(e){thSaveOK=false;thCorrupt=true}
+let thState={screen:'welcome',playing:null,playMessage:'',playSlot:-1,playSource:'',success:false,level:1,section:'listen',question:null,guess:[],selected:7,feedback:'',hinted:false,heard:{}};
+function thPersist(){if(thCorrupt)return false;try{localStorage.setItem(TH_KEY,JSON.stringify(thStore));thSaveOK=true;return true}catch(e){thSaveOK=false;return false}}
+function thNew(){
+ const start=8-thState.level, target=TH_BASE.slice();
+ for(let i=start;i<8;i++)target[i]=TH_POOL[Math.floor(Math.random()*TH_POOL.length)];
+ const changed=target.slice(),index=start+Math.floor(Math.random()*thState.level),choices=TH_POOL.filter(n=>n!==changed[index]);changed[index]=choices[Math.floor(Math.random()*choices.length)];
+ const odd=Math.random()<.5?'A':'B';thState.question={target,odd,index,direction:changed[index]>target[index]?'higher':'lower',A:odd==='A'?changed:target.slice(),B:odd==='B'?changed:target.slice()};
+ thState.matched=false;thState.located=false;thState.savedFinish=false;thState.success=false;thState.guess=thState.section==='create'?TH_BASE.slice():target.map((n,i)=>i<start?n:null);thState.selected=start;thState.feedback='';thState.hinted=false;thState.heard={};
+}
+function thDraw(){if(typeof nvRemember==='function'){nvRemember();nvUpdate()}
+ const active=document.activeElement, app=$('app');
+ const owned=!!active&&!!app.contains?.(active);
+ const action=owned?active.dataset?.themeAction:null,value=owned?active.dataset?.themeValue:null;
+ const stopped=owned&&active.hasAttribute?.('data-stop');
+ if(route==='theme')app.innerHTML=themeView();else if(route==='progress')render();
+ if(owned){
+ const buttons=Array.from(app.querySelectorAll?.('button')||[]);
+ const same=buttons.find(b=>!b.disabled&&((action&&b.dataset.themeAction===action&&b.dataset.themeValue===value)||(stopped&&b.hasAttribute('data-stop'))));
+ const followup=action==='answer'?'location':action==='location'?'direction':null;
+ const next=same||(followup&&buttons.find(b=>!b.disabled&&b.dataset.themeAction===followup))||buttons.find(b=>!b.disabled&&b.hasAttribute('data-stop'));
+ next?.focus({preventScroll:true});
+ }
+}
+function thStopPlayback(){
+ const changed=thState.playing!==null||thState.playSlot!==-1;
+ thState.playing=null;thState.playSlot=-1;thState.playMessage='';
+ if(changed)thDraw();
+}
+function thPlaybackView(){
+ const s=thState;
+ return `<div class="th-playback" data-th-playback><div class="th-playback-head"><span>${thText('source')}: <strong>${esc(s.playSource||'—')}</strong></span><span class="th-small">4/4</span></div><div class="th-playhead" aria-label="${thText('pulse')}">${Array.from({length:8},(_,i)=>`<span data-th-beat="${i}" class="th-beat${s.playSlot===i?' is-current':''}" ${s.playSlot===i?'aria-current="true"':''}>${i+1}</span>`).join('')}</div><p class="th-small">${thText('audioGuide')}</p><p data-th-message role="status" aria-live="polite">${esc(s.playMessage||thText('ready'))}</p></div>`;
+}
+function thUpdateMessage(){document.querySelectorAll('[data-th-message]').forEach(el=>el.textContent=thState.playMessage)}
+function thPaintPlayback(){
+ document.querySelectorAll('[data-th-playback]').forEach(panel=>{
+ panel.querySelectorAll('[data-th-beat]').forEach(cell=>{
+ const active=Number(cell.dataset.thBeat)===thState.playSlot;
+ cell.classList.toggle('is-current',active);
+ if(active)cell.setAttribute('aria-current','true');else cell.removeAttribute('aria-current');
+ });
+ });
+}
+async function thPlay(notes,label='',excerpt=false,contextOnly=false){
+ const events=contextOnly?[{notes:[48,52,55],dur:3}]:excerpt?notes.map(n=>({notes:n,dur:1})):[{notes:[48,52,55],dur:2},{notes:null,dur:1},...notes.map(n=>({notes:n,dur:1}))];
+ const played=await sequence(events,96);
+ if(!played)return false;
+ const token=audioRun,question=thState.question;
+ thState.playing=label||thText('mine');thState.playSource=thState.playing;thState.playSlot=-1;
+ thState.playMessage=thText(contextOnly?'phaseContext':excerpt?'phaseEnding':'phaseIntro').replace('{name}',thState.playing);thDraw();
+ if(!contextOnly&&!excerpt)timers.push(setTimeout(()=>{
+ if(token!==audioRun||question!==thState.question)return;
+ thState.playMessage=thText('phasePause');thUpdateMessage();
+ },1350));
+ if(!contextOnly)notes.forEach((note,i)=>timers.push(setTimeout(()=>{
+ if(token!==audioRun||question!==thState.question)return;
+ thState.playSlot=(excerpt?8-notes.length:0)+i;if(i===0){thState.playMessage=thText(excerpt?'phaseEnding':'phaseMelody').replace('{name}',thState.playing);thUpdateMessage()}thPaintPlayback();
+ },100+((excerpt?0:3)+i)*625)));
+ timers.push(setTimeout(()=>{if(token!==audioRun||question!==thState.question)return;thState.playing=null;thState.playSlot=-1;thState.playMessage=thText('finished');thDraw()},150+events.reduce((n,e)=>n+e.dur,0)*625));
+ return true;
+}
+function thProgressView(){
+ const count=Object.keys(thStore.done).length;
+ return `<section class="th-theme th-progress"><p class="th-eyebrow">${thText('title')}</p><h3>${thText('themeProgress')}</h3><p><strong>${count} / 12</strong> ${thText('completed')}</p><p class="th-small">${thText('progressNote')}</p><div class="th-completions">${['listen','rebuild','create'].map(m=>`<div><strong>${thText(m)}</strong><span>${[1,2,3,4].map(l=>`<span class="th-chip ${thStore.done[m+'-'+l]?'is-done':''}" aria-label="${thText('level')} ${l}${thStore.done[m+'-'+l]?', '+thText('explored'):''}">${l}${thStore.done[m+'-'+l]?' ✓':''}</span>`).join('')}</span></div>`).join('')}</div>${thPlaybackView()}<button type="button" data-stop>■ ${thText('stop')}</button><h4>${thText('collection')}</h4>${thStore.creations.length?thStore.creations.map((c,i)=>`<div class="th-saved"><span>${thText('version')} ${i+1} · ${thText('level')} ${c.level}</span><div class="th-controls">${thButton('saved','▶ '+thText('play'),i)}${thButton('open-saved',thText('openVersion'),i)}</div></div>`).join(''):`<p>${thText('noVersions')}</p>`}</section>`;
+}
+function thDone(){thStore.done[thState.section+'-'+thState.level]=true;thPersist()}
+function thButton(action,label,value='',extra=''){if((thState.playing!==null&&['play','excerpt','demo','context','saved','answer','location','direction'].includes(action))||((thState.success||thState.matched)&&action==='answer'))extra+=' disabled';return `<button type="button" data-theme-action="${action}" data-theme-value="${value}" ${extra}>${label}</button>`}
+function themeView(){
+ if(!thState.question)thNew();const s=thState,start=8-s.level,q=s.question;
+ const style=`<style>.th-theme{max-width:950px;margin:auto}.th-theme button{min-height:48px;min-width:48px;touch-action:manipulation}.th-theme button[aria-pressed=true]{outline:3px solid #27765a;outline-offset:2px}.th-theme button:disabled{opacity:.7;cursor:default}.th-controls{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}.th-bars{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}.th-bar{padding:14px;border:2px solid #83988c;border-radius:14px;background:var(--panel);color:var(--text)}.th-slots{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:12px}.th-slots button[aria-pressed=true]{background:#f2c663;color:#17232c;outline:3px solid #fff}.th-primary{background:#f2c663!important;color:#17232c!important;font-weight:800;font-size:1.1rem;padding:18px 24px!important}.th-pairs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:18px 0}.th-pair{border:2px solid #83988c;border-radius:16px;padding:16px;background:var(--panel)}.th-pair button{display:block;width:100%;margin:8px 0}.th-welcome{padding:30px 0}.th-slots button{padding:10px 2px}.th-feedback{padding:14px;background:var(--panel);color:var(--text);border-radius:12px;min-height:24px}.th-reflect{padding:16px;border-left:4px solid #b77a41}.th-small{font-size:.88rem}.th-warning{background:var(--panel);color:var(--text);padding:12px;border-radius:10px}@media(max-width:560px){.th-bars{grid-template-columns:1fr}.th-theme h1{font-size:1.8rem}}</style>`;
+ const chrome=`<div class="th-controls"><button type="button" data-go="home">← ${thText('back')}</button><button type="button" data-stop>■ ${thText('stop')}</button></div>`;
+ if(s.screen==='welcome')return `${style}<section class="th-theme">${chrome}${thPlaybackView()}<div class="th-welcome"><p>${thText('title')}</p><h1>${thText('welcome')}</h1><p>${thText('welcomeHelp')}</p><div class="th-controls">${thButton('quick',thText('quick'),'', 'class="th-primary"')}</div>${thButton('explore',thText('explore'))}</div></section>`;
+ const modes=['listen','rebuild','create'];
+ let body='';
+ if(s.section==='listen'){
+ body=`<p>${thText('listenHelp')}</p><p><strong>${thText('listenLevel'+s.level)}</strong></p><h3>${thText('step1')}</h3><div class="th-controls">${thButton('play','▶ '+thText('reference'),'reference','class="th-primary"')}${thButton('excerpt',thText('excerpt'),'reference')}</div>${s.screen!=='quick'||s.heard.reference?`<h3>${thText('step2')}</h3><div class="th-pairs">${['A','B'].map(k=>`<div class="th-pair"><strong>${k}</strong>${thButton('play','▶ '+thText('play')+' '+k,k)}${thButton('excerpt',thText('excerpt')+' '+k,k)}${thButton('answer',thText('choose')+' '+k,k)}</div>`).join('')}</div>`:''}`;
+ if(s.matched&&!s.success){
+ body+=`<p role="status">${thText('locate').replace('{name}',q.odd)}</p><div class="th-controls">${Array.from({length:s.level},(_,i)=>i+8-s.level).map(i=>thButton('location',String(i+1),i,s.located?'disabled':'')).join('')}</div>`;
+ if(s.located&&s.level===4)body+=`<p><strong>${thText('foundPosition').replace('{n}',q.index+1)}</strong></p><p>${thText('direction')}</p><div class="th-controls">${['higher','lower'].map(d=>thButton('direction',thText(d),d)).join('')}</div>`;
+ }
+ }else{
+ const notes=s.guess;body=`<p>${thText(s.section==='rebuild'?'rebuildHelp':'createHelp')}</p><div class="th-controls">${thButton('play','▶ '+thText(s.section==='create'?'original':'reference'),s.section==='create'?'original':'reference')}${thButton('play','▶ '+thText('mine'),'mine')}</div><div class="th-bars">${[0,1].map(bar=>`<div class="th-bar"><strong>${thText('bar')} ${bar+1} · 4/4</strong><div class="th-slots">${notes.slice(bar*4,bar*4+4).map((n,j)=>{const i=bar*4+j;return thButton('slot',n===null?'?':esc(noteName(n)),i,`${i<start?'disabled':''} aria-pressed="${s.selected===i}" aria-label="${thText('slot')} ${i+1}: ${n===null?thText('empty'):esc(noteName(n))}${i<start?', '+thText('fixed'):''}"`) }).join('')}</div></div>`).join('')}</div><p><strong>${thText('forSlot')} ${s.selected+1}</strong></p><div class="th-controls" aria-label="${thText('choose')}">${TH_POOL.map(n=>thButton('note',esc(noteName(n)),n)).join('')}</div><div class="th-controls">${s.section==='rebuild'?thButton('check',thText('check')):thButton('save',thText('save'))}</div>`;
+ }
+ const finish=s.savedFinish&&thSaveOK?`<p role="status">${thText('savedFinish')}</p><button data-go="home">${thText('finish')}</button>`:'';
+ const success=s.success?`<div class="th-controls">${thButton('another',thText('another'))}${s.level<4?thButton('harder',thText('harder')):''}${thButton('own',thText('own'))}${thButton('explore',thText('explore'))}</div>`:'';
+ if(s.screen==='quick')return `${style}<section class="th-theme">${chrome}${thPlaybackView()}<p>${thText('title')} · ${thText('level')} ${s.level}</p><h1>${thText('listen')}</h1>${body}<p class="th-feedback" role="status" aria-live="polite">${s.feedback||' '}</p>${success}${finish}${!thSaveOK?`<p class="th-warning">${thText(thCorrupt?'corrupt':'storage')}</p>`:''}<div class="th-controls">${thButton('hint',thText('hint'))}${s.hinted?thButton('play','▶ '+thText('ending'),'ending'):''}</div>${s.hinted?`<p>${thText('hintText')}</p>`:''}<div class="th-controls">${thButton('explore',thText('explore'))}</div></section>`;
+ const help=s.section==='create'?`<p class="th-reflect">${thText('reflection')}</p>`:`<div class="th-controls">${thButton('hint',thText('hint'))}${s.hinted?thButton('play','▶ '+thText('ending'),'ending'):''}</div>${s.hinted?`<p>${thText('hintText')}</p><small>${thText('support')}</small>`:''}`;
+ return `${style}<section class="th-theme"><div class="th-controls"><button type="button" data-go="home">← ${thText('back')}</button><button type="button" data-stop>■ ${thText('stop')}</button></div>${thPlaybackView()}<h1>${thText('title')}</h1><p>${thText('intro')}</p><p>${thText('guide')}</p><div class="th-controls">${[1,2,3,4].map(l=>thButton('level',thText('level')+' '+l,l,`aria-pressed="${s.level===l}"`)).join('')}</div><p>${thText('range')} <strong>${s.level}</strong> ${thText('notes')}</p><div class="th-modecards">${modes.map(m=>thButton('section',`<span aria-hidden="true">${({listen:'◉',rebuild:'▦',create:'✦'})[m]}</span><strong>${thText(({listen:'tabListen',rebuild:'tabBuild',create:'tabCreate'})[m])}</strong>${thStore.done[m+'-'+s.level]?'<small>✓ '+thText('explored')+'</small>':''}`,m,`class="th-mode th-mode-${m}" aria-pressed="${s.section===m}"`)).join('')}</div><div class="th-controls">${thButton('context','♫ '+thText('context'))}</div><small>${thText('contextHelp')}</small><h2>${thText(s.section)}</h2><details><summary>${thText('demo')}</summary><p>${thText('demoHelp')}</p><div class="th-controls">${thButton('demo','▶ '+thText('play')+' A','original')}${thButton('demo','▶ '+thText('play')+' B','changed')}</div></details>${body}${help}<p class="th-feedback" role="status" aria-live="polite">${s.feedback||' '}</p>${success}${finish}${!thSaveOK?`<p class="th-warning" role="alert">${thText(thCorrupt?'corrupt':'storage')}</p>`:''}<div class="th-controls">${s.section!=='create'?thButton('new',thText('new')):''}</div><p class="th-small">${thText('next')}</p>${s.section==='create'&&thStore.creations.length?`<h3>${thText('collection')}</h3><div class="th-controls">${thStore.creations.map((c,i)=>thButton('saved','▶ '+thText('version')+' '+(i+1)+' · '+thText('level')+' '+c.level,i)).join('')}</div>`:''}<p class="th-small">${thText('local')}</p></section>`;
+}
+async function thAction(action,value){
+ const s=thState,q=s.question,start=8-s.level;
+ if(s.playing!==null&&['play','excerpt','demo','context','saved','answer','location','direction'].includes(action))return;
+ if(action==='excerpt'){const notes=value==='reference'?q.target:q[value];if(Array.isArray(notes)){const played=await thPlay(notes.slice(8-s.level),value==='reference'?thText('reference'):value,true);if(played){s.heard[value]=true;thDraw()}}return}
+ if(['quick','explore','own','harder','another'].includes(action)){
+ stopAudio();
+ if(action==='quick'){s.screen='quick';s.section='listen';s.level=1;thNew()}
+ if(action==='explore')s.screen='explore';
+ if(action==='own'){s.screen='explore';s.section='create';thNew()}
+ if(action==='harder'){s.level=Math.min(4,s.level+1);thNew()}
+ if(action==='another')thNew();
+ thDraw();return;
+ }
+ if(action==='level'||action==='section'||action==='new'){stopAudio();if(action==='level'){const n=Number(value);if(![1,2,3,4].includes(n))return;s.level=n}if(action==='section'){if(!['listen','rebuild','create'].includes(value))return;s.section=value}thNew();thDraw();return}
+ if(action==='demo'){const notes=TH_BASE.slice();if(value==='changed')notes[7]=69;await thPlay(notes,thText('demo')+' '+(value==='changed'?'B':'A'));return}
+ if(action==='context'){await thPlay([],thText('context'),false,true);return}
+ if(action==='saved'){const c=thStore.creations[Number(value)];if(c)await thPlay(c.notes,thText('version')+' '+(Number(value)+1));return}
+ if(action==='open-saved'){
+ const c=thStore.creations[Number(value)];if(!c)return;
+ stopAudio();s.screen='explore';s.section='create';s.level=c.level;thNew();s.guess=c.notes.slice();go('theme');return;
+ }
+ if(action==='play'){
+ const notes=value==='reference'?q.target:value==='original'?TH_BASE:value==='mine'?s.guess:value==='ending'?q.target.slice(start):q[value];if(!Array.isArray(notes))return;
+ if(notes.includes(null)){s.feedback=thText('incomplete');thDraw();return}
+ const played=await thPlay(notes,({reference:thText('reference'),original:thText('original'),mine:thText('mine'),ending:thText('ending')})[value]||value,value==='ending');if(played&&thState===s&&s.question===q){s.heard[value]=true;thDraw()}return;
+ }
+ if(action==='slot'){const i=Number(value);if(Number.isInteger(i)&&i>=start&&i<8)s.selected=i}
+ if(action==='note'){const n=Number(value);if(s.section==='listen'||!TH_POOL.includes(n))return;s.guess[s.selected]=n;s.feedback='';s.success=false;s.savedFinish=false;if(s.section==='rebuild'){const next=s.guess.findIndex((v,i)=>i>s.selected&&v===null);const first=s.guess.findIndex((v,i)=>i>=start&&v===null);if(next>=0)s.selected=next;else if(first>=0)s.selected=first}sequence([{notes:n,dur:1}],96)}
+ if(action==='hint'){s.hinted=true;s.feedback=thText('hintText')}
+ if(action==='answer'&&s.section==='listen'){
+ if(s.success||s.matched||!['A','B'].includes(value))return;
+ if(value!==q.odd){s.matched=true;if(s.level<3){s.success=true;s.feedback=value+' — '+thText('right');thDone()}else s.feedback=thText('locate').replace('{name}',q.odd)}else s.feedback=thText('wrong');
+ }
+ if(action==='location'&&s.section==='listen'&&s.matched&&!s.success&&!s.located){
+ if(Number(value)===q.index){s.located=true;if(s.level===3){s.success=true;s.feedback=thText('right');thDone()}else s.feedback=thText('direction')}else s.feedback=thText('compareCue');
+ }
+ if(action==='direction'&&s.section==='listen'&&s.matched&&s.located&&!s.success&&s.level===4){
+ if(value===q.direction){s.success=true;s.feedback=thText('right');thDone()}else s.feedback=thText('directionCue');
+ }
+ if(action==='check'&&s.section==='rebuild'){
+ if(s.guess.includes(null))s.feedback=thText('incomplete');else if(s.guess.every((n,i)=>n===q.target[i])){s.success=true;s.feedback=thText('rebuiltCount').replace('{n}',s.level);thDone()}else s.feedback=thText('retry');
+ }
+ if(action==='save'&&s.section==='create'){
+ s.savedFinish=false;
+ if(s.guess.every((n,i)=>n===TH_BASE[i]))s.feedback=thText('changeFirst');else if(thStore.creations.some(c=>c.level===s.level&&c.notes.every((n,i)=>n===s.guess[i]))){if(!thSaveOK)thPersist();s.feedback=thSaveOK?thText('alreadySaved'):thText('storage')}else{thStore.creations.push({level:s.level,notes:s.guess.slice()});thStore.creations=thStore.creations.slice(-20);thDone();s.feedback=thSaveOK?thText('saved'):thText('storage')}
+ if(thSaveOK&&thStore.creations.some(c=>c.level===s.level&&c.notes.every((n,i)=>n===s.guess[i])))s.savedFinish=true;
+ }
+ thDraw();
+}
+document.addEventListener('click',event=>{const button=event.target.closest('[data-theme-action]');if(!button||button.disabled)return;thAction(button.dataset.themeAction,button.dataset.themeValue).catch(()=>{thState.feedback=thText('audioError');thDraw()})});
+
+/* Phrase Puzzle: self-contained rounds; shared piano playback. */
+const ppWords={
+ title:['Melodipuslespel','Melodipuslespill','Phrase Puzzle'],
+ desc:['Høyr melodien og set bitane i rett rekkjefølgje.','Hør melodien og sett bitene i riktig rekkefølge.','Listen to the melody and put its fragments in order.'],
+ steps:['1. Høyr heile melodien. 2. Høyr bitane. 3. Vel ein plass, så «Set inn» ved ein bit. Sjekk når alle plassane er fylte.','1. Hør hele melodien. 2. Hør bitene. 3. Velg en plass, så «Sett inn» ved en bit. Sjekk når alle plassene er fylt.','1. Play the whole melody. 2. Listen to the fragments. 3. Select a slot, then “Place” beside a fragment. Check when every slot is filled.'],
+ audio:['Ingen innleiingsakkord: du høyrer berre melodien. Kvar bit har to like lange tonar.','Ingen innledningsakkord: du hører bare melodien. Hver bit har to like lange toner.','No introductory chord: you hear only the melody. Each fragment has two notes of equal length.'],
+ normal:['Bruk kvar bit éin gong.','Bruk hver bit én gang.','Use each fragment once.'],
+ repeat:['Fire plassar, tre bitar: éin bit skal brukast to gonger.','Fire plasser, tre biter: én bit skal brukes to ganger.','Four slots, three fragments: one fragment is used twice.'],
+ whole:['Høyr heile melodien','Hør hele melodien','Play whole melody'],
+ fragment:['Bit','Bit','Fragment'],place:['Set inn','Sett inn','Place'],slot:['Plass','Plass','Slot'],
+ selected:['Du fyller plass {n}. Vel «Set inn» ved ein bit.','Du fyller plass {n}. Velg «Sett inn» ved en bit.','You are filling slot {n}. Choose “Place” beside a fragment.'],
+ listen:['Høyr','Hør','Listen'],mine:['Høyr rekkjefølgja mi','Hør rekkefølgen min','Play my order'],
+ clear:['Tøm vald plass','Tøm valgt plass','Clear selected slot'],check:['Sjekk rekkjefølgja','Sjekk rekkefølgen','Check order'],
+ incomplete:['Fyll alle plassane først.','Fyll alle plassene først.','Fill every slot first.'],
+ wrong:['Ikkje heilt enno. Samanlikn heile melodien med di rekkjefølgje, to tonar om gongen. Du kan byte bit i alle plassane.','Ikke helt ennå. Sammenlign hele melodien med din rekkefølge, to toner om gangen. Du kan bytte bit i alle plassene.','Not quite yet. Compare the whole melody with your order, two notes at a time. You can replace any slot.'],
+ right:['Det stemmer! Bitane gir den same melodien. Du kan avslutte eller prøve ein ny.','Det stemmer! Bitene gir den samme melodien. Du kan avslutte eller prøve en ny.','That matches! Your fragments make the same melody. You can finish or try a new one.'],
+ new:['Nytt puslespel','Nytt puslespill','New puzzle'],finish:['Ferdig for no','Ferdig for nå','Finish for now'],
+ local:['Denne runden blir ikkje lagra når du lastar sida på nytt. Han tel ikkje i Mi øving enno.','Denne runden lagres ikke når du laster siden på nytt. Den teller ikke i Min øving ennå.','This round is not saved when you reload the page. It does not count in My practice yet.'],
+ playing:['Spelar: {name}.','Spiller: {name}.','Playing: {name}.'],ready:['Klar til å lytte.','Klar til å lytte.','Ready to listen.'],
+ loading:['Lastar lyd …','Laster lyd …','Loading sound …'],done:['Avspelinga er ferdig.','Avspillingen er ferdig.','Playback finished.'],
+ error:['Lyden kunne ikkje spelast. Prøv Test lyd øvst.','Lyden kunne ikke spilles. Prøv Test lyd øverst.','Sound could not play. Try Test sound at the top.'],stop:['Stopp','Stopp','Stop'],level:['Nivå','Nivå','Level'],back:['Alle aktivitetar','Alle aktiviteter','All activities']
+};
+Object.assign(ppWords,{level1:['To bitar','To biter','Two fragments'],level2:['Tre bitar','Tre biter','Three fragments'],level3:['Fire bitar','Fire biter','Four fragments'],level4:['Med ein gjenteken bit','Med en gjentatt bit','With a repeated piece']});
+function ppText(k){return ppWords[k][document.documentElement.lang==='en'?2:document.documentElement.lang==='nb'?1:0]}
+let pp={level:data.extraPractice.puzzle.level,pieces:[],target:[],answer:[],selected:0,feedback:'',success:false,busy:false,message:'',playSlot:-1};
+function ppNew(){
+ pp.recorded=false;pp.checks=0;pp.supportUsed=false;
+ const bank=[[60,62],[64,60],[67,64],[62,69],[69,67],[64,62],[60,67],[67,69]];
+ const count=pp.level===4?3:pp.level+1;
+ pp.pieces=shuffle(bank.map(n=>n.slice())).slice(0,count);
+ let ids=Array.from({length:count},(_,i)=>i);if(pp.level===4)ids.push(rand(count));
+ pp.target=shuffle(ids);pp.answer=Array(ids.length).fill(null);pp.selected=0;pp.feedback='';pp.success=false;pp.message='';pp.playSlot=-1;
+}
+function ppCard(){return `<section class="strip"><div><div class="eyebrow">${ppText('level')} 1–4</div><h3>${ppText('title')}</h3><p>${ppText('desc')}</p></div><button class="primary" data-go="puzzle">${ppText('title')} →</button></section>`}
+function ppDraw(){if(typeof nvRemember==='function'){nvRemember();nvUpdate()}if(route!=='puzzle')return;const app=$('app'),active=document.activeElement,action=app.contains?.(active)?active?.dataset?.ppAction:null,value=active?.dataset?.ppValue;app.innerHTML=ppView();if(action){const buttons=Array.from(app.querySelectorAll?.('[data-pp-action]')||[]);const next=buttons.find(b=>!b.disabled&&b.dataset.ppAction===action&&b.dataset.ppValue===value)||buttons.find(b=>!b.disabled&&b.dataset.ppAction==='stop');next?.focus({preventScroll:true})}}
+function ppStop(){pp.busy=false;pp.playSlot=-1;pp.message='';ppDraw()}
+function ppButton(action,label,value='',extra=''){const disabled=pp.busy&&action!=='stop';return `<button data-pp-action="${action}" data-pp-value="${value}" ${disabled?'disabled':''} ${extra}>${label}</button>`}
+function ppView(){
+ if(!pp.pieces.length)ppNew();
+ return `<section class="stage" style="max-width:950px;margin:auto"><style>.pp-grid{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0}.pp-piece{padding:14px;border:1px solid var(--edge);border-radius:12px}.pp-grid button{min-width:48px;min-height:48px}.pp-picked{outline:3px solid var(--gold)}.pp-live{background:var(--green)!important;color:#101820!important}</style><button data-go="home">← ${ppText('back')}</button><h1>${ppText('title')}</h1><p>${ppText('desc')}</p><div class="pp-grid">${[1,2,3,4].map(l=>ppButton('level',ppText('level')+' '+l+' · '+ppText('level'+l),l,`aria-pressed="${pp.level===l}"`)).join('')}</div><p>${ppText('steps')}</p><p class="note">${ppText('audio')}</p><p><strong>${ppText(pp.level===4?'repeat':'normal')}</strong></p><div class="pp-grid">${ppButton('whole','▶ '+ppText('whole'),'','class="primary"')}${ppButton('stop','■ '+ppText('stop'))}</div><p role="status" aria-live="polite" data-pp-status>${esc(pp.message||ppText('ready'))}</p><h2>${ppText('fragment')}</h2><div class="pp-grid">${pp.pieces.map((piece,i)=>`<div class="pp-piece"><strong>${String.fromCharCode(65+i)}</strong><div class="pp-grid">${ppButton('preview','▶ '+ppText('listen')+' '+String.fromCharCode(65+i),i)}${ppButton('place',ppText('place')+' '+String.fromCharCode(65+i),i)}</div></div>`).join('')}</div><p><strong>${ppText('selected').replace('{n}',pp.selected+1)}</strong></p><div class="pp-grid">${pp.answer.map((v,i)=>ppButton('slot',`${i+1}: ${v===null?'?':String.fromCharCode(65+v)}`,i,`class="${pp.selected===i?'pp-picked':''} ${pp.playSlot===i?'pp-live':''}" data-pp-slot="${i}" aria-pressed="${pp.selected===i}" aria-label="${ppText('slot')} ${i+1}: ${v===null?'?':String.fromCharCode(65+v)}"`)).join('')}</div><div class="pp-grid">${ppButton('clear',ppText('clear'))}${ppButton('mine','▶ '+ppText('mine'))}${ppButton('check',ppText('check'))}</div><p class="feedback ${pp.success?'good':''}" role="status">${esc(pp.feedback)}</p><div class="pp-grid">${ppButton('new',ppText('new'))}${pp.success?`<button data-go="home">${ppText('finish')}</button>`:''}</div><p class="note">${extraText('local')}${!storageOK?' '+extraText('error'):''}</p></section>`;
+}
+async function ppPlay(ids,label,mark=false){
+ if(ids.includes(null)){pp.feedback=ppText('incomplete');ppDraw();return}
+ // sequence stops previous playback synchronously; then mark loading as busy.
+ const pending=sequence(ids.flatMap(id=>pp.pieces[id].map(n=>({notes:n,dur:1}))),90);
+ const token=audioRun;pp.busy=true;pp.message=ppText('loading');ppDraw();
+ const played=await pending;if(token!==audioRun||route!=='puzzle')return;
+ if(!played){pp.busy=false;pp.message=ppText('error');ppDraw();return}
+ pp.message=ppText('playing').replace('{name}',label);ppDraw();
+ if(mark)ids.forEach((id,i)=>timers.push(setTimeout(()=>{if(token!==audioRun||route!=='puzzle')return;pp.playSlot=i;document.querySelectorAll('[data-pp-slot]').forEach(el=>el.classList.toggle('pp-live',Number(el.dataset.ppSlot)===i))},100+i*2*60000/90)));
+ timers.push(setTimeout(()=>{if(token!==audioRun||route!=='puzzle')return;pp.busy=false;pp.playSlot=-1;pp.message=ppText('done');ppDraw()},150+ids.length*2*60000/90));
+}
+async function ppAction(action,value){
+ if(action==='stop'){stopAudio();return}if(pp.busy)return;
+ if(action==='level'){const n=Number(value);if(![1,2,3,4].includes(n))return;stopAudio();pp.level=n;extraLevel('puzzle',n);ppNew()}
+ if(action==='new'){stopAudio();ppNew()}
+ if(action==='whole'){await ppPlay(pp.target,ppText('whole'),true);return}
+ if(action==='preview'){const i=Number(value);if(Number.isInteger(i)&&pp.pieces[i])await ppPlay([i],ppText('fragment')+' '+String.fromCharCode(65+i));return}
+ if(action==='mine'){await ppPlay(pp.answer,ppText('mine'),true);return}
+ if(action==='slot'){const i=Number(value);if(Number.isInteger(i)&&i>=0&&i<pp.answer.length)pp.selected=i}
+ if(action==='place'){const i=Number(value);if(!Number.isInteger(i)||!pp.pieces[i])return;pp.answer[pp.selected]=i;const next=pp.answer.findIndex((v,j)=>j>pp.selected&&v===null);if(next>=0)pp.selected=next;pp.feedback='';pp.success=false}
+ if(action==='clear'){pp.answer[pp.selected]=null;pp.success=false;pp.feedback=''}
+ if(action==='check'){if(pp.answer.includes(null))pp.feedback=ppText('incomplete');else{pp.checks++;const heard=pp.target.flatMap(i=>pp.pieces[i]),made=pp.answer.flatMap(i=>pp.pieces[i]);pp.success=heard.every((n,i)=>n===made[i]);if(pp.success)extraComplete('puzzle',pp);pp.feedback=ppText(pp.success?'right':'wrong')}}
+ ppDraw();
+}
+document.addEventListener('click',event=>{const b=event.target.closest('[data-pp-action]');if(!b||b.disabled)return;ppAction(b.dataset.ppAction,b.dataset.ppValue).catch(()=>{pp.busy=false;pp.message=ppText('error');ppDraw()})});
+
+/* Notation Match: pitch reading in treble clef, equal quarter-note durations. */
+const nmWords={
+ title:['Lyd og notar','Lyd og noter','Notation Match'],
+ desc:['Høyr ein melodi og finn notebiletet som passar.','Hør en melodi og finn notebildet som passer.','Hear a melody and find the matching score.'],
+ help:['Høyr melodien. Samanlikn notane i A, B og dei andre alternativa. Vel det som viser akkurat dei tonane du høyrde, og trykk «Sjekk svaret».','Hør melodien. Sammenlign notene i A, B og de andre alternativene. Velg det som viser akkurat de tonene du hørte, og trykk «Sjekk svaret».','Play the melody. Compare the notes in A, B and any other options. Select the score showing exactly the notes you heard, then press “Check answer”.'],
+ context:['Alle melodiane byrjar på C4 (midt-C). Den første tonen er òg første note i svaret. Ingen innleiingsakkord. G-nøkkel, C-dur og like lange firedelar; desse korte øvingane har ikkje taktstrekar.','Alle melodiene begynner på C4 (midt-C). Den første tonen er også første note i svaret. Ingen innledningsakkord. G-nøkkel, C-dur og like lange firedeler; disse korte øvelsene har ikke taktstreker.','Every melody starts on C4 (middle C). That first sound is also the first note in the answer. No introductory chord. Treble clef, C major and equal quarter notes; these short exercises have no barlines.'],
+ play:['Høyr melodien','Hør melodien','Play melody'],slow:['Høyr rolegare','Hør roligere','Play more slowly'],
+ choose:['Vel','Velg','Choose'],stop:['Stopp','Stopp','Stop'],level:['Nivå','Nivå','Level'],
+ level1:['3 tonar · C, D, E','3 toner · C, D, E','3 notes · C, D, E'],
+ level2:['4 tonar · C, D, E, G, A','4 toner · C, D, E, G, A','4 notes · C, D, E, G, A'],
+ level3:['5 tonar · C-durskalaen','5 toner · C-durskalaen','5 notes · C major scale'],
+ level4:['6 tonar · fire alternativ','6 toner · fire alternativer','6 notes · four options'],
+ names:['Vis notenamn som støtte','Vis notenavn som støtte','Show note names for support'],
+ support:['Notenamn er viste som støtte. Dette er øving, ikkje ein prøve i notelesing.','Notenavn vises som støtte. Dette er øving, ikke en prøve i notelesing.','Note names are shown as support. This is practice, not a score-reading test.'],
+ right:['Det stemmer! Notebiletet viser melodien du høyrde.','Det stemmer! Notebildet viser melodien du hørte.','That matches! The score shows the melody you heard.'],
+ wrong:['Ikkje heilt enno. Start på C og følg kvar tone: går han opp, ned eller er han lik? Høyr melodien igjen og samanlikn.','Ikke helt ennå. Start på C og følg hver tone: går den opp, ned eller er den lik? Hør melodien igjen og sammenlign.','Not quite yet. Start on C and follow each note: does it rise, fall or repeat? Replay the melody and compare.'],
+ new:['Ny melodi','Ny melodi','New melody'],finish:['Ferdig for no','Ferdig for nå','Finish for now'],back:['Alle aktivitetar','Alle aktiviteter','All activities'],
+ loading:['Lastar lyd …','Laster lyd …','Loading sound …'],playing:['Spelar melodien. Vent til alle tonane er ferdige.','Spiller melodien. Vent til alle tonene er ferdige.','Playing the melody. Wait until all notes finish.'],
+ done:['Ferdig. Samanlikn notebileta og vel eit svar.','Ferdig. Sammenlign notebildene og velg et svar.','Finished. Compare the scores and choose an answer.'],
+ ready:['Klar til å lytte.','Klar til å lytte.','Ready to listen.'],error:['Lyden kunne ikkje spelast. Prøv Test lyd øvst.','Lyden kunne ikke spilles. Prøv Test lyd øverst.','Sound could not play. Try Test sound at the top.'],
+ score:['Notebilete','Notebilde','Score'],clef:['G-nøkkel','G-nøkkel','Treble clef'],
+ local:['Denne runden blir ikkje lagra når sida blir lasta på nytt, og tel ikkje i Mi øving enno.','Denne runden lagres ikke når siden lastes på nytt, og teller ikke i Min øving ennå.','This round is not saved when the page reloads and does not count in My practice yet.']
+};
+Object.assign(nmWords,{check:['Sjekk svaret','Sjekk svaret','Check answer'],selectFirst:['Vel eit notebilete først.','Velg et notebilde først.','Select a score first.'],compare:['Høyr det rette notebiletet','Hør det riktige notebildet','Play the matching score'],textHelp:['Bruk notenamn for eit tekstalternativ til notebileta.','Bruk notenavn for et tekstalternativ til notebildene.','Use note-name support for a text alternative to the scores.']});
+function nmText(k){return nmWords[k][document.documentElement.lang==='en'?2:document.documentElement.lang==='nb'?1:0]}
+const NM_SCALE=[60,62,64,65,67,69,71,72];
+let nm={level:data.extraPractice.notation.level,target:[],options:[],correct:0,success:false,support:false,busy:false,message:'',feedback:''};
+function nmNew(){
+ nm.recorded=false;nm.checks=0;nm.supportUsed=false;
+ const pool=nm.level===1?[60,62,64]:nm.level===2?[60,62,64,67,69]:NM_SCALE;
+ nm.target=[60,...Array.from({length:nm.level+1},()=>pick(pool))];
+ if(nm.target.every(n=>n===60))nm.target[nm.target.length-1]=62;
+ const count=nm.level===1?2:nm.level===4?4:3;
+ const variants=[];
+ // Finite candidate set: every single noninitial pitch substitution.
+ for(let i=1;i<nm.target.length;i++)for(const pitch of pool)if(pitch!==nm.target[i]){const candidate=nm.target.slice();candidate[i]=pitch;variants.push(candidate)}
+ nm.options=shuffle([nm.target.slice(),...shuffle(variants).slice(0,count-1)]);
+ nm.correct=nm.options.findIndex(notes=>notes.every((n,i)=>n===nm.target[i]));
+ nm.choice=null;nm.success=false;nm.feedback='';nm.message='';nm.support=false;
+}
+function nmY(m){return 98-NM_SCALE.indexOf(m)*5}
+function nmScore(notes,label){
+ const width=notes.length*48+62;
+ const body=notes.map((m,i)=>{const x=62+i*48,y=nmY(m),up=m<71;return `${m===60?`<line x1="${x-11}" x2="${x+11}" y1="98" y2="98" stroke="#142531"/>`:''}<ellipse cx="${x}" cy="${y}" rx="6" ry="4.5" transform="rotate(-20 ${x} ${y})" fill="#142531"/><line x1="${x+(up?5:-5)}" x2="${x+(up?5:-5)}" y1="${y}" y2="${y+(up?-30:30)}" stroke="#142531" stroke-width="1.5"/>`}).join('');
+ return `<div class="staff"><svg viewBox="0 0 ${width} 130" role="img" aria-label="${nmText('score')} ${label}: ${nm.support?notes.map(noteName).join(', '):nmText('clef')}"><title>${nmText('score')} ${label} · ${nmText('clef')}</title><text x="7" y="83" font-size="51" font-family="serif">𝄞</text>${[48,58,68,78,88].map(y=>`<line x1="35" x2="${width-10}" y1="${y}" y2="${y}" stroke="#52616a"/>`).join('')}${body}</svg></div>`;
+}
+function nmCard(){return `<section class="strip"><div><div class="eyebrow">${nmText('level')} 1–4</div><h3>${nmText('title')}</h3><p>${nmText('desc')}</p></div><button class="primary" data-go="notation">${nmText('title')} →</button></section>`}
+function nmButton(action,label,value='',extra=''){return `<button data-nm-action="${action}" data-nm-value="${value}" ${nm.busy&&action!=='stop'||nm.success&&['answer','check'].includes(action)?'disabled':''} ${extra}>${label}</button>`}
+function nmView(){if(!nm.target.length)nmNew();return `<section class="stage" style="max-width:950px;margin:auto"><style>.nm-controls{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}.nm-controls button,.nm-option button{min-height:48px;min-width:48px}.nm-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.nm-option{min-width:0;border:1px solid var(--edge);padding:14px;border-radius:12px}.nm-option .staff{margin:12px 0}.nm-option .staff svg{min-width:240px;height:auto}@media(max-width:650px){.nm-options{grid-template-columns:1fr}}</style><button data-go="home">← ${nmText('back')}</button><h1>${nmText('title')}</h1><p>${nmText('help')}</p><div class="nm-controls">${[1,2,3,4].map(l=>nmButton('level',nmText('level')+' '+l,l,`aria-pressed="${nm.level===l}"`)).join('')}</div><p><strong>${nmText('level'+nm.level)}</strong></p><p>${nmText('context')}</p><div class="nm-controls">${nmButton('play','▶ '+nmText('play'),'','class="primary"')}${nmButton('slow','▷ '+nmText('slow'))}${nmButton('stop','■ '+nmText('stop'))}</div><p role="status" aria-live="polite">${esc(nm.message||nmText('ready'))}</p><div class="nm-options">${nm.options.map((notes,i)=>{const label=String.fromCharCode(65+i);return `<article class="nm-option" style="outline:${nm.choice===i?'3px solid var(--gold)':'none'}"><h2>${label}</h2>${nmScore(notes,label)}${nm.support?`<p>${notes.map(noteName).join(' – ')}</p>`:''}${nmButton('answer',nmText('choose')+' '+label,i,'aria-pressed="'+(nm.choice===i)+'"')}</article>`}).join('')}</div><div class="nm-controls">${nmButton('check',nmText('check'))}${nmButton('support',nmText('names'),' ',`aria-pressed="${nm.support}"`)}</div>${nm.support?`<p>${nmText('support')}</p>`:''}<p class="feedback ${nm.success?'good':''}" role="status">${esc(nm.feedback)}</p><div class="nm-controls">${nmButton('new',nmText('new'))}${nm.success?`${nmButton('compare','▶ '+nmText('compare'))}<button data-go="home">${nmText('finish')}</button>`:''}</div><p class="note">${nmText('textHelp')}</p><p class="note">${extraText('local')}${!storageOK?' '+extraText('error'):''}</p></section>`}
+function nmDraw(){if(typeof nvRemember==='function'){nvRemember();nvUpdate()}if(route!=='notation')return;const app=$('app'),active=document.activeElement,action=app.contains?.(active)?active?.dataset?.nmAction:null,value=active?.dataset?.nmValue;app.innerHTML=nmView();if(action){const buttons=Array.from(app.querySelectorAll?.('[data-nm-action]')||[]);const next=buttons.find(b=>!b.disabled&&b.dataset.nmAction===action&&b.dataset.nmValue===value)||buttons.find(b=>!b.disabled&&b.dataset.nmAction===(nm.success?'new':'stop'));next?.focus({preventScroll:true})}}
+function nmStop(){nm.busy=false;nm.message='';nmDraw()}
+async function nmPlay(slow){const pending=sequence(nm.target.map(n=>({notes:n,dur:1})),slow?65:90);const token=audioRun;nm.busy=true;nm.message=nmText('loading');nmDraw();const played=await pending;if(token!==audioRun||route!=='notation')return;if(!played){nm.busy=false;nm.message=nmText('error');nmDraw();return}nm.message=nmText('playing');nmDraw();timers.push(setTimeout(()=>{if(token!==audioRun||route!=='notation')return;nm.busy=false;nm.message=nmText('done');nmDraw()},150+nm.target.length*60000/(slow?65:90)))}
+async function nmAction(action,value){if(action==='stop'){stopAudio();return}if(nm.busy)return;
+ if(action==='level'){const n=Number(value);if(![1,2,3,4].includes(n))return;stopAudio();nm.level=n;extraLevel('notation',n);nmNew()}
+ if(action==='new'){stopAudio();nmNew()}
+ if(action==='support'){nm.support=!nm.support;if(nm.support)nm.supportUsed=true}
+ if(action==='play'||action==='slow'){await nmPlay(action==='slow');return}
+ if(action==='answer'&&!nm.success){const i=Number(value);if(!Number.isInteger(i)||!nm.options[i])return;nm.choice=i;nm.feedback=''}
+ if(action==='check'&&!nm.success){if(nm.choice===null)nm.feedback=nmText('selectFirst');else{nm.checks++;nm.success=nm.choice===nm.correct;if(nm.success)extraComplete('notation',nm);nm.feedback=nmText(nm.success?'right':'wrong')}}
+ if(action==='compare'&&nm.success){await nmPlay(false);return}
+ nmDraw();
+}
+document.addEventListener('click',event=>{const b=event.target.closest('[data-nm-action]');if(!b||b.disabled)return;nmAction(b.dataset.nmAction,b.dataset.nmValue).catch(()=>{nm.busy=false;nm.message=nmText('error');nmDraw()})});
+
+/* Week 02: equal-duration rhythm cells, shared sampled piano, session-only state. */
+const grWords={
+ title:['Finn grooven','Finn grooven','Find the groove'],week:['Tema 02','Tema 02','Theme 02'],
+ desc:['Lytt etter rytmen, reparer han og lag din eigen groove.','Lytt etter rytmen, reparer den og lag din egen groove.','Listen for the rhythm, repair it and build your own groove.'],
+ listen:['Lytt','Lytt','Listen'],repair:['Reparer','Reparer','Repair'],create:['Skap','Skap','Create'],
+ guide:['Alle rytmane er i 4/4. Tala viser slaga. «&» ligg midt mellom to slag. ● er ein kort pianotone; – er stille i like lang tid. Ingen innleiing eller teljing før rytmen.','Alle rytmene er i 4/4. Tallene viser slagene. «&» ligger midt mellom to slag. ● er en kort pianotone; – er stille i like lang tid. Ingen innledning eller telling før rytmen.','All rhythms are in 4/4. Numbers show beats; “&” is halfway between beats. ● is a short piano note; – is silence for the same duration. No introduction or count-in before the rhythm.'],
+ listenHelp:['Høyr førebiletet, så A og B. Vel rytmen som er heilt lik.','Hør forbildet, så A og B. Velg rytmen som er helt lik.','Play the reference, then A and B. Choose the rhythm that matches exactly.'],
+ repairHelp:['Éin plass er endra. Høyr førebiletet og rytmen din. Trykk på ein plass for å byte mellom tone og stille. Sjekk når dei er like.','Én plass er endret. Hør forbildet og rytmen din. Trykk på en plass for å bytte mellom tone og stille. Sjekk når de er like.','One cell has changed. Play the reference and your rhythm. Tap a cell to switch between a note and silence. Check when they match.'],
+ createHelp:['Trykk på plassane for å lage ein rytme. Høyr han to gonger og prøv ein annan variant. Her er det ikkje eitt rett svar.','Trykk på plassene for å lage en rytme. Hør den to ganger og prøv en annen variant. Her er det ikke ett riktig svar.','Tap cells to make a rhythm. Play it twice and try another version. There is no single correct answer.'],
+ level:['Nivå','Nivå','Level'],l1:['1 takt · firedelar','1 takt · firedeler','1 bar · quarter notes'],l2:['1 takt · åttedelar','1 takt · åttedeler','1 bar · eighth notes'],l3:['2 taktar · firedelar','2 takter · firedeler','2 bars · quarter notes'],l4:['2 taktar · åttedelar','2 takter · åttedeler','2 bars · eighth notes'],
+ reference:['Høyr førebiletet','Hør forbildet','Play reference'],mine:['Høyr rytmen min','Hør rytmen min','Play my rhythm'],twice:['Høyr to gonger','Hør to ganger','Play twice'],
+ play:['Høyr','Hør','Play'],choose:['Vel','Velg','Choose'],stop:['Stopp','Stopp','Stop'],new:['Ny rytme','Ny rytme','New rhythm'],check:['Sjekk rytmen','Sjekk rytmen','Check rhythm'],
+ right:['Det stemmer! Rytmane er like.','Det stemmer! Rytmene er like.','That matches! The rhythms are identical.'],wrong:['Ikkje heilt enno. Høyr igjen og samanlikn plass for plass.','Ikke helt ennå. Hør igjen og sammenlign plass for plass.','Not quite yet. Listen again and compare cell by cell.'],
+ hearFirst:['Høyr førebiletet og begge alternativa ferdig før du vel.','Hør forbildet og begge alternativene ferdig før du velger.','Play the reference and both options to the end before choosing.'],
+ sound:['Tone','Tone','Note'],rest:['Stille','Stille','Silence'],bar:['Takt','Takt','Bar'],beat:['Slag','Slag','Beat'],
+ ready:['Klar til å lytte.','Klar til å lytte.','Ready to listen.'],loading:['Lastar lyd …','Laster lyd …','Loading sound …'],playing:['Spelar','Spiller','Playing'],done:['Avspelinga er ferdig.','Avspillingen er ferdig.','Playback finished.'],error:['Lyden kunne ikkje spelast. Opne Lyd og prøv Test lyd.','Lyden kunne ikke spilles. Åpne Lyd og prøv Test lyd.','Sound could not play. Open Sound and try Test sound.'],
+ back:['Alle aktivitetar','Alle aktiviteter','All activities'],finish:['Ferdig for no','Ferdig for nå','Finish for now'],
+ local:['Arbeidet i dette temaet er berre i denne økta. Det blir ikkje lagra eller teke med i Mi øving og eksport enno. Ny rytme, nytt nivå eller ny aktivitet erstattar runden.','Arbeidet i dette temaet er bare i denne økten. Det lagres ikke eller tas med i Min øving og eksport ennå. Ny rytme, nytt nivå eller ny aktivitet erstatter runden.','This theme keeps work only for this session. It is not saved or included in My practice or exports yet. A new rhythm, level or activity replaces the round.'],
+ reflect:['Kvar kjenner du pulsen? Kva skjer når eit slag er stille? Prøv å halde pulsen inni deg gjennom pausane.','Hvor kjenner du pulsen? Hva skjer når et slag er stille? Prøv å holde pulsen inni deg gjennom pausene.','Where do you feel the beat? What happens when a beat is silent? Try keeping the pulse in your head through the rests.'],silent:['Alle plassane er stille. Legg til ein tone for å høyre rytmen.','Alle plassene er stille. Legg til en tone for å høre rytmen.','Every cell is silent. Add a note to hear your rhythm.']
+};
+function grText(k){return grWords[k][document.documentElement.lang==='en'?2:document.documentElement.lang==='nb'?1:0]}
+let gr={level:1,mode:'listen',target:[],answer:[],options:[],busy:false,message:'',feedback:'',success:false,heard:{},playSlot:-1};
+function grSpec(level=gr.level){return {bars:level>2?2:1,division:level%2===0?2:1}}
+function grNew(){const s=grSpec(),n=s.bars*4*s.division;gr.target=Array.from({length:n},()=>rand(2));gr.target[0]=1;gr.target[n-1]=1;const changed=1+rand(n-1),other=gr.target.map((v,i)=>i===changed?1-v:v);gr.options=shuffle([gr.target.slice(),other]);gr.answer=(gr.mode==='create'?Array.from({length:n},(_,i)=>i%s.division===0?1:0):other.slice());gr.feedback='';gr.message='';gr.success=false;gr.heard={};gr.playSlot=-1}
+function grCard(){return `<section class="strip"><div><div class="eyebrow">${grText('week')}</div><h3>${grText('title')}</h3><p>${grText('desc')}</p></div><button class="primary" data-go="groove">${grText('title')} →</button></section>`}
+function grButton(action,label,value='',extra=''){return `<button data-gr-action="${action}" data-gr-value="${value}" ${gr.busy&&action!=='stop'?'disabled':''} ${extra}>${label}</button>`}
+function grDraw(){if(typeof nvRemember==='function'){nvRemember();nvUpdate()}if(route!=='groove')return;const app=$('app'),active=document.activeElement,action=app.contains?.(active)?active?.dataset?.grAction:null,value=active?.dataset?.grValue;app.innerHTML=grView();if(action){const buttons=Array.from(app.querySelectorAll?.('[data-gr-action]')||[]);const next=buttons.find(b=>!b.disabled&&b.dataset.grAction===action&&b.dataset.grValue===value)||buttons.find(b=>!b.disabled&&b.dataset.grAction==='stop');next?.focus({preventScroll:true})}}
+function grStop(){gr.busy=false;gr.playSlot=-1;gr.message='';grDraw()}
+function grView(){if(!gr.target.length)grNew();const s=grSpec(),width=4*s.division;
+const grid=Array.from({length:s.bars},(_,bar)=>`<div class="gr-bar"><h3>${grText('bar')} ${bar+1}</h3><div class="gr-grid" style="--gr-columns:${s.division===2?4:4}">${Array.from({length:width},(_,j)=>{const i=bar*width+j,count=j%s.division===0?String(Math.floor(j/s.division)+1):'&',label=`${grText('bar')} ${bar+1}, ${grText('beat')} ${Math.floor(j/s.division)+1}${j%s.division?' &':''}`;return gr.mode==='listen'?`<span class="gr-cell ${gr.playSlot===i?'gr-current':''}" data-gr-cell="${i}">${count}</span>`:grButton('cell',`<small>${count}</small><strong>${gr.answer[i]?'●':'–'}</strong>`,i,`class="gr-cell ${gr.playSlot===i?'gr-current':''}" data-gr-cell="${i}" aria-label="${label}: ${grText(gr.answer[i]?'sound':'rest')}" aria-pressed="${!!gr.answer[i]}"`)}).join('')}</div></div>`).join('');
+return `<section class="stage gr-stage"><button data-go="home">← ${grText('back')}</button><div class="eyebrow">${grText('week')}</div><h1>${grText('title')}</h1><div class="row gr-controls">${['listen','repair','create'].map(m=>grButton('mode',grText(m),m,`aria-pressed="${gr.mode===m}"`)).join('')}</div><div class="row gr-controls">${[1,2,3,4].map(l=>grButton('level',`${grText('level')} ${l} · ${grText('l'+l)}`,l,`aria-pressed="${gr.level===l}"`)).join('')}</div><p>${grText(gr.mode+'Help')}</p><p class="note">${grText('guide')}</p><div class="row gr-controls">${gr.mode!=='create'?grButton('reference','▶ '+grText('reference')):''}${gr.mode!=='listen'?grButton('mine','▶ '+grText('mine')):''}${gr.mode==='create'?grButton('twice','▶ '+grText('twice')):''}${grButton('stop','■ '+grText('stop'))}</div><p role="status">${esc(gr.message||grText('ready'))}</p>${grid}${gr.mode==='listen'?`<div class="gr-options">${gr.options.map((_,i)=>`<div><h3>${'AB'[i]}</h3><div class="row gr-controls">${grButton('option','▶ '+grText('play')+' '+'AB'[i],i)}${grButton('choose',grText('choose')+' '+'AB'[i],i)}</div></div>`).join('')}</div>`:''}${gr.mode==='repair'?grButton('check',grText('check')):''}<p class="feedback ${gr.success?'good':''}" role="status">${esc(gr.feedback)}</p>${gr.mode==='create'?`<p class="note">${grText('reflect')}</p>`:''}<div class="row gr-controls">${grButton('new',grText('new'))}<button data-go="home">${grText('finish')}</button></div><p class="note">${grText('local')}</p></section>`}
+async function grPlay(pattern,label,key='',repeat=1){if(!pattern.some(Boolean)){gr.feedback=grText('silent');grDraw();return}const step=1/grSpec().division,events=Array.from({length:repeat},()=>pattern).flat().map(v=>({notes:v?60:null,dur:step}));const pending=sequence(events,96);const token=audioRun;gr.busy=true;gr.message=grText('loading');grDraw();const played=await pending;if(token!==audioRun||route!=='groove')return;if(!played){gr.busy=false;gr.message=grText('error');grDraw();return}gr.message=grText('playing')+': '+label;grDraw();events.forEach((_,i)=>timers.push(setTimeout(()=>{if(token!==audioRun||route!=='groove')return;gr.playSlot=i%pattern.length;document.querySelectorAll('[data-gr-cell]').forEach(el=>el.classList.toggle('gr-current',Number(el.dataset.grCell)===gr.playSlot))},100+i*step*60000/96)));timers.push(setTimeout(()=>{if(token!==audioRun||route!=='groove')return;gr.busy=false;gr.playSlot=-1;gr.message=grText('done');if(key)gr.heard[key]=true;grDraw()},150+events.length*step*60000/96))}
+async function grAction(action,value){if(action==='stop'){stopAudio();return}if(gr.busy)return;
+if(action==='level'){const n=Number(value);if(![1,2,3,4].includes(n))return;stopAudio();gr.level=n;grNew()}
+if(action==='mode'){if(!['listen','repair','create'].includes(value))return;stopAudio();gr.mode=value;grNew()}
+if(action==='new'){stopAudio();grNew()}
+if(action==='cell'&&gr.mode!=='listen'){const i=Number(value);if(Number.isInteger(i)&&i>=0&&i<gr.answer.length){gr.answer[i]=1-gr.answer[i];gr.feedback='';gr.success=false}}
+if(action==='reference'){await grPlay(gr.target,grText('reference'),'reference');return}
+if(action==='option'){const i=Number(value);if(i===0||i===1)await grPlay(gr.options[i],'AB'[i],'option'+i);return}
+if(action==='mine'||action==='twice'){await grPlay(gr.answer,grText('mine'),'',action==='twice'?2:1);return}
+if(action==='choose'){const i=Number(value);if(i!==0&&i!==1)return;if(!gr.heard.reference||!gr.heard.option0||!gr.heard.option1)gr.feedback=grText('hearFirst');else{gr.success=gr.options[i].every((v,j)=>v===gr.target[j]);gr.feedback=grText(gr.success?'right':'wrong')}}
+if(action==='check'&&gr.mode==='repair'){gr.success=gr.answer.every((v,i)=>v===gr.target[i]);gr.feedback=grText(gr.success?'right':'wrong')}
+grDraw()}
+document.addEventListener('click',event=>{const b=event.target.closest('[data-gr-action]');if(!b||b.disabled)return;grAction(b.dataset.grAction,b.dataset.grValue).catch(()=>{gr.busy=false;gr.message=grText('error');grDraw()})});
+
+/* Remember navigation only: never infer ability or retain unfinished answers. */
+const NV_KEY='musikkverkstad-location-v1';
+const nvWords={
+ theme:['Tema','Tema','Theme'],previous:['Førre tema','Forrige tema','Previous theme'],next:['Neste tema','Neste tema','Next theme'],choose:['Vel tema','Velg tema','Choose theme'],
+ start:['Start her','Start her','Start here'],resume:['Hald fram','Fortsett','Continue'],explore:['Utforsk temaa','Utforsk temaene','Explore themes'],
+ fresh:['Hald fram opnar same aktivitet og nivå på nytt. Du kan alltid velje eit anna tema eller nivå.','Fortsett åpner samme aktivitet og nivå på nytt. Du kan alltid velge et annet tema eller nivå.','Continue opens the same activity and level again. You can always choose another theme or level.'],
+ first:['Start med ei kort lytteoppgåve på nivå 1, eller vel eit tema sjølv.','Start med en kort lytteoppgave på nivå 1, eller velg et tema selv.','Start with a short level 1 listening task, or choose a theme yourself.'],
+ storage:['Siste aktivitet kan ikkje lagrast her. Hald fram verkar berre i denne økta.','Siste aktivitet kan ikke lagres her. Fortsett virker bare i denne økten.','Your last activity cannot be saved here. Continue works only in this session.'],
+ level:['nivå','nivå','level'],tools:['Verktøy og hjelp','Verktøy og hjelp','Tools and help']};
+function nvText(k){return nvWords[k][document.documentElement.lang==='en'?2:document.documentElement.lang==='nb'?1:0]}
+function nvValid(v){
+ if(!v||typeof v!=='object'||Array.isArray(v)||Object.keys(v).some(k=>!['route','level','mode'].includes(k)))return null;
+ if(!['theme','groove','rhythm','melody','harmony','puzzle','notation','create'].includes(v.route)||!Number.isInteger(v.level)||v.level<1||v.level>4)return null;
+ const modes=v.route==='theme'?['listen','rebuild','create']:v.route==='groove'?['listen','repair','create']:null;
+ if(modes?!modes.includes(v.mode):v.mode!==undefined)return null;
+ if(v.route==='create'&&v.level!==1)return null;
+ return {route:v.route,level:v.level,...(modes?{mode:v.mode}:{})};
+}
+let nvLast=null,nvSaveOK=true,nvSelected=0;
+try{const raw=localStorage.getItem(NV_KEY);if(raw)nvLast=nvValid(JSON.parse(raw))}catch(e){nvSaveOK=false}
+if(nvLast?.route==='groove')nvSelected=1;
+function nvRemember(){let value;
+ if(route==='theme')value={route,level:thState.level,mode:thState.section};
+ else if(route==='groove')value={route,level:gr.level,mode:gr.mode};
+ else if(['rhythm','melody','harmony'].includes(route))value={route,level:data.levels[route]};
+ else if(route==='puzzle')value={route,level:pp.level};
+ else if(route==='notation')value={route,level:nm.level};
+ else if(route==='create')value={route,level:1};
+ if(!value)return;
+ const valid=nvValid(value);if(!valid)return;
+ const changed=JSON.stringify(nvLast)!==JSON.stringify(valid);nvLast=valid;
+ if(route==='theme'||route==='groove')nvSelected=route==='groove'?1:0;
+ if(changed)try{localStorage.setItem(NV_KEY,JSON.stringify(nvLast));nvSaveOK=true}catch(e){nvSaveOK=false}
+}
+function nvTitle(i){return i===0?thText('title'):grText('title')}
+let nvMarkup=null;
+function nvUpdate(){const host=$('themeNavigation');if(!host)return;const active=document.activeElement,focused=host.contains?.(active)?(active.id==='themeSelect'?'select':active.dataset?.nv):null;const markup=`<button data-nv="previous" aria-label="${nvText('previous')}" title="${nvText('previous')}" ${nvSelected===0?'disabled':''}>‹</button><label class="nv-select"><span aria-hidden="true">${nvText('theme')} 0${nvSelected+1} ▾</span><select id="themeSelect" aria-label="${nvText('choose')}">${[0,1].map(i=>`<option value="${i}" ${i===nvSelected?'selected':''}>${nvText('theme')} 0${i+1} · ${nvTitle(i)}</option>`).join('')}</select></label><button data-nv="next" aria-label="${nvText('next')}" title="${nvText('next')}" ${nvSelected===1?'disabled':''}>›</button>`;if(nvMarkup===markup)return;host.innerHTML=markup;nvMarkup=markup;if(focused){const target=focused==='select'?$('themeSelect'):host.querySelector?.('[data-nv="'+focused+'"]');(target&&!target.disabled?target:$('themeSelect'))?.focus({preventScroll:true})}}
+function nvHome(){return `<section class="nv-welcome"><div class="row"><button class="primary" data-nv="${nvLast?'continue':'start'}">${nvText(nvLast?'resume':'start')} →</button>${nvLast?`<button data-nv="start">${nvText('start')}</button>`:''}</div><p class="note">${nvText(nvLast?'fresh':'first')}</p>${!nvSaveOK?`<p class="note" role="status">${nvText('storage')}</p>`:''}<details><summary>${nvText('explore')}</summary><div class="nv-theme-list">${[0,1].map(i=>`<button data-nv="theme" data-nv-index="${i}">${nvText('theme')} 0${i+1} · ${nvTitle(i)}</button>`).join('')}</div></details></section>`}
+function nvStart(){stopAudio();thState.screen='quick';thState.level=1;thState.section='listen';thNew();go('theme')}
+function nvContinue(){const v=nvValid(nvLast);if(!v){nvStart();return}stopAudio();
+ if(v.route==='theme'){thState.screen='explore';thState.level=v.level;thState.section=v.mode;thNew()}
+ else if(v.route==='groove'){gr.level=v.level;gr.mode=v.mode;grNew()}
+ else if(v.route==='puzzle'){pp.level=v.level;ppNew()}
+ else if(v.route==='notation'){nm.level=v.level;nmNew()}
+ else if(['rhythm','melody','harmony'].includes(v.route))data.levels[v.route]=v.level;
+ go(v.route);
+}
+function nvOpenTheme(i){if(![0,1].includes(i))return;nvSelected=i;go(i===0?'theme':'groove')}
+function nvTheme(delta){const next=nvSelected+delta;if(next>=0&&next<=1)nvOpenTheme(next)}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-nv]');if(!b||b.disabled)return;const a=b.dataset.nv;if(a==='start')nvStart();if(a==='continue')nvContinue();if(a==='previous')nvTheme(-1);if(a==='next')nvTheme(1);if(a==='theme')nvOpenTheme(Number(b.dataset.nvIndex))});
+document.addEventListener('change',e=>{if(e.target.id==='themeSelect')nvOpenTheme(Number(e.target.value))});
+nvUpdate();
+
+render();
+</script>
+</body></html>

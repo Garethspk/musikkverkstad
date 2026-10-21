@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="nn">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Musikkverkstad · Sound comparison</title>
+<style>
+:root{color-scheme:dark;--bg:#101820;--panel:#1a2937;--text:#f3f5ef;--muted:#bdcbd5;--lime:#d5ed73;--edge:#41566a}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:17px/1.55 system-ui,sans-serif}main{max-width:1050px;margin:auto;padding:24px}header,.controls,nav{display:flex;gap:12px;align-items:center;flex-wrap:wrap}header{justify-content:space-between;margin-bottom:30px}a{color:var(--lime)}button,select,input{font:inherit}button{border:1px solid var(--edge);border-radius:12px;padding:12px 16px;min-height:48px;background:#253b4d;color:var(--text);cursor:pointer}button:disabled{opacity:.48;cursor:default}button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #ffca80;outline-offset:4px}button[aria-pressed=true]{background:var(--lime);color:#15232e;font-weight:700}h1{font-size:clamp(30px,5vw,48px);letter-spacing:-1px;line-height:1.12}h2{font-size:23px}p{color:var(--muted)}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:24px 0}.card{padding:23px;background:var(--panel);border:1px solid var(--edge);border-top:4px solid var(--accent);border-radius:18px}.card p{min-height:5em}.card button{width:100%;background:var(--accent);color:#142330;font-weight:750}.letter{font-size:13px;font-weight:800;letter-spacing:.15em;color:var(--accent)}.toolbar{padding:20px;border:1px solid var(--edge);border-radius:16px;background:#142331}.status{min-height:3em;color:var(--text)}#stop{border-color:#ffab93}input{max-width:150px}footer{margin:36px 0 15px;font-size:13px;color:var(--muted)}.meter{display:flex;gap:8px;margin-top:14px}.meter span{flex:1;max-width:60px;text-align:center;background:#253b4d;border-radius:6px}.meter .active{background:var(--lime);color:#142330}nav button{padding:8px 12px;font-size:14px}@media(max-width:700px){.cards{grid-template-columns:1fr}.card p{min-height:0}main{padding:18px}}@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style></head><body><main>
+<header><a href="index.html" id="back">← Musikkverkstad</a><nav aria-label="Language / Språk"><button data-lang="nn">Nynorsk</button><button data-lang="nb">Bokmål</button><button data-lang="en">English</button></nav></header>
+<h1 id="title"></h1><p id="intro"></p>
+<section class="toolbar"><div class="controls" id="phrases"></div><div class="controls" style="margin-top:18px"><label><span id="volumeLabel"></span> <input id="volume" type="range" min="0" max="100" value="55"></label><button id="stop"></button></div><div id="status" class="status" role="status" aria-live="polite"></div><div id="meter" class="meter" aria-hidden="true"></div></section>
+<div class="cards" id="cards"></div><p id="note"></p><footer><p id="credit"></p><a href="https://github.com/Tonejs/audio/tree/master/salamander" target="_blank" rel="noopener">Salamander Grand Piano — Alexander Holm</a> · <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener">CC BY 3.0</a></footer>
+</main>
+<script>
+'use strict';
+const words={
+ title:['Kva lyd likar du best?','Hvilken lyd liker du best?','Which sound do you prefer?'],
+ intro:['Vel ein melodi, akkordar eller éin tone. Høyr så den same musikken med A, B og C. Øvingane i hovudappen er ikkje endra.','Velg en melodi, akkorder eller én tone. Hør så den samme musikken med A, B og C. Øvelsene i hovedappen er ikke endret.','Choose a melody, chords or one note. Then hear the same music with A, B and C. The main exercises have not changed.'],
+ melody:['Melodi','Melodi','Melody'],chords:['Akkordar','Akkorder','Chords'],single:['Éin tone','Én tone','One note'],
+ current:['Noverande lyd','Nåværende lyd','Current sound'],warm:['Varmare synteselyd','Varmere synteselyd','Warmer synthesised sound'],piano:['Innspelt piano','Innspilt piano','Sampled piano'],
+ currentDesc:['Den enkle elektroniske tonen som er brukt i appen no.','Den enkle elektroniske tonen som brukes i appen nå.','The simple electronic tone currently used in the app.'],
+ warmDesc:['Ein mjukare tone med fleire overtonar og meir naturleg avklinging. Framleis syntetisk.','En mykere tone med flere overtoner og mer naturlig avklinging. Fortsatt syntetisk.','A softer tone with layered harmonics and a more natural decay. Still synthetic.'],
+ pianoDesc:['Ekte pianoopptak. Fem små lydfiler blir lasta første gong du trykkjer her.','Ekte pianoopptak. Fem små lydfiler lastes første gang du trykker her.','Real piano recordings. Five small audio files load the first time you press play.'],
+ play:['Høyr','Hør','Play'],stop:['■ Stopp','■ Stopp','■ Stop'],volume:['Lydstyrke','Lydstyrke','Volume'],
+ ready:['Vel eit døme og trykk Høyr.','Velg et eksempel og trykk Hør.','Choose an example and press Play.'],
+ loading:['Lastar pianolydar …','Laster pianolyder …','Loading piano sounds …'],starting:['Startar lyd …','Starter lyd …','Starting audio …'],
+ playing:['Spelar','Spiller','Playing'],finished:['Ferdig. Prøv den same musikken med ein annan lyd.','Ferdig. Prøv den samme musikken med en annen lyd.','Finished. Try the same music with another sound.'],
+ stopped:['Stoppa. Vel ein lyd for å høyre igjen.','Stoppet. Velg en lyd for å høre igjen.','Stopped. Choose a sound to listen again.'],
+ error:['Lyden kunne ikkje spelast. Prøv igjen. Sjekk internett ved lasting av piano, eller opne sida direkte i nettlesaren.','Lyden kunne ikke spilles. Prøv igjen. Sjekk internett ved lasting av piano, eller åpne siden direkte i nettleseren.','Sound could not play. Try again. Check your connection when loading piano, or open this page directly in your browser.'],
+ muted:['Lydstyrken er 0. Skru han opp før du spelar.','Lydstyrken er 0. Skru den opp før du spiller.','Volume is 0. Turn it up before playing.'],
+ note:['Same tonar og tempo (90). Ingen ekstra romklang. Lydnivåa er tilpassa omtrentleg, men kan opplevast ulikt. Start med låg lydstyrke.','Samme toner og tempo (90). Ingen ekstra romklang. Lydnivåene er tilpasset omtrent, men kan oppleves ulikt. Start med lav lydstyrke.','Same notes and tempo (90 BPM). No added reverb. Levels are approximately matched but may sound different in loudness. Start with low volume.'],
+ credit:['Piano: Salamander Grand Piano av Alexander Holm, CC BY 3.0. Utval av MP3-filer frå Tone.js, lagra med denne demoen. Tonehøgd og lydstyrke blir justerte ved avspeling.','Piano: Salamander Grand Piano av Alexander Holm, CC BY 3.0. Utvalg av MP3-filer fra Tone.js, lagret med denne demoen. Tonehøyde og lydstyrke justeres ved avspilling.','Piano: Salamander Grand Piano by Alexander Holm, CC BY 3.0. Selected MP3 files from Tone.js, hosted with this demo. Pitch and gain are adjusted during playback.']
+};
+let lang='nn';try{const saved=localStorage.getItem('musikkverkstad-language');if(['nn','nb','en'].includes(saved))lang=saved}catch(e){}
+const $=id=>document.getElementById(id),text=k=>words[k][lang==='en'?2:lang==='nb'?1:0];
+let phrase='melody',ctx=null,master=null,busy=false,run=0,sources=[],timers=[],buffers=null,loading=null;
+const sampleMap=[[48,'C3'],[54,'Fs3'],[60,'C4'],[66,'Fs4'],[72,'C5']];
+const PHRASES={melody:[60,62,64,67,60,62,64,60].map(n=>({notes:[n],beats:1})),chords:[[48,52,55],[53,57,60],[55,59,62],[48,52,55]].map(n=>({notes:n,beats:2})),single:[{notes:[60],beats:2}]};
+function render(){
+ document.documentElement.lang=lang;document.title='Musikkverkstad · '+text('title');
+ ['title','intro','note','credit'].forEach(k=>$(k).textContent=text(k));$('volumeLabel').textContent=text('volume');$('volume').setAttribute('aria-label',text('volume'));$('stop').textContent=text('stop');
+ $('phrases').innerHTML=['melody','chords','single'].map(k=>'<button data-phrase="'+k+'" aria-pressed="'+(phrase===k)+'">'+text(k)+'</button>').join('');
+ $('cards').innerHTML=['current','warm','piano'].map((k,i)=>'<section class="card" style="--accent:'+['#8ec7ff','#d5ed73','#ffab93'][i]+'"><div class="letter">'+['A','B','C'][i]+'</div><h2>'+text(k)+'</h2><p>'+text(k+'Desc')+'</p><button data-sound="'+k+'" '+(busy?'disabled':'')+' aria-label="'+text('play')+' '+text(k)+'">▶ '+text('play')+' '+['A','B','C'][i]+'</button></section>').join('');
+ document.querySelectorAll('[data-lang]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===lang)));
+ $('meter').innerHTML=PHRASES[phrase].map((_,i)=>'<span id="event'+i+'">'+(i+1)+'</span>').join('');
+}
+function stop(show=true){
+ run++;sources.forEach(s=>{try{s.stop()}catch(e){}});sources=[];timers.forEach(clearTimeout);timers=[];busy=false;render();if(show)$('status').textContent=text('stopped');
+}
+async function ready(){
+ try{if(navigator.audioSession)navigator.audioSession.type='playback'}catch(e){}
+ if(!ctx||ctx.state==='closed'){ctx=new(window.AudioContext||window.webkitAudioContext)();master=ctx.createGain();master.connect(ctx.destination)}
+ master.gain.value=Number($('volume').value)/100*.22;
+ if(ctx.state!=='running'){let timer;try{await Promise.race([ctx.resume(),new Promise((_,reject)=>timer=setTimeout(()=>reject(Error('resume timeout')),4000))])}finally{clearTimeout(timer)}}
+ if(ctx.state!=='running')throw Error('audio unavailable');
+}
+async function loadPiano(){
+ if(buffers)return buffers;if(loading)return loading;
+ loading=Promise.all(sampleMap.map(async([m,name])=>{
+ const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),15000);
+ try{
+ const response=await fetch('sounds/'+name+'.mp3',{signal:controller.signal});
+ if(!response.ok)throw Error('sample unavailable');
+ const bytes=await response.arrayBuffer();const buffer=await ctx.decodeAudioData(bytes);let peak=0;
+ for(let c=0;c<buffer.numberOfChannels;c++){const channel=buffer.getChannelData(c);for(let i=0;i<channel.length;i++)peak=Math.max(peak,Math.abs(channel[i]))}
+ if(!peak||buffer.duration<1)throw Error('invalid sample');return {m,buffer,peak};
+ }finally{clearTimeout(timer)}
+ })).then(items=>buffers=items).finally(()=>{loading=null});return loading;
+}
+function oscillator(m,start,duration,type,gainValue,partial=1,warm=false){
+ const o=ctx.createOscillator(),g=ctx.createGain();o.type=type;o.frequency.value=440*Math.pow(2,(m-69)/12)*partial;
+ g.gain.setValueAtTime(.0001,start);g.gain.exponentialRampToValueAtTime(gainValue,start+.012);
+ if(warm){g.gain.exponentialRampToValueAtTime(gainValue*.25,start+Math.min(.25,duration*.5));}
+ g.gain.exponentialRampToValueAtTime(.0001,start+Math.max(.04,duration));
+ o.connect(g);g.connect(master);o.start(start);o.stop(start+duration+.04);o.onended=()=>{o.disconnect();g.disconnect()};sources.push(o);
+}
+function voice(kind,m,start,duration){
+ if(kind==='current')oscillator(m,start,duration,'triangle',.27);
+ else if(kind==='warm'){[1,2,3].forEach((p,i)=>oscillator(m,start,duration,'sine',[.21,.045,.015][i],p,true))}
+ else{
+ const sample=buffers.reduce((a,b)=>Math.abs(b.m-m)<Math.abs(a.m-m)?b:a),s=ctx.createBufferSource(),g=ctx.createGain();
+ s.buffer=sample.buffer;s.playbackRate.value=Math.pow(2,(m-sample.m)/12);
+ const level=.27/sample.peak;
+ g.gain.setValueAtTime(0,start);g.gain.linearRampToValueAtTime(level,start+.004);g.gain.setValueAtTime(level,start+Math.max(.01,duration-.06));g.gain.linearRampToValueAtTime(0,start+duration);
+ s.connect(g);g.connect(master);s.start(start);s.stop(start+duration+.04);s.onended=()=>{s.disconnect();g.disconnect()};sources.push(s);
+ }
+}
+async function play(kind){
+ stop(false);const token=run;
+ if(Number($('volume').value)===0){$('status').textContent=text('muted');return}
+ busy=true;render();$('status').textContent=text('starting');
+ try{
+ await ready();if(token!==run)return;
+ if(kind==='piano'){$('status').textContent=text('loading');await loadPiano();if(token!==run)return}
+ const events=PHRASES[phrase],start=ctx.currentTime+.1,unit=60/90;let beat=0;
+ $('status').textContent=text('playing')+' '+text(kind)+' · '+text(phrase);
+ events.forEach((e,i)=>{
+ e.notes.forEach(n=>voice(kind,n,start+beat*unit,e.beats*unit*.86));
+ timers.push(setTimeout(()=>{if(token!==run)return;document.querySelectorAll('.meter span').forEach(x=>x.classList.remove('active'));$('event'+i)?.classList.add('active')},100+beat*unit*1000));beat+=e.beats;
+ });
+ timers.push(setTimeout(()=>{if(token!==run)return;busy=false;sources=[];render();$('status').textContent=text('finished')},150+beat*unit*1000));
+ }catch(e){if(token!==run)return;stop(false);$('status').textContent=text('error')}
+}
+document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b||b.disabled)return;if(b.id==='stop'){stop();return}if(b.dataset.lang){stop(false);lang=b.dataset.lang;try{localStorage.setItem('musikkverkstad-language',lang)}catch(e){}render();$('status').textContent=text('ready');return}if(b.dataset.phrase){stop(false);phrase=b.dataset.phrase;render();$('status').textContent=text('ready');return}if(b.dataset.sound)play(b.dataset.sound)});
+$('volume').addEventListener('input',()=>{if(master)master.gain.value=Number($('volume').value)/100*.22});
+document.addEventListener('visibilitychange',()=>{if(document.hidden)stop()});window.addEventListener('pagehide',()=>stop(false));
+render();$('status').textContent=text('ready');
+</script></body></html>

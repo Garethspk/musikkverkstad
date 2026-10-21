@@ -1,0 +1,7 @@
+Salamander Grand Piano — Alexander Holm
+License: Creative Commons Attribution 3.0 Unported
+https://creativecommons.org/licenses/by/3.0/
+Source and license statement: https://github.com/Tonejs/audio/blob/master/salamander/README
+MP3 source files: https://tonejs.github.io/audio/salamander/
+Subset: C3.mp3, Fs3.mp3, C4.mp3, Fs4.mp3, C5.mp3
+Downloaded 2026-10-19. MP3 files unmodified. Browser playback adjusts pitch/gain and applies an amplitude envelope.

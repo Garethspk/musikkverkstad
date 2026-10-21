@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-21",
+  "method": "Existing test scripts run directly against unchanged committed dist files. No build or browser run.",
+  "node": "v24.19.0",
+  "results": [
+    {
+      "suite": "audio.cjs",
+      "exitCode": 0,
+      "stdout": "PASS nn: Test sound button schedules three notes\nPASS nn: Test sound keeps failure message on blocked audio\nPASS nn: optional audioSession absent or setter throws\nPASS nn: A4 pitch, timing, audible gain and stop\nPASS nn: every task/level schedules sound\nPASS nn: suspended and interrupted contexts resume\nPASS nn: stop while resuming cancels queued notes\nPASS nn: unsupported/rejected audio shows error\nPASS nn: requests playback audio session\nPASS nn: recovers from closed audio context\nPASS nn: zero volume gives visible feedback\nPASS nn: hanging resume resolves with feedback\nPASS nb: Test sound button schedules three notes\nPASS nb: Test sound keeps failure message on blocked audio\nPASS nb: optional audioSession absent or setter throws\nPASS nb: A4 pitch, timing, audible gain and stop\nPASS nb: every task/level schedules sound\nPASS nb: suspended and interrupted contexts resume\nPASS nb: stop while resuming cancels queued notes\nPASS nb: unsupported/rejected audio shows error\nPASS nb: requests playback audio session\nPASS nb: recovers from closed audio context\nPASS nb: zero volume gives visible feedback\nPASS nb: hanging resume resolves with feedback\nPASS en: Test sound button schedules three notes\nPASS en: Test sound keeps failure message on blocked audio\nPASS en: optional audioSession absent or setter throws\nPASS en: A4 pitch, timing, audible gain and stop\nPASS en: every task/level schedules sound\nPASS en: suspended and interrupted contexts resume\nPASS en: stop while resuming cancels queued notes\nPASS en: unsupported/rejected audio shows error\nPASS en: requests playback audio session\nPASS en: recovers from closed audio context\nPASS en: zero volume gives visible feedback\nPASS en: hanging resume resolves with feedback\n36 passed; 0 failed. Mock tests; no audible/device verification.\n",
+      "stderr": ""
+    },
+    {
+      "suite": "full-audit.cjs",
+      "exitCode": 0,
+      "stdout": "PASS nn: original activity click routes all 4 levels\nPASS nn: creative save open replay plus progress export/import volume/navigation\nPASS nn: wrong follow-up cannot look like another correct answer\nPASS nn: rapid A/B playback cannot silently cut off distinguishing ending\nPASS nn: exact ending excerpts; busy completion Stop and navigation unlock\nPASS nn: all generated option pairs differ in scheduled ending audio\nPASS nb: original activity click routes all 4 levels\nPASS nb: creative save open replay plus progress export/import volume/navigation\nPASS nb: wrong follow-up cannot look like another correct answer\nPASS nb: rapid A/B playback cannot silently cut off distinguishing ending\nPASS nb: exact ending excerpts; busy completion Stop and navigation unlock\nPASS nb: all generated option pairs differ in scheduled ending audio\nPASS en: original activity click routes all 4 levels\nPASS en: creative save open replay plus progress export/import volume/navigation\nPASS en: wrong follow-up cannot look like another correct answer\nPASS en: rapid A/B playback cannot silently cut off distinguishing ending\nPASS en: exact ending excerpts; busy completion Stop and navigation unlock\nPASS en: all generated option pairs differ in scheduled ending audio\n18 passed; 0 failed. Delegated-click mocks only; no browser or device verification.\n",
+      "stderr": ""
+    },
+    {
+      "suite": "groove.cjs",
+      "exitCode": 0,
+      "stdout": "PASS nn: four grids, unique onset answers, repair, creative rests/repeat timing, sampled audio, listen gating, loading failure and cancellation\nPASS nb: four grids, unique onset answers, repair, creative rests/repeat timing, sampled audio, listen gating, loading failure and cancellation\nPASS en: four grids, unique onset answers, repair, creative rests/repeat timing, sampled audio, listen gating, loading failure and cancellation\n",
+      "stderr": ""
+    },
+    {
+      "suite": "navigation.cjs",
+      "exitCode": 0,
+      "stdout": "PASS nn: Start/Continue, all routes, theme boundaries, level/mode persistence, strict invalid storage rejection, denied storage, interrupted audio\nPASS nb: Start/Continue, all routes, theme boundaries, level/mode persistence, strict invalid storage rejection, denied storage, interrupted audio\nPASS en: Start/Continue, all routes, theme boundaries, level/mode persistence, strict invalid storage rejection, denied storage, interrupted audio\n",
+      "stderr": ""
+    },
+    {
+      "suite": "notation.cjs",
+      "exitCode": 0,
+      "stdout": "PASS nn: notation anchors, unique choices, select/check separation, immutable success, piano sequence, tempo and cancellation\nPASS nb: notation anchors, unique choices, select/check separation, immutable success, piano sequence, tempo and cancellation\nPASS en: notation anchors, unique choices, select/check separation, immutable success, piano sequence, tempo and cancellation\n",
+      "stderr": ""
+    },
+    {
+      "suite": "piano.cjs",
+      "exitCode": 0,
+      "stdout": "PASS nn: sampled range, stop, failure/retry, piano rhythm and cancellation during load\nPASS nb: sampled range, stop, failure/retry, piano rhythm and cancellation during load\nPASS en: sampled range, stop, failure/retry, piano rhythm and cancellation during load\n",
+      "stderr": ""
+    },
+    {
+      "suite": "practice.cjs",
+      "exitCode": 0,
+      "stdout": "PASS nn: one credit per round, sticky support, first checks, reload, export/import, malformed and legacy data, storage failure\nPASS nb: one credit per round, sticky support, first checks, reload, export/import, malformed and legacy data, storage failure\nPASS en: one credit per round, sticky support, first checks, reload, export/import, malformed and legacy data, storage failure\n",
+      "stderr": ""
+    },
+    {
+      "suite": "puzzle.cjs",
+      "exitCode": 0,
+      "stdout": "PASS nn: four levels, exact answers, repeated fragment, sampled audio, separate preview/place, incomplete input, cancellation and navigation\nPASS nb: four levels, exact answers, repeated fragment, sampled audio, separate preview/place, incomplete input, cancellation and navigation\nPASS en: four levels, exact answers, repeated fragment, sampled audio, separate preview/place, incomplete input, cancellation and navigation\n",
+      "stderr": ""
+    },
+    {
+      "suite": "quality-gate.cjs",
+      "exitCode": 0,
+      "stdout": "PASS: empty, failed or missing evidence cannot approve release\n",
+      "stderr": ""
+    },
+    {
+      "suite": "quality-regressions.cjs",
+      "exitCode": 0,
+      "stdout": "PASS nn: intro phases, interruption, advanced listening, generated metadata, saved finish and focus identity\nPASS nb: intro phases, interruption, advanced listening, generated metadata, saved finish and focus identity\nPASS en: intro phases, interruption, advanced listening, generated metadata, saved finish and focus identity\n",
+      "stderr": ""
+    },
+    {
+      "suite": "sound-compare.cjs",
+      "exitCode": 0,
+      "stdout": "PASS melody: same fundamental notes, onsets and gates in all three sounds\nPASS chords: same fundamental notes, onsets and gates in all three sounds\nPASS single: same fundamental notes, onsets and gates in all three sounds\nPASS A reproduces current triangle tone and envelope\nPASS B has three specified sine partials and decay\nPASS Stop during sample loading prevents late playback\nPASS Sample fetch errors clear busy with no synthetic fallback\nPASS Zero volume gives feedback and schedules nothing\nPASS Repeated play cancels old sources and indicators\nPASS All language controls update page, labels and remembered setting\nPASS Phrase changes and page hiding stop sources\nPASS Five samples cache after first load\n12 focused checks passed; VM simulation only, not browser or perceived-audio validation.\n",
+      "stderr": ""
+    },
+    {
+      "suite": "studio.cjs",
+      "exitCode": 0,
+      "stdout": "PASS nn: progress shows theme completion and combined saved count\nPASS nn: save deduplicates with feedback; replay and reopen clone saved notes\nPASS nn: duplicate save retries temporary storage failure without duplicating\nPASS nn: playback panel exists on welcome quick explore and progress without pitch leak\nPASS nn: pulse markers follow audio scheduling; Stop removes marker and timers\nPASS nn: excerpt marks ending slots; navigation cancels stale callbacks\nPASS nb: progress shows theme completion and combined saved count\nPASS nb: save deduplicates with feedback; replay and reopen clone saved notes\nPASS nb: duplicate save retries temporary storage failure without duplicating\nPASS nb: playback panel exists on welcome quick explore and progress without pitch leak\nPASS nb: pulse markers follow audio scheduling; Stop removes marker and timers\nPASS nb: excerpt marks ending slots; navigation cancels stale callbacks\nPASS en: progress shows theme completion and combined saved count\nPASS en: save deduplicates with feedback; replay and reopen clone saved notes\nPASS en: duplicate save retries temporary storage failure without duplicating\nPASS en: playback panel exists on welcome quick explore and progress without pitch leak\nPASS en: pulse markers follow audio scheduling; Stop removes marker and timers\nPASS en: excerpt marks ending slots; navigation cancels stale callbacks\n18 passed; 0 failed. VM only; device audio/layout unverified.\n",
+      "stderr": ""
+    },
+    {
+      "suite": "theme.cjs",
+      "exitCode": 0,
+      "stdout": "PASS nn: welcome supports quick start and free explore without completion\nPASS nn: match success is stable; next and harder reset; difficulty caps\nPASS nn: rebuild advances through empty slots and allows earlier edits\nPASS nn: all modes and levels render localized theme\nPASS nn: 400 generated motifs preserve prefix and exactly one option differs\nPASS nn: listening wrong answer does not complete; correct answer does\nPASS nn: rebuild incomplete/wrong/correct and supported completion\nPASS nn: creative edits keep locked notes; persist valid bounded collection\nPASS nn: validator rejects invalid keys pitches prefix and oversize data\nPASS nn: click routes audio with key context then 8 quarter notes\nPASS nn: export contains theme; import validates before changing either store\nPASS nn: demo differs only in last note; Stop cancels playback\nPASS nn: failed persistence reports unsaved and corrupt storage is protected\nPASS nb: welcome supports quick start and free explore without completion\nPASS nb: match success is stable; next and harder reset; difficulty caps\nPASS nb: rebuild advances through empty slots and allows earlier edits\nPASS nb: all modes and levels render localized theme\nPASS nb: 400 generated motifs preserve prefix and exactly one option differs\nPASS nb: listening wrong answer does not complete; correct answer does\nPASS nb: rebuild incomplete/wrong/correct and supported completion\nPASS nb: creative edits keep locked notes; persist valid bounded collection\nPASS nb: validator rejects invalid keys pitches prefix and oversize data\nPASS nb: click routes audio with key context then 8 quarter notes\nPASS nb: export contains theme; import validates before changing either store\nPASS nb: demo differs only in last note; Stop cancels playback\nPASS nb: failed persistence reports unsaved and corrupt storage is protected\nPASS en: welcome supports quick start and free explore without completion\nPASS en: match success is stable; next and harder reset; difficulty caps\nPASS en: rebuild advances through empty slots and allows earlier edits\nPASS en: all modes and levels render localized theme\nPASS en: 400 generated motifs preserve prefix and exactly one option differs\nPASS en: listening wrong answer does not complete; correct answer does\nPASS en: rebuild incomplete/wrong/correct and supported completion\nPASS en: creative edits keep locked notes; persist valid bounded collection\nPASS en: validator rejects invalid keys pitches prefix and oversize data\nPASS en: click routes audio with key context then 8 quarter notes\nPASS en: export contains theme; import validates before changing either store\nPASS en: demo differs only in last note; Stop cancels playback\nPASS en: failed persistence reports unsaved and corrupt storage is protected\n39 passed; 0 failed. Mock tests; device playback and layout not verified.\n",
+      "stderr": ""
+    }
+  ]
+}
