@@ -1,3 +1,29 @@
+# Phase 1 development reliability update
+
+The application source, generated pages, design and curriculum remain unchanged.
+The development gate now treats absent Work hosting metadata as optional
+provenance, includes every original Node suite and runs real Chromium desktop
+and mobile-viewport checks. A locked Playwright dependency and GitHub Actions
+workflow are provided. See docs/development-quality.md for commands, evidence
+limits and the expected-failing Theme 01 quick-entry tab requirement.
+
+Local verification: all 13 Node suites pass; the build preserves the existing
+`dist` bytes. Playwright against installed Chromium 154.0.8037.57 yields 34 passing
+cases and two expected failures for the existing Theme 01 quick-entry tabs issue.
+Both desktop and mobile viewport profiles ran. The prototype gate exits 0 while
+retaining pupilRelease BLOCKED. Missing Playwright and missing Python were separately
+verified to fail the gate and replace the report with FAIL. GitHub Actions has not
+been run remotely. The managed browser download was blocked by environment network
+policy, so local runs explicitly selected installed Chromium; CI uses the matching
+Playwright-managed build. No app source/generated files or Work deployment changed.
+
+Pupil release remains BLOCKED: limited browser automation is not physical-device,
+rendered-audio, comprehensive browser or independent-review evidence. The historical
+export status below remains useful for feature and recovery history; its missing
+browser-test/CI statements describe the pre-Phase-1 snapshot.
+
+---
+
 # Musikkverkstad — project status
 
 Export date: 2026-10-21. This is the actual latest saved/published application,

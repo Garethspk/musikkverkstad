@@ -1,3 +1,24 @@
+# Development reliability — Phase 1
+
+The school configuration architecture and implementation plan are in [ROADMAP.md](ROADMAP.md).
+This is planned work, separate from the completed reliability changes.
+
+The current development workflow is documented in [docs/development-quality.md](docs/development-quality.md).
+Use Node 24 and Python 3.12: `npm ci`, `npx playwright install --with-deps chromium`,
+then `npm run quality`. All 13 Node suites and real Chromium desktop/mobile tests
+are included. Passing development checks returns exit 2 with pupil release BLOCKED;
+`npm run quality:prototype` permits exit 0 for private-prototype development only.
+The known Theme 01 quick-entry tabs issue remains explicitly expected-failing.
+Hosting metadata is optional provenance; no original hosting details are recreated.
+No application content or deployment is changed by this reliability phase.
+
+The export notes below are historical. Their statements that the gate uses
+`python`, requires hosting metadata, omits browser checks or has no CI workflow
+are superseded by the Phase 1 workflow. Running the existing built app still
+requires only a local HTTP server, with no npm installation.
+
+---
+
 # Musikkverkstad export — local setup
 
 This export contains the exact application source and existing built files from
