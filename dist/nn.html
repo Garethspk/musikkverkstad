@@ -63,7 +63,7 @@
 
 .compact-header .nv-language{margin-top:18px}.compact-header .nv-language strong{display:block;margin-bottom:8px}.compact-header .toolbar-panel{max-height:calc(100dvh - 90px);overflow:auto}.compact-header .toolbar-panel .volume{margin-top:14px}
 @media(max-width:600px){.nv-navigation button{width:44px;min-width:44px}.nv-select{width:88px;font-size:14px}}
-</style></head>
+</style><script id="school-settings" type="application/json">{"schemaVersion":1,"schoolName":"","logo":null,"defaultLanguage":"nn","colourPreset":"original","ageGroups":["11-13"],"themes":["theme","groove"],"levels":{"theme":[1,2,3,4],"groove":[1,2,3,4],"rhythm":[1,2,3,4],"melody":[1,2,3,4],"harmony":[1,2,3,4],"puzzle":[1,2,3,4],"notation":[1,2,3,4],"create":[1]}}</script></head>
 <body>
 <header class="compact-header">
 <button class="brand" data-go="home" aria-label="Musikkverkstad · Heim" title="Heim"><span class="logo" aria-hidden="true">≋</span><span class="brand-name">Musikkverkstad</span></button>
@@ -214,7 +214,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){const open=menus.fi
   return Object.freeze({registry,availableRegistry,prototypeAvailable,hasRestrictions,ageGroups,presets,defaults,validate,parse,checkImage,MAX_FILE,MAX_JSON});
 });
 
-const schoolSettings=SchoolConfig.validate(SchoolConfig.defaults());
+const schoolSettings=SchoolConfig.parse(document.getElementById('school-settings').textContent);
 /* Read-only pupil configuration: no editor, settings storage or pupil-data writes. */
 function scLevels(id){return schoolSettings.levels[id] || []}
 function scLevel(id,preferred){const enabled=scLevels(id);return enabled.includes(preferred)?preferred:enabled[0]}

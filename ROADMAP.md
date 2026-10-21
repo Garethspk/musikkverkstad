@@ -8,13 +8,32 @@ checks; provide reproducible CI and explicit evidence limits. Keep pupil release
 BLOCKED until its required evidence is available. See
 [development-quality.md](docs/development-quality.md).
 
-## Phase 2 — School setup MVP (implemented; awaiting PR review)
+## Phase 2 — School setup MVP (merged)
 
 The first increment now provides the separate Nynorsk setup page, shared settings
 schema/registry and pupil loader described below. See docs/school-setup.md for
-operation. It supports settings JSON export/reimport and a maintenance build
-command, not ZIP publishing or full preview. The publishing/preview and exact-output
-release-evidence milestones below remain pending; no new curriculum is included.
+operation. The schema/registry, settings JSON import/export and pupil loader are
+implemented. No new curriculum is included.
+
+## Phase 2B — Prototype package and preview (implemented; review pending)
+
+The separate standalone configurator now previews the same verified candidate files
+and exports a complete pupil ZIP in the browser. All output remains a private
+prototype with pupilRelease BLOCKED. An opaque allow-scripts-only iframe uses
+transient storage and a local sample-byte transport with connect-src none; the
+exported app has no preview adapter or editor. Desktop/mobile are viewport checks.
+See docs/school-setup.md for hosting/update instructions and evidence limits.
+The local browser verification discrepancies are explained in
+[PR #5 verification](docs/pr-5-verification.md); file-policy failures remain visible.
+
+The implementation simplifies the original embedded-ZIP/library proposal below:
+a pinned inert allowlisted file map feeds a deterministic STORE-only ZIP writer.
+There is no archive parser or external ZIP dependency. This preserves the manifest,
+positive allowlist and integrity boundaries with fewer moving parts. Settings are
+replaced only in the explicit inert JSON slot, never arbitrary executable source.
+Exact-candidate pupil-release adapters remain pending. Next implement those evidence
+bindings and resolve the known Theme 01 entrance issue before pupil-ready publishing;
+major curriculum expansion remains a later priority.
 
 ## Delivery priorities
 
@@ -29,7 +48,7 @@ release-evidence milestones below remain pending; no new curriculum is included.
 
 ## Architecture decision — school-specific downloadable distribution
 
-**Accepted direction; planned, not implemented.** Schools will configure a local
+**Accepted direction; settings and private-prototype export implemented. Pupil-ready publication remains blocked.** Schools will configure a local
 publishing package through a separate, nontechnical browser-based administrator
 setup tool **before publishing it for pupils**. Schools receive a downloadable
 application package, configure their version and publish the resulting static
@@ -47,7 +66,7 @@ valid older imports keep their deliberate restrictions, which are clearly shown.
 Keep stable IDs/schema validation and the distinction between prototype availability
 and pupil-release readiness. This decision supersedes earlier roadmap wording that
 put pedagogical checklists in the main form. Administrator setup remains ahead of
-major curriculum expansion; ZIP publishing and full preview are still pending.
+major curriculum expansion; prototype ZIP/preview are implemented in Phase 2B; exact-output pupil release remains pending.
 
 ### Recommended implementation
 

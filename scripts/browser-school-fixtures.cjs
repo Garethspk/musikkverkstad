@@ -14,6 +14,8 @@ module.exports=async function(){
  const isolated=path.join(root,'.quality','revoked-source');
  fs.rmSync(isolated,{recursive:true,force:true});fs.mkdirSync(isolated,{recursive:true});
  for(const file of ['translate.py','translations-extra.txt'])fs.copyFileSync(path.join(root,file),path.join(isolated,file));
+ fs.mkdirSync(path.join(isolated,'scripts'),{recursive:true});
+ fs.copyFileSync(path.join(root,'scripts/validate-school.cjs'),path.join(isolated,'scripts/validate-school.cjs'));
  fs.cpSync(path.join(root,'src'),path.join(isolated,'src'),{recursive:true});
  const contract=path.join(isolated,'src/school/config.js');
  fs.writeFileSync(contract,fs.readFileSync(contract,'utf8').replace("id:'rhythm', implemented:true, prototypeEligible:true", "id:'rhythm', implemented:true, prototypeEligible:false"));

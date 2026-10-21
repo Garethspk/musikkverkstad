@@ -1,4 +1,4 @@
-# School setup MVP — Phase 2
+# School setup and prototype packages — Phase 2B
 
 The separate Nynorsk setup page builds to `setup/index.html`; pupil files remain
 in `dist`. See [docs/school-setup.md](docs/school-setup.md) for local use, settings
@@ -7,17 +7,20 @@ logo, default language, accessible presets, implemented age groups/themes/levels
 The principal-facing form asks only for branding, language and optional colours;
 all eligible prototype content is included by default. Optional restrictions live
 in collapsed Avanserte innstillingar and older imported restrictions are preserved.
-Pupils retain choices within enabled levels. This milestone adds neither ZIP
-publishing nor full preview; pupil release remains BLOCKED.
+Pupils retain choices within enabled levels. School staff can open the standalone
+`setup/index.html`, preview the real pupil app at desktop/mobile viewport sizes and
+download a self-contained ZIP without development tools. Extracted pupil files need
+ordinary static HTTP hosting. Downloads are for private prototype review only;
+pupil release remains **BLOCKED**, with no administrator in the pupil ZIP.
 
 # Development reliability — Phase 1
 
 The school configuration architecture and implementation plan are in [ROADMAP.md](ROADMAP.md).
-This is planned work, separate from the completed reliability changes.
+The settings and prototype package increments are implemented; exact-output pupil-release evidence remains pending.
 
 The current development workflow is documented in [docs/development-quality.md](docs/development-quality.md).
 Use Node 24 and Python 3.12: `npm ci`, `npx playwright install --with-deps chromium`,
-then `npm run quality`. All 13 Node suites and real Chromium desktop/mobile tests
+then `npm run quality`. All original 13 Node suites, school/package suites and real Chromium desktop/mobile tests
 are included. Passing development checks returns exit 2 with pupil release BLOCKED;
 `npm run quality:prototype` permits exit 0 for private-prototype development only.
 The known Theme 01 quick-entry tabs issue remains explicitly expected-failing.
