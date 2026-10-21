@@ -191,7 +191,7 @@ for locale,index in [('nn',0),('nb',1),('en',2)]:
     css='\n.language-tabs{max-width:1144px;margin:12px auto 0;padding:0 24px;display:flex;gap:6px}.language-tabs a{display:inline-block;padding:10px 16px;border:1px solid var(--edge);border-radius:10px;color:var(--text);text-decoration:none;font-size:14px}.language-tabs a[aria-current]{background:var(--green);color:#18241b;font-weight:700}.language-tabs a:focus-visible{outline:3px solid var(--gold)}\n'
     s=s.replace('</style>',css+'</style>')
     s=s.replace("'use strict';", "'use strict';\n"+Path('src/school/config.js').read_text()+"\nconst schoolSettings=SchoolConfig.parse(document.getElementById('school-settings').textContent);\n"+Path('src/school/pupil.js').read_text()+"\ntry{localStorage.setItem('musikkverkstad-language','"+locale+"')}catch(e){}\n")
-    s=s.replace('\nrender();', '\n'+Path('src/practice.js').read_text()+'\n'+Path('src/theme.js').read_text()+'\n'+Path('src/puzzle.js').read_text()+'\n'+Path('src/notation.js').read_text()+'\n'+Path('src/groove.js').read_text()+'\n'+Path('src/navigation.js').read_text()+'\nrender();')
+    s=s.replace('\nrender();', '\n'+Path('src/practice.js').read_text()+'\n'+Path('src/theme.js').read_text()+'\n'+Path('src/puzzle.js').read_text()+'\n'+Path('src/notation.js').read_text()+'\n'+Path('src/groove.js').read_text()+'\n'+Path('src/conversation.js').read_text()+'\n'+Path('src/navigation.js').read_text()+'\nrender();')
     s=s.replace('</head>', '<style>'+Path('src/studio.css').read_text()+'</style></head>')
     s=s.replace('</head>',settings_tag+'</head>')
     (output/f'{locale}.html').write_text(s)
@@ -214,7 +214,7 @@ if not args.no_admin:
     for path in sorted([*Path('src').rglob('*'),Path('translate.py'),Path('translations-extra.txt'),Path('scripts/validate-school.cjs')]):
         if path.is_file():
             data=path.read_bytes();identity.update(str(path).encode()+b'\0'+str(len(data)).encode()+b'\0'+data)
-    bundle=json.dumps(dict(formatVersion=1,settingsSchemaVersion=1,sourceHash=identity.hexdigest(),pupilRelease='BLOCKED',files=files),separators=(',',':'))
+    bundle=json.dumps(dict(formatVersion=1,settingsSchemaVersion=2,sourceHash=identity.hexdigest(),pupilRelease='BLOCKED',files=files),separators=(',',':'))
     bundle_hash=hashlib.sha256(bundle.encode()).hexdigest()
     Path('setup').mkdir(exist_ok=True)
     Path('setup/template.json').write_text(bundle)

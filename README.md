@@ -1,3 +1,12 @@
+# Phase 4 — Theme 03: Musical conversations
+
+A playable private prototype now provides listening/comparison, fragment rebuilding
+and open-ended response creation at four pupil-selected settings. Existing piano,
+three languages, local backups, school restrictions, isolated preview and ZIP export
+are integrated. School schema-1 imports preserve selections and do **not** silently
+enable this new theme; new schema-2 defaults include it. See
+[Theme 03 contract and review limits](docs/theme-03.md). Pupil release is **BLOCKED**.
+
 # Phase 3 — pupil navigation and Theme 02 progress
 
 Theme 01 shows listening, rebuilding and creation controls immediately on every
