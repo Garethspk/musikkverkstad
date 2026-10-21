@@ -1,3 +1,12 @@
+# Phase 3 — pupil navigation and Theme 02 progress
+
+Theme 01 shows listening, rebuilding and creation controls immediately on every
+entrance, including Start here. Theme 02 now stores completed listening/repair
+round counts, the chosen level and up to 20 explicitly saved rhythms, with validated
+Export/Import. Unfinished questions remain temporary. See
+[progress compatibility](docs/pupil-progress.md). No curriculum or audio engine
+change is included; pupil release remains **BLOCKED**.
+
 # School setup and prototype packages — Phase 2B
 
 The separate Nynorsk setup page builds to `setup/index.html`; pupil files remain
@@ -23,7 +32,7 @@ Use Node 24 and Python 3.12: `npm ci`, `npx playwright install --with-deps chrom
 then `npm run quality`. All original 13 Node suites, school/package suites and real Chromium desktop/mobile tests
 are included. Passing development checks returns exit 2 with pupil release BLOCKED;
 `npm run quality:prototype` permits exit 0 for private-prototype development only.
-The known Theme 01 quick-entry tabs issue remains explicitly expected-failing.
+The former Theme 01 quick-entry failures are now ordinary passing regressions.
 Hosting metadata is optional provenance; no original hosting details are recreated.
 No application content or deployment is changed by this reliability phase.
 
@@ -179,8 +188,9 @@ The second optional theme combines rhythm matching, rhythm reconstruction and
 free rhythm building. Four settings vary phrase length (one/two 4/4 bars) and
 grid subdivision (quarter/eighth notes); they are different challenges, not
 validated difficulty rankings. All sounds use the shared sampled piano engine.
-This theme's work is session-only for now; it does not enter saved progress or
-Export/Import. Existing themes and saved progress remain available.
+Completed rounds and explicitly saved rhythms now persist and enter validated
+Export/Import; unfinished questions remain temporary. Existing themes and saved
+progress remain available.
 Source: src/groove.js. Independent music/logic checks: tests/groove.cjs.
 
 ## Theme navigation and return visits

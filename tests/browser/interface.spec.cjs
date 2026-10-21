@@ -70,11 +70,9 @@ test('keyboard: menu, Escape focus return, Start and theme selector', async ({pa
   await expect(page.locator('[data-gr-action="mode"]')).toHaveCount(3);
 });
 
-test('KNOWN ISSUE: Theme 01 quick entrance hides activity controls', async ({page}) => {
+test('Theme 01 quick entrance immediately exposes all activity controls', async ({page}) => {
   await openApp(page);
   await page.locator('[data-nv="start"]').click();
   await expect(page.locator('[data-theme-action="explore"]')).toBeVisible();
-  // Expected failure is explicit in reports. Fixing the UI must remove this marker.
-  test.fail(true, 'PROJECT_STATUS.md: quick entrance requires Choose activity and level first. No UI redesign in Phase 1.');
   await expect(page.locator('[data-theme-action="section"]')).toHaveCount(3);
 });

@@ -1,3 +1,25 @@
+# Phase 3 — pupil activity access and progress
+
+Issue #6 exposes all three Theme 01 activity controls on welcome, Start here, Continue,
+theme-selector and direct entrances. The two former expected-failure cases are
+ordinary regressions. Keyboard and free school-enabled level selection are retained.
+Theme 02 now saves per-mode/level completed-round counts, chosen level and up to
+20 explicit rhythm creations in a validated version-1 extension of existing local
+progress/backup data. Counts record practice, not mastery; unfinished questions are
+not restored. Older backups without this extension preserve current Theme 02 history.
+Unknown/corrupt extensions reject atomically; damaged stored data is not overwritten
+by practice. Denied/quota storage keeps work in memory and allows export.
+
+School-disabled themes/levels cannot be reopened from saved rhythms, but their valid
+history remains visible and exportable. Audio scheduling/cancellation and school
+preview isolation are unchanged. School setup/publishing text now accurately describes
+Theme 02 persistence. See docs/pupil-progress.md for compatibility and evidence limits.
+The full-gate, independent-review and CI results for this increment are recorded in
+its PR. Pupil release remains **BLOCKED**. Earlier snapshots below retain their
+historical limitations and test counts.
+
+---
+
 # Phase 2B — school prototype preview and ZIP export
 
 Issue #4 adds the nontechnical Configure → Preview → Download workflow to the

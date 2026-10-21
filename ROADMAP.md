@@ -32,8 +32,17 @@ There is no archive parser or external ZIP dependency. This preserves the manife
 positive allowlist and integrity boundaries with fewer moving parts. Settings are
 replaced only in the explicit inert JSON slot, never arbitrary executable source.
 Exact-candidate pupil-release adapters remain pending. Next implement those evidence
-bindings and resolve the known Theme 01 entrance issue before pupil-ready publishing;
+bindings before pupil-ready publishing (the entrance issue is resolved in Phase 3);
 major curriculum expansion remains a later priority.
+
+## Phase 3 — Pupil navigation and progress (implemented; review pending)
+
+Theme 01 exposes all three activities on every entrance. Theme 02 saves completed
+listening/repair rounds and explicit rhythm creations, with a versioned extension
+of existing local progress/backups. See docs/pupil-progress.md. School restrictions
+filter reopening without erasing history; no incomplete-question resumption is
+promised. Audio, package isolation and release gates are unchanged. Exact-output
+release evidence and physical-device/speaker review still precede pupil publishing.
 
 ## Delivery priorities
 
@@ -107,7 +116,7 @@ The setup interface should offer:
 6. An optional advanced checklist of themes with plain-language implementation/release
    status. Initially only Theme 01 and Theme 02 exist. Theme 03 and other planned
    content must be unavailable for inclusion, never labelled complete. Require at
-   least one selected theme. Explain that Theme 02 currently has session-only work.
+   least one selected theme. Explain that unfinished Theme 02 rounds are temporary; completed practice and saved rhythms persist.
 7. Desktop/mobile preview buttons using the **same generated pupil files and
    settings** as export, not a separate mock UI. Label mobile preview as a viewport,
    not proof of phone compatibility.
