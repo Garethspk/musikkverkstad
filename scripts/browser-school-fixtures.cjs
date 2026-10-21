@@ -10,4 +10,13 @@ module.exports=async function(){
   const input=path.join(root,'.quality',theme+'-settings.json');fs.mkdirSync(path.dirname(input),{recursive:true});fs.writeFileSync(input,JSON.stringify(settings));
   execFileSync(process.env.PYTHON||'python3',['translate.py','--school-settings',input,'--output',path.join('.quality','school-sites',theme),'--no-admin'],{cwd:root});
  }
+ // Isolated revocation fixture: actual compiled pupil files, never mutate source.
+ const isolated=path.join(root,'.quality','revoked-source');
+ fs.rmSync(isolated,{recursive:true,force:true});fs.mkdirSync(isolated,{recursive:true});
+ for(const file of ['translate.py','translations-extra.txt'])fs.copyFileSync(path.join(root,file),path.join(isolated,file));
+ fs.cpSync(path.join(root,'src'),path.join(isolated,'src'),{recursive:true});
+ const contract=path.join(isolated,'src/school/config.js');
+ fs.writeFileSync(contract,fs.readFileSync(contract,'utf8').replace("id:'rhythm', implemented:true, prototypeEligible:true", "id:'rhythm', implemented:true, prototypeEligible:false"));
+ execFileSync(process.env.PYTHON||'python3',['translate.py','--output',path.join(root,'.quality/school-sites/revoked'),'--no-admin'],{cwd:isolated});
+
 };

@@ -1,3 +1,19 @@
+# PR #3 review update — principal workflow
+
+The main setup form now asks only for school branding, default language and optional
+colours. All eligible prototype content/levels are included by default. The 11–13
+audience is informational. Exceptional theme/level restrictions are under collapsed
+Avanserte innstillingar; earlier valid v1 settings retain restrictions and open that
+section with a clear notice when imported or restored. The schema stays at version 1.
+Availability flags fail closed for future/unimplemented/ineligible content; prototype
+availability does not change pupilRelease BLOCKED. New tests cover the no-checklist
+workflow, keyboard access, exact older-v1 round-trips and branding-only edits.
+An isolated real-build revocation fixture also verifies that ineligible auxiliary
+activities disappear from cards and cannot open through direct/restored navigation,
+while historical counts survive. Local full-gate verification: all 14 Node suites
+and 60 real Chromium cases pass; the two existing Theme 01 expected failures remain.
+The standard gate exits 2 and pupil release remains BLOCKED.
+
 # Phase 2 — School administrator configuration MVP
 
 Phase 1 was merged into main at 03c38ef after GitHub Actions passed on PR #1.

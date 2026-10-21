@@ -1,10 +1,10 @@
 <!doctype html><html lang="nn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; connect-src 'none'; base-uri 'none'; form-action 'none'"><title>Musikkverkstad · Skuleoppsett</title><style>
-:root{color-scheme:dark}*{box-sizing:border-box}body{background:#101820;color:#f3f5ef;font:17px/1.6 system-ui;margin:0 auto;padding:24px;max-width:850px}h1,h2{line-height:1.2}fieldset{margin:24px 0;padding:20px;border:1px solid #83988c;border-radius:12px}legend{font-weight:700}label{display:block;margin:12px 0}input,select,button{font:inherit}input[type=text],select{display:block;width:100%;max-width:500px;padding:10px;background:#1a2631;color:#f3f5ef;border:1px solid #83988c;border-radius:6px}button{padding:12px 18px;margin:6px 6px 6px 0;background:#c6f184;color:#18241b;border:0;border-radius:8px;min-height:46px}button:disabled{opacity:.5}input:focus-visible,select:focus-visible,button:focus-visible{outline:3px solid #f4d48b;outline-offset:4px}.levels{display:flex;gap:20px;flex-wrap:wrap}#message{border-left:4px solid #f4d48b;padding:12px;min-height:48px}#logoImage{max-width:128px;max-height:128px}small{display:block}.notice{padding:18px;background:#1a2631}a{color:#c6f184}
+:root{color-scheme:dark}*{box-sizing:border-box}body{background:#101820;color:#f3f5ef;font:17px/1.6 system-ui;margin:0 auto;padding:24px;max-width:850px}h1,h2{line-height:1.2}fieldset{margin:24px 0;padding:20px;border:1px solid #83988c;border-radius:12px}legend{font-weight:700}label{display:block;margin:12px 0}input,select,button{font:inherit}input[type=text],select{display:block;width:100%;max-width:500px;padding:10px;background:#1a2631;color:#f3f5ef;border:1px solid #83988c;border-radius:6px}button{padding:12px 18px;margin:6px 6px 6px 0;background:#c6f184;color:#18241b;border:0;border-radius:8px;min-height:46px}button:disabled{opacity:.5}input:focus-visible,select:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #f4d48b;outline-offset:4px}details{margin:24px 0;padding:16px;border:1px solid #83988c;border-radius:12px}summary{cursor:pointer;font-weight:700;min-height:46px}#contentSummary{padding:12px;background:#1a2631}.levels{display:flex;gap:20px;flex-wrap:wrap}#message{border-left:4px solid #f4d48b;padding:12px;min-height:48px}#logoImage{max-width:128px;max-height:128px}small{display:block}.notice{padding:18px;background:#1a2631}a{color:#c6f184}
 </style></head><body><h1>Skuleoppsett</h1><p>Musikkverkstad · Utviklingsprototype</p><p class="notice">Dette lagar berre skuleinnstillingar. Elevpublisering er framleis blokkert. ZIP-pakke og full førehandsvising kjem seinare. Ingen elevdata blir samla inn.</p>
 <form id="settingsForm"><fieldset><legend>Skulen</legend><label>Skulenamn<input id="schoolName" type="text" maxlength="100" autocomplete="organization"></label><label>Last opp logo<input id="logoFile" type="file" accept="image/png,image/jpeg,image/webp"></label><small>PNG, JPEG eller WebP · maks 512 KiB og 2048 × 2048 pikslar. Logoen blir lagra som ein liten PNG utan metadata.</small><img id="logoImage" alt="Vald skulelogo" hidden><button id="removeLogo" type="button">Fjern logo</button></fieldset>
 <fieldset><legend>Språk og fargar</legend><label>Standardspråk<select id="defaultLanguage"><option value="nn">Nynorsk</option><option value="nb">Bokmål</option><option value="en">English</option></select></label><p>Elevane kan framleis byte språk. Eit lagra språkval går føre standarden.</p><label>Skulefargar<select id="colourPreset"></select></label><p>Faste fargeval med tydeleg kontrast. Original utsjånad er standard.</p></fieldset>
-<fieldset><legend>Aldersgruppe</legend><label><input id="ageGroup" type="checkbox" checked> 11–13 år</label><p>Dette er den einaste aldersgruppa med innhald i denne versjonen. Ingen personleg alder blir lagra.</p></fieldset>
-<fieldset><legend>Tema og nivå</legend><p>Vel minst eitt tema. Elevane vel sjølve mellom dei tilgjengelege nivåa. Nivåa er ulike utfordringar, ikkje ei vurdering av eleven.</p><p>Tema 03 finst ikkje enno. Tema 02 lagrar berre arbeidet i den aktuelle økta.</p><div id="contentOptions"></div><p>Dei andre aktivitetane er alltid tilgjengelege. Vel nivå for kvar aktivitet. Fri melodiverkstad har berre eitt oppsett.</p></fieldset>
+<section aria-labelledby="audienceHeading"><h2 id="audienceHeading">Innhald og målgruppe</h2><p>Målgruppa er 11–13-åringar med litt musikalsk erfaring. Andre aldersgrupper er ikkje vurderte. Ingen personleg alder blir lagra.</p><p>Alle aktivitetar og nivå som er tilgjengelege i denne utviklingsprototypen, er med frå starten. Elevane vel sjølve aktivitetar og nivå. Du treng berre å fylle ut skulenamn, logo, språk og eventuelt fargar.</p><p>Tilgjengeleg i ein utviklingsprototype tyder ikkje godkjent for elevpublisering. Elevpublisering er framleis blokkert.</p><p id="contentSummary" role="status" aria-live="polite"></p></section>
+<details id="advancedSettings"><summary>Avanserte innstillingar</summary><p>Berre for særlege behov: avtal eventuelle avgrensingar med ein lærar. Standardoppsettet krev ingen val her. Importerte avgrensingar blir tekne vare på, også når du berre endrar skulenamn eller logo.</p><p>Nivåa er ulike utfordringar, ikkje ei vurdering av eleven. Elevane vel fritt mellom nivåa som er med. Vel minst eitt tema og minst eitt nivå for kvar aktivitet.</p><p>Tema 03 finst ikkje enno og kan ikkje veljast. Tema 02 lagrar berre arbeidet i den aktuelle økta. Nytt eller ikkje kvalifisert innhald blir ikkje gjort tilgjengeleg av dette skjemaet.</p><div id="contentOptions"></div><p>Dei andre aktivitetane er alltid tilgjengelege, med nivåa som er valde her. Fri melodiverkstad har berre eitt oppsett. Alle aktivitetane her er berre tilgjengelege som utviklingsprototype; ingen har godkjenning for elevpublisering.</p></details>
 <button type="submit" id="exportSettings">Last ned innstillingar</button><button id="saveDraft" type="button">Lagre utkast her</button><button id="resetSettings" type="button">Nullstill skjema</button><label>Importer skuleinnstillingar<input id="settingsFile" type="file" accept="application/json,.json"></label></form>
 <p id="message" role="status" aria-live="polite">Innstillingane er skilde frå elevframgangen. Ta vare på JSON-fila til neste oppdatering.</p>
 <p>Når fila er klar, kan den som driftar appen byggje ein elevversjon med henne. Dette er ikkje ei godkjenning for elevpublisering. Ingen administratorfunksjon blir lagd til elevappen.</p>
@@ -16,15 +16,17 @@
 })(typeof globalThis === 'object' ? globalThis : this, function() {
   'use strict';
   const registry = Object.freeze([
-    {id:'theme', name:'Tema 01 · Same start, ulik slutt', theme:true, levels:[1,2,3,4]},
-    {id:'groove', name:'Tema 02 · Finn grooven', theme:true, levels:[1,2,3,4]},
-    {id:'rhythm', name:'Rytmereparatøren', levels:[1,2,3,4]},
-    {id:'melody', name:'Melodidetektiven', levels:[1,2,3,4]},
-    {id:'harmony', name:'Finn heim', levels:[1,2,3,4]},
-    {id:'puzzle', name:'Melodipuslespel', levels:[1,2,3,4]},
-    {id:'notation', name:'Lyd og notar', levels:[1,2,3,4]},
-    {id:'create', name:'Fri melodiverkstad', levels:[1]},
+    {id:'theme', name:'Tema 01 · Same start, ulik slutt', theme:true, implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', levels:[1,2,3,4]},
+    {id:'groove', name:'Tema 02 · Finn grooven', theme:true, implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', levels:[1,2,3,4]},
+    {id:'rhythm', implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', name:'Rytmereparatøren', levels:[1,2,3,4]},
+    {id:'melody', implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', name:'Melodidetektiven', levels:[1,2,3,4]},
+    {id:'harmony', implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', name:'Finn heim', levels:[1,2,3,4]},
+    {id:'puzzle', implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', name:'Melodipuslespel', levels:[1,2,3,4]},
+    {id:'notation', implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', name:'Lyd og notar', levels:[1,2,3,4]},
+    {id:'create', implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', name:'Fri melodiverkstad', levels:[1]},
   ].map(item => Object.freeze({...item, levels:Object.freeze(item.levels)})));
+  function prototypeAvailable(item){return item.implemented===true && item.prototypeEligible===true && ['BLOCKED','PASS'].includes(item.pupilRelease)}
+  const availableRegistry=Object.freeze(registry.filter(prototypeAvailable));
   // Accent/on-accent combinations exceed WCAG AA; backgrounds/text stay unchanged.
   const presets = Object.freeze({
     original:{name:'Original grøn', accent:'#c6f184', ink:'#18241b'},
@@ -106,24 +108,29 @@
     canonicalPNG(b);
     return value;
   }
-  function defaults() { return {schemaVersion:1,schoolName:'',logo:null,defaultLanguage:'nn',colourPreset:'original',ageGroups:['11-13'],themes:['theme','groove'],levels:Object.fromEntries(registry.map(r=>[r.id,[...r.levels]]))}; }
+  function defaults() { return {schemaVersion:1,schoolName:'',logo:null,defaultLanguage:'nn',colourPreset:'original',ageGroups:['11-13'],themes:availableRegistry.filter(r=>r.theme).map(r=>r.id),levels:Object.fromEntries(availableRegistry.map(r=>[r.id,[...r.levels]]))}; }
   function validate(value) {
     object(value,['schemaVersion','schoolName','logo','defaultLanguage','colourPreset','ageGroups','themes','levels'],'skuleinnstillingar');
     if(value.schemaVersion!==1)fail('Denne versjonen av skuleinnstillingane er ikkje støtta.');
     if(typeof value.schoolName!=='string'||value.schoolName.length>100||/[\u0000-\u001f\u007f]/.test(value.schoolName))fail('Skulenamnet må vere tekst på høgst 100 teikn.');
     if(!['nn','nb','en'].includes(value.defaultLanguage))fail('Ugyldig språk.');
     if(!Object.hasOwn(presets,value.colourPreset))fail('Ugyldig fargeval.');
-    object(value.levels,registry.map(r=>r.id),'nivåval');
+    object(value.levels,availableRegistry.map(r=>r.id),'nivåval');
     return {schemaVersion:1,schoolName:value.schoolName.trim(),logo:logoValue(value.logo),defaultLanguage:value.defaultLanguage,colourPreset:value.colourPreset,
-      ageGroups:list(value.ageGroups,ageGroups,'aldersgruppe'), themes:list(value.themes,['theme','groove'],'temaval'),
-      levels:Object.fromEntries(registry.map(r=>[r.id,list(value.levels[r.id],r.levels,'nivå for '+r.name)]))};
+      ageGroups:list(value.ageGroups,ageGroups,'aldersgruppe'), themes:list(value.themes,availableRegistry.filter(r=>r.theme).map(r=>r.id),'temaval'),
+      levels:Object.fromEntries(availableRegistry.map(r=>[r.id,list(value.levels[r.id],r.levels,'nivå for '+r.name)]))};
+  }
+  function hasRestrictions(value){
+    const settings=validate(value);
+    return availableRegistry.some(item => (item.theme&&!settings.themes.includes(item.id)) ||
+      item.levels.some(level=>!settings.levels[item.id].includes(level)));
   }
   function parse(text) {
     if(typeof text!=='string'||text.length>MAX_JSON)fail('Innstillingsfila er for stor.');
     let value;try {value=JSON.parse(text);} catch {fail('Fila inneheld ikkje gyldig JSON.');}
     return validate(value);
   }
-  return Object.freeze({registry,ageGroups,presets,defaults,validate,parse,checkImage,MAX_FILE,MAX_JSON});
+  return Object.freeze({registry,availableRegistry,prototypeAvailable,hasRestrictions,ageGroups,presets,defaults,validate,parse,checkImage,MAX_FILE,MAX_JSON});
 });
 </script><script>'use strict';
 const SC=SchoolConfig, byId=id=>document.getElementById(id), DRAFT='musikkverkstad-school-draft-v1';
@@ -132,7 +139,7 @@ function message(text){byId('message').textContent=text;}
 function statusBusy(value){busy=value;for(const el of document.querySelectorAll('button,input,select'))el.disabled=value;}
 function buildOptions(){
   for(const [id,preset]of Object.entries(SC.presets)){const option=document.createElement('option');option.value=id;option.textContent=preset.name;byId('colourPreset').append(option);}
-  for(const item of SC.registry){
+  for(const item of SC.availableRegistry){
     const group=document.createElement('fieldset'), legend=document.createElement('legend');legend.textContent=item.name;group.append(legend);
     if(item.theme){const label=document.createElement('label'),check=document.createElement('input');check.type='checkbox';check.id='theme-'+item.id;label.append(check,' Ta med temaet');group.append(label);}
     const levels=document.createElement('div');levels.className='levels';
@@ -141,11 +148,20 @@ function buildOptions(){
   }
 }
 function render(value){
-  current=value;byId('schoolName').value=value.schoolName;byId('defaultLanguage').value=value.defaultLanguage;byId('colourPreset').value=value.colourPreset;byId('ageGroup').checked=value.ageGroups.includes('11-13');
-  for(const item of SC.registry){if(item.theme)byId('theme-'+item.id).checked=value.themes.includes(item.id);for(const level of item.levels)byId(`level-${item.id}-${level}`).checked=value.levels[item.id].includes(level);}
+  current=value;byId('schoolName').value=value.schoolName;byId('defaultLanguage').value=value.defaultLanguage;byId('colourPreset').value=value.colourPreset;
+  for(const item of SC.availableRegistry){if(item.theme)byId('theme-'+item.id).checked=value.themes.includes(item.id);for(const level of item.levels)byId(`level-${item.id}-${level}`).checked=value.levels[item.id].includes(level);}
+  byId('advancedSettings').open=SC.hasRestrictions(value);
+  contentStatus();
   byId('logoImage').hidden=!value.logo;if(value.logo)byId('logoImage').src=value.logo;else byId('logoImage').removeAttribute('src');
 }
-function read(){return SC.validate({schemaVersion:1,schoolName:byId('schoolName').value,logo:current.logo,defaultLanguage:byId('defaultLanguage').value,colourPreset:byId('colourPreset').value,ageGroups:byId('ageGroup').checked?['11-13']:[],themes:SC.registry.filter(r=>r.theme&&byId('theme-'+r.id).checked).map(r=>r.id),levels:Object.fromEntries(SC.registry.map(r=>[r.id,r.levels.filter(l=>byId(`level-${r.id}-${l}`).checked)]))});}
+function read(){return SC.validate({schemaVersion:1,schoolName:byId('schoolName').value,logo:current.logo,defaultLanguage:byId('defaultLanguage').value,colourPreset:byId('colourPreset').value,ageGroups:[...current.ageGroups],themes:SC.availableRegistry.filter(r=>r.theme&&byId('theme-'+r.id).checked).map(r=>r.id),levels:Object.fromEntries(SC.availableRegistry.map(r=>[r.id,r.levels.filter(l=>byId(`level-${r.id}-${l}`).checked)]))});}
+function contentStatus(){
+  try{byId('contentSummary').textContent=SC.hasRestrictions(read())
+    ? 'Dette oppsettet har avgrensingar. Sjå «Avanserte innstillingar». Avgrensingane blir tekne vare på ved lagring og nedlasting.'
+    : 'Alle tilgjengelege aktivitetar og nivå er med. Du treng ikkje gjere fleire innhaldsval.';
+  }catch(error){byId('contentSummary').textContent=error.message;}
+}
+byId('contentOptions').addEventListener('change',contentStatus);
 async function cleanLogo(file){
   if(file.size>SC.MAX_FILE)throw Error('Logoen er for stor (maks 512 KiB).');
   const bytes=new Uint8Array(await file.arrayBuffer());SC.checkImage(bytes,file.type);

@@ -31,7 +31,7 @@ function ppNew(){pp.level=scLevel('puzzle',pp.level);
  let ids=Array.from({length:count},(_,i)=>i);if(pp.level===4)ids.push(rand(count));
  pp.target=shuffle(ids);pp.answer=Array(ids.length).fill(null);pp.selected=0;pp.feedback='';pp.success=false;pp.message='';pp.playSlot=-1;
 }
-function ppCard(){return `<section class="strip"><div><div class="eyebrow">${ppText('level')} ${scLevels('puzzle').join(', ')}</div><h3>${ppText('title')}</h3><p>${ppText('desc')}</p></div><button class="primary" data-go="puzzle">${ppText('title')} →</button></section>`}
+function ppCard(){if(!scRouteAllowed('puzzle'))return '';return `<section class="strip"><div><div class="eyebrow">${ppText('level')} ${scLevels('puzzle').join(', ')}</div><h3>${ppText('title')}</h3><p>${ppText('desc')}</p></div><button class="primary" data-go="puzzle">${ppText('title')} →</button></section>`}
 function ppDraw(){if(typeof nvRemember==='function'){nvRemember();nvUpdate()}if(route!=='puzzle')return;const app=$('app'),active=document.activeElement,action=app.contains?.(active)?active?.dataset?.ppAction:null,value=active?.dataset?.ppValue;app.innerHTML=ppView();if(action){const buttons=Array.from(app.querySelectorAll?.('[data-pp-action]')||[]);const next=buttons.find(b=>!b.disabled&&b.dataset.ppAction===action&&b.dataset.ppValue===value)||buttons.find(b=>!b.disabled&&b.dataset.ppAction==='stop');next?.focus({preventScroll:true})}}
 function ppStop(){pp.busy=false;pp.playSlot=-1;pp.message='';ppDraw()}
 function ppButton(action,label,value='',extra=''){const disabled=pp.busy&&action!=='stop';return `<button data-pp-action="${action}" data-pp-value="${value}" ${disabled?'disabled':''} ${extra}>${label}</button>`}

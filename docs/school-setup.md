@@ -11,12 +11,22 @@ Build with `python3 translate.py`, then serve the separate setup artifact:
 python3 -m http.server 8001 --bind 127.0.0.1 --directory setup
 ```
 
-Open http://127.0.0.1:8001/. The form supports school name/logo, default language,
-accessible colour presets, the implemented 11–13 audience, Themes 01/02 and each
-activity's actual levels. Schools choose availability; pupils freely choose among
-the enabled levels. Theme numbers and levels do not imply validated ability ranks.
-Theme 02 remains session-only. Other activities are always available, with their
-own configured levels; the free workshop has only one setting.
+Open http://127.0.0.1:8001/. The normal Nynorsk workflow asks only for school
+name/logo, default language and optional accessible colour presets. All currently
+implemented, prototype-eligible content and its levels are included automatically.
+The supported target audience (11–13, with some musical experience) is informational;
+there is no age-group choice or claim of broader age validation. Pupils continue
+to choose activities and difficulty levels freely.
+
+Exceptional restrictions remain under the initially collapsed **Avanserte
+innstillingar** section. Imported/saved restrictions open this section and show a
+clear restrictions notice. Closing it or editing branding does not change its
+selections. Theme 03 and unknown/ineligible content cannot be enabled. Registry
+flags distinguish implementation, prototype eligibility and pupil-release readiness;
+missing flags or release FAIL exclude content. All current activities remain
+pupilRelease BLOCKED even though they are available for private prototype testing.
+Theme 02 remains session-only; eligible auxiliary activities remain available with their
+configured levels, and the free workshop has only one setting.
 
 The page runs locally without accounts, network services, analytics or pupil data.
 It does not read/write pupil progress. **Lagre utkast her** uses a separate localStorage
@@ -43,9 +53,14 @@ page/editor, and there are no administrator links or routes in the pupil app.
 Keep `setup/` separate and never publish the whole development checkout for pupils.
 Audio needs HTTP; `file://` use is not supported.
 
+New settings default to all eligible prototype content. Earlier valid schema-v1
+settings import/export unchanged, with their exact theme/level restrictions retained;
+this UI change does not require a schema version bump or invent a new migration.
 No-settings builds preserve the original default appearance and all original
 content/levels. A configured build restricts both theme navigation and Start/Continue,
-and checks difficulty changes in handlers as well as controls. A saved unavailable
+and checks difficulty changes in handlers as well as controls. Revoked/ineligible
+registered activities are also removed from home/practice cards and rejected on
+direct or restored navigation, without deleting historical progress. A saved unavailable
 route/level recovers to an enabled choice. Historical counts, saved melodies and
 backups are retained; archived Theme 01 reopening is disabled when its theme/level
 is unavailable. Completed work can still be exported. No school settings are added
@@ -59,7 +74,7 @@ host/port still creates a different browser origin, as before.
 
 ## Settings contract and safety
 
-Schema version 1 has exactly these fields:
+Schema version 1 is unchanged from the earlier Phase 2 setup and has these fields:
 
 - `schemaVersion`: 1.
 - `schoolName`: plain text, up to 100 characters, no control characters.

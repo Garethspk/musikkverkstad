@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "schoolName": "Tidlegare skuleoppsett",
+  "logo": null,
+  "defaultLanguage": "en",
+  "colourPreset": "gold",
+  "ageGroups": ["11-13"],
+  "themes": ["groove"],
+  "levels": {
+    "theme": [2, 4],
+    "groove": [2, 4],
+    "rhythm": [2, 4],
+    "melody": [2, 4],
+    "harmony": [2, 4],
+    "puzzle": [2, 4],
+    "notation": [2, 4],
+    "create": [1]
+  }
+}

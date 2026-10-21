@@ -6,15 +6,17 @@
 })(typeof globalThis === 'object' ? globalThis : this, function() {
   'use strict';
   const registry = Object.freeze([
-    {id:'theme', name:'Tema 01 · Same start, ulik slutt', theme:true, levels:[1,2,3,4]},
-    {id:'groove', name:'Tema 02 · Finn grooven', theme:true, levels:[1,2,3,4]},
-    {id:'rhythm', name:'Rytmereparatøren', levels:[1,2,3,4]},
-    {id:'melody', name:'Melodidetektiven', levels:[1,2,3,4]},
-    {id:'harmony', name:'Finn heim', levels:[1,2,3,4]},
-    {id:'puzzle', name:'Melodipuslespel', levels:[1,2,3,4]},
-    {id:'notation', name:'Lyd og notar', levels:[1,2,3,4]},
-    {id:'create', name:'Fri melodiverkstad', levels:[1]},
+    {id:'theme', name:'Tema 01 · Same start, ulik slutt', theme:true, implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', levels:[1,2,3,4]},
+    {id:'groove', name:'Tema 02 · Finn grooven', theme:true, implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', levels:[1,2,3,4]},
+    {id:'rhythm', implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', name:'Rytmereparatøren', levels:[1,2,3,4]},
+    {id:'melody', implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', name:'Melodidetektiven', levels:[1,2,3,4]},
+    {id:'harmony', implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', name:'Finn heim', levels:[1,2,3,4]},
+    {id:'puzzle', implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', name:'Melodipuslespel', levels:[1,2,3,4]},
+    {id:'notation', implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', name:'Lyd og notar', levels:[1,2,3,4]},
+    {id:'create', implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', name:'Fri melodiverkstad', levels:[1]},
   ].map(item => Object.freeze({...item, levels:Object.freeze(item.levels)})));
+  function prototypeAvailable(item){return item.implemented===true && item.prototypeEligible===true && ['BLOCKED','PASS'].includes(item.pupilRelease)}
+  const availableRegistry=Object.freeze(registry.filter(prototypeAvailable));
   // Accent/on-accent combinations exceed WCAG AA; backgrounds/text stay unchanged.
   const presets = Object.freeze({
     original:{name:'Original grøn', accent:'#c6f184', ink:'#18241b'},
@@ -96,22 +98,27 @@
     canonicalPNG(b);
     return value;
   }
-  function defaults() { return {schemaVersion:1,schoolName:'',logo:null,defaultLanguage:'nn',colourPreset:'original',ageGroups:['11-13'],themes:['theme','groove'],levels:Object.fromEntries(registry.map(r=>[r.id,[...r.levels]]))}; }
+  function defaults() { return {schemaVersion:1,schoolName:'',logo:null,defaultLanguage:'nn',colourPreset:'original',ageGroups:['11-13'],themes:availableRegistry.filter(r=>r.theme).map(r=>r.id),levels:Object.fromEntries(availableRegistry.map(r=>[r.id,[...r.levels]]))}; }
   function validate(value) {
     object(value,['schemaVersion','schoolName','logo','defaultLanguage','colourPreset','ageGroups','themes','levels'],'skuleinnstillingar');
     if(value.schemaVersion!==1)fail('Denne versjonen av skuleinnstillingane er ikkje støtta.');
     if(typeof value.schoolName!=='string'||value.schoolName.length>100||/[\u0000-\u001f\u007f]/.test(value.schoolName))fail('Skulenamnet må vere tekst på høgst 100 teikn.');
     if(!['nn','nb','en'].includes(value.defaultLanguage))fail('Ugyldig språk.');
     if(!Object.hasOwn(presets,value.colourPreset))fail('Ugyldig fargeval.');
-    object(value.levels,registry.map(r=>r.id),'nivåval');
+    object(value.levels,availableRegistry.map(r=>r.id),'nivåval');
     return {schemaVersion:1,schoolName:value.schoolName.trim(),logo:logoValue(value.logo),defaultLanguage:value.defaultLanguage,colourPreset:value.colourPreset,
-      ageGroups:list(value.ageGroups,ageGroups,'aldersgruppe'), themes:list(value.themes,['theme','groove'],'temaval'),
-      levels:Object.fromEntries(registry.map(r=>[r.id,list(value.levels[r.id],r.levels,'nivå for '+r.name)]))};
+      ageGroups:list(value.ageGroups,ageGroups,'aldersgruppe'), themes:list(value.themes,availableRegistry.filter(r=>r.theme).map(r=>r.id),'temaval'),
+      levels:Object.fromEntries(availableRegistry.map(r=>[r.id,list(value.levels[r.id],r.levels,'nivå for '+r.name)]))};
+  }
+  function hasRestrictions(value){
+    const settings=validate(value);
+    return availableRegistry.some(item => (item.theme&&!settings.themes.includes(item.id)) ||
+      item.levels.some(level=>!settings.levels[item.id].includes(level)));
   }
   function parse(text) {
     if(typeof text!=='string'||text.length>MAX_JSON)fail('Innstillingsfila er for stor.');
     let value;try {value=JSON.parse(text);} catch {fail('Fila inneheld ikkje gyldig JSON.');}
     return validate(value);
   }
-  return Object.freeze({registry,ageGroups,presets,defaults,validate,parse,checkImage,MAX_FILE,MAX_JSON});
+  return Object.freeze({registry,availableRegistry,prototypeAvailable,hasRestrictions,ageGroups,presets,defaults,validate,parse,checkImage,MAX_FILE,MAX_JSON});
 });
