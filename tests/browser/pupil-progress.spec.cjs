@@ -68,3 +68,28 @@ test('Theme 02 native completed listening earns one persisted round',async({page
  await page.locator(`[data-gr-action="choose"][data-gr-value="${correct}"]`).click();await page.locator(`[data-gr-action="choose"][data-gr-value="${correct}"]`).click();
  expect(await page.evaluate(()=>data.groovePractice.done['listen-1'])).toBe(1);await page.reload();expect(await page.evaluate(()=>data.groovePractice.done['listen-1'])).toBe(1);
 });
+
+test('backup predating Theme 02 preserves newer rounds and rhythms; explicit replacement is cancellable',async({page})=>{
+ await page.goto('/en.html');const older=await page.evaluate(()=>({...data,themeEnding:thStore}));delete older.groovePractice;
+ await page.selectOption('#themeSelect','1');await page.locator('[data-gr-action="mode"][data-gr-value="repair"]').click();
+ const different=await page.evaluate(()=>gr.answer.flatMap((x,i)=>x!==gr.target[i]?[i]:[]));for(const i of different)await page.locator(`[data-gr-action="cell"][data-gr-value="${i}"]`).click();await page.locator('[data-gr-action="check"]').click();
+ await page.locator('[data-gr-action="mode"][data-gr-value="create"]').click();await page.locator('[data-gr-action="save"]').click();const newer=await page.evaluate(()=>JSON.parse(JSON.stringify(data.groovePractice)));
+ expect(newer.done['repair-1']).toBe(1);expect(newer.creations).toHaveLength(1);
+ await page.locator('.toolbar-menu summary').click();await page.locator('[data-go="progress"]').click();
+ const accept=dialog=>dialog.accept();page.on('dialog',accept);
+ await page.locator('#importFile').setInputFiles({name:'older.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(older))});await expect(page.locator('#importFeedback')).toHaveClass('feedback good');expect(await page.evaluate(()=>data.groovePractice)).toEqual(newer);
+ await page.reload();expect(await page.evaluate(()=>data.groovePractice)).toEqual(newer);
+ // A backup explicitly containing Theme 02 follows the existing confirmed replacement rule.
+ const replacement={...older,groovePractice:{version:1,level:1,done:{},creations:[]}};
+ page.off('dialog',accept);const cancelled=page.waitForEvent('dialog').then(dialog=>dialog.dismiss());await page.evaluate(()=>go('progress'));
+ await page.locator('#importFile').setInputFiles({name:'replace.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(replacement))});await cancelled;await expect(page.locator('#importFile')).toHaveValue('');expect(await page.evaluate(()=>data.groovePractice)).toEqual(newer);
+ page.on('dialog',accept);await page.locator('#importFile').setInputFiles({name:'replace.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(replacement))});await expect(page.locator('#importFeedback')).toHaveClass('feedback good');expect(await page.evaluate(()=>data.groovePractice)).toEqual(replacement.groovePractice);
+});
+
+test('saved rhythm survives same-origin school update and language preference wins over new default',async({page})=>{
+ const base='http://127.0.0.1:8767/school-sites/';await page.goto(base+'groove/en.html');await page.locator('[data-nv="start"]').click();await page.locator('[data-gr-action="level"][data-gr-value="2"]').click();await page.locator('[data-gr-action="mode"][data-gr-value="create"]').click();await page.locator('[data-gr-action="cell"][data-gr-value="1"]').click();await page.locator('[data-gr-action="save"]').click();
+ const history=await page.evaluate(()=>JSON.parse(JSON.stringify(data.groovePractice)));expect(history.creations).toHaveLength(1);expect(history.creations[0].level).toBe(2);
+ await page.goto(base+'updated/');await expect(page).toHaveURL(/updated\/en\.html$/);await expect(page.locator('#schoolIdentity')).toHaveText('Oppdatert skule');expect(await page.evaluate(()=>data.groovePractice)).toEqual(history);
+ await page.locator('.toolbar-menu summary').click();await page.locator('[data-go="progress"]').click();await page.locator('[data-gr-action="open"]').click();await expect(page.locator('[data-gr-action="level"]')).toHaveCount(1);
+ expect(await page.evaluate(()=>gr.answer)).toEqual(history.creations[0].pattern);await page.reload();expect(await page.evaluate(()=>data.groovePractice)).toEqual(history);
+});
