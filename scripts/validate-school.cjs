@@ -1,7 +1,7 @@
 const fs=require('node:fs'),zlib=require('node:zlib');
 const config=require('../src/school/config.js');
 try {
- const settings=config.parse(fs.readFileSync(process.argv[2],'utf8'));
+ const settings=process.argv[2]?config.parse(fs.readFileSync(process.argv[2],'utf8')):config.defaults();
  if(settings.logo){
   const bytes=Buffer.from(settings.logo.slice(22),'base64');
   const {width,height}=config.checkImage(bytes,'image/png',256),channels=bytes[25]===6?4:3;

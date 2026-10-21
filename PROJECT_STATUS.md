@@ -1,3 +1,29 @@
+# Phase 2B — school prototype preview and ZIP export
+
+Issue #4 adds the nontechnical Configure → Preview → Download workflow to the
+separate Nynorsk administrator artifact. School staff can open its standalone HTML
+locally; preview uses the actual configured pupil files in an opaque sandbox with
+only temporary storage. Browser-generated deterministic ZIPs contain only pupil
+pages, local piano/credits, validated settings, publishing instructions and a
+BLOCKED identity manifest. No administrator, preview adapter, external service or
+new curriculum is included. Older v1 restrictions and existing pupil storage keys
+are preserved. See docs/school-setup.md for operation and architecture.
+
+The preview retains restrictive CSP; its local sample transport passes exact
+candidate bytes to native decoding, while extracted-package tests load samples
+through real HTTP. Mobile viewport checks are not physical-phone tests. Current
+pupil release remains **BLOCKED**, without an override or inherited base PASS.
+The two existing Theme 01 quick-entry failures remain explicit expected failures.
+Stage 2 source review found no remaining security blocker after the bounded repair
+passes, but acceptance verification is incomplete: local Chromium policy rejects
+file:// navigation before the standalone setup runs; mobile preview-language→ZIP
+interaction does not produce a download. These checks remain failing, with no
+sandbox/policy bypass or assertion weakened. Keep the PR draft until resolved.
+Full-gate/CI results will be recorded in the PR; earlier
+milestone statements below describe their historical snapshots.
+
+---
+
 # PR #3 review update — principal workflow
 
 The main setup form now asks only for school branding, default language and optional
@@ -30,7 +56,7 @@ profiles. Two existing Theme 01 quick-entry failures remain explicitly expected.
 The standard gate exits 2 with pupilRelease BLOCKED. Independent review completed
 two bounded passes; no remaining functional/security blocker was reported.
 
-ZIP publishing and full preview are not implemented. The setup directory must stay
+At this historical Phase 2 milestone ZIP publishing and full preview were not implemented. The setup directory must stay
 separate from published pupil files. No accounts/backend, pupil identity fields,
 analytics or new curriculum were added. Pupil release remains BLOCKED; historical
 export notes and Phase 1 results below describe their respective snapshots.

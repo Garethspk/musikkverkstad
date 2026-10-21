@@ -16,6 +16,7 @@ function setup(locale, options = {}) {
     addEventListener(type, fn){listeners[id + ':' + type] = fn},
     setAttribute(){}, removeAttribute(){}, click(){}
   };
+  element('school-settings').textContent=html.match(/<script id="school-settings" type="application\/json">([^]*?)<\/script>/)[1];
   class AudioContext {
     constructor(){this.state = options.state || 'running'; this.currentTime = 10; this.destination = {}; contexts.push(this)}
     createGain(){const gain = {value:0,setValueAtTime(){},exponentialRampToValueAtTime(){},linearRampToValueAtTime(){}}; return {gain,connect(){},disconnect(){}}}

@@ -1,11 +1,24 @@
-# School administrator setup MVP
+# School configuration, preview and prototype ZIP
 
-This is a development prototype. Pupil release remains **BLOCKED**. There is no
-ZIP publisher or full application preview in this milestone.
+This is a development prototype. Pupil release remains **BLOCKED**. The browser can now preview the actual
+configured pupil files and download a complete ZIP for **private prototype review**.
+This is not permission to publish to pupils.
 
 ## Use the separate Nynorsk setup page
 
-Build with `python3 translate.py`, then serve the separate setup artifact:
+**Validation status:** this implementation is awaiting acceptance. In the managed
+local environment, browser policy blocks file:// before the page runs, and the
+mobile-viewport preview-language→download test currently fails. These are not
+verified deployment instructions or pupil-release approval. See the Phase 2B PR
+for full-gate/CI results; keep distribution under private review until resolved.
+
+The intended school workflow needs only the trusted `setup/index.html` file: save it locally and
+open it in a current Chromium browser (Chrome/Edge). No Python, Node, account or
+Internet connection is needed for configuration, preview or ZIP download. Keep this
+file separate from pupil hosting. The `setup/template.json` build output is for
+maintenance inspection; the standalone HTML already embeds the complete template.
+
+Maintainers regenerate it with `python3 translate.py`. It can also be served locally:
 
 ```sh
 python3 -m http.server 8001 --bind 127.0.0.1 --directory setup
@@ -36,9 +49,44 @@ before changing the form. Reset clears only the draft, never pupil progress.
 If browser storage is denied, JSON download/import still works. Drafts belong to
 this setup origin and should not be the school's only backup.
 
-## Build a configured pupil version
+## Preview and download (school workflow)
 
-The person maintaining the application supplies the exported JSON to the builder:
+1. Enter school name/logo, language and optional colour preset. Leave the advanced
+   section closed unless deliberate restrictions are needed.
+2. Select **Førehandsvis elevappen**. Try the actual pupil application, including
+   language switching and audio. **Stor skjerm** is 1100 × 760 and **Mobilvising**
+   is 390 × 844; these are browser viewports, not physical-device evidence.
+3. Select **Last ned prototypepakke (ZIP)**. This uses the same verified candidate
+   as preview. Any settings edit discards the old preview/candidate. The displayed
+   identity matches `school-package.json` in the download.
+4. Extract **all** files. Give the folder to the school's website maintainer for
+   **private** static HTTP/HTTPS hosting and read `PUBLISERING.txt`. The pupil app
+   needs HTTP audio; double-clicking its HTML is unsupported. Website hosting is
+   a separate responsibility, with no deployment performed by the configurator.
+5. Keep `school-settings.json` for the next application update. Import those settings
+   into the new trusted configurator, preview again and download a new candidate.
+   Never import or execute an old pupil ZIP. Unsupported schemas/content reject
+   without changing the current form; existing valid v1 restrictions are retained.
+
+The preview adds only an internal transport/storage/navigation adapter to the same
+candidate pupil HTML. Its iframe has an opaque origin, `sandbox="allow-scripts"`
+only, no parent DOM/admin access and temporary in-memory pupil storage. Its connection
+policy remains `connect-src 'none'`. The adapter supplies the exact verified local
+MP3 bytes through native Responses to the original native audio decoder; it makes
+no HTTP requests or simulated audio results. Exported pupils use normal HTTP fetch
+without this adapter. Language links use a source/origin/nonce-checked, locale-only
+message; language changes start a new temporary preview session. All other links
+(including progress downloads) are disabled in preview. Close/regenerate destroys
+the iframe; no preview asset Blob URLs are created. JSON/ZIP download URLs are revoked.
+
+No preview progress is copied into the ZIP or real pupil storage. Existing pupil
+preferences/progress are preserved when the extracted app uses their existing
+browser origin. Preview cannot establish physical speaker output, phone or Safari
+compatibility, accessibility approval or pupil suitability.
+
+## Maintainer alternative: build configured pupil files
+
+Maintainers can still supply the exported JSON directly to the same builder:
 
 ```sh
 python3 translate.py --school-settings path/to/musikkverkstad-skule.json --output work/school-dist --no-admin
@@ -111,11 +159,35 @@ covering both theme subsets, all locales, free level selection, fallback navigat
 language preference and progress preservation. Administrator tests cover native image
 processing, download/reimport, rejected inputs and denied storage.
 
-The gate rebuilds the default `dist` and `setup` artifacts, hashes both, and tests
-representative configured fixtures. It does **not** approve every arbitrary school
-output directory or transfer evidence from the base app to customised bytes. Use a
-separate output as above; do not assume running the default gate after a custom build
-to `dist` preserves that customisation. Exact-output evidence/adapters and publishing
-remain future milestones. All release-evidence requirements remain intact/BLOCKED;
-prototype gate success is not pupil-release approval. Physical-device/speaker, Safari,
+The gate rebuilds default `dist` and `setup`, checks all regression suites and
+runs real Chromium tests. Package tests validate template corruption, unsafe paths,
+size limits, JSON/logo validation, deterministic ZIPs/CRCs and exact CLI/browser
+pupil-byte equality. Browser tests download the real ZIP, extract/serve it, check
+three locales, branding/restrictions, no editor, native MP3 decoding, viewport sizes,
+opaque preview storage, rejected network access and invalid input.
+
+The base template is generated from one positive allowlist in
+`src/school/package-policy.json`; it includes four pupil HTML files, five MP3s and
+credits. Export adds settings, publishing instructions and candidate manifest. The
+historical sound-comparison demo, administrator, preview adapter, tests and tooling
+are excluded. Settings are injected only into one inert JSON slot; pupil application
+code is unchanged across schools. School logos stay embedded locally.
+
+The configurator pins the raw template SHA-256, verifies exact paths/sizes/hashes
+and validates settings again before preview/export. ZIP generation uses a small,
+fixed STORE-only writer, UTF-8 names, fixed timestamps and CRC32; there is no ZIP
+input parser or third-party ZIP runtime. Current compressed MP3s are already small;
+this deliberately trades ZIP compression for fewer dependencies and attack surfaces.
+The source hash is reproducible across commits and includes build/source bytes.
+The settings hash covers canonical JSON. The candidate hash covers canonical
+manifest metadata and sorted payload path/size/SHA-256 records (excluding the
+manifest itself to avoid circular hashing). These identities detect mismatches;
+they are not digital signatures or proof that untrusted software is authentic.
+
+All candidates are forced to `pupilRelease: BLOCKED` and
+`purpose: private-prototype-review`, with explicit limitations. A modified candidate
+fails verification. Neither successful ZIP generation nor the default gate approves
+every arbitrary school output or transfers base release PASS. Exact-output
+release-evidence adapters remain future work. Required browser/rendered-audio/device/
+independent-review evidence gates are intact. Physical-device/speaker, Safari,
 assistive-technology and real pupil validation are not established by these tests.
