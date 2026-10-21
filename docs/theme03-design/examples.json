@@ -1,0 +1,1145 @@
+{
+  "status": "DESIGN ONLY \u2014 NOT APPROVED CURRICULUM",
+  "tempoBpm": 90,
+  "metre": "4/4",
+  "pitchConvention": "MIDI 60 = C4; null = rest; durations in quarter-note beats",
+  "rendering": "Offline resampling of existing C4 piano sample; not browser playback or speaker verification. One second separates segments. Example 7 alternatives include a four-beat pulse count-in and complete call; starts are relative to call onset. Example 8 has a two-beat C-major reference chord and one beat of space before each segment.",
+  "examples": [
+    {
+      "id": 1,
+      "title": "Echo the whole phrase",
+      "level": 1,
+      "call": [
+        [
+          60,
+          1.0
+        ],
+        [
+          62,
+          1.0
+        ],
+        [
+          64,
+          1.0
+        ],
+        [
+          67,
+          1.0
+        ]
+      ],
+      "alternatives": [
+        [
+          [
+            60,
+            1.0
+          ],
+          [
+            62,
+            1.0
+          ],
+          [
+            64,
+            1.0
+          ],
+          [
+            67,
+            1.0
+          ]
+        ],
+        [
+          [
+            60,
+            1.0
+          ],
+          [
+            62,
+            1.0
+          ],
+          [
+            64,
+            1.0
+          ],
+          [
+            64,
+            1.0
+          ]
+        ],
+        [
+          [
+            60,
+            1.0
+          ],
+          [
+            64,
+            1.0
+          ],
+          [
+            62,
+            1.0
+          ],
+          [
+            67,
+            1.0
+          ]
+        ]
+      ],
+      "accepted": [
+        "A"
+      ],
+      "rule": "Copy every pitch and duration in the four-beat call.",
+      "feedback": "B changes the last pitch; C exchanges the middle pitches. Replay the differing notes, then sing before choosing.",
+      "transfer": "Sing, then play on four labelled keys; a percussion pupil can echo rhythm only, which is a different objective.",
+      "critique": "An exact-match task measures discrimination, not expressive response-making. Are the changed ending and exchanged middle notes perceptible?",
+      "audioCues": [
+        {
+          "label": "Call",
+          "startSeconds": 0,
+          "endSeconds": 2.917
+        },
+        {
+          "label": "A",
+          "startSeconds": 3.917,
+          "endSeconds": 6.833
+        },
+        {
+          "label": "B",
+          "startSeconds": 7.833,
+          "endSeconds": 10.75
+        },
+        {
+          "label": "C",
+          "startSeconds": 11.75,
+          "endSeconds": 14.667
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Hear rhythm independently of pitch",
+      "level": 1,
+      "call": [
+        [
+          60,
+          1.0
+        ],
+        [
+          62,
+          1.0
+        ],
+        [
+          64,
+          1.0
+        ],
+        [
+          67,
+          1.0
+        ]
+      ],
+      "alternatives": [
+        [
+          [
+            60,
+            1.0
+          ],
+          [
+            62,
+            1.0
+          ],
+          [
+            64,
+            1.0
+          ],
+          [
+            67,
+            1.0
+          ]
+        ],
+        [
+          [
+            67,
+            1.0
+          ],
+          [
+            64,
+            1.0
+          ],
+          [
+            62,
+            1.0
+          ],
+          [
+            60,
+            1.0
+          ]
+        ],
+        [
+          [
+            60,
+            2.0
+          ],
+          [
+            64,
+            1.0
+          ],
+          [
+            67,
+            1.0
+          ]
+        ]
+      ],
+      "accepted": [
+        "A",
+        "B"
+      ],
+      "rule": "Select ALL replies with four quarter-note attacks, regardless of pitch.",
+      "feedback": "A and B keep the rhythm. C begins with a half note. Different notes can preserve the same rhythm.",
+      "transfer": "Clap each reply, then play any comfortable pitches.",
+      "critique": "Multiple correct answers are intentional. Can the pupil distinguish the rhythm criterion from whole-phrase identity?",
+      "audioCues": [
+        {
+          "label": "Call",
+          "startSeconds": 0,
+          "endSeconds": 2.917
+        },
+        {
+          "label": "A",
+          "startSeconds": 3.917,
+          "endSeconds": 6.833
+        },
+        {
+          "label": "B",
+          "startSeconds": 7.833,
+          "endSeconds": 10.75
+        },
+        {
+          "label": "C",
+          "startSeconds": 11.75,
+          "endSeconds": 14.667
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Change just the ending",
+      "level": 2,
+      "call": [
+        [
+          60,
+          1.0
+        ],
+        [
+          62,
+          1.0
+        ],
+        [
+          64,
+          1.0
+        ],
+        [
+          67,
+          1.0
+        ]
+      ],
+      "alternatives": [
+        [
+          [
+            60,
+            1.0
+          ],
+          [
+            62,
+            1.0
+          ],
+          [
+            64,
+            1.0
+          ],
+          [
+            67,
+            1.0
+          ]
+        ],
+        [
+          [
+            60,
+            1.0
+          ],
+          [
+            62,
+            1.0
+          ],
+          [
+            64,
+            1.0
+          ],
+          [
+            69,
+            1.0
+          ]
+        ],
+        [
+          [
+            60,
+            1.0
+          ],
+          [
+            64,
+            1.0
+          ],
+          [
+            67,
+            1.0
+          ],
+          [
+            69,
+            1.0
+          ]
+        ]
+      ],
+      "accepted": [
+        "B"
+      ],
+      "rule": "Keep the first three notes and all durations; change only the final pitch.",
+      "feedback": "A is a valid echo, but this brief asks for a change. C changes more than the ending. Compare the first three notes.",
+      "transfer": "Partners trade the same opening and invent different last notes.",
+      "critique": "Do not suggest B is inherently better music. Is the distinction between an echo and a one-note variation clear?",
+      "audioCues": [
+        {
+          "label": "Call",
+          "startSeconds": 0,
+          "endSeconds": 2.917
+        },
+        {
+          "label": "A",
+          "startSeconds": 3.917,
+          "endSeconds": 6.833
+        },
+        {
+          "label": "B",
+          "startSeconds": 7.833,
+          "endSeconds": 10.75
+        },
+        {
+          "label": "C",
+          "startSeconds": 11.75,
+          "endSeconds": 14.667
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Build a new ending",
+      "level": 2,
+      "call": [
+        [
+          60,
+          1.0
+        ],
+        [
+          62,
+          1.0
+        ],
+        [
+          64,
+          1.0
+        ],
+        [
+          67,
+          1.0
+        ]
+      ],
+      "alternatives": [
+        [
+          [
+            60,
+            1.0
+          ],
+          [
+            62,
+            1.0
+          ],
+          [
+            64,
+            1.0
+          ],
+          [
+            60,
+            1.0
+          ]
+        ],
+        [
+          [
+            60,
+            1.0
+          ],
+          [
+            62,
+            1.0
+          ],
+          [
+            67,
+            1.0
+          ],
+          [
+            69,
+            1.0
+          ]
+        ],
+        [
+          [
+            64,
+            1.0
+          ],
+          [
+            60,
+            1.0
+          ],
+          [
+            60,
+            1.0
+          ],
+          [
+            62,
+            1.0
+          ]
+        ]
+      ],
+      "accepted": [
+        "A"
+      ],
+      "rule": "Use two two-note pieces: P=C4(60):1 D4(62):1, Q=E4(64):1 C4(60):1, S=G4(67):1 A4(69):1. Keep P first and finish on C4. Do not reuse a piece.",
+      "feedback": "P+Q meets both conditions. P+S keeps the opening but ends on A; Q+P moves the opening. Other endings can still be musical.",
+      "transfer": "Play P; a partner answers with two notes ending on C.",
+      "critique": "This constrains a new phrase rather than reconstructing a hidden echo. Can pupils hear the pieces without relying on their labels?",
+      "audioCues": [
+        {
+          "label": "Call",
+          "startSeconds": 0,
+          "endSeconds": 2.917
+        },
+        {
+          "label": "A",
+          "startSeconds": 3.917,
+          "endSeconds": 6.833
+        },
+        {
+          "label": "B",
+          "startSeconds": 7.833,
+          "endSeconds": 10.75
+        },
+        {
+          "label": "C",
+          "startSeconds": 11.75,
+          "endSeconds": 14.667
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Contrast the direction",
+      "level": 3,
+      "call": [
+        [
+          60,
+          1.0
+        ],
+        [
+          62,
+          1.0
+        ],
+        [
+          64,
+          1.0
+        ],
+        [
+          67,
+          1.0
+        ]
+      ],
+      "alternatives": [
+        [
+          [
+            67,
+            1.0
+          ],
+          [
+            64,
+            1.0
+          ],
+          [
+            62,
+            1.0
+          ],
+          [
+            60,
+            1.0
+          ]
+        ],
+        [
+          [
+            67,
+            1.0
+          ],
+          [
+            69,
+            1.0
+          ],
+          [
+            64,
+            1.0
+          ],
+          [
+            60,
+            1.0
+          ]
+        ],
+        [
+          [
+            60,
+            1.0
+          ],
+          [
+            62,
+            1.0
+          ],
+          [
+            64,
+            1.0
+          ],
+          [
+            67,
+            1.0
+          ]
+        ]
+      ],
+      "accepted": [
+        "A"
+      ],
+      "rule": "Keep four quarter notes; make every successive pitch lower than the previous one.",
+      "feedback": "A descends throughout. B first rises; C rises throughout. Contrast can take other forms, but this round asks for downward motion.",
+      "transfer": "Trace the contour with a hand, sing it, then play it in a comfortable register.",
+      "critique": "Strict descent is a deliberately narrow rule, not a definition of all musical contrast. Can pupils predict the downward answer before hearing it?",
+      "audioCues": [
+        {
+          "label": "Call",
+          "startSeconds": 0,
+          "endSeconds": 2.917
+        },
+        {
+          "label": "A",
+          "startSeconds": 3.917,
+          "endSeconds": 6.833
+        },
+        {
+          "label": "B",
+          "startSeconds": 7.833,
+          "endSeconds": 10.75
+        },
+        {
+          "label": "C",
+          "startSeconds": 11.75,
+          "endSeconds": 14.667
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Contrast rhythmic density",
+      "level": 3,
+      "call": [
+        [
+          60,
+          1.0
+        ],
+        [
+          62,
+          1.0
+        ],
+        [
+          64,
+          1.0
+        ],
+        [
+          67,
+          1.0
+        ]
+      ],
+      "alternatives": [
+        [
+          [
+            67,
+            2.0
+          ],
+          [
+            60,
+            2.0
+          ]
+        ],
+        [
+          [
+            67,
+            1.0
+          ],
+          [
+            64,
+            1.0
+          ],
+          [
+            60,
+            2.0
+          ]
+        ],
+        [
+          [
+            67,
+            1.0
+          ],
+          [
+            60,
+            1.0
+          ],
+          [
+            null,
+            2.0
+          ]
+        ]
+      ],
+      "accepted": [
+        "A"
+      ],
+      "rule": "Answer four quarter notes with exactly two half notes and no rests, in four beats.",
+      "feedback": "A has two sustained notes. B has three attacks. C has two attacks but short notes and a rest. Count and sustain before choosing.",
+      "transfer": "Play or sing two long notes while a partner taps four beats; on drums use sustained rolls or describe note length separately.",
+      "critique": "Attack count alone cannot distinguish A and C. Does the pupil hear duration as well as density? Avoid implying sparse music is less energetic.",
+      "audioCues": [
+        {
+          "label": "Call",
+          "startSeconds": 0,
+          "endSeconds": 2.917
+        },
+        {
+          "label": "A",
+          "startSeconds": 3.917,
+          "endSeconds": 6.833
+        },
+        {
+          "label": "B",
+          "startSeconds": 7.833,
+          "endSeconds": 10.75
+        },
+        {
+          "label": "C",
+          "startSeconds": 11.75,
+          "endSeconds": 14.667
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Anticipate the next bar",
+      "level": 4,
+      "call": [
+        [
+          60,
+          1.0
+        ],
+        [
+          62,
+          1.0
+        ],
+        [
+          64,
+          1.0
+        ],
+        [
+          null,
+          1.0
+        ]
+      ],
+      "alternatives": [
+        [
+          [
+            67,
+            0.5
+          ],
+          [
+            64,
+            1.0
+          ],
+          [
+            62,
+            1.0
+          ],
+          [
+            60,
+            2.0
+          ]
+        ],
+        [
+          [
+            67,
+            0.5
+          ],
+          [
+            64,
+            1.0
+          ],
+          [
+            62,
+            1.0
+          ],
+          [
+            60,
+            2.0
+          ]
+        ],
+        [
+          [
+            67,
+            0.5
+          ],
+          [
+            64,
+            1.0
+          ],
+          [
+            62,
+            1.0
+          ],
+          [
+            60,
+            2.0
+          ]
+        ]
+      ],
+      "accepted": [
+        "B"
+      ],
+      "rule": "Count 1 & 2 & 3 & 4 &. Play G4(67) as a half-beat pickup on the & of beat 4, then E4(64) for one beat, D4(62) for one beat and C4(60) for two beats across the next bar.",
+      "feedback": "All replies use the same G4\u2013E4\u2013D4\u2013C4 notes and durations. In B, G4 is the half-beat pickup on &4; E4 lands on the next bar\u2019s beat 1, D4 on beat 2, and C4 lasts through beats 3\u20134. A starts half a beat early; C starts half a beat late. Tap the pulse and say the subdivision first.",
+      "transfer": "Teacher and pupil alternate a three-beat call and a pickup answer; begin by clapping before using pitches.",
+      "critique": "Timing is the sole assessed dimension. This is advanced and needs an audible count-in and pulse; is the subdivision usable without a teacher?",
+      "responseStarts": [
+        3,
+        3.5,
+        4
+      ],
+      "audioCues": [
+        {
+          "label": "Call",
+          "startSeconds": 0,
+          "endSeconds": 2.917
+        },
+        {
+          "label": "A",
+          "startSeconds": 3.917,
+          "endSeconds": 12.5
+        },
+        {
+          "label": "B",
+          "startSeconds": 13.5,
+          "endSeconds": 22.083
+        },
+        {
+          "label": "C",
+          "startSeconds": 23.083,
+          "endSeconds": 31.667
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Choose a specified tonal ending",
+      "level": 3,
+      "call": [
+        [
+          60,
+          1.0
+        ],
+        [
+          62,
+          1.0
+        ],
+        [
+          64,
+          1.0
+        ],
+        [
+          67,
+          1.0
+        ]
+      ],
+      "alternatives": [
+        [
+          [
+            64,
+            1.0
+          ],
+          [
+            62,
+            1.0
+          ],
+          [
+            67,
+            1.0
+          ],
+          [
+            60,
+            1.0
+          ]
+        ],
+        [
+          [
+            64,
+            1.0
+          ],
+          [
+            62,
+            1.0
+          ],
+          [
+            60,
+            1.0
+          ],
+          [
+            67,
+            1.0
+          ]
+        ],
+        [
+          [
+            64,
+            1.0
+          ],
+          [
+            62,
+            1.0
+          ],
+          [
+            67,
+            1.0
+          ],
+          [
+            69,
+            1.0
+          ]
+        ]
+      ],
+      "accepted": [
+        "A"
+      ],
+      "rule": "In this C-major example, C is our named home note. Choose the reply whose last sounding note is C4.",
+      "feedback": "A ends on C. B and C end elsewhere; they are possible replies too. Hum the reference C, then compare the final notes.",
+      "transfer": "Sustain or hum C while a partner tries each ending, then discuss what each suggests.",
+      "critique": "Ending on C is objectively testable; feeling finished is culturally and contextually dependent. The tonic drone/chord is a scaffold, not proof of universal closure.",
+      "audioCues": [
+        {
+          "label": "Call",
+          "startSeconds": 0,
+          "endSeconds": 4.917
+        },
+        {
+          "label": "A",
+          "startSeconds": 5.917,
+          "endSeconds": 10.833
+        },
+        {
+          "label": "B",
+          "startSeconds": 11.833,
+          "endSeconds": 16.75
+        },
+        {
+          "label": "C",
+          "startSeconds": 17.75,
+          "endSeconds": 22.667
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Retain a phrase and leave breathing space",
+      "level": 4,
+      "call": [
+        [
+          60,
+          1.0
+        ],
+        [
+          62,
+          1.0
+        ],
+        [
+          64,
+          1.0
+        ],
+        [
+          67,
+          1.0
+        ],
+        [
+          67,
+          1.0
+        ],
+        [
+          64,
+          1.0
+        ],
+        [
+          62,
+          1.0
+        ],
+        [
+          60,
+          1.0
+        ]
+      ],
+      "alternatives": [
+        [
+          [
+            60,
+            1.0
+          ],
+          [
+            62,
+            1.0
+          ],
+          [
+            64,
+            1.0
+          ],
+          [
+            67,
+            1.0
+          ],
+          [
+            64,
+            1.0
+          ],
+          [
+            67,
+            1.0
+          ],
+          [
+            60,
+            1.0
+          ],
+          [
+            null,
+            1.0
+          ]
+        ],
+        [
+          [
+            60,
+            1.0
+          ],
+          [
+            64,
+            1.0
+          ],
+          [
+            64,
+            1.0
+          ],
+          [
+            67,
+            1.0
+          ],
+          [
+            64,
+            1.0
+          ],
+          [
+            67,
+            1.0
+          ],
+          [
+            60,
+            1.0
+          ],
+          [
+            null,
+            1.0
+          ]
+        ],
+        [
+          [
+            60,
+            1.0
+          ],
+          [
+            62,
+            1.0
+          ],
+          [
+            64,
+            1.0
+          ],
+          [
+            67,
+            1.0
+          ],
+          [
+            64,
+            1.0
+          ],
+          [
+            67,
+            1.0
+          ],
+          [
+            60,
+            2.0
+          ]
+        ]
+      ],
+      "accepted": [
+        "A"
+      ],
+      "rule": "Keep the entire first bar, change the second bar, and leave its fourth beat silent. Each reply lasts eight beats.",
+      "feedback": "A keeps the opening and leaves space. B changes the opening; C sustains through the final beat. Sing the first bar, then isolate the second.",
+      "transfer": "Two pupils share the bars; swap roles and experiment with the final breath.",
+      "critique": "More memory is introduced here only after short patterns. Can replay and separate bar audition prevent this becoming a memory test?",
+      "audioCues": [
+        {
+          "label": "Call",
+          "startSeconds": 0,
+          "endSeconds": 5.583
+        },
+        {
+          "label": "A",
+          "startSeconds": 6.583,
+          "endSeconds": 12.167
+        },
+        {
+          "label": "B",
+          "startSeconds": 13.167,
+          "endSeconds": 18.75
+        },
+        {
+          "label": "C",
+          "startSeconds": 19.75,
+          "endSeconds": 25.333
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Invent, listen and revise",
+      "level": 4,
+      "call": [
+        [
+          60,
+          1.0
+        ],
+        [
+          62,
+          1.0
+        ],
+        [
+          64,
+          1.0
+        ],
+        [
+          67,
+          1.0
+        ]
+      ],
+      "alternatives": [
+        [
+          [
+            60,
+            0.5
+          ],
+          [
+            62,
+            0.5
+          ],
+          [
+            64,
+            1.0
+          ],
+          [
+            67,
+            1.0
+          ],
+          [
+            60,
+            1.0
+          ]
+        ],
+        [
+          [
+            67,
+            2.0
+          ],
+          [
+            64,
+            0.5
+          ],
+          [
+            62,
+            0.5
+          ],
+          [
+            60,
+            1.0
+          ]
+        ],
+        [
+          [
+            null,
+            1.0
+          ],
+          [
+            69,
+            0.5
+          ],
+          [
+            67,
+            0.5
+          ],
+          [
+            64,
+            1.0
+          ],
+          [
+            60,
+            1.0
+          ]
+        ]
+      ],
+      "accepted": [
+        "A",
+        "B",
+        "C"
+      ],
+      "rule": "Open creation: make a four-beat reply. Choose an intention: recognise the opening, change the rhythm, or leave space. These are three possible examples, not answers to rank.",
+      "feedback": "A recalls the opening; B stretches then moves; C waits before answering. Listen to your own version, change one thing, and explain what you hear. No aesthetic score.",
+      "transfer": "Improvise by voice or instrument; a partner describes what they heard before you explain your intention.",
+      "critique": "All three are admissible; intention cannot be inferred reliably from event equality. A silent or longer draft is not bad music: explain the four-beat brief and allow revision.",
+      "audioCues": [
+        {
+          "label": "Call",
+          "startSeconds": 0,
+          "endSeconds": 2.917
+        },
+        {
+          "label": "A",
+          "startSeconds": 3.917,
+          "endSeconds": 6.833
+        },
+        {
+          "label": "B",
+          "startSeconds": 7.833,
+          "endSeconds": 10.75
+        },
+        {
+          "label": "C",
+          "startSeconds": 11.75,
+          "endSeconds": 14.667
+        }
+      ]
+    }
+  ]
+}

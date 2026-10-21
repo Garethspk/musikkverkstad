@@ -30,10 +30,10 @@ test('older v1 restrictions stay explicit through import, branding-only edits an
  await expect(page.locator('#contentSummary')).toContainText('avgrensingar');
  await expect(page.locator('#advancedSettings')).toHaveAttribute('open','');
  await expect(page.locator('#theme-theme')).not.toBeChecked();await expect(page.locator('#level-groove-1')).not.toBeChecked();
- expect(await exported(page)).toEqual(olderSettings);
+ expect(await exported(page)).toEqual(SC.validate(olderSettings));await expect(page.locator('#theme-conversation')).not.toBeChecked();
  await page.locator('#advancedSettings summary').click();
  await page.locator('#schoolName').fill('Nytt skulenamn');await page.locator('#colourPreset').selectOption('blue');
- const changed={...olderSettings,schoolName:'Nytt skulenamn',colourPreset:'blue'};
+ const changed={...SC.validate(olderSettings),schoolName:'Nytt skulenamn',colourPreset:'blue'};
  expect(await exported(page)).toEqual(changed);
  await page.locator('#saveDraft').click();await page.reload();await expect(page.locator('#schoolName')).toHaveValue('Nytt skulenamn');
  await expect(page.locator('#advancedSettings')).toHaveAttribute('open','');
@@ -49,7 +49,7 @@ test('Nynorsk school form, real logo processing, draft and settings round-trip',
  await page.getByLabel('Standardspråk').selectOption('en');
  await page.getByLabel('Skulefargar').selectOption('gold');
  await page.getByText('Avanserte innstillingar',{exact:true}).click();
- await page.locator('#theme-theme').uncheck();
+ await page.locator('#theme-theme').uncheck();await page.locator('#theme-conversation').uncheck();
  await page.locator('#level-groove-1').uncheck();await page.locator('#level-groove-3').uncheck();
  const png=await page.evaluate(()=>{const canvas=document.createElement('canvas');canvas.width=400;canvas.height=200;const c=canvas.getContext('2d');c.fillStyle='#147';c.fillRect(0,0,400,200);return Array.from(Uint8Array.from(atob(canvas.toDataURL('image/png').split(',')[1]),c=>c.charCodeAt(0)));});
  await page.locator('#logoFile').setInputFiles({name:'logo.png',mimeType:'image/png',buffer:Buffer.from(png)});
@@ -66,19 +66,19 @@ test('Nynorsk school form, real logo processing, draft and settings round-trip',
  await page.locator('#removeLogo').click();await expect(page.locator('#logoImage')).not.toBeVisible();
  expect((await exported(page)).logo).toBe(null);
  await expect(page.locator('#ageGroup')).toHaveCount(0);
- await expect(page.locator('#contentOptions input[id^="theme-"]')).toHaveCount(2);
+ await expect(page.locator('#contentOptions input[id^="theme-"]')).toHaveCount(3);
 });
 
 test('invalid settings, unavailable content and unsafe or corrupt logos reject atomically',async({page})=>{
  await openSetup(page);await page.locator('#schoolName').fill('Trygg skule');
- for(const change of [s=>s.themes=['conversation'],s=>s.ageGroups=['6-10'],s=>s.schemaVersion=99,s=>s.levels.theme=[],s=>s.levels.create=[4],s=>s.pupilData={name:'No'},s=>s.logo='data:image/svg+xml;base64,PHN2Zy8+']){
+ for(const change of [s=>s.themes=['unavailable'],s=>s.ageGroups=['6-10'],s=>s.schemaVersion=99,s=>s.levels.theme=[],s=>s.levels.create=[4],s=>s.pupilData={name:'No'},s=>s.logo='data:image/svg+xml;base64,PHN2Zy8+']){
   const value=SC.defaults();change(value);await importSettings(page,value);await expect(page.locator('#message')).toContainText('avvist');await expect(page.locator('#schoolName')).toHaveValue('Trygg skule');
  }
  for(const file of [{name:'bad.svg',mimeType:'image/svg+xml',buffer:Buffer.from('<svg onload="alert(1)"/>')}, {name:'bad.png',mimeType:'image/png',buffer:Buffer.from('not an image')}, {name:'large.png',mimeType:'image/png',buffer:Buffer.alloc(SC.MAX_FILE+1)}]){
   await page.locator('#logoFile').setInputFiles(file);await expect(page.locator('#message')).toContainText('avvist');await expect(page.locator('#logoImage')).not.toBeVisible();
  }
  await page.getByText('Avanserte innstillingar',{exact:true}).click();
- await page.locator('#theme-theme').uncheck();await page.locator('#theme-groove').uncheck();await page.locator('#exportSettings').click();await expect(page.locator('#message')).toContainText('temaval');
+ await page.locator('#theme-theme').uncheck();await page.locator('#theme-groove').uncheck();await page.locator('#theme-conversation').uncheck();await page.locator('#exportSettings').click();await expect(page.locator('#message')).toContainText('temaval');
  await page.locator('#theme-theme').check();
  await page.locator('#level-theme-1').uncheck();await page.locator('#level-theme-2').uncheck();await page.locator('#level-theme-3').uncheck();await page.locator('#level-theme-4').uncheck();
  await page.locator('#exportSettings').click();await expect(page.locator('#message')).toContainText('nivå');

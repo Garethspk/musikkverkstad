@@ -2,6 +2,7 @@ const fs=require('node:fs'),path=require('node:path');
 const {execFileSync}=require('node:child_process');
 const {test,expect,observeAudio}=require('./fixtures.cjs');
 const older=require('../fixtures/school-v1-restricted.json');
+const SC=require('../../src/school/config.js');
 const setup='http://127.0.0.1:8766/';
 async function open(page){await page.goto(setup);await expect(page.locator('#schoolName')).toBeEnabled();}
 async function preview(page){await page.locator('#previewSchool').click();await expect(page.locator('#pupilPreview')).toBeVisible();return page.frameLocator('#pupilPreview');}
@@ -56,7 +57,7 @@ test('older restrictions survive preview and export; edits invalidate the exact 
  await frame.locator('[data-nv="start"]').click();await expect(frame.locator('[data-gr-action="level"]')).toHaveCount(2);
  const identity=await page.locator('#candidateIdentity').textContent();await page.locator('#schoolName').fill('Oppdatert skule');await expect(page.locator('#pupilPreview')).toHaveCount(0);
  const result=await download(page,info);expect(identity).not.toContain(result.manifest.candidateHash);
- expect(JSON.parse(fs.readFileSync(path.join(result.folder,'school-settings.json')))).toEqual({...older,schoolName:'Oppdatert skule'});
+ expect(JSON.parse(fs.readFileSync(path.join(result.folder,'school-settings.json')))).toEqual({...SC.validate(older),schoolName:'Oppdatert skule'});
  await page.goto(result.url+'en.html');await page.evaluate(()=>{data.stats.rhythm={done:4,correct:2};localStorage.setItem('musikkverkstad-v1',JSON.stringify(data));localStorage.setItem('musikkverkstad-language','en');});
  await page.reload();expect(await page.evaluate(()=>data.stats.rhythm.done)).toBe(4);
  await page.locator('[data-nv="start"], [data-nv="continue"]').first().click();await expect(page.locator('[data-gr-action="level"]')).toHaveCount(2);
@@ -65,7 +66,7 @@ test('older restrictions survive preview and export; edits invalidate the exact 
 
 test('invalid selections and corrupted base template cannot export a package',async({page})=>{
  await open(page);let downloads=0;page.on('download',()=>downloads++);
- await page.locator('#advancedSettings summary').click();await page.locator('#theme-theme').uncheck();await page.locator('#theme-groove').uncheck();await page.locator('#downloadPackage').click();await expect(page.locator('#message')).toContainText('temaval');expect(downloads).toBe(0);
+ await page.locator('#advancedSettings summary').click();await page.locator('#theme-theme').uncheck();await page.locator('#theme-groove').uncheck();await page.locator('#theme-conversation').uncheck();await page.locator('#downloadPackage').click();await expect(page.locator('#message')).toContainText('temaval');expect(downloads).toBe(0);
  await page.locator('#theme-theme').check();await page.locator('#school-template').evaluate(el=>el.textContent+=' ');await page.locator('#downloadPackage').click();await expect(page.locator('#message')).toContainText('Kunne ikkje');expect(downloads).toBe(0);await expect(page.locator('#pupilPreview')).toHaveCount(0);
 });
 
@@ -120,4 +121,11 @@ test('language replacement followed by scroll and one trusted pointer downloads 
   expect(JSON.parse(fs.readFileSync(path.join(result.folder,'school-settings.json'))).defaultLanguage).toBe('en');
   await expect(page.locator('#pupilPreview')).toHaveAttribute('sandbox','allow-scripts');
  }
+});
+
+test('Theme 03 actual private preview and exported school package stay playable',async({page},info)=>{
+ await observeAudio(page);await open(page);await page.locator('#defaultLanguage').selectOption('en');await page.locator('#advancedSettings summary').click();await page.locator('#theme-theme').uncheck();await page.locator('#theme-groove').uncheck();
+ const frame=await preview(page);await frame.locator('[data-nv="start"]').click();await expect(frame.locator('[data-cv-action="mode"]')).toHaveCount(3);await frame.locator('[data-cv-action="call"]').click();await expect.poll(()=>frame.locator('body').evaluate(()=>buffers?.length)).toBe(5);await frame.locator('[data-cv-action="stop"]').click();
+ const result=await download(page,info);expect(result.manifest.pupilRelease).toBe('BLOCKED');expect(JSON.parse(fs.readFileSync(path.join(result.folder,'school-settings.json'))).themes).toEqual(['conversation']);
+ await page.goto(result.url+'en.html');await page.locator('[data-nv="start"]').click();await expect(page.locator('#themeSelect')).toHaveValue('2');await page.locator('[data-cv-action="mode"][data-cv-value="create"]').click();await page.locator('[data-cv-action="mine"]').click();await expect.poll(()=>page.evaluate(()=>__audioEvents.filter(e=>e.kind==='start').length)).toBeGreaterThan(0);await page.locator('[data-cv-action="stop"]').click();expect((await page.request.get(result.url+'setup/index.html')).status()).toBe(404);
 });

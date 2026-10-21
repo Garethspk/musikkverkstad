@@ -1,3 +1,25 @@
+# Phase 4 — Theme 03 private prototype
+
+Issue #8 adds Musical conversations in all three languages: objectively matching an
+exact final-motif echo, reconstructing it from unique fragments, and freely creating
+responses with no aesthetic grade. Four selectable configurations have explicit note,
+rhythm/rest and fragment differences. Actual generators reject ambiguous questions.
+The existing sampled piano/session cancellation remains in use. Saved calls/responses
+and practice counts use a validated optional version-1 pupil extension; missing older
+backup data preserves current Theme 03 history.
+
+Registry/navigation, school restrictions, true preview and complete pupil ZIP are
+integrated. School schema 2 migrates valid schema-1 choices without enabling Theme 03;
+the old settings file remains untouched. Unknown/unavailable selections still reject.
+See docs/theme-03.md for the musical contract, migration, tests and independent review
+findings/limits. Exact full-gate and CI results are recorded in the PR. Pupil release
+remains **BLOCKED**; source/model-based review does not replace the required human,
+physical-device, speaker, accessibility or version-bound release evidence.
+Earlier status sections below describe historical snapshots, including Theme 03's
+absence from the original recovered version.
+
+---
+
 # Phase 3 — pupil activity access and progress
 
 Issue #6 exposes all three Theme 01 activity controls on welcome, Start here, Continue,

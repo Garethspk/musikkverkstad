@@ -23,7 +23,7 @@ for(const lang of ['nn','nb','en']){
  assert.equal(t.run('route'),'theme');assert.equal(t.run('thState.level'),1);assert.equal(t.run('thState.section'),'listen');
  assert.deepEqual(JSON.parse(t.stored[KEY]),{route:'theme',level:1,mode:'listen'});
  t.run('nvOpenTheme(1)');assert.equal(t.run('route'),'groove');
- t.run('nvTheme(1)');assert.equal(t.run('route'),'groove');
+ t.run('nvTheme(1)');assert.equal(t.run('route'),'conversation');t.run('nvTheme(1)');assert.equal(t.run('route'),'conversation');t.run('nvTheme(-1)');assert.equal(t.run('route'),'groove');
  t.run('nvTheme(-1)');assert.equal(t.run('route'),'theme');
  t.run('nvTheme(-1)');assert.equal(t.run('route'),'theme');
  await t.run("thAction('level', '3');thAction('section','rebuild')");

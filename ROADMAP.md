@@ -44,6 +44,15 @@ filter reopening without erasing history; no incomplete-question resumption is
 promised. Audio, package isolation and release gates are unchanged. Exact-output
 release evidence and physical-device/speaker review still precede pupil publishing.
 
+## Phase 4 — Musical conversations (implemented; review pending)
+
+Theme 03 is a bounded private-prototype increment: exact motif comparison, fragment
+rebuilding and ungraded response creation, four configurations, all locales, local
+progress and school/package integration. See docs/theme-03.md for actual content,
+schema migration and independent source-review limits. It is not a full-year rollout
+or pupil-ready release. Required audible/device/accessibility/exact-candidate evidence
+remains outstanding; subsequent curriculum expansion needs separate authorisation.
+
 ## Delivery priorities
 
 1. Complete the current reliability and automated-testing work, including any
@@ -114,8 +123,8 @@ The setup interface should offer:
    do not assume every activity has four levels or that numbers mean the same
    thing across activities. Require a nonempty valid selection for enabled content.
 6. An optional advanced checklist of themes with plain-language implementation/release
-   status. Initially only Theme 01 and Theme 02 exist. Theme 03 and other planned
-   content must be unavailable for inclusion, never labelled complete. Require at
+   status. Initially only Theme 01 and Theme 02 exist. Theme 03 is now a prototype option; further planned
+   content remains unavailable and must never be labelled complete. Require at
    least one selected theme. Explain that unfinished Theme 02 rounds are temporary; completed practice and saved rhythms persist.
 7. Desktop/mobile preview buttons using the **same generated pupil files and
    settings** as export, not a separate mock UI. Label mobile preview as a viewport,

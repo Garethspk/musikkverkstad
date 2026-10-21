@@ -4,9 +4,12 @@ const vm=require('node:vm');
 const SC=require('../src/school/config.js');
 const base=SC.defaults();
 assert.deepEqual(SC.parse(JSON.stringify(base)),base);
-assert.deepEqual(SC.registry.filter(r=>r.theme).map(r=>r.id),['theme','groove']);
+assert.deepEqual(SC.registry.filter(r=>r.theme).map(r=>r.id),['theme','groove','conversation']);
 const olderSettings=require('./fixtures/school-v1-restricted.json');
-assert.deepEqual(SC.parse(JSON.stringify(olderSettings)),olderSettings,'Earlier v1 restrictions must round-trip unchanged');
+const migrated=SC.parse(JSON.stringify(olderSettings));assert.deepEqual(migrated,{...olderSettings,schemaVersion:2,levels:{...olderSettings.levels,conversation:[1,2,3,4]}},'Migration preserves all earlier selections without enabling Theme 03');assert(!migrated.themes.includes('conversation'));assert.equal(olderSettings.schemaVersion,1);
+const oldAll={...base,schemaVersion:1,themes:['theme','groove'],levels:{...base.levels}};delete oldAll.levels.conversation;
+assert.deepEqual(SC.validate(oldAll).themes,['theme','groove'],'Even previously unrestricted schema1 must not autoenable new curriculum');
+assert.throws(()=>SC.validate({...oldAll,themes:['conversation']}));assert.throws(()=>SC.validate({...oldAll,levels:{...oldAll.levels,conversation:[1]}}));
 assert.equal(SC.hasRestrictions(olderSettings),true);
 assert.equal(SC.hasRestrictions(base),false);
 assert.deepEqual(base.themes,SC.availableRegistry.filter(r=>r.theme).map(r=>r.id));
@@ -14,7 +17,7 @@ for(const item of SC.availableRegistry){assert.deepEqual(base.levels[item.id],it
 for(const item of [{implemented:false,prototypeEligible:true},{implemented:true,prototypeEligible:false},{implemented:true},{implemented:true,prototypeEligible:true,pupilRelease:'FAIL'},{implemented:true,prototypeEligible:true},{}])assert.equal(SC.prototypeAvailable(item),false,'Future/ineligible entries fail closed');
 assert.ok(SC.availableRegistry.every(SC.prototypeAvailable));
 const edited=SC.parse(JSON.stringify({...olderSettings,schoolName:'Ny profil'}));
-assert.deepEqual(edited.themes,olderSettings.themes);assert.deepEqual(edited.levels,olderSettings.levels);
+assert.deepEqual(edited.themes,olderSettings.themes);assert.deepEqual(edited.levels,migrated.levels);
 const revokedSource=fs.readFileSync('src/school/config.js','utf8').replace("id:'rhythm', implemented:true, prototypeEligible:true", "id:'rhythm', implemented:true, prototypeEligible:false");
 const sandbox={};vm.createContext(sandbox);vm.runInContext(revokedSource,sandbox);
 vm.runInContext('const schoolSettings=SchoolConfig.defaults();'+fs.readFileSync('src/school/pupil.js','utf8'),sandbox);
@@ -22,12 +25,12 @@ assert.equal(vm.runInContext("scRouteAllowed('rhythm')",sandbox),false,'Revoked 
 assert.equal(vm.runInContext("scLevels('rhythm').length",sandbox),0,'Revoked activities must not regain fallback level 1');
 assert.equal(vm.runInContext("scRouteAllowed('puzzle')",sandbox),true);
 const clone=()=>structuredClone(base);
-const invalid=[s=>s.schemaVersion=2,s=>s.schemaVersion=0,s=>s.schoolName='<x>\u0000',s=>s.schoolName='x'.repeat(101),
- s=>s.ageGroups=[],s=>s.ageGroups=['6-10'],s=>s.themes=[],s=>s.themes=['conversation'],s=>s.themes=['theme','theme'],
+const invalid=[s=>s.schemaVersion=99,s=>s.schemaVersion=0,s=>s.schoolName='<x>\u0000',s=>s.schoolName='x'.repeat(101),
+ s=>s.ageGroups=[],s=>s.ageGroups=['6-10'],s=>s.themes=[],s=>s.themes=['unavailable'],s=>s.themes=['theme','theme'],
  s=>s.levels.theme=[],s=>s.levels.groove=[5],s=>s.levels.create=[2],s=>s.levels.puzzle=[true],
  s=>s.defaultLanguage='de',s=>s.colourPreset='custom-css',s=>s.logo='https://example.test/logo.png',
  s=>s.logo='data:image/svg+xml;base64,PHN2Zy8+',s=>s.logo='data:image/png;base64,YmFk',
- s=>s.pupilData={},s=>s.levels.conversation=[1]];
+ s=>s.pupilData={},s=>s.levels.unavailable=[1]];
 for(const change of invalid){const value=clone();change(value);assert.throws(()=>SC.validate(value));}
 assert.throws(()=>SC.parse('{'));
 assert.throws(()=>SC.parse(' '.repeat(SC.MAX_JSON+1)));
@@ -51,7 +54,7 @@ for(const preset of Object.values(SC.presets)){
 }
 const temp=fs.mkdtempSync(path.join(os.tmpdir(),'school-invalid-'));
 try{
- const file=path.join(temp,'bad.json'),output=path.join(temp,'pupil');fs.writeFileSync(file,JSON.stringify({...clone(),themes:['conversation']}));
+ const file=path.join(temp,'bad.json'),output=path.join(temp,'pupil');fs.writeFileSync(file,JSON.stringify({...clone(),themes:['unavailable']}));
  const run=spawnSync(process.env.PYTHON||'python3',['translate.py','--school-settings',file,'--output',output,'--no-admin'],{encoding:'utf8'});
  assert.notEqual(run.status,0);assert.match(run.stderr,/temaval/);assert.equal(fs.existsSync(output),false,'Invalid config must not create a pupil output');
  const broken=Buffer.from(validLogo.slice(22),'base64');broken[broken.length-1]^=1;
