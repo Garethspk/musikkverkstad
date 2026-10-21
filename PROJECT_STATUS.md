@@ -1,3 +1,26 @@
+# Phase 2 — School administrator configuration MVP
+
+Phase 1 was merged into main at 03c38ef after GitHub Actions passed on PR #1.
+Phase 2 adds a separate Nynorsk setup artifact, shared version-1 settings validation
+and content registry, safe local logo processing, accessible colour presets,
+settings download/reimport/drafts and a read-only pupil settings loader. Only the
+implemented 11–13 age group and Themes 01/02 are configurable. Pupils freely choose
+among enabled levels. Existing progress and language preference keys are preserved.
+See docs/school-setup.md for operating instructions and exact limitations.
+
+Local verification: the complete development gate passes all 14 Node suites
+(including the 13 original suites) and 54 real Chromium cases across desktop/mobile
+profiles. Two existing Theme 01 quick-entry failures remain explicitly expected.
+The standard gate exits 2 with pupilRelease BLOCKED. Independent review completed
+two bounded passes; no remaining functional/security blocker was reported.
+
+ZIP publishing and full preview are not implemented. The setup directory must stay
+separate from published pupil files. No accounts/backend, pupil identity fields,
+analytics or new curriculum were added. Pupil release remains BLOCKED; historical
+export notes and Phase 1 results below describe their respective snapshots.
+
+---
+
 # Phase 1 development reliability update
 
 The application source, generated pages, design and curriculum remain unchanged.

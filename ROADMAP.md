@@ -1,12 +1,20 @@
 # Musikkverkstad roadmap
 
-## Phase 1 — Development reliability (implemented locally)
+## Phase 1 — Development reliability (merged; CI passed)
 
 Repair the development gate without fabricating Work hosting configuration;
 run all 13 Node suites; add desktop/mobile Chromium interface and native-audio
 checks; provide reproducible CI and explicit evidence limits. Keep pupil release
 BLOCKED until its required evidence is available. See
 [development-quality.md](docs/development-quality.md).
+
+## Phase 2 — School setup MVP (implemented; awaiting PR review)
+
+The first increment now provides the separate Nynorsk setup page, shared settings
+schema/registry and pupil loader described below. See docs/school-setup.md for
+operation. It supports settings JSON export/reimport and a maintenance build
+command, not ZIP publishing or full preview. The publishing/preview and exact-output
+release-evidence milestones below remain pending; no new curriculum is included.
 
 ## Delivery priorities
 

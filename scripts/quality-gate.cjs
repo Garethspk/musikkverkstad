@@ -29,9 +29,9 @@ function contentHash(root) {
       if (item.isDirectory()) scan(file); else add(file);
     }
   }
-  for (const dir of ['src', 'dist', 'tests', 'scripts', '.github']) scan(dir);
+  for (const dir of ['src', 'dist', 'setup', 'tests', 'scripts', '.github']) scan(dir);
   for (const file of ['translate.py', 'translations-extra.txt', 'README.md', 'AGENTS.md',
-    'PROJECT_REQUIREMENTS.md', 'PROJECT_STATUS.md', 'ROADMAP.md', 'docs/development-quality.md', 'package.json', 'package-lock.json', 'playwright.config.cjs']) add(file);
+    'PROJECT_REQUIREMENTS.md', 'PROJECT_STATUS.md', 'ROADMAP.md', 'docs/development-quality.md', 'docs/school-setup.md', 'package.json', 'package-lock.json', 'playwright.config.cjs']) add(file);
   // Work hosting metadata is optional provenance, not a development dependency.
   // Include absence/presence in the candidate identity; never reconstruct a Site ID.
   const hosting = '.openai/hosting.json';

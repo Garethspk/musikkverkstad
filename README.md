@@ -1,3 +1,12 @@
+# School setup MVP — Phase 2
+
+The separate Nynorsk setup page builds to `setup/index.html`; pupil files remain
+in `dist`. See [docs/school-setup.md](docs/school-setup.md) for local use, settings
+export/import and `--school-settings` builds. School configuration covers branding,
+logo, default language, accessible presets, implemented age groups/themes/levels.
+Pupils retain choices within enabled levels. This milestone adds neither ZIP
+publishing nor full preview; pupil release remains BLOCKED.
+
 # Development reliability — Phase 1
 
 The school configuration architecture and implementation plan are in [ROADMAP.md](ROADMAP.md).
