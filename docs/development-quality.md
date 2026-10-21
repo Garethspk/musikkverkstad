@@ -25,8 +25,9 @@ Exit codes:
   This is private-prototype development eligibility, never pupil approval.
 
 For browser tests alone, first run `npm run build`, then `npm run test:browser`.
-A missing browser/dependency or occupied server port fails the checks. The test
-server serves only local `dist` on 127.0.0.1:8765 and is stopped by Playwright.
+A missing browser/dependency or occupied server port fails the checks. Playwright serves `dist` on 127.0.0.1:8765, the separate administrator `setup`
+artifact on port 8766 and configured test builds under `.quality` on port 8767;
+all three local servers are stopped after testing.
 If browser downloads are restricted but a compatible Chromium is installed,
 explicitly set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` to its executable. This is
 an alternate local runtime, not identical to CI's Playwright-managed browser.
@@ -34,7 +35,7 @@ The browser version is recorded in test annotations.
 
 ## Evidence and known limitation
 
-The 13 Node suites remain logic/DOM/Web Audio simulations. Playwright uses real
+The 13 original Node suites remain logic/DOM/Web Audio simulations. Playwright uses real
 headless Chromium with desktop (1280×800) and mobile (390×844, touch) profiles.
 A mobile viewport is **not a physical phone** and does not test Safari/iOS.
 
@@ -78,7 +79,7 @@ quality-workflow files still fails the gate.
 
 The report binds results to the candidate hash captured after building and before
 regressions, and rejects changed candidate files during verification. The hash
-covers source, generated output, tests, scripts, CI workflow, build inputs,
+covers source, generated pupil and separate setup output, tests, scripts, CI workflow, build inputs,
 requirements/status/roadmap, this workflow documentation, npm manifest/lockfile
 and Playwright configuration. It is
 independent of the checkout path. The base Git commit is recorded separately;

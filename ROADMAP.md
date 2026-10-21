@@ -1,12 +1,20 @@
 # Musikkverkstad roadmap
 
-## Phase 1 — Development reliability (implemented locally)
+## Phase 1 — Development reliability (merged; CI passed)
 
 Repair the development gate without fabricating Work hosting configuration;
 run all 13 Node suites; add desktop/mobile Chromium interface and native-audio
 checks; provide reproducible CI and explicit evidence limits. Keep pupil release
 BLOCKED until its required evidence is available. See
 [development-quality.md](docs/development-quality.md).
+
+## Phase 2 — School setup MVP (implemented; awaiting PR review)
+
+The first increment now provides the separate Nynorsk setup page, shared settings
+schema/registry and pupil loader described below. See docs/school-setup.md for
+operation. It supports settings JSON export/reimport and a maintenance build
+command, not ZIP publishing or full preview. The publishing/preview and exact-output
+release-evidence milestones below remain pending; no new curriculum is included.
 
 ## Delivery priorities
 
@@ -27,6 +35,19 @@ setup tool **before publishing it for pupils**. Schools receive a downloadable
 application package, configure their version and publish the resulting static
 pupil package. Administrator setup follows Phase 1 and precedes major curriculum
 expansion. This roadmap update changes no application behaviour.
+
+### Principal workflow decision — review of PR #3
+
+The main setup workflow is administrative: school name/logo, default language and
+optional colour presets. Automatically include all currently implemented and
+prototype-eligible content/levels. Show the supported 11–13 audience as information,
+not a principal's age-group selection or evidence of wider age validation.
+Exceptional theme/level restrictions remain in collapsed **Avanserte innstillingar**;
+valid older imports keep their deliberate restrictions, which are clearly shown.
+Keep stable IDs/schema validation and the distinction between prototype availability
+and pupil-release readiness. This decision supersedes earlier roadmap wording that
+put pedagogical checklists in the main form. Administrator setup remains ahead of
+major curriculum expansion; ZIP publishing and full preview are still pending.
 
 ### Recommended implementation
 
@@ -56,15 +77,15 @@ The setup interface should offer:
    inputs for a small set of fixed palette tokens. Validate every supported
    foreground/background pair and reject insufficient contrast. Keep the original
    palette as the default. Never accept arbitrary CSS.
-4. Available age groups, selected from implemented and tested content metadata.
+4. Informational supported age groups from implemented content metadata; no main-form selection.
    The existing audience is ages 11–13; do not invent younger/older content or
    imply that adding an age label implements or validates it. Further groups
    remain unavailable until their content and suitability have been reviewed.
-5. Available difficulty levels per activity/theme, selected from the levels that
+5. Optional advanced difficulty restrictions per activity/theme, selected from levels that
    actually exist. Present their descriptions and provisional nature clearly;
    do not assume every activity has four levels or that numbers mean the same
    thing across activities. Require a nonempty valid selection for enabled content.
-6. A checklist of available themes with plain-language implementation/release
+6. An optional advanced checklist of themes with plain-language implementation/release
    status. Initially only Theme 01 and Theme 02 exist. Theme 03 and other planned
    content must be unavailable for inclusion, never labelled complete. Require at
    least one selected theme. Explain that Theme 02 currently has session-only work.

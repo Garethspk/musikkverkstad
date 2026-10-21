@@ -1,5 +1,20 @@
 from pathlib import Path
 import re
+import argparse, json, subprocess
+parser = argparse.ArgumentParser(description='Build pupil pages and separate school setup')
+parser.add_argument('--school-settings', type=Path)
+parser.add_argument('--output', type=Path, default=Path('dist'))
+parser.add_argument('--no-admin', action='store_true')
+args = parser.parse_args()
+settings = None
+if args.school_settings:
+    validated = subprocess.run(['node', 'scripts/validate-school.cjs', str(args.school_settings)], capture_output=True, text=True)
+    if validated.returncode:
+        parser.error(validated.stderr.strip())
+    settings = json.loads(validated.stdout)
+settings_expression = json.dumps(settings, ensure_ascii=True).replace('<', '\\u003c').replace('>', '\\u003e').replace('&', '\\u0026') if settings else 'SchoolConfig.defaults()'
+output = args.output
+output.mkdir(parents=True, exist_ok=True)
 rows = """
 Mi øving|Min øving|My practice
 Høyr. Utforsk. Skap.|Lytt. Utforsk. Skap.|Listen. Explore. Create.
@@ -174,13 +189,18 @@ for locale,index in [('nn',0),('nb',1),('en',2)]:
     s=s.replace('<!-- LANGUAGE_MENU -->', '<div class="nv-language"><strong>Språk</strong>'+nav+'</div>')
     css='\n.language-tabs{max-width:1144px;margin:12px auto 0;padding:0 24px;display:flex;gap:6px}.language-tabs a{display:inline-block;padding:10px 16px;border:1px solid var(--edge);border-radius:10px;color:var(--text);text-decoration:none;font-size:14px}.language-tabs a[aria-current]{background:var(--green);color:#18241b;font-weight:700}.language-tabs a:focus-visible{outline:3px solid var(--gold)}\n'
     s=s.replace('</style>',css+'</style>')
-    s=s.replace("'use strict';", "'use strict';\ntry{localStorage.setItem('musikkverkstad-language','"+locale+"')}catch(e){}\n")
+    s=s.replace("'use strict';", "'use strict';\n"+Path('src/school/config.js').read_text()+"\nconst schoolSettings=SchoolConfig.validate("+settings_expression+");\n"+Path('src/school/pupil.js').read_text()+"\ntry{localStorage.setItem('musikkverkstad-language','"+locale+"')}catch(e){}\n")
     s=s.replace('\nrender();', '\n'+Path('src/practice.js').read_text()+'\n'+Path('src/theme.js').read_text()+'\n'+Path('src/puzzle.js').read_text()+'\n'+Path('src/notation.js').read_text()+'\n'+Path('src/groove.js').read_text()+'\n'+Path('src/navigation.js').read_text()+'\nrender();')
     s=s.replace('</head>', '<style>'+Path('src/studio.css').read_text()+'</style></head>')
-    Path(f'dist/{locale}.html').write_text(s)
-Path('dist/index.html').write_text('''<!doctype html><html lang="nn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Musikkverkstad</title><style>body{background:#101820;color:#f3f5ef;font:18px system-ui;padding:30px}a{color:#c6f184;display:inline-block;padding:16px}</style></head><body><h1>Musikkverkstad</h1><nav><a href="nn.html">Nynorsk</a><a href="nb.html">Bokmål</a><a href="en.html">English</a></nav><script>let l='nn';try{const v=localStorage.getItem('musikkverkstad-language');if(['nn','nb','en'].includes(v))l=v}catch(e){}location.replace(l+'.html');</script></body></html>''')
+    (output/f'{locale}.html').write_text(s)
+index_page = ('''<!doctype html><html lang="nn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Musikkverkstad</title><style>body{background:#101820;color:#f3f5ef;font:18px system-ui;padding:30px}a{color:#c6f184;display:inline-block;padding:16px}</style></head><body><h1>Musikkverkstad</h1><nav><a href="nn.html">Nynorsk</a><a href="nb.html">Bokmål</a><a href="en.html">English</a></nav><script>let l='nn';try{const v=localStorage.getItem('musikkverkstad-language');if(['nn','nb','en'].includes(v))l=v}catch(e){}location.replace(l+'.html');</script></body></html>''')
+(output/'index.html').write_text(index_page.replace("let l='nn'", "let l='"+(settings['defaultLanguage'] if settings else 'nn')+"'"))
 print('Built three language versions.')
 
 import shutil
-shutil.copyfile('src/sound-compare.html','dist/sound-compare.html')
-shutil.copytree('src/sounds','dist/sounds',dirs_exist_ok=True)
+shutil.copyfile('src/sound-compare.html',output/'sound-compare.html')
+shutil.copytree('src/sounds',output/'sounds',dirs_exist_ok=True)
+if not args.no_admin:
+    Path('setup').mkdir(exist_ok=True)
+    admin = Path('src/school/admin.html').read_text().replace('/* SCHOOL_CONFIG */', Path('src/school/config.js').read_text()).replace('/* SCHOOL_ADMIN */', Path('src/school/admin.js').read_text())
+    Path('setup/index.html').write_text(admin)

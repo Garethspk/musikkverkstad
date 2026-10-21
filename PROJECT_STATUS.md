@@ -1,3 +1,42 @@
+# PR #3 review update — principal workflow
+
+The main setup form now asks only for school branding, default language and optional
+colours. All eligible prototype content/levels are included by default. The 11–13
+audience is informational. Exceptional theme/level restrictions are under collapsed
+Avanserte innstillingar; earlier valid v1 settings retain restrictions and open that
+section with a clear notice when imported or restored. The schema stays at version 1.
+Availability flags fail closed for future/unimplemented/ineligible content; prototype
+availability does not change pupilRelease BLOCKED. New tests cover the no-checklist
+workflow, keyboard access, exact older-v1 round-trips and branding-only edits.
+An isolated real-build revocation fixture also verifies that ineligible auxiliary
+activities disappear from cards and cannot open through direct/restored navigation,
+while historical counts survive. Local full-gate verification: all 14 Node suites
+and 60 real Chromium cases pass; the two existing Theme 01 expected failures remain.
+The standard gate exits 2 and pupil release remains BLOCKED.
+
+# Phase 2 — School administrator configuration MVP
+
+Phase 1 was merged into main at 03c38ef after GitHub Actions passed on PR #1.
+Phase 2 adds a separate Nynorsk setup artifact, shared version-1 settings validation
+and content registry, safe local logo processing, accessible colour presets,
+settings download/reimport/drafts and a read-only pupil settings loader. Only the
+implemented 11–13 age group and Themes 01/02 are configurable. Pupils freely choose
+among enabled levels. Existing progress and language preference keys are preserved.
+See docs/school-setup.md for operating instructions and exact limitations.
+
+Local verification: the complete development gate passes all 14 Node suites
+(including the 13 original suites) and 54 real Chromium cases across desktop/mobile
+profiles. Two existing Theme 01 quick-entry failures remain explicitly expected.
+The standard gate exits 2 with pupilRelease BLOCKED. Independent review completed
+two bounded passes; no remaining functional/security blocker was reported.
+
+ZIP publishing and full preview are not implemented. The setup directory must stay
+separate from published pupil files. No accounts/backend, pupil identity fields,
+analytics or new curriculum were added. Pupil release remains BLOCKED; historical
+export notes and Phase 1 results below describe their respective snapshots.
+
+---
+
 # Phase 1 development reliability update
 
 The application source, generated pages, design and curriculum remain unchanged.
