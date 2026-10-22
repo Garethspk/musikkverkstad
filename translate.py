@@ -226,5 +226,6 @@ if not args.no_admin:
 
     # Adult-only entry: same template, allowlist and preview transport, no configuration form.
     review = Path('src/school/teacher-review.html').read_text().replace('/* SCHOOL_CONFIG */',Path('src/school/config.js').read_text()).replace('/* TEACHER_REVIEW */',Path('src/school/teacher-review.js').read_text()).replace('<!-- SCHOOL_PACKAGE -->',packaging)
-    Path('setup/teacher-review.html').write_text(review)
-    Path('setup/teacher-review-manifest.json').write_text(json.dumps(dict(formatVersion=1,purpose='private-adult-teacher-review',pupilRelease='BLOCKED',teacherAdoption='PENDING',sourceHash=identity.hexdigest(),templateHash=bundle_hash,artifact='teacher-review.html',artifactSha256=hashlib.sha256(review.encode()).hexdigest(),entry=dict(theme='groove',mode='listen',suggestedLevel=1,language='nn')),indent=2)+'\n')
+    review_output=Path('.quality/teacher-kit');review_output.mkdir(parents=True,exist_ok=True)
+    (review_output/'teacher-review.html').write_text(review)
+    (review_output/'teacher-review-manifest.json').write_text(json.dumps(dict(formatVersion=1,purpose='private-adult-teacher-review',pupilRelease='BLOCKED',teacherAdoption='PENDING',sourceHash=identity.hexdigest(),templateHash=bundle_hash,artifact='teacher-review.html',artifactSha256=hashlib.sha256(review.encode()).hexdigest(),entry=dict(theme='groove',mode='listen',suggestedLevel=1,language='nn')),indent=2)+'\n')

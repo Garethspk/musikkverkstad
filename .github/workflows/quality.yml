@@ -33,5 +33,6 @@ jobs:
           include-hidden-files: true
           path: |
             .quality/
+            !.quality/teacher-kit/**
             playwright-report/
             test-results/

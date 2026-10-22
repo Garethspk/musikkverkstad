@@ -1,6 +1,6 @@
 const fs=require('node:fs'),path=require('node:path'),{pathToFileURL}=require('node:url');
 const {test,expect,observeAudio}=require('./fixtures.cjs');
-const url='http://127.0.0.1:8766/teacher-review.html';
+const url='http://127.0.0.1:8767/teacher-kit/teacher-review.html';
 async function open(page,location=url){await page.goto(location);await page.locator('#openExercise').click();const f=page.frameLocator('#teacherPreview');await expect(f.locator('[data-gr-action="reference"]')).toBeVisible();return f;}
 async function play(f,action,value){
  const key=action==='reference'?'reference':'option'+value;
@@ -39,7 +39,7 @@ test('adult entry opens exact exercise, native audio matches rhythm, preserves c
  await page.locator('#closeExercise').click();await expect(page.locator('iframe')).toHaveCount(0);
  await page.locator('#openExercise').click();await expect(page.frameLocator('#teacherPreview').locator('[data-gr-action="reference"]')).toBeVisible();expect(await page.frameLocator('#teacherPreview').locator('body').evaluate(()=>data.groovePractice.done)).toEqual({});
  expect(await page.evaluate(()=>localStorage.getItem('review-sentinel'))).toBe('outside');
- expect(requests.filter(x=>/^https?:/.test(x)&&!x.startsWith('http://127.0.0.1:8766/'))).toEqual([]);
+ expect(requests.filter(x=>/^https?:/.test(x)&&!x.startsWith('http://127.0.0.1:8767/'))).toEqual([]);
 });
 test('language recreation, spoof rejection and close while preparation is pending',async({page})=>{
  let f=await open(page);const before=await page.locator('#teacherPreview').getAttribute('srcdoc');
@@ -55,6 +55,7 @@ test('corrupted embedded template fails closed without a preview',async({page})=
  await page.goto(url);await page.locator('#school-template').evaluate(e=>e.textContent+=' ');await page.locator('#openExercise').click();await expect(page.locator('#status')).toContainText('Kunne ikkje');await expect(page.locator('iframe')).toHaveCount(0);
 });
 test('standalone adult teacher entry needs no server or configuration',async({page})=>{
- const isolated=test.info().outputPath('teacher-review.html');fs.mkdirSync(path.dirname(isolated),{recursive:true});fs.copyFileSync('setup/teacher-review.html',isolated);
- const f=await open(page,pathToFileURL(isolated).href);await play(f,'reference');expect(await f.locator('body').evaluate(()=>({route,mode:gr.mode,level:gr.level}))).toEqual({route:'groove',mode:'listen',level:1});
+ const isolated=test.info().outputPath('teacher-review.html');fs.mkdirSync(path.dirname(isolated),{recursive:true});fs.copyFileSync('.quality/teacher-kit/teacher-review.html',isolated);
+ try{const f=await open(page,pathToFileURL(isolated).href);await play(f,'reference');expect(await f.locator('body').evaluate(()=>({route,mode:gr.mode,level:gr.level}))).toEqual({route:'groove',mode:'listen',level:1});}
+ finally{fs.rmSync(isolated,{force:true});} // Never upload a copied distributable as a test artifact.
 });

@@ -1,6 +1,6 @@
 # Issue 12 — private adult Theme 02 testing entry (review pending)
 
-A preconfigured standalone `setup/teacher-review.html` reuses the existing opaque
+A preconfigured standalone `.quality/teacher-kit/teacher-review.html` reuses the existing opaque
 school preview and local audio transport. One button enters actual Theme 02 Listen,
 level 1; normal level/activity controls remain. It is adult-only, not a pupil release,
 with no admin form/export control in the outer shell. The manifest pins source,
