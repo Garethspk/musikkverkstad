@@ -1,3 +1,19 @@
+# Issue16 — visual musical form vertical slice
+
+The authorised [Formverkstad design](docs/form-design/README.md) supplies graphical
+puzzles, construction and ungraded map revision using a small explicit musical
+palette. It is a visual objective; no listening test validates or unlocks it.
+The activity is separate from the two numbered themes and draft PR15.
+[Integration obligations](docs/form-design/integration.md) must be reviewed before
+combining the drafts; neither is merged by this work.
+
+After implementation review, seek actual teacher/pupil feedback on one3–5minute
+form-map exercise: explain repeat/contrast/return/variation, independently operate
+keyboard/touch/text alternatives, revise a map and optionally transfer a relation
+to an instrument. Check TA1–TA5 teacher adoption separately from visual correctness.
+Human educational/access/device/adoption evidence remains PENDING; pupil release
+BLOCKED. Do not infer auditory recognition or musical quality from pattern success.
+
 # Musikkverkstad roadmap
 
 ## Curriculum architecture gate — Issue #10 (proposal for review)

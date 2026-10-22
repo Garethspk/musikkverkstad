@@ -11,5 +11,6 @@ assert(html.includes('PROTOTYPE · BERRE VAKSNE · IKKJE FOR ELEVAR'));assert(ht
 assert(!html.includes('id="settingsForm"'));assert(!html.includes('id="downloadPackage"'));
 assert.deepEqual(require('../src/school/package-policy.json').templatePaths.filter(p=>/teacher|review/.test(p)),[]);
 assert(!JSON.parse(template).files.some(f=>/teacher|review/.test(f.path)));
+assert(fs.readFileSync('src/school/teacher-review.js','utf8').includes('settings.formEnabled=false'),'Original adult entry must exclude the new auxiliary activity');
 assert(!fs.readFileSync('src/school/config.js','utf8').includes("id:'conversation'"));
 console.log('PASS: private adult entry identity, pinned template, no admin controls, no pupil allowlist expansion or Theme 03');

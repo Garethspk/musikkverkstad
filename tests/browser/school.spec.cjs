@@ -30,10 +30,10 @@ test('older v1 restrictions stay explicit through import, branding-only edits an
  await expect(page.locator('#contentSummary')).toContainText('avgrensingar');
  await expect(page.locator('#advancedSettings')).toHaveAttribute('open','');
  await expect(page.locator('#theme-theme')).not.toBeChecked();await expect(page.locator('#level-groove-1')).not.toBeChecked();
- expect(await exported(page)).toEqual(olderSettings);
+ expect(await exported(page)).toEqual(SC.validate(olderSettings));
  await page.locator('#advancedSettings summary').click();
  await page.locator('#schoolName').fill('Nytt skulenamn');await page.locator('#colourPreset').selectOption('blue');
- const changed={...olderSettings,schoolName:'Nytt skulenamn',colourPreset:'blue'};
+ const changed=SC.validate({...olderSettings,schoolName:'Nytt skulenamn',colourPreset:'blue'});
  expect(await exported(page)).toEqual(changed);
  await page.locator('#saveDraft').click();await page.reload();await expect(page.locator('#schoolName')).toHaveValue('Nytt skulenamn');
  await expect(page.locator('#advancedSettings')).toHaveAttribute('open','');

@@ -2,6 +2,7 @@ const fs=require('node:fs'),path=require('node:path');
 const {execFileSync}=require('node:child_process');
 const {test,expect,observeAudio}=require('./fixtures.cjs');
 const older=require('../fixtures/school-v1-restricted.json');
+const SC=require('../../src/school/config.js');
 const setup='http://127.0.0.1:8766/';
 async function open(page){await page.goto(setup);await expect(page.locator('#schoolName')).toBeEnabled();}
 async function preview(page){await page.locator('#previewSchool').click();await expect(page.locator('#pupilPreview')).toBeVisible();return page.frameLocator('#pupilPreview');}
@@ -56,7 +57,7 @@ test('older restrictions survive preview and export; edits invalidate the exact 
  await frame.locator('[data-nv="start"]').click();await expect(frame.locator('[data-gr-action="level"]')).toHaveCount(2);
  const identity=await page.locator('#candidateIdentity').textContent();await page.locator('#schoolName').fill('Oppdatert skule');await expect(page.locator('#pupilPreview')).toHaveCount(0);
  const result=await download(page,info);expect(identity).not.toContain(result.manifest.candidateHash);
- expect(JSON.parse(fs.readFileSync(path.join(result.folder,'school-settings.json')))).toEqual({...older,schoolName:'Oppdatert skule'});
+ expect(JSON.parse(fs.readFileSync(path.join(result.folder,'school-settings.json')))).toEqual(SC.validate({...older,schoolName:'Oppdatert skule'}));
  await page.goto(result.url+'en.html');await page.evaluate(()=>{data.stats.rhythm={done:4,correct:2};localStorage.setItem('musikkverkstad-v1',JSON.stringify(data));localStorage.setItem('musikkverkstad-language','en');});
  await page.reload();expect(await page.evaluate(()=>data.stats.rhythm.done)).toBe(4);
  await page.locator('[data-nv="start"], [data-nv="continue"]').first().click();await expect(page.locator('[data-gr-action="level"]')).toHaveCount(2);
@@ -120,4 +121,17 @@ test('language replacement followed by scroll and one trusted pointer downloads 
   expect(JSON.parse(fs.readFileSync(path.join(result.folder,'school-settings.json'))).defaultLanguage).toBe('en');
   await expect(page.locator('#pupilPreview')).toHaveAttribute('sandbox','allow-scripts');
  }
+});
+
+test('Form availability and levels agree in isolated school preview and extracted ZIP',async({page},info)=>{
+ await open(page);const settings=SC.defaults();settings.defaultLanguage='en';settings.formEnabled=true;settings.levels.form=[2,4];
+ await page.locator('#settingsFile').setInputFiles({name:'form-school.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(settings))});await expect(page.locator('#message')).toContainText('importerte');
+ let frame=await preview(page);await expect(frame.locator('#themeSelect option')).toHaveCount(2);await frame.locator('[data-go="form"]').click();
+ await expect(frame.locator('[data-fo-action="mode"]')).toHaveCount(3);await expect(frame.locator('[data-fo-action="level"]')).toHaveCount(2);await expect(frame.locator('[data-fo-action="level"][data-fo-value="2"]')).toHaveAttribute('aria-pressed','true');
+ const enabled=await download(page,info);expect(JSON.parse(fs.readFileSync(path.join(enabled.folder,'school-settings.json'))).formEnabled).toBe(true);
+ await page.goto(enabled.url+'en.html');await page.locator('[data-go="form"]').click();await expect(page.locator('[data-fo-action="level"]')).toHaveCount(2);await expect(page.locator('[data-fo-action="level"][data-fo-value="2"]')).toHaveAttribute('aria-pressed','true');
+ await open(page);settings.formEnabled=false;await page.locator('#settingsFile').setInputFiles({name:'disabled-form.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(settings))});await expect(page.locator('#message')).toContainText('importerte');frame=await preview(page);await expect(frame.locator('[data-go="form"]')).toHaveCount(0);
+ await frame.locator('body').evaluate(()=>go('form'));expect(await frame.locator('body').evaluate(()=>route)).toBe('theme');
+ const disabled=await download(page,info);expect(JSON.parse(fs.readFileSync(path.join(disabled.folder,'school-settings.json'))).formEnabled).toBe(false);
+ await page.goto(disabled.url+'en.html');await expect(page.locator('[data-go="form"]')).toHaveCount(0);await page.evaluate(()=>go('form'));expect(await page.evaluate(()=>route)).toBe('theme');
 });

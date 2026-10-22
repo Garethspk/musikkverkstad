@@ -1,3 +1,25 @@
+# Issue16 — visual form activity (draft implementation)
+
+Formverkstad is a standalone auxiliary activity, not a new numbered weekly theme.
+Three visible entrances offer visual select-all form puzzles, reusable section-card
+construction and ungraded2–6bar creation with before/current comparison and undo.
+Four freely chosen configurations cover repeat/contrast, return, related variation
+and choice of brief. Every card has exact quarter-note musical content, a shared
+pitch scale and equivalent text; audio is not required or initialized by Form.
+
+The [design/review record](docs/form-design/README.md) was challenged before coding
+by four separate non-human lenses. [Integration](docs/form-design/integration.md)
+documents schema1→3 migration with Form disabled, optional version1 progress,
+older-backup preservation and the explicit future PR15 conflict/rebase plan.
+No PR15 code is merged or copied; Theme03 stays unavailable on this branch.
+The adult teacher kit remains Theme02-only. Exact-head check results belong in
+the draft PR; known local standalone-file policy failures must remain failures.
+Human educational/teacher-adoption, pupil, physical-device/accessibility evidence
+remain PENDING. Pupil release remains BLOCKED; no deployment/distribution occurs.
+Earlier entries below describe historical milestones.
+
+---
+
 # Issue 12 — private adult Theme 02 testing entry (review pending)
 
 A preconfigured standalone `.quality/teacher-kit/teacher-review.html` reuses the existing opaque
