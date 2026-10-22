@@ -6,11 +6,11 @@ Me ønskjer ei ærleg vurdering av om denne øvinga kan vere nyttig i di undervi
 
 ## Prøv éi øving på 3–5 minutt
 
-Den som gjennomfører vurderinga, gir deg den førebudde utgåva for privat gjennomgang. Du treng ikkje lærarkonto, utviklarverktøy, oppgåveadministrasjon eller nytt skuleoppsett. Dersom berre dette dokumentet blir vist, vurderer du eit framlegg; me kan då ikkje hevde at sjølve navigasjonen eller tilrådinga er prøvd.
+Den som gjennomfører vurderinga, gir deg den førebudde `teacher-review.html` for privat gjennomgang. Opne fila lokalt i nettlesaren og trykk «Opne øvinga»; då opnar Tema 02 → Lytt på føreslått nivå 1. Sjå [privat handoff og opningsavgrensingar](../teacher-testing/README.md). Du treng ikkje lærarkonto, utviklarverktøy, oppgåveadministrasjon eller nytt skuleoppsett. Dersom berre dette dokumentet blir vist, vurderer du eit framlegg; me kan då ikkje hevde at sjølve navigasjonen eller tilrådinga er prøvd.
 
 1. Finn **Tema 02 – Finn grooven → Lytt**. **Nivå 1: éin takt, firedelar** er eit føreslått utgangspunkt; eleven skal kunne velje eit anna nivå som skulen har gjort tilgjengeleg.
 2. Høyr førebiletet og svara A og B. Vel rytmen som er heilt lik førebiletet. Høyr om att om du vil.
-3. Tapp pulsen og peik på éin skilnad mellom tone og stille som du høyrde.
+3. Tapp pulsen og peik på éin skilnad mellom tone og stille som du høyrde. Appen vurderer berre kva svar du vel. Tapping og munnleg forklaring blir ikkje registrert eller vurdert av appen.
 4. Stopp etter denne eine samanlikninga, innan den korte øvingsøkta. Er noko uklart, ta spørsmålet med til neste time. Du treng ikkje få alt rett, lagre ei uferdig oppgåve eller gå vidare til Reparer eller Skap.
 
 **Musikalsk mål:** høyre og samanlikne ein kort rytme, knytt til å halde puls. Eitt rett svar er ikkje dokumentasjon på meistring eller framgang på instrumentet. Det finst inga tidsvurdering; 3–5 minutt er ei praktisk ramme, ikkje ein nedteljar.

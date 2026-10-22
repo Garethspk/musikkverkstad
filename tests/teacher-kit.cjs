@@ -1,0 +1,15 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),crypto=require('node:crypto');
+const digest=x=>crypto.createHash('sha256').update(x).digest('hex');
+const html=fs.readFileSync('.quality/teacher-kit/teacher-review.html','utf8'),manifest=JSON.parse(fs.readFileSync('.quality/teacher-kit/teacher-review-manifest.json'));
+assert.equal(digest(html),manifest.artifactSha256);
+assert.equal(manifest.purpose,'private-adult-teacher-review');assert.equal(manifest.pupilRelease,'BLOCKED');assert.equal(manifest.teacherAdoption,'PENDING');
+assert.deepEqual(manifest.entry,{theme:'groove',mode:'listen',suggestedLevel:1,language:'nn'});
+assert(!fs.existsSync('setup/teacher-review.html'));assert(!fs.existsSync('setup/teacher-review-manifest.json'));
+assert(fs.readFileSync('.github/workflows/quality.yml','utf8').includes('!.quality/teacher-kit/**'));
+const template=fs.readFileSync('setup/template.json','utf8');assert.equal(digest(template),manifest.templateHash);assert.equal(JSON.parse(template).sourceHash,manifest.sourceHash);
+assert(html.includes('PROTOTYPE · BERRE VAKSNE · IKKJE FOR ELEVAR'));assert(html.includes('TA5'));
+assert(!html.includes('id="settingsForm"'));assert(!html.includes('id="downloadPackage"'));
+assert.deepEqual(require('../src/school/package-policy.json').templatePaths.filter(p=>/teacher|review/.test(p)),[]);
+assert(!JSON.parse(template).files.some(f=>/teacher|review/.test(f.path)));
+assert(!fs.readFileSync('src/school/config.js','utf8').includes("id:'conversation'"));
+console.log('PASS: private adult entry identity, pinned template, no admin controls, no pupil allowlist expansion or Theme 03');
