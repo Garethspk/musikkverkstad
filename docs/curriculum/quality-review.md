@@ -1,6 +1,6 @@
 # Reusable musical quality criteria and review protocol
 
-**Proposed process; no existing release gate is replaced.** Design readiness, implementation readiness and pupil-release readiness are separate decisions. Use [the design template](activity-template.md), [worked Theme 03](theme03-adjudication.md) and [the current disagreement log](specialist-critiques.md).
+**Proposed process; no existing release gate is replaced.** Design readiness, teacher-adoption/design fit, implementation readiness and pupil-release readiness are separate decisions. Use [the design template](activity-template.md), [worked Theme 03](theme03-adjudication.md) and [the current disagreement log](specialist-critiques.md).
 
 ## Musical criteria: specific pass conditions
 
@@ -29,6 +29,7 @@ A general rubric cannot approve an unspecified question bank. For every example,
 | Browser/native decode/scheduling | Actual loading, signal samples, selected pitches/onsets, controls/cancellation on a recorded browser version. | Speaker output, all expressive qualities or physical-device accessibility. |
 | Perceptual/rendered listening review | Whether the supplied material conveys the advertised contrast for that listener/context. | Universal perception or educational effectiveness. |
 | Human music-teacher review | Musical validity, useful feedback, playable transfer and plausible differentiation within stated expertise. | Whole-population effectiveness or browser security. |
+| Teacher-adoption/design-fit feedback | Actual teachers’ understanding, teaching value, recommendation friction, trust and voluntary recommendation intent within the reviewed scope. | Musical correctness, actual pupil benefit, device suitability or release approval. |
 | Facilitated learner/access/device observation | Whether sampled pupils understand/use the actual artifact, recover and transfer; defects on tested devices. | General efficacy from a small formative sample. |
 | Exact-candidate release evidence | Which approved content, transformations and artifact/device versions have required evidence. | Approval of changed content, a different school package or missing evidence. |
 
@@ -52,11 +53,32 @@ The synthesising author records all substantive disagreements, chooses a reasone
 | Decision | Minimum condition | No-go / hold |
 | --- | --- | --- |
 | Ready for owner design review | Complete sources/access record, four levels, 8–12 actual examples, independent critiques and disagreement log. Pending human evidence labelled. | Missing event/audio details, unexamined alternatives, fabricated access or claims. |
+| Teacher-adoption/design fit | Actual instrumental/ensemble teacher feedback meets TA1–TA5 for the specified short exercise and context, with objections resolved or scope explicitly restricted. | PENDING without real feedback; model review, musical correctness and hypothetical endorsement cannot supply adoption-PASS. |
 | Eligible to author a small implementation task | Owner approves scope; human musical review resolves scoring/instruction/difficulty questions for that slice; meaningful checks and migrations specified. | Unresolved correctness/ambiguity, multiple unnoticed valid answers, inaccessible core task, or no actual implementation authorisation. |
 | Development check success | Required build/regressions and real-browser checks pass on the actual candidate. | A genuine failure or unavailable check remains failure/missing evidence. Do not skip, mock or bypass security restrictions. |
 | Pupil release | Existing required adapters/evidence bind to exact candidate, including human musical review, rendered/speaker/device/accessibility evidence as required. | BLOCKED/FAIL, missing devices or inherited evidence for other bytes. No owner “override” is added here. |
 
 **Critical:** M1–M5 validity/context contradictions, inaccessible required interaction, data loss, or dishonest evidence block the affected slice; “good engagement” cannot compensate. Other refinements may be deferred only with an explicit scope boundary that prevents an unreviewed claim/content from being published as complete. Two repair/review iterations maximum per batch; unresolved findings are held, not silently accepted. Different evidence types are not interchangeable.
+
+## Teacher-adoption/design-fit gate (not performed)
+
+**Current status: PENDING. No actual teacher feedback or positive endorsement has been obtained.** This is a separately named human adoption/design-fit gate, not a software release adapter or a replacement for musical-validity review, owner educational approval, pupil/device validation, implementation authorisation or pupil-release evidence. The same teacher may contribute to different reviews, but their findings must be recorded separately; one sign-off cannot silently clear the others.
+
+Use a low-friction formative review with a small deliberately varied range of teachers, illustratively **3–5 instrumental/ensemble teachers** covering individual and ensemble teaching, pitched and rhythm-led instruments, and differing pupil experience/technical confidence. Seek a sceptical as well as an enthusiastic view. This is a problem-finding proposal, not a representative survey or a validated numerical threshold. Participation/review must not require a teacher account, new school configuration, assignment workflow or pupil-data collection.
+
+Offer a brief individual walkthrough, illustratively 10–15 minutes: show the purpose and an actual available prototype exercise privately (or labelled design materials where implementation is absent); let the teacher find and try it without coaching; ask them to formulate one 3–5-minute recommendation in their usual lesson language. Explain prototype restrictions and do not ask them to send pupils to unreleased material. A design-material review can establish only provisional design fit; recommendation ease for a finished artifact must be rechecked on that artifact before a scoped adoption-PASS. Record what was actually shown and what remained hypothetical.
+
+| Criterion | Ask / observe | Evidence required for a scoped adoption-PASS |
+| --- | --- | --- |
+| TA1: understood musical purpose | “What would this help your pupil hear or do? What does it not assess?” | Teachers explain the intended musical purpose accurately in their own words, without the facilitator supplying the answer. |
+| TA2: value relative to teaching | “When would this add value compared with your existing between-lesson practice, and when would you use something else?” | Concrete teaching use and limitations, not generic praise or a presumed replacement for current practice. |
+| TA3: easy recommendation | “Show how you would recommend exactly one exercise to a pupil.” | They independently locate/name the exercise and suggested configuration, outcome and stop point, with no account, assignment administration or extra setup. Capture navigation/wording/time burden rather than hiding facilitator help. |
+| TA4: trust and professional role | “Does this supplement your expertise? What claims or feedback would undermine your trust?” | Teachers understand and accept the bounded supplementary role; unresolved misleading assessment or replacement claims block fit. |
+| TA5: voluntary recommendation intent | “Once required approvals are met, would you voluntarily recommend this to one of your real pupils? For what need, or why not?” | Actual teacher answers tied to an anonymised teaching situation, including hesitation, refusal and conditions. Do not invent a pupil, require an actual assignment or treat polite interest as a recommendation. |
+
+Record per teacher: broad teaching context (no pupil identity), artifact/design revision and demonstrated route, TA1–TA5 observations/answers, objections in their own terms, proposed changes, conditions/refusals, facilitator prompts, proposed scope and follow-up. Keep notes outside the pupil application under agreed school review arrangements; no analytics, database or public testimonial is required.
+
+**Decision rule:** without actual feedback, remain **PENDING**, never adoption-PASS. After feedback, use **REVISE/HOLD** for unclear purpose, no perceived teaching value, recommendation friction, trust objections or only conditional intent awaiting repairs. Adoption-PASS is permitted only for the explicitly reviewed exercise/context when TA1–TA5 have supporting actual evidence and no unresolved material objection remains in that scope. Do not average a serious objection away or infer acceptance for all instruments/schools from a small group. Where fit differs, document the reasons, restrict the claim and leave other contexts pending; do not pressure a teacher to endorse. Recheck changes in a bounded second pass and hold unresolved issues after two passes. A scoped adoption-PASS is neither an efficacy finding nor authority to implement, assign unreleased content or publish to pupils.
 
 ## Human formative review plan (not performed)
 
@@ -68,4 +90,4 @@ Hold if pupils repeatedly misunderstand the declared rule, cannot hear the targe
 
 ## Review record to reuse
 
-Record: artifact/design revision; date; reviewer type and limits; criterion/example/configuration/locale; finding; severity; evidence; proposed resolution; who decides; repair pass 1/2; recheck result; remaining scope boundary. Human names/credentials and device/listening facts are filled only when actually obtained. The owner receives the educational decision and recommended next task, not a pile of MIDI or CI questions to adjudicate alone.
+Record the teacher-adoption/design-fit decision separately from musical, pupil/device, owner, coding and release decisions. Record: artifact/design revision; date; reviewer type and limits; criterion/example/configuration/locale; finding; severity; evidence; proposed resolution; who decides; repair pass 1/2; recheck result; remaining scope boundary. Human names/credentials and device/listening facts are filled only when actually obtained. The owner receives the educational decision and recommended next task, not a pile of MIDI or CI questions to adjudicate alone.

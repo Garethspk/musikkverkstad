@@ -16,7 +16,15 @@ Write one precise outcome in the form **“The pupil will hear/play/make [musica
 | Reconstruction/problem solving | Reproduce, retain/change, select or combine under an explicit musical brief. | Exact piece/event rules and all accepted constructions; non-drag controls; undo/retry and sounded pieces. | Relabelling the identical listening choice without a new cognitive operation. |
 | Creation | Explore, improvise/compose, listen, revise or retain a version. | Playable bounds, optional intentions, multiple models and stopping point; no aesthetic score. | A hidden “correct” composition, compulsory verbal explanation or creation locked behind drills. |
 
-Describe how discovery, imitation, manipulation and invention connect without requiring this order. Specify a short route and a longer route. Define what the pupil can do alone and where optional teacher/partner support adds something the app cannot provide.
+Describe how discovery, imitation, manipulation and invention connect without requiring this order. Make **one teacher-recommended 3–5-minute exercise between lessons the default**, with one clear musical outcome and stopping point. A 15–20-minute route is optional extended exploration, not a required adoption pattern. Define what the pupil can do alone and where optional teacher/partner support adds something the app cannot provide.
+
+### Default recommendation card
+
+Supply a plain recommendation that a teacher can say or add to ordinary lesson notes: **existing theme → entrance → suggested school-enabled configuration; one exercise; heard/played outcome; stop point in 3–5 minutes**. Do not require a teacher account, assignment administration, monitoring or extra setup. An approved school package and enabled content are prerequisites supplied separately, not per-exercise teacher work. Suggestions must preserve pupil freedom among enabled levels.
+
+Concrete illustration using existing content: “Theme 02 → Listen; suggested level 1 (one bar, quarter notes). Hear the reference and A/B, choose the matching rhythm, replay if useful, then tap the pulse and identify one heard note/rest difference. Stop after that one comparison within 3–5 minutes; bring uncertainty to the next lesson.” No obligation to visit Repair/Creation, get a score, save a temporary round or complete a sequence. This is a proposed recommendation after required approvals, not an actual endorsement or a new activity. See [the leadership example](../../CURRICULUM_DECISION_MEMO.md#one-exercise-a-teacher-could-recommend).
+
+For every authored activity, specify its own equivalent short recommendation. Do not squeeze every cognitive operation into five minutes; offer one useful exercise and keep deeper exploration optional. A teacher should be able to omit or adapt the recommendation in favour of their own teaching.
 
 ## 3. Four differentiated configurations
 
@@ -79,5 +87,7 @@ For older backups with a missing optional extension, preserve newer stored work;
 ## 8. Teacher note and review handoff
 
 Give the teacher: intended relation, prerequisites actually needed, misconception probes, instrument adaptations, what to listen for, alternative interpretations, feedback boundaries and how to leave the task if it does not fit the pupil. Separate “needs teacher discussion” from “usable independently”. Do not market an unresolved teacher-dependent task as a validated solo activity.
+
+Attach a separately labelled **teacher-adoption/design-fit record**, currently PENDING until actual teacher feedback exists. Use [TA1–TA5](quality-review.md#teacher-adoptiondesign-fit-gate-not-performed) to record purpose comprehension, relative teaching value, recommendation friction, trust in the supplementary role and voluntary recommendation intent. Capture objections, proposed changes, scope and recheck; model agreement or musical-validity approval cannot supply adoption-PASS.
 
 Attach the source/access record, event/audio/example inventory, four independent role critiques, disagreement log and proposed disposition. Record named human reviewer/date/limits only after that review actually occurs. Apply [the go/no-go rubric](quality-review.md), with at most two repair/review passes per batch. Owner approval of a design is distinct from implementation authorisation and pupil-release approval.

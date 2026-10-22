@@ -55,3 +55,7 @@ Read Baker and Green’s [2013 UCL record](https://discovery.ucl.ac.uk/id/eprint
 We can say the proposal is **informed by** these sources and has undergone non-human specialist-style critique. We cannot say it is proven effective, endorsed by those authors/institutions, human-specialist approved or age-validated. No numerical session length, level threshold, pilot size or annual allocation is derived as an optimal prescription from these sources.
 
 Before a learning-effect claim: define a narrow outcome, observe a diverse sample using actual musical performance as well as on-screen behaviour, document support/context, compare alternatives where appropriate, and report uncertainty. A formative pilot finds design problems; it does not establish population efficacy. Before pupil release, the separate musical, browser/audio, physical-device/accessibility and exact-candidate release evidence remains required.
+
+## Teacher-adoption evidence is separate
+
+The default 3–5-minute teacher-recommended exercise and optional 15–20-minute exploration are operational design assumptions, not source-derived dosage or existing teacher endorsement. [TA1–TA5](quality-review.md#teacher-adoptiondesign-fit-gate-not-performed) require actual teacher feedback about purpose, teaching value, easy recommendation, trust and voluntary intent. Adoption status is PENDING; musical correctness, model critique, CI and learner/device evidence cannot be relabelled adoption-PASS. Adoption feedback does not establish pupil benefit or clear release requirements.
