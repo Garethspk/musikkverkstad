@@ -1,3 +1,14 @@
+# Issue 14 — Theme 03 implementation prototype
+
+Theme 03 adds one-bar retain/change listening, purposeful fragment construction and
+ungraded create/listen/revise, with optional exact-copy Echo. Four freely selectable
+configurations vary the musical relation or pupil agency, not playback speed or
+memory length. See [the exact musical contract](docs/theme-03.md) and
+[the independent AI review record](docs/curriculum/issue14-reviews.md).
+Human musical validation, teacher adoption and pupil/device review remain PENDING;
+pupil release is **BLOCKED**. PR #9 remains draft and unmerged. No deployment or
+pupil distribution is part of this increment.
+
 # Phase 3 — pupil navigation and Theme 02 progress
 
 Theme 01 shows listening, rebuilding and creation controls immediately on every
@@ -47,7 +58,8 @@ requires only a local HTTP server, with no npm installation.
 
 This export contains the exact application source and existing built files from
 commit a05488709923114a3fa20011f1519b9c2561f198 (published version 19).
-Read PROJECT_STATUS.md first: Theme 03 is not present in the saved application.
+Read PROJECT_STATUS.md first: the historical imported snapshot lacked Theme 03;
+the Issue 14 implementation above is a later development increment.
 The application was not rebuilt or redesigned for export. The original README
 is preserved verbatim at docs/README_WORK_ORIGINAL.md and also follows below.
 

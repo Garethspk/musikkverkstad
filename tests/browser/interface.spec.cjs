@@ -3,7 +3,7 @@ const {test, expect, openApp} = require('./fixtures.cjs');
 for (const locale of ['nn', 'nb', 'en']) {
   test(`${locale}: themes, visible Explore activities and layout`, async ({page}) => {
     await openApp(page, locale);
-    await expect(page.locator('#themeSelect option')).toHaveCount(2);
+    await expect(page.locator('#themeSelect option')).toHaveCount(3);
     await expect(page.locator('[data-nv="previous"]')).toBeDisabled();
     await page.locator('[data-nv="start"]').click();
     await page.locator('[data-theme-action="explore"]').click();
@@ -17,7 +17,7 @@ for (const locale of ['nn', 'nb', 'en']) {
     }
     await expect(page.locator('[data-theme-action="save"]')).toBeVisible();
     await page.locator('[data-nv="next"]').click();
-    await expect(page.locator('[data-nv="next"]')).toBeDisabled();
+    await expect(page.locator('[data-nv="next"]')).toBeEnabled();
     await expect(page.locator('#themeSelect')).toHaveValue('1');
     for (const mode of ['listen', 'repair', 'create']) {
       const control = page.locator(`[data-gr-action="mode"][data-gr-value="${mode}"]`);

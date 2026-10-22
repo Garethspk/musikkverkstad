@@ -1,5 +1,21 @@
 # Musikkverkstad roadmap
 
+## Issue 14 — bounded Theme 03 implementation, awaiting draft review
+
+The authorised one-bar retain/change slice is described in [the implementation
+contract](docs/theme-03.md). It reuses the reviewed examples and extracts bounded
+integration patterns from PR #9 without merging it. Listening compares multiple
+valid replies; construction makes a new response; creation offers ungraded
+before/current revision. Echo remains optional narrow exact-copy practice.
+
+Next priority after implementation review: actual human musical/teacher review of
+one 3–5-minute recommendation, including rule restatement, audible comparison,
+revision, keyboard/touch recovery and TA1–TA5 adoption criteria. Acceptance requires
+recorded feedback on this candidate, resolved material objections and clear scope;
+model critiques and passing software tests cannot supply that evidence. Human and
+pupil/device evidence remain PENDING, and pupil release BLOCKED. Do not expand to
+anticipation, two-bar memory or year-long new content before this review.
+
 ## Curriculum architecture gate — Issue #10 (proposal for review)
 
 Before further Theme 03 expansion, review the [curriculum decision memo](CURRICULUM_DECISION_MEMO.md), [year framework](docs/curriculum/year-framework.md), [research/access record](docs/curriculum/evidence-brief.md), [activity template](docs/curriculum/activity-template.md), [quality/review criteria](docs/curriculum/quality-review.md), [Theme 03/Echo adjudication](docs/curriculum/theme03-adjudication.md) and [independent model critiques](docs/curriculum/specialist-critiques.md).
@@ -222,7 +238,9 @@ as distinct registry states. The tool must not provide a control that changes
 FAIL/BLOCKED into complete/pupil-ready. The current base remains a private prototype;
 any currently permitted prototype export must carry that status and limitations.
 School publication-ready export remains unavailable while required evidence is
-missing. Schools cannot turn on Theme 03 by editing a checkbox or imported JSON.
+missing. Schools cannot turn on unavailable future content by editing a checkbox or imported JSON.
+Issue 14 makes the bounded Theme 03 prototype configurable under schema 2; this
+does not supply pupil-release approval.
 
 Customisation changes the candidate bytes: **do not copy the base release PASS as
 if it approved the customised ZIP**. Record parent template hash, schema/settings

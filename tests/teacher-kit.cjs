@@ -11,5 +11,5 @@ assert(html.includes('PROTOTYPE · BERRE VAKSNE · IKKJE FOR ELEVAR'));assert(ht
 assert(!html.includes('id="settingsForm"'));assert(!html.includes('id="downloadPackage"'));
 assert.deepEqual(require('../src/school/package-policy.json').templatePaths.filter(p=>/teacher|review/.test(p)),[]);
 assert(!JSON.parse(template).files.some(f=>/teacher|review/.test(f.path)));
-assert(!fs.readFileSync('src/school/config.js','utf8').includes("id:'conversation'"));
-console.log('PASS: private adult entry identity, pinned template, no admin controls, no pupil allowlist expansion or Theme 03');
+assert.deepEqual(manifest.entry,{theme:'groove',mode:'listen',suggestedLevel:1,language:'nn'},'Adult entry remains the original Theme02 task despite new pupil content');
+console.log('PASS: private adult entry identity, pinned template, no admin controls, no pupil allowlist expansion or teacher-entry curriculum change');

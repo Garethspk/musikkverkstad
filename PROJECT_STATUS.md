@@ -1,3 +1,30 @@
+# Issue 14 — bounded Theme 03 implementation (draft review)
+
+The current branch implements retain/change through three visible entrances:
+compare all valid replies, construct a response under a declared musical brief,
+and create/hear/revise/save an ungraded reply. Optional Echo copies the whole
+four-note call and records narrow practice separately. All new material is one bar
+of four quarter notes at 90 BPM; levels change relation/agency, not length or speed.
+See [exact events, answers and limitations](docs/theme-03.md) and
+[independent non-human reviews](docs/curriculum/issue14-reviews.md).
+
+Schema-1 school settings migrate without enabling Theme 03 automatically. New
+schema-2 defaults include the implemented prototype; unavailable content remains
+rejected. Existing pupil keys, language preferences and Theme 01/02 work survive.
+The optional version-2 conversation backup keeps explicit old Echo history separate;
+missing older-backup extensions preserve newer local work. Saved replies include
+an optional before-version for comparison. Temporary drafts are session-only.
+The adult teacher kit remains restricted to Theme 02, despite shared runtime bytes.
+
+Full verification results are recorded in the draft PR; actual local browser-policy
+failures remain failures. Human teacher/musical review, teacher adoption, audible
+physical-speaker/device/accessibility and pupil evidence remain **PENDING**.
+Pupil release remains **BLOCKED**. No PR #9 merge, deployment, publication, teacher
+contact or pupil distribution is authorised or performed. Earlier entries below
+are historical snapshots, not descriptions of this increment.
+
+---
+
 # Issue 12 — private adult Theme 02 testing entry (review pending)
 
 A preconfigured standalone `.quality/teacher-kit/teacher-review.html` reuses the existing opaque

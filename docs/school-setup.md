@@ -36,7 +36,8 @@ to choose activities and difficulty levels freely.
 Exceptional restrictions remain under the initially collapsed **Avanserte
 innstillingar** section. Imported/saved restrictions open this section and show a
 clear restrictions notice. Closing it or editing branding does not change its
-selections. Theme 03 and unknown/ineligible content cannot be enabled. Registry
+selections. Unknown/ineligible content cannot be enabled. The bounded Theme 03 prototype is
+now implemented; this is not approval for pupil use. Registry
 flags distinguish implementation, prototype eligibility and pupil-release readiness;
 missing flags or release FAIL exclude content. All current activities remain
 pupilRelease BLOCKED even though they are available for private prototype testing.
@@ -105,8 +106,9 @@ Keep `setup/` separate and never publish the whole development checkout for pupi
 Audio needs HTTP; `file://` use is not supported.
 
 New settings default to all eligible prototype content. Earlier valid schema-v1
-settings import/export unchanged, with their exact theme/level restrictions retained;
-this UI change does not require a schema version bump or invent a new migration.
+settings migrate explicitly to schema 2, preserving their exact themes and old
+level restrictions and leaving Theme 03 disabled, even when all old content was
+enabled. Its future level selection is initialised to 1–4 without enabling it.
 No-settings builds preserve the original default appearance and all original
 content/levels. A configured build restricts both theme navigation and Start/Continue,
 and checks difficulty changes in handlers as well as controls. Revoked/ineligible
@@ -125,25 +127,25 @@ host/port still creates a different browser origin, as before.
 
 ## Settings contract and safety
 
-Schema version 1 is unchanged from the earlier Phase 2 setup and has these fields:
+Schema version 2 adds the implemented Theme 03 entry and has these fields:
 
-- `schemaVersion`: 1.
+- `schemaVersion`: 2.
 - `schoolName`: plain text, up to 100 characters, no control characters.
 - `logo`: null or a bounded, processed PNG data URL; never a remote URL or SVG.
 - `defaultLanguage`: nn, nb or en.
 - `colourPreset`: original, blue or gold. No arbitrary CSS.
 - `ageGroups`: currently only the nonempty selection ["11-13"].
-- `themes`: a nonempty subset of stable IDs theme and groove.
-- `levels`: all eight registry entries, each a nonempty subset of its implemented
+- `themes`: a nonempty subset of stable IDs theme, groove and conversation.
+- `levels`: all nine registry entries, each a nonempty subset of its implemented
   levels. Theme/auxiliary activities have four settings; create has only [1].
   The three modes inside a theme share its difficulty selection.
 
 Unknown fields, unsupported schema versions, unavailable content, duplicates and
 empty/invalid selections reject rather than silently enabling content. Disabled
 themes retain valid level selections for later re-enabling. The shared registry
-is src/school/config.js; adding labels does not implement curriculum. There is no
-older released school schema to migrate yet. Future schema changes must add an
-explicit migration or clearly reject unsupported versions without mutation.
+is src/school/config.js; adding labels does not implement curriculum. Version 1 migrates as described above; injecting conversation into an older v1
+payload rejects. Unsupported future versions reject without mutation. Future schema
+changes must preserve explicit migration and fail-closed validation.
 
 Uploads accept PNG/JPEG/WebP only: max 512 KiB, width/height at most 2048 and at most
 4 million pixels. Validate header dimensions before native decoding, then recheck

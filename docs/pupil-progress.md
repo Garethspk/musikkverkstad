@@ -72,3 +72,20 @@ standalone tests fail before execution locally; GitHub Actions verifies them in 
 matched browser. See docs/pr-5-verification.md. No policy bypass, skipped assertion or
 pupil-ready claim is added. Physical-device/audio-speaker and version-bound release
 reviews remain unavailable; pupil release stays BLOCKED even when CI passes.
+
+## Issue 14 — Theme 03 extension
+
+The same main storage/backup version now optionally contains
+`conversationPractice` version 2. It records listen/build/echo practice by level,
+up to 20 explicitly saved one-bar pairs and optional before-versions. It is not a
+mastery or creativity score. See [the exact schema and musical bounds](theme-03.md).
+
+Absent extensions in older confirmed backups preserve current newer Theme 03 work.
+An explicit valid extension replaces that part after the existing confirmation;
+invalid settings reject the whole import before any history changes. Optional PR #9
+version-1 Echo history migrates into separate `legacyEcho`, not new-task counts or
+creations; historical notes/rhythms and 108-BPM audition remain available/exportable.
+Disabled themes/levels cannot reopen work, but valid records are retained. Language
+and school branding updates never reset progress. Temporary creation drafts survive
+mode/level changes during the session; only explicit saves survive reload/language
+navigation. No pupil identity, timestamp, account or new network service is added.
