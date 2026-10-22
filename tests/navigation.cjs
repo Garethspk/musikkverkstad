@@ -32,13 +32,13 @@ for(const lang of ['nn','nb','en']){
  let reload=setup(lang,{stored:t.stored});reload.run('nvContinue()');
  assert.equal(reload.run('route'),'theme');assert.equal(reload.run('thState.level'),3);assert.equal(reload.run('thState.section'),'rebuild');
  assert.equal(reload.run('thState.success'),false);
- const cases=[['groove',4,'create'],['rhythm',2],['melody',3],['harmony',4],['puzzle',2],['notation',3],['create',1]];
+ const cases=[['form',4,'create'],['form',2,'puzzle'],['form',3,'build'],['groove',4,'create'],['rhythm',2],['melody',3],['harmony',4],['puzzle',2],['notation',3],['create',1]];
  for(const [route,level,mode]of cases){
   const location={route,level,...(mode?{mode}:{})};const r=setup(lang,{stored:{[KEY]:JSON.stringify(location)}});
   r.run('nvContinue()');assert.equal(r.run('route'),route);
-  const actual=r.run(route==='groove'?'gr.level':route==='puzzle'?'pp.level':route==='notation'?'nm.level':route==='create'?'1':`data.levels.${route}`);
+  const actual=r.run(route==='form'?'fo.level':route==='groove'?'gr.level':route==='puzzle'?'pp.level':route==='notation'?'nm.level':route==='create'?'1':`data.levels.${route}`);
   assert.equal(actual,level);assert.deepEqual(JSON.parse(r.stored[KEY]),location);
-  if(mode)assert.equal(r.run('gr.mode'),mode);
+  if(mode)assert.equal(r.run(route==='form'?'fo.mode':'gr.mode'),mode);
  }
  t.run("go('groove')");await t.run("grAction('level','4');grAction('mode','repair')");
  assert.deepEqual(JSON.parse(t.stored[KEY]),{route:'groove',level:4,mode:'repair'});

@@ -72,3 +72,28 @@ standalone tests fail before execution locally; GitHub Actions verifies them in 
 matched browser. See docs/pr-5-verification.md. No policy bypass, skipped assertion or
 pupil-ready claim is added. Physical-device/audio-speaker and version-bound release
 reviews remain unavailable; pupil release stays BLOCKED even when CI passes.
+
+## Issue16 — visual Form maps
+
+The unchanged main storage key/backup version optionally contains `formPractice`
+version1: selected configuration, puzzle/build practice counts by configuration and
+up to20 saved `{level,map,previous}` maps. All2–6bar maps over A/Av/B/Bv are valid
+creative saves; there is no aesthetic or hearing score. Before-version is optional
+and may have a different supported length. Exact bounds/relationships are in
+[the Form design](form-design/README.md).
+
+A missing extension in an older confirmed backup preserves newer current Form
+work. An explicit validated extension replaces it after confirmation; invalid data
+rejects atomically. Existing Theme01/02 work and language keys are retained. A
+confirmed import resets temporary editor state; ordinary mode/configuration/brief
+changes preserve the session creation/before-version. Only explicit saves survive
+reload/language navigation. Disabled Form/configurations cannot reopen work, but
+valid history stays exportable. Denied storage retains work in memory for export;
+damaged stored bytes are protected until explicit valid replacement.
+
+Node Form tests use simulated DOM/storage. Chromium checks verify actual diagrams,
+text/keyboard/touch/viewport use, backup files and school restrictions; they do not
+establish real assistive-technology, device, teacher/pupil learning or instrumental
+transfer. Form completes without AudioContext or sample requests; it is a visual
+objective, not missing auditory evidence. Required unrelated audio/release checks
+remain intact, and pupil release remains BLOCKED.

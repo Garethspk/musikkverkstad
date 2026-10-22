@@ -11,6 +11,7 @@
     {id:'rhythm', implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', name:'Rytmereparatøren', levels:[1,2,3,4]},
     {id:'melody', implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', name:'Melodidetektiven', levels:[1,2,3,4]},
     {id:'harmony', implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', name:'Finn heim', levels:[1,2,3,4]},
+    {id:'form', implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', name:'Formverkstad', levels:[1,2,3,4]},
     {id:'puzzle', implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', name:'Melodipuslespel', levels:[1,2,3,4]},
     {id:'notation', implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', name:'Lyd og notar', levels:[1,2,3,4]},
     {id:'create', implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', name:'Fri melodiverkstad', levels:[1]},
@@ -98,21 +99,27 @@
     canonicalPNG(b);
     return value;
   }
-  function defaults() { return {schemaVersion:1,schoolName:'',logo:null,defaultLanguage:'nn',colourPreset:'original',ageGroups:['11-13'],themes:availableRegistry.filter(r=>r.theme).map(r=>r.id),levels:Object.fromEntries(availableRegistry.map(r=>[r.id,[...r.levels]]))}; }
+  function defaults() { return {schemaVersion:3,formEnabled:true,schoolName:'',logo:null,defaultLanguage:'nn',colourPreset:'original',ageGroups:['11-13'],themes:availableRegistry.filter(r=>r.theme).map(r=>r.id),levels:Object.fromEntries(availableRegistry.map(r=>[r.id,[...r.levels]]))}; }
   function validate(value) {
-    object(value,['schemaVersion','schoolName','logo','defaultLanguage','colourPreset','ageGroups','themes','levels'],'skuleinnstillingar');
-    if(value.schemaVersion!==1)fail('Denne versjonen av skuleinnstillingane er ikkje støtta.');
+    if(value&&value.schemaVersion===1){
+      object(value,['schemaVersion','schoolName','logo','defaultLanguage','colourPreset','ageGroups','themes','levels'],'eldre skuleinnstillingar');
+      object(value.levels,availableRegistry.filter(r=>r.id!=='form').map(r=>r.id),'eldre nivåval');
+      value={...value,schemaVersion:3,formEnabled:false,levels:{...value.levels,...(availableRegistry.some(r=>r.id==='form')?{form:[1,2,3,4]}:{})}};
+    }
+    object(value,['schemaVersion','formEnabled','schoolName','logo','defaultLanguage','colourPreset','ageGroups','themes','levels'],'skuleinnstillingar');
+    if(value.schemaVersion!==3)fail('Denne versjonen av skuleinnstillingane er ikkje støtta.');
+    if(typeof value.formEnabled!=='boolean')fail('Ugyldig val for Formverkstad.');
     if(typeof value.schoolName!=='string'||value.schoolName.length>100||/[\u0000-\u001f\u007f]/.test(value.schoolName))fail('Skulenamnet må vere tekst på høgst 100 teikn.');
     if(!['nn','nb','en'].includes(value.defaultLanguage))fail('Ugyldig språk.');
     if(!Object.hasOwn(presets,value.colourPreset))fail('Ugyldig fargeval.');
     object(value.levels,availableRegistry.map(r=>r.id),'nivåval');
-    return {schemaVersion:1,schoolName:value.schoolName.trim(),logo:logoValue(value.logo),defaultLanguage:value.defaultLanguage,colourPreset:value.colourPreset,
+    return {schemaVersion:3,formEnabled:value.formEnabled,schoolName:value.schoolName.trim(),logo:logoValue(value.logo),defaultLanguage:value.defaultLanguage,colourPreset:value.colourPreset,
       ageGroups:list(value.ageGroups,ageGroups,'aldersgruppe'), themes:list(value.themes,availableRegistry.filter(r=>r.theme).map(r=>r.id),'temaval'),
       levels:Object.fromEntries(availableRegistry.map(r=>[r.id,list(value.levels[r.id],r.levels,'nivå for '+r.name)]))};
   }
   function hasRestrictions(value){
     const settings=validate(value);
-    return availableRegistry.some(item => (item.theme&&!settings.themes.includes(item.id)) ||
+    return !settings.formEnabled || availableRegistry.some(item => (item.theme&&!settings.themes.includes(item.id)) ||
       item.levels.some(level=>!settings.levels[item.id].includes(level)));
   }
   function parse(text) {

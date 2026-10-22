@@ -6,7 +6,7 @@ const base=SC.defaults();
 assert.deepEqual(SC.parse(JSON.stringify(base)),base);
 assert.deepEqual(SC.registry.filter(r=>r.theme).map(r=>r.id),['theme','groove']);
 const olderSettings=require('./fixtures/school-v1-restricted.json');
-assert.deepEqual(SC.parse(JSON.stringify(olderSettings)),olderSettings,'Earlier v1 restrictions must round-trip unchanged');
+const migrated=SC.parse(JSON.stringify(olderSettings));assert.equal(migrated.schemaVersion,3);assert.equal(migrated.formEnabled,false);assert.deepEqual(migrated.themes,olderSettings.themes);for(const id of Object.keys(olderSettings.levels))assert.deepEqual(migrated.levels[id],olderSettings.levels[id]);assert.deepEqual(migrated.levels.form,[1,2,3,4]);assert.equal(base.formEnabled,true);assert.throws(()=>SC.validate({...olderSettings,formEnabled:true}),'Old input must not inject new fields');
 assert.equal(SC.hasRestrictions(olderSettings),true);
 assert.equal(SC.hasRestrictions(base),false);
 assert.deepEqual(base.themes,SC.availableRegistry.filter(r=>r.theme).map(r=>r.id));
@@ -14,7 +14,7 @@ for(const item of SC.availableRegistry){assert.deepEqual(base.levels[item.id],it
 for(const item of [{implemented:false,prototypeEligible:true},{implemented:true,prototypeEligible:false},{implemented:true},{implemented:true,prototypeEligible:true,pupilRelease:'FAIL'},{implemented:true,prototypeEligible:true},{}])assert.equal(SC.prototypeAvailable(item),false,'Future/ineligible entries fail closed');
 assert.ok(SC.availableRegistry.every(SC.prototypeAvailable));
 const edited=SC.parse(JSON.stringify({...olderSettings,schoolName:'Ny profil'}));
-assert.deepEqual(edited.themes,olderSettings.themes);assert.deepEqual(edited.levels,olderSettings.levels);
+assert.deepEqual(edited.themes,olderSettings.themes);assert.deepEqual(edited.levels,migrated.levels);
 const revokedSource=fs.readFileSync('src/school/config.js','utf8').replace("id:'rhythm', implemented:true, prototypeEligible:true", "id:'rhythm', implemented:true, prototypeEligible:false");
 const sandbox={};vm.createContext(sandbox);vm.runInContext(revokedSource,sandbox);
 vm.runInContext('const schoolSettings=SchoolConfig.defaults();'+fs.readFileSync('src/school/pupil.js','utf8'),sandbox);
@@ -22,7 +22,7 @@ assert.equal(vm.runInContext("scRouteAllowed('rhythm')",sandbox),false,'Revoked 
 assert.equal(vm.runInContext("scLevels('rhythm').length",sandbox),0,'Revoked activities must not regain fallback level 1');
 assert.equal(vm.runInContext("scRouteAllowed('puzzle')",sandbox),true);
 const clone=()=>structuredClone(base);
-const invalid=[s=>s.schemaVersion=2,s=>s.schemaVersion=0,s=>s.schoolName='<x>\u0000',s=>s.schoolName='x'.repeat(101),
+const invalid=[s=>s.schemaVersion=2,s=>s.schemaVersion=0,s=>s.formEnabled=1,s=>s.formEnabled=undefined,s=>s.levels.form=[],s=>s.schoolName='<x>\u0000',s=>s.schoolName='x'.repeat(101),
  s=>s.ageGroups=[],s=>s.ageGroups=['6-10'],s=>s.themes=[],s=>s.themes=['conversation'],s=>s.themes=['theme','theme'],
  s=>s.levels.theme=[],s=>s.levels.groove=[5],s=>s.levels.create=[2],s=>s.levels.puzzle=[true],
  s=>s.defaultLanguage='de',s=>s.colourPreset='custom-css',s=>s.logo='https://example.test/logo.png',

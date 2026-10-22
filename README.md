@@ -1,3 +1,14 @@
+# Issue16 — visual Formverkstad prototype
+
+Formverkstad adds visual musical-form puzzles, construction and ungraded map
+creation/revision. It is an auxiliary activity beside the existing two themes,
+with freely selected configurations and no required sound. See the
+[reviewed design and eleven worked cases](docs/form-design/README.md),
+[independent AI critiques](docs/form-design/reviews.md) and
+[school compatibility/PR15 integration plan](docs/form-design/integration.md).
+Human educational/adoption/device evidence remains PENDING; pupil release BLOCKED.
+PR #15 is separate and unmerged. No deployment or pupil distribution is included.
+
 # Phase 3 — pupil navigation and Theme 02 progress
 
 Theme 01 shows listening, rebuilding and creation controls immediately on every

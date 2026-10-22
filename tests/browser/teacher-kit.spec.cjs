@@ -12,6 +12,10 @@ test('adult entry opens exact exercise, native audio matches rhythm, preserves c
  const f=await open(page);
  expect(await f.locator('body').evaluate(()=>({route,level:gr.level,mode:gr.mode,settings:schoolSettings.themes,levelChoices:scLevels('groove')}))).toEqual({route:'groove',level:1,mode:'listen',settings:['groove'],levelChoices:[1,2,3,4]});
  await expect(f.locator('[data-gr-action="mode"]')).toHaveCount(3);await expect(f.locator('#themeSelect option')).toHaveCount(1);
+ const formBoundary=await f.locator('body').evaluate(()=>{const before=JSON.stringify(data.formPractice);go('form');foAction('mode','create');foAction('save');return {enabled:schoolSettings.formEnabled,allowed:scRouteAllowed('form'),route,unchanged:JSON.stringify(data.formPractice)===before};});
+ expect(formBoundary).toEqual({enabled:false,allowed:false,route:'groove',unchanged:true});
+ await expect(f.locator('[data-fo-action]')).toHaveCount(0);
+
  await expect(page.locator('#identity')).toContainText('pupilRelease=BLOCKED');
  expect(await page.locator('#teacherPreview').getAttribute('sandbox')).toBe('allow-scripts');
  expect(await f.locator('body').evaluate(()=>{try{return parent.document.title}catch{return 'denied'}})).toBe('denied');

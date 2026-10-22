@@ -42,7 +42,8 @@ missing flags or release FAIL exclude content. All current activities remain
 pupilRelease BLOCKED even though they are available for private prototype testing.
 Theme 02 saves completed rounds and explicitly saved rhythms; unfinished rounds
 remain temporary. Eligible auxiliary activities remain available with their
-configured levels, and the free workshop has only one setting.
+configured levels; Formverkstad additionally has an explicit availability flag.
+The free melody workshop has only one setting.
 
 The page runs locally without accounts, network services, analytics or pupil data.
 It does not read/write pupil progress. **Lagre utkast her** uses a separate localStorage
@@ -105,8 +106,9 @@ Keep `setup/` separate and never publish the whole development checkout for pupi
 Audio needs HTTP; `file://` use is not supported.
 
 New settings default to all eligible prototype content. Earlier valid schema-v1
-settings import/export unchanged, with their exact theme/level restrictions retained;
-this UI change does not require a schema version bump or invent a new migration.
+settings explicitly migrate to schema3, retaining their exact old theme/level
+restrictions and leaving the new Formverkstad activity disabled. New defaults
+enable its implemented prototype; this never supplies pupil-release approval.
 No-settings builds preserve the original default appearance and all original
 content/levels. A configured build restricts both theme navigation and Start/Continue,
 and checks difficulty changes in handlers as well as controls. Revoked/ineligible
@@ -125,25 +127,27 @@ host/port still creates a different browser origin, as before.
 
 ## Settings contract and safety
 
-Schema version 1 is unchanged from the earlier Phase 2 setup and has these fields:
+Schema version3 adds the separately configurable visual Formverkstad activity:
 
-- `schemaVersion`: 1.
+- `schemaVersion`: 3.
+- `formEnabled`: boolean; Form has its own enable/disable control under advanced settings.
 - `schoolName`: plain text, up to 100 characters, no control characters.
 - `logo`: null or a bounded, processed PNG data URL; never a remote URL or SVG.
 - `defaultLanguage`: nn, nb or en.
 - `colourPreset`: original, blue or gold. No arbitrary CSS.
 - `ageGroups`: currently only the nonempty selection ["11-13"].
 - `themes`: a nonempty subset of stable IDs theme and groove.
-- `levels`: all eight registry entries, each a nonempty subset of its implemented
+- `levels`: all nine registry entries, each a nonempty subset of its implemented
   levels. Theme/auxiliary activities have four settings; create has only [1].
   The three modes inside a theme share its difficulty selection.
 
 Unknown fields, unsupported schema versions, unavailable content, duplicates and
 empty/invalid selections reject rather than silently enabling content. Disabled
 themes retain valid level selections for later re-enabling. The shared registry
-is src/school/config.js; adding labels does not implement curriculum. There is no
-older released school schema to migrate yet. Future schema changes must add an
-explicit migration or clearly reject unsupported versions without mutation.
+is src/school/config.js; adding labels does not implement curriculum. Older schema1 settings migrate with Form disabled. This branch rejects schema2,
+which belongs to separate draft PR15. A future reviewed integration must follow
+[the explicit migration/rebase plan](form-design/integration.md); unsupported
+versions and unavailable content reject without mutation.
 
 Uploads accept PNG/JPEG/WebP only: max 512 KiB, width/height at most 2048 and at most
 4 million pixels. Validate header dimensions before native decoding, then recheck

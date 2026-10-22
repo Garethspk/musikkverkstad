@@ -56,9 +56,11 @@ function run(root = path.resolve(__dirname, '..')) {
     ['browser', process.execPath, browserCLI ? [browserCLI, 'test'] : []],
   ];
   for (const [name, command, args] of commands) {
+    // Expanded real-browser suite measured ~697 case-seconds; CI uses two workers.
+    // Increase only the suite ceiling; individual timeouts/assertions remain intact.
     const result = name === 'browser' && !browserCLI
       ? {status: 1, error: new Error('Playwright is missing. Run npm ci and npx playwright install chromium.')}
-      : spawnSync(command, args, {encoding: 'utf8', timeout: name === 'browser' ? 300000 : 60000, maxBuffer: 16 * 1024 * 1024});
+      : spawnSync(command, args, {encoding: 'utf8', timeout: name === 'browser' ? 600000 : 60000, maxBuffer: 16 * 1024 * 1024});
     const status = result.status === 0 && !result.error ? 'PASS' : 'FAIL';
     checks.push({name, status, exitCode: result.status, output: (result.stdout || '') + (result.stderr || ''), error: result.error?.message || null});
     console.log(name + ': ' + status);
