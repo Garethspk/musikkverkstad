@@ -41,6 +41,10 @@ Four model reviewers independently produced specialist-style critiques **before 
 
 The corrected Theme 03 Example 7 explicitly uses a G4 half-beat pickup on &4, followed by E4–D4–C4 in the next bar. Its written events, timing and marking rule agree; its existing decoded-audio checks cover selected pitches and the pickup attack, not every gate duration or human perception. Full examples and the implementation critique are in [the worked adjudication](docs/curriculum/theme03-adjudication.md).
 
+## Ready-to-use teacher-review materials
+
+The [Nynorsk teacher handout](docs/curriculum/teacher-review-pack.md) provides one existing five-minute exercise and TA1–TA5 questions. The [blank review/change record](docs/curriculum/teacher-review-record.md) gives a short facilitator procedure and fields for actual answers, objections, revisions and scoped decisions. These are prepared materials only: no teachers have been contacted, no feedback exists and adoption remains PENDING.
+
 ## Next step after review
 
 Approve or revise the framework and the proposed Echo re-scope. Then obtain teacher-adoption/design-fit feedback and the separate human musical review of a **small level-2 retain/change slice**, including its instructions, alternatives and instrument transfer. Only a subsequent explicit implementation task should add it. Acceptance criteria and review stop rules are in [quality and review](docs/curriculum/quality-review.md). Do not implement the whole year at once.

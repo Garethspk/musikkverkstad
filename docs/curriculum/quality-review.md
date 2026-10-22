@@ -62,6 +62,8 @@ The synthesising author records all substantive disagreements, chooses a reasone
 
 ## Teacher-adoption/design-fit gate (not performed)
 
+Review materials: [Nynorsk teacher handout](teacher-review-pack.md) and [blank facilitator/feedback/change record](teacher-review-record.md). They are not completed evidence or invitations sent to teachers.
+
 **Current status: PENDING. No actual teacher feedback or positive endorsement has been obtained.** This is a separately named human adoption/design-fit gate, not a software release adapter or a replacement for musical-validity review, owner educational approval, pupil/device validation, implementation authorisation or pupil-release evidence. The same teacher may contribute to different reviews, but their findings must be recorded separately; one sign-off cannot silently clear the others.
 
 Use a low-friction formative review with a small deliberately varied range of teachers, illustratively **3–5 instrumental/ensemble teachers** covering individual and ensemble teaching, pitched and rhythm-led instruments, and differing pupil experience/technical confidence. Seek a sceptical as well as an enthusiastic view. This is a problem-finding proposal, not a representative survey or a validated numerical threshold. Participation/review must not require a teacher account, new school configuration, assignment workflow or pupil-data collection.
