@@ -1,0 +1,55 @@
+# Private Theme 02 adult teacher-testing kit
+
+**Stord kulturskule · private adult formative review only · not a pupil release.** Issue #12. Pupil release BLOCKED; TA1–TA5 teacher adoption PENDING. Nothing is hosted, deployed, sent to teachers or assigned to pupils by preparing this PR.
+
+## Chosen handoff and why
+
+Give an adult reviewer **one prepared `teacher-review.html` file**. It opens locally without GitHub, Node, a login, installation, school settings import or a server. Its “Opne øvinga” button enters the actual Theme 02 → Finn grooven → Lytt at suggested level 1. Normal three activity controls and four levels remain available. The wrapper has no administrator form or ZIP-download control. Existing pupil navigation/progress controls remain in the isolated application; preview restrictions still block progress export/external links.
+
+The ordinary `setup/index.html` preview is the technical foundation but requires a setup form and extra navigation. Documentation alone cannot preconfigure it without manual work for each reviewer. The small adult shell therefore reuses **unchanged** SchoolPackage template validation, candidate preparation, asset bytes, preview adapter, opaque sandbox and CSP. Its only pupil-side entry addition is a trusted constant `nvStart()` call after the normal app scripts. No activity or musical generator changes. No arbitrary routes/code from URL or messages. No second ZIP format, hosting service, installer, runtime dependency or school publication path.
+
+Do **not** give reviewers an extracted pupil ZIP: double-clicked pupil HTML does not support normal audio fetches. The standalone review shell is different: its existing preview transport supplies pinned local MP3 bytes to native decoding inside the isolated frame. This is actual application audio, not a mock player. It starts only after a user activates a playback control. Language changes rebuild a fresh Lytt/level-1 session; close/reopen clears temporary work. Real pupil storage is neither imported nor changed.
+
+## Maintainer preparation — technical work stays with us
+
+1. Check out the **reviewed PR commit** from trusted repository access. Record its full commit SHA. Run `npm ci`, `python3 translate.py`, `node scripts/quality-gate.cjs --prototype` with the existing supported browser configuration. A private review is not a pupil release. Development failures still block handoff; do not ignore local policy failures or change policy to manufacture success. Obtain the passing exact-commit CI result and review its limits before handing off.
+2. Use generated `setup/teacher-review.html` and `setup/teacher-review-manifest.json` from that same build. Verify the HTML SHA-256 against `artifactSha256` in the manifest (Windows: `Get-FileHash .\teacher-review.html -Algorithm SHA256`; this is for the **facilitator**, not the teacher). Confirm source/template identities and purpose `private-adult-teacher-review`, pupilRelease BLOCKED, teacherAdoption PENDING. Keep the commit, manifest and CI link as the review record.
+3. Prepare a private folder with `teacher-review.html` and [LES-MEG.txt](LES-MEG.txt). The optional [blank teacher feedback record](../curriculum/teacher-review-record.md) can be printed or copied to a text document; oral feedback is equally acceptable. Keep the manifest and [device checklist](device-listening-checklist.md) with the facilitator's evidence. A ZIP is unnecessary; if a private transfer system wraps files, the facilitator extracts them before the teacher walkthrough. Do not place this folder on a public website or in a pupil-accessible location.
+4. Perform the manual checklist on the actual intended adult Windows/browser/audio setup. Record results as PENDING until observed. The facilitator supplies a locally trusted file through existing private arrangements and handles attachment blocking, browser defaults and organisational policy with IT. Do not ask teachers to install Node, run commands, create accounts, configure branding, grant sandbox permissions or disable browser protection.
+5. Give a named school point of contact through the normal private channel, separately from the application. The teacher uses that person for problems and feedback. No contact list, email address collection, network integration, invitation or public URL is built into the kit. Arrange review only after owner approval; this PR does not send invitations or grant pupil use.
+
+The HTML embeds all its runtime assets; the facilitator can move/copy it without sibling sounds or `template.json`. File size is the deliberate cost of a single-file opening experience. The source build regenerates it; do not hand-edit a generated copy, inherit a release PASS or maintain a separate content bank.
+
+## Teacher walkthrough
+
+Open the locally supplied `teacher-review.html` in an updated desktop browser (for example Edge or Chrome), outside any email attachment preview. Click **Opne øvinga**. No configuration is needed. Start with a comfortable volume; hear the reference, then A and B to completion. Choose the identical rhythm. Replay if useful; tap the pulse and describe one heard note/rest difference. Stop after one comparison in **3–5 minutes**, even if bringing uncertainty back. No score, saved draft, Repair/Creation task or sequence completion is required.
+
+The whole adult review is approximately **10–15 minutes**, including TA1–TA5 questions. This is an illustrative review envelope, not a validated timing claim. A teacher may decline, criticise the fit or prefer their own exercise. Actual teacher feedback stays outside the app in the blank record; no evidence is prefilled. Proposed pupils/needs are discussed without pupil identities. A yes does not clear musical validity, educational approval, implementation permission, pupil/device checks or release gates.
+
+If file opening is blocked, do not ask the teacher to fix it. Stop and contact the facilitator. A private facilitator-run HTTP demonstration can investigate usability with appropriate existing arrangements, but is a **different delivery condition** and does not validate the promised local-file experience. Record that limitation; no hosting is created by this task. Phone opening and attachment handling are not guaranteed.
+
+## Exercise / instruction / audio contract
+
+- Existing `groove` listening, level 1: four equal **quarter-note cells** in one 4/4 bar, 96 BPM (625 ms per cell; 2.5 seconds total).
+- Sounding cells use sampled C4/MIDI 60; other cells are silence. The note envelope is shorter than the full slot (0.86 × 625 ms), matching “kort pianotone”. There is no counted introduction; the engine's small scheduling lead is not a count-in.
+- The reference starts/ends with sounding cells. One option matches all four cells; the other flips exactly one later note/rest cell. No option letter is fixed as correct.
+- The app requires complete playback of reference and both options before marking. Success means exact whole-pattern equality, including rests, not preference, tapping accuracy or instrumental progress.
+- Tapping/oral explanation are optional human transfer/review prompts, **not recorded or assessed** by the app. The handout now makes this explicit rather than adding a sensing feature.
+
+Node generator/event tests include simulations and are not browser evidence. Added real-browser checks observe native audio-buffer playback of the actual reference/A/B and compare note counts/onsets/rest positions, level/route, marking, Stop, existing navigation, storage isolation, language recreation, tampering and async close cancellation. They do not certify every expressive detail, speaker output or real phone compatibility. File-opening checks remain genuine file:// navigations; they are never disabled or replaced by HTTP claims.
+
+## Version and security boundaries
+
+`teacher-review-manifest.json` pins the actual standalone HTML through `artifactSha256`, plus the embedded `sourceHash` and `templateHash`. The screen shows source/template and prepared pupil `candidateHash` after verification. **candidateHash alone does not cover the preview adapter, entry script or outer shell**; keep the outer artifact SHA and commit alongside it. A hash detects mismatches; trusted delivery and review are still necessary.
+
+The sandbox remains `allow-scripts` only, with no same-origin/popups/download/top-navigation grants. Existing connect-src none and allowlisted local sample transport remain; parent access and real storage remain isolated. Template tampering fails closed. Exact source/origin/session/message-key/locale checks guard language messages. The adult shell never enters the pupil package allowlist. Main includes no Theme 03; none is added here. The kit is not authentication or DRM: a local file can be copied, so adult-only handling requires a human facilitator and private access arrangements.
+
+## Evidence and remaining friction
+
+Record the exact PR/commit CI result and local test limitations in the PR. Automated decode/scheduling and desktop/mobile viewports are distinct from actual device listening. Manual loudspeaker/headphone, Windows file association/security prompt, opening from the chosen private transfer path, teacher timing and TA1–TA5 evidence are **PENDING** until a facilitator/teacher performs them. No model review or CI pass fills those fields. Keep PR #9 draft; do not merge or deploy from this task.
+
+### Implementation verification record (22 October 2026)
+
+Local full gate: build/all 17 Node suites PASS; 106 browser passes, 4 failures, no skips/expected failures/flaky results. All four are `ERR_BLOCKED_BY_ADMINISTRATOR` on file:// navigations in managed Chromium 154.0.8037.57: existing setup and new isolated teacher-entry tests, each in desktop/mobile projects. HTTP-served adult entry, native reference/A/B sample identity/onset/rest checks, marking, controls, storage isolation, tampering and cancellation pass. This does not establish local opening; CI results for the exact commit are recorded in the PR. The local codeChecks/pupilRelease remains FAIL, not a qualified PASS.
+
+A separate non-human musical-source review confirmed the four-cell/96-BPM/no-count-in and exact-match contract; it did not listen to speakers or establish teacher suitability. Two bounded independent security/source passes identified an async close race and confirmed the generation-token repair; the delayed-language-close real-browser regression also passes. Sticky shell start/close controls keep genuine pointer targets available when moving out of the iframe. No forced clicks, retry loops, security-policy changes, disabled tests or fabricated device evidence were used. Manual opening/listening/adoption fields remain PENDING.

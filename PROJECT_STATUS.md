@@ -1,3 +1,18 @@
+# Issue 12 — private adult Theme 02 testing entry (review pending)
+
+A preconfigured standalone `setup/teacher-review.html` reuses the existing opaque
+school preview and local audio transport. One button enters actual Theme 02 Listen,
+level 1; normal level/activity controls remain. It is adult-only, not a pupil release,
+with no admin form/export control in the outer shell. The manifest pins source,
+template and HTML identity; native audio and cancellation/security tests are added.
+See [private teacher kit](docs/teacher-testing/README.md) for maintainer preparation,
+Nynorsk opening instructions and a blank physical-device listening checklist.
+Teacher feedback/adoption and physical listening remain PENDING. Pupil release
+remains BLOCKED; local file-policy failures must remain failures, not bypassed.
+No Theme 03, deployment, teacher contact or pupil distribution is included.
+
+---
+
 # Phase 3 — pupil activity access and progress
 
 Issue #6 exposes all three Theme 01 activity controls on welcome, Start here, Continue,
