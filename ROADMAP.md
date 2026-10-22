@@ -1,5 +1,11 @@
 # Musikkverkstad roadmap
 
+## Curriculum architecture gate — Issue #10 (proposal for review)
+
+Before further Theme 03 expansion, review the [curriculum decision memo](CURRICULUM_DECISION_MEMO.md), [year framework](docs/curriculum/year-framework.md), [research/access record](docs/curriculum/evidence-brief.md), [activity template](docs/curriculum/activity-template.md), [quality/review criteria](docs/curriculum/quality-review.md), [Theme 03/Echo adjudication](docs/curriculum/theme03-adjudication.md) and [independent model critiques](docs/curriculum/specialist-critiques.md).
+
+Proposed direction: four recurring musical families, a flexible year spiral and four freely selectable configurations per activity. Retain Echo provisionally as a narrow reusable component, not completion of broader musical conversation. PR #9 remains draft and unmerged; its corrected examples are pinned references, not merged content here. Human musical/learner/device evidence and owner design approval remain pending. This documentation does not implement, enable or validate future themes, alter school publishing or authorise expansion. Pupil release remains BLOCKED; existing release requirements are intact.
+
 ## Phase 1 — Development reliability (merged; CI passed)
 
 Repair the development gate without fabricating Work hosting configuration;
