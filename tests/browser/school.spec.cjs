@@ -66,7 +66,7 @@ test('Nynorsk school form, real logo processing, draft and settings round-trip',
  await page.locator('#removeLogo').click();await expect(page.locator('#logoImage')).not.toBeVisible();
  expect((await exported(page)).logo).toBe(null);
  await expect(page.locator('#ageGroup')).toHaveCount(0);
- await expect(page.locator('#contentOptions input[id^="theme-"]')).toHaveCount(2);
+ expect(await page.locator('#contentOptions input[id^="theme-"]').evaluateAll(inputs=>inputs.map(input=>input.id))).toEqual(['theme-theme','theme-groove','theme-conversation']);
 });
 
 test('invalid settings, unavailable content and unsafe or corrupt logos reject atomically',async({page})=>{

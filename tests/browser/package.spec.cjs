@@ -66,7 +66,7 @@ test('older restrictions survive preview and export; edits invalidate the exact 
 
 test('invalid selections and corrupted base template cannot export a package',async({page})=>{
  await open(page);let downloads=0;page.on('download',()=>downloads++);
- await page.locator('#advancedSettings summary').click();await page.locator('#theme-theme').uncheck();await page.locator('#theme-groove').uncheck();await page.locator('#downloadPackage').click();await expect(page.locator('#message')).toContainText('temaval');expect(downloads).toBe(0);
+ await page.locator('#advancedSettings summary').click();await page.locator('#theme-theme').uncheck();await page.locator('#theme-groove').uncheck();await page.locator('#theme-conversation').uncheck();await page.locator('#downloadPackage').click();await expect(page.locator('#message')).toContainText('temaval');expect(downloads).toBe(0);
  await page.locator('#theme-theme').check();await page.locator('#school-template').evaluate(el=>el.textContent+=' ');await page.locator('#downloadPackage').click();await expect(page.locator('#message')).toContainText('Kunne ikkje');expect(downloads).toBe(0);await expect(page.locator('#pupilPreview')).toHaveCount(0);
 });
 

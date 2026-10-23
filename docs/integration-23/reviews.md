@@ -116,3 +116,17 @@ CSS match PR22; original Conversation musical suite matches PR15. Removing only 
 two moved archive action lines and their explanatory comment yields exact original
 Conversation source bytes. This bounds the repair without pretending the controller
 is wholly unchanged. All broader human/real-device/AT/adoption limits remain.
+
+## Full regression batch: stale two-theme fixtures
+
+The first full run built successfully and passed all22 Node suites and324 native
+profile cases, with8 failures and no skips/flaky outcomes. Four failures came from
+two old fixtures repeated desktop/mobile: the school-form inventory still expected
+only2 themes; the empty-theme ZIP test unchecked only Theme01/02, leaving the now
+implemented Conversation selected. The fixtures now assert the exact three theme
+IDs and uncheck all three before asserting zero downloads and rejection. The
+corrupt-template assertions remain intact. No application or security change was
+needed. This is repair pass1 of this full-regression batch; focused and full rerun
+results are recorded in the PR. The other4 errors were explicit
+ERR_BLOCKED_BY_ADMINISTRATOR on file URLs (setup and teacher entry, both profiles);
+those tests remain enabled and failures remain FAIL.
