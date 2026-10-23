@@ -1,3 +1,18 @@
+# Issue #25 — Week 2 implementation (draft review)
+
+[Week 2 design, compatibility and Week 3 follow-up](docs/week-2/README.md) extend
+consolidated main `ae03deb` with Form detective, Melody contour and Practice-plan
+challenge. Three independently accessible 3–5-minute activities share the existing
+weekly programme architecture. School schema6 remains unchanged; both weeks obey
+programme consent/levels, and Form detective also respects enabled Form1/4.
+A separate optional Week2 archive preserves older-backup/module independence.
+[Four critical non-human reviews](docs/week-2/reviews.md) distinguish automated
+evidence from human validation, which remains PENDING. Pupil release BLOCKED; no
+merge, deployment or distribution. Week3 is documented only, with no enabled shell.
+Exact tests/CI and remaining limitations are recorded in the new draft PR. Earlier
+milestone snapshots below are historical; their branch/availability limits are not
+the current consolidated implementation.
+
 # Issue23 — combined integration (draft review)
 
 The [current integration contract and schema6 matrix](docs/integration-23/README.md)
