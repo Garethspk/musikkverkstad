@@ -1,3 +1,7 @@
+> Issue18 preserves this reviewed musical contract unchanged while integrating
+> Formverkstad as an auxiliary activity. Current settings, progress and integration
+> evidence are in [the combined contract](integration-18/README.md).
+
 # Theme 03 — bounded retain-and-change implementation contract
 
 **Issue #14 · development prototype · 22 October 2026.** This is a source-level description of the small implementation on this branch, not proof of learning, teacher endorsement, speaker output or pupil readiness. Pupil release remains **BLOCKED** when development checks pass; failed development checks remain **FAIL**. Teacher adoption, independent human musical/listening review and pupil/device/accessibility evidence remain **PENDING**.

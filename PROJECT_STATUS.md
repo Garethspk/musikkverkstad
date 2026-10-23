@@ -1,27 +1,46 @@
-# Issue 14 — bounded Theme 03 implementation (draft review)
+# Issue18 — combined Conversation and Form integration (draft review)
 
-The current branch implements retain/change through three visible entrances:
-compare all valid replies, construct a response under a declared musical brief,
-and create/hear/revise/save an ungraded reply. Optional Echo copies the whole
-four-note call and records narrow practice separately. All new material is one bar
-of four quarter notes at 90 BPM; levels change relation/agency, not length or speed.
-See [exact events, answers and limitations](docs/theme-03.md) and
-[independent non-human reviews](docs/curriculum/issue14-reviews.md).
+The unified source preserves Theme01/02, adds reviewed bounded Theme03 from PR15,
+and retains Formverkstad as an auxiliary visual activity. No musical predicates or
+material are changed in either module. Three numbered themes and auxiliary Form
+have independent entrances, enabled levels, progress and saved before/current work.
+Echo remains separate narrow practice; creation stays ungraded.
 
-Schema-1 school settings migrate without enabling Theme 03 automatically. New
-schema-2 defaults include the implemented prototype; unavailable content remains
-rejected. Existing pupil keys, language preferences and Theme 01/02 work survive.
-The optional version-2 conversation backup keeps explicit old Echo history separate;
-missing older-backup extensions preserve newer local work. Saved replies include
-an optional before-version for comparison. Temporary drafts are session-only.
-The adult teacher kit remains restricted to Theme 02, despite shared runtime bytes.
+School schema4 independently validates v1/v2/v3 shapes, preserving old branding and
+restrictions without enabling newly introduced content. Both optional progress fields
+coexist; missing older fields preserve newer work independently, invalid imports
+reject atomically, and legacy Echo is not relabelled as conversation completion.
+The teacher kit remains Theme02-only. See the [migration matrix and boundaries](docs/integration-18/README.md)
+and [four independent non-human reviews](docs/integration-18/reviews.md).
 
-Full verification results are recorded in the draft PR; actual local browser-policy
-failures remain failures. Human teacher/musical review, teacher adoption, audible
-physical-speaker/device/accessibility and pupil evidence remain **PENDING**.
-Pupil release remains **BLOCKED**. No PR #9 merge, deployment, publication, teacher
-contact or pupil distribution is authorised or performed. Earlier entries below
-are historical snapshots, not descriptions of this increment.
+The existing draft PR15 is updated with the reviewed integration, preserving its
+history without a force push. PR9 is unchanged. No GitHub PR is merged; nothing
+is deployed or released.
+Human teacher/adoption, pupil, physical-device/assistive-technology validation remain
+PENDING; pupil release BLOCKED. Exact-head tests/CI are recorded in the draft PR.
+Earlier milestone entries below are historical and superseded for integration status.
+
+---
+
+# Issue16 — visual form activity (draft implementation)
+
+Formverkstad is a standalone auxiliary activity, not a new numbered weekly theme.
+Three visible entrances offer visual select-all form puzzles, reusable section-card
+construction and ungraded2–6bar creation with before/current comparison and undo.
+Four freely chosen configurations cover repeat/contrast, return, related variation
+and choice of brief. Every card has exact quarter-note musical content, a shared
+pitch scale and equivalent text; audio is not required or initialized by Form.
+
+The [design/review record](docs/form-design/README.md) was challenged before coding
+by four separate non-human lenses. [Integration](docs/form-design/integration.md)
+documents schema1→3 migration with Form disabled, optional version1 progress,
+older-backup preservation and the explicit future PR15 conflict/rebase plan.
+No PR15 code is merged or copied; Theme03 stays unavailable on this branch.
+The adult teacher kit remains Theme02-only. Exact-head check results belong in
+the draft PR; known local standalone-file policy failures must remain failures.
+Human educational/teacher-adoption, pupil, physical-device/accessibility evidence
+remain PENDING. Pupil release remains BLOCKED; no deployment/distribution occurs.
+Earlier entries below describe historical milestones.
 
 ---
 

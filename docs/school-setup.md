@@ -36,14 +36,15 @@ to choose activities and difficulty levels freely.
 Exceptional restrictions remain under the initially collapsed **Avanserte
 innstillingar** section. Imported/saved restrictions open this section and show a
 clear restrictions notice. Closing it or editing branding does not change its
-selections. Unknown/ineligible content cannot be enabled. The bounded Theme 03 prototype is
-now implemented; this is not approval for pupil use. Registry
+selections. Unknown/ineligible content cannot be enabled. Bounded Theme03 is now implemented
+and configurable for private prototype review; it remains pupilRelease BLOCKED. Registry
 flags distinguish implementation, prototype eligibility and pupil-release readiness;
 missing flags or release FAIL exclude content. All current activities remain
 pupilRelease BLOCKED even though they are available for private prototype testing.
 Theme 02 saves completed rounds and explicitly saved rhythms; unfinished rounds
 remain temporary. Eligible auxiliary activities remain available with their
-configured levels, and the free workshop has only one setting.
+configured levels; Formverkstad additionally has an explicit availability flag.
+The free melody workshop has only one setting.
 
 The page runs locally without accounts, network services, analytics or pupil data.
 It does not read/write pupil progress. **Lagre utkast her** uses a separate localStorage
@@ -106,9 +107,9 @@ Keep `setup/` separate and never publish the whole development checkout for pupi
 Audio needs HTTP; `file://` use is not supported.
 
 New settings default to all eligible prototype content. Earlier valid schema-v1
-settings migrate explicitly to schema 2, preserving their exact themes and old
-level restrictions and leaving Theme 03 disabled, even when all old content was
-enabled. Its future level selection is initialised to 1–4 without enabling it.
+settings explicitly migrate to schema4, retaining their exact old theme/level
+restrictions and leaving the new Conversation and Formverkstad activities disabled. New defaults
+enable its implemented prototype; this never supplies pupil-release approval.
 No-settings builds preserve the original default appearance and all original
 content/levels. A configured build restricts both theme navigation and Start/Continue,
 and checks difficulty changes in handlers as well as controls. Revoked/ineligible
@@ -127,25 +128,28 @@ host/port still creates a different browser origin, as before.
 
 ## Settings contract and safety
 
-Schema version 2 adds the implemented Theme 03 entry and has these fields:
+Schema version4 combines Theme03 with separately configurable visual Formverkstad:
 
-- `schemaVersion`: 2.
+- `schemaVersion`: 4.
+- `formEnabled`: boolean; Form has its own enable/disable control under advanced settings.
 - `schoolName`: plain text, up to 100 characters, no control characters.
 - `logo`: null or a bounded, processed PNG data URL; never a remote URL or SVG.
 - `defaultLanguage`: nn, nb or en.
 - `colourPreset`: original, blue or gold. No arbitrary CSS.
 - `ageGroups`: currently only the nonempty selection ["11-13"].
 - `themes`: a nonempty subset of stable IDs theme, groove and conversation.
-- `levels`: all nine registry entries, each a nonempty subset of its implemented
+- `levels`: all ten registry entries, each a nonempty subset of its implemented
   levels. Theme/auxiliary activities have four settings; create has only [1].
   The three modes inside a theme share its difficulty selection.
 
 Unknown fields, unsupported schema versions, unavailable content, duplicates and
 empty/invalid selections reject rather than silently enabling content. Disabled
 themes retain valid level selections for later re-enabling. The shared registry
-is src/school/config.js; adding labels does not implement curriculum. Version 1 migrates as described above; injecting conversation into an older v1
-payload rejects. Unsupported future versions reject without mutation. Future schema
-changes must preserve explicit migration and fail-closed validation.
+is src/school/config.js; adding labels does not implement curriculum. Older schema1 settings migrate with both new activities disabled; PR15 schema2
+preserves Conversation choices with Form disabled; Form schema3 preserves Form
+choices with Conversation disabled. Each input is validated independently, including
+its historical field/level registry. See [the implemented matrix](integration-18/README.md).
+Unsupported versions and unavailable content reject without mutation.
 
 Uploads accept PNG/JPEG/WebP only: max 512 KiB, width/height at most 2048 and at most
 4 million pixels. Validate header dimensions before native decoding, then recheck

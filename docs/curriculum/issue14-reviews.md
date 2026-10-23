@@ -1,3 +1,6 @@
+> Historical PR15 musical/source review. It does not supply exact-candidate
+> approval for the integration; see the [new independent integration reviews](../integration-18/reviews.md).
+
 # Issue #14 — independent review lenses and scoped decisions
 
 **Initial review record · 22 October 2026 · implementation prototype.** This is not a human specialist endorsement, teacher adoption decision or pupil-release approval. The explicit development authorisation is [Issue #14](https://github.com/Garethspk/musikkverkstad/issues/14). Pupil release remains **BLOCKED** when development checks pass; actual failed checks remain **FAIL**. Teacher adoption, human musical/listening review and pupil/device/accessibility evidence remain **PENDING**.

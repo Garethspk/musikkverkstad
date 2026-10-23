@@ -104,7 +104,8 @@ this check is to be required for merging.
 
 GitHub Actions has not been executed merely by adding the workflow locally.
 
-Issue 14 adds native Theme 03 checks to both viewport profiles. The full browser
-subprocess has a ten-minute ceiling for the two-worker CI run; individual tests
-retain their 30-second bound, no retries and unchanged assertions/release decisions.
-This is a suite execution budget, not permission to skip unavailable checks.
+Issue16 adds visual Form tests in both viewport profiles. Measured case durations
+require a ten-minute whole-browser-suite ceiling on two CI workers. Individual
+30-second test bounds, no retries and all release/failure decisions stay unchanged.
+Form's visual objective is tested without audio initialization; unrelated native
+audio and required release evidence remain part of the full gate.

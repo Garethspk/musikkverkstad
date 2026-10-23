@@ -73,19 +73,38 @@ matched browser. See docs/pr-5-verification.md. No policy bypass, skipped assert
 pupil-ready claim is added. Physical-device/audio-speaker and version-bound release
 reviews remain unavailable; pupil release stays BLOCKED even when CI passes.
 
-## Issue 14 — Theme 03 extension
+## Issue16 — visual Form maps
 
-The same main storage/backup version now optionally contains
-`conversationPractice` version 2. It records listen/build/echo practice by level,
-up to 20 explicitly saved one-bar pairs and optional before-versions. It is not a
-mastery or creativity score. See [the exact schema and musical bounds](theme-03.md).
+The unchanged main storage key/backup version optionally contains `formPractice`
+version1: selected configuration, puzzle/build practice counts by configuration and
+up to20 saved `{level,map,previous}` maps. All2–6bar maps over A/Av/B/Bv are valid
+creative saves; there is no aesthetic or hearing score. Before-version is optional
+and may have a different supported length. Exact bounds/relationships are in
+[the Form design](form-design/README.md).
 
-Absent extensions in older confirmed backups preserve current newer Theme 03 work.
-An explicit valid extension replaces that part after the existing confirmation;
-invalid settings reject the whole import before any history changes. Optional PR #9
-version-1 Echo history migrates into separate `legacyEcho`, not new-task counts or
-creations; historical notes/rhythms and 108-BPM audition remain available/exportable.
-Disabled themes/levels cannot reopen work, but valid records are retained. Language
-and school branding updates never reset progress. Temporary creation drafts survive
-mode/level changes during the session; only explicit saves survive reload/language
-navigation. No pupil identity, timestamp, account or new network service is added.
+A missing extension in an older confirmed backup preserves newer current Form
+work. An explicit validated extension replaces it after confirmation; invalid data
+rejects atomically. Existing Theme01/02 work and language keys are retained. A
+confirmed import resets temporary editor state; ordinary mode/configuration/brief
+changes preserve the session creation/before-version. Only explicit saves survive
+reload/language navigation. Disabled Form/configurations cannot reopen work, but
+valid history stays exportable. Denied storage retains work in memory for export;
+damaged stored bytes are protected until explicit valid replacement.
+
+Node Form tests use simulated DOM/storage. Chromium checks verify actual diagrams,
+text/keyboard/touch/viewport use, backup files and school restrictions; they do not
+establish real assistive-technology, device, teacher/pupil learning or instrumental
+transfer. Form completes without AudioContext or sample requests; it is a visual
+objective, not missing auditory evidence. Required unrelated audio/release checks
+remain intact, and pupil release remains BLOCKED.
+
+## Issue18 — simultaneous Conversation and Form history
+
+The unchanged main progress key/backup version now carries both optional extensions
+independently: Conversation v2 (including separate legacy Echo archive) and Form v1.
+Older backups missing either/both preserve newer current work for those modules;
+a present valid extension replaces only that part after confirmation. Invalid data
+in either module prevents all changes to both modules, base progress and Theme01.
+Language/branding changes preserve explicit saved before/current pairs/maps;
+unavailable activities/levels cannot reopen them but history remains exportable.
+See the [combined matrix and test boundary](integration-18/README.md).

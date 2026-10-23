@@ -1,20 +1,33 @@
+# Issue18 — combined modalities and integration
+
+The [combined schema4 contract](docs/integration-18/README.md) now implements the
+previous Form/PR15 integration plan. Keep Form auxiliary beside three numbered
+themes. Future weekly themes centre on musical relationships and may combine
+audio, visual/text, construction and creative work; this integration adds no
+scheduler, assignment system, compulsory modality tour or weekly mastery score.
+
+Next: review the combined draft and collect the still-pending human musical,
+teacher-adoption, pupil and actual-device/accessibility evidence. Technical CI
+cannot supply those approvals. No additional curriculum or pupil release is
+implied; release remains BLOCKED. Earlier separate-branch plans below are historical.
+
+# Issue16 — visual musical form vertical slice
+
+The authorised [Formverkstad design](docs/form-design/README.md) supplies graphical
+puzzles, construction and ungraded map revision using a small explicit musical
+palette. It is a visual objective; no listening test validates or unlocks it.
+The activity is separate from the two numbered themes and draft PR15.
+[Integration obligations](docs/form-design/integration.md) must be reviewed before
+combining the drafts; neither is merged by this work.
+
+After implementation review, seek actual teacher/pupil feedback on one3–5minute
+form-map exercise: explain repeat/contrast/return/variation, independently operate
+keyboard/touch/text alternatives, revise a map and optionally transfer a relation
+to an instrument. Check TA1–TA5 teacher adoption separately from visual correctness.
+Human educational/access/device/adoption evidence remains PENDING; pupil release
+BLOCKED. Do not infer auditory recognition or musical quality from pattern success.
+
 # Musikkverkstad roadmap
-
-## Issue 14 — bounded Theme 03 implementation, awaiting draft review
-
-The authorised one-bar retain/change slice is described in [the implementation
-contract](docs/theme-03.md). It reuses the reviewed examples and extracts bounded
-integration patterns from PR #9 without merging it. Listening compares multiple
-valid replies; construction makes a new response; creation offers ungraded
-before/current revision. Echo remains optional narrow exact-copy practice.
-
-Next priority after implementation review: actual human musical/teacher review of
-one 3–5-minute recommendation, including rule restatement, audible comparison,
-revision, keyboard/touch recovery and TA1–TA5 adoption criteria. Acceptance requires
-recorded feedback on this candidate, resolved material objections and clear scope;
-model critiques and passing software tests cannot supply that evidence. Human and
-pupil/device evidence remain PENDING, and pupil release BLOCKED. Do not expand to
-anticipation, two-bar memory or year-long new content before this review.
 
 ## Curriculum architecture gate — Issue #10 (proposal for review)
 
@@ -238,9 +251,7 @@ as distinct registry states. The tool must not provide a control that changes
 FAIL/BLOCKED into complete/pupil-ready. The current base remains a private prototype;
 any currently permitted prototype export must carry that status and limitations.
 School publication-ready export remains unavailable while required evidence is
-missing. Schools cannot turn on unavailable future content by editing a checkbox or imported JSON.
-Issue 14 makes the bounded Theme 03 prototype configurable under schema 2; this
-does not supply pupil-release approval.
+missing. Schools cannot turn on Theme 03 by editing a checkbox or imported JSON.
 
 Customisation changes the candidate bytes: **do not copy the base release PASS as
 if it approved the customised ZIP**. Record parent template hash, schema/settings

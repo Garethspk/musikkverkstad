@@ -6,9 +6,28 @@ const base=SC.defaults();
 assert.deepEqual(SC.parse(JSON.stringify(base)),base);
 assert.deepEqual(SC.registry.filter(r=>r.theme).map(r=>r.id),['theme','groove','conversation']);
 const olderSettings=require('./fixtures/school-v1-restricted.json');
-const migrated=SC.parse(JSON.stringify(olderSettings));assert.equal(migrated.schemaVersion,2);assert.deepEqual(migrated.themes,olderSettings.themes);for(const id of Object.keys(olderSettings.levels))assert.deepEqual(migrated.levels[id],olderSettings.levels[id]);assert(!migrated.themes.includes('conversation'),'Migration must never opt schools into new content');assert.deepEqual(migrated.levels.conversation,[1,2,3,4]);
-assert.throws(()=>SC.validate({...olderSettings,themes:['conversation']}),'Schema1 cannot opt into a newly registered theme');
-const oldDefault={...base,schemaVersion:1,themes:['theme','groove'],levels:Object.fromEntries(Object.entries(base.levels).filter(([id])=>id!=='conversation'))};assert.deepEqual(SC.validate(oldDefault).themes,['theme','groove'],'Previously unrestricted schools still need explicit opt-in');
+const migrated=SC.parse(JSON.stringify(olderSettings));assert.equal(migrated.schemaVersion,4);assert.equal(migrated.formEnabled,false);assert.deepEqual(migrated.themes,olderSettings.themes);for(const id of Object.keys(olderSettings.levels))assert.deepEqual(migrated.levels[id],olderSettings.levels[id]);assert.deepEqual(migrated.levels.form,[1,2,3,4]);assert.equal(base.formEnabled,true);assert.throws(()=>SC.validate({...olderSettings,formEnabled:true}),'Old input must not inject new fields');
+
+// Independently specified historical registries; no migration infers opt-in.
+const oldIDs=['theme','groove','rhythm','melody','harmony','puzzle','notation','create'];
+const logo='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGNQaPj/HwAFAgKfdqhGyQAAAABJRU5ErkJggg==';
+for(const version of [1,2,3])for(const enabled of [false,true]){
+ const ids=[...oldIDs,...(version===2?['conversation']:version===3?['form']:[])];
+ const input={schemaVersion:version,schoolName:'Ås test',logo,defaultLanguage:'en',colourPreset:'gold',ageGroups:['11-13'],themes:version===2&&enabled?['groove','conversation']:['groove'],levels:Object.fromEntries(ids.map(id=>[id,id==='create'?[1]:[2,4]])),...(version===3?{formEnabled:enabled}:{})};
+ const before=JSON.stringify(input),out=SC.validate(input);
+ assert.equal(JSON.stringify(input),before,'Migration must never mutate old settings');assert.equal(out.schemaVersion,4);
+ for(const key of ['schoolName','logo','defaultLanguage','colourPreset','ageGroups','themes'])assert.deepEqual(out[key],input[key]);
+ for(const id of ids)assert.deepEqual(out.levels[id],input.levels[id]);
+ assert.equal(out.formEnabled,version===3&&enabled);assert.equal(out.themes.includes('conversation'),version===2&&enabled);
+ if(version!==2)assert.deepEqual(out.levels.conversation,[1,2,3,4]);if(version!==3)assert.deepEqual(out.levels.form,[1,2,3,4]);
+ for(const mutate of [v=>v.levels[ids[0]]=[],v=>v.levels.unknown=[1],v=>v.themes=['unavailable'],v=>v.logo='https://example.invalid/logo.png',v=>v.schemaVersion=99,v=>v.unrecognised=true]){const bad=structuredClone(input);mutate(bad);const raw=JSON.stringify(bad);assert.throws(()=>SC.validate(bad));assert.equal(JSON.stringify(bad),raw);}
+ if(version!==2){const bad=structuredClone(input);bad.themes=['conversation'];assert.throws(()=>SC.validate(bad));}
+ if(version!==3)assert.throws(()=>SC.validate({...input,formEnabled:true}));
+ const missing=structuredClone(input);delete missing.levels[ids.at(-1)];assert.throws(()=>SC.validate(missing));
+}
+assert.throws(()=>SC.validate({...olderSettings,schemaVersion:2}),'v1 shape must not masquerade as v2');
+assert.throws(()=>SC.validate({...olderSettings,schemaVersion:3,formEnabled:true}),'v1 shape must not masquerade as v3');
+
 assert.equal(SC.hasRestrictions(olderSettings),true);
 assert.equal(SC.hasRestrictions(base),false);
 assert.deepEqual(base.themes,SC.availableRegistry.filter(r=>r.theme).map(r=>r.id));
@@ -24,8 +43,8 @@ assert.equal(vm.runInContext("scRouteAllowed('rhythm')",sandbox),false,'Revoked 
 assert.equal(vm.runInContext("scLevels('rhythm').length",sandbox),0,'Revoked activities must not regain fallback level 1');
 assert.equal(vm.runInContext("scRouteAllowed('puzzle')",sandbox),true);
 const clone=()=>structuredClone(base);
-const invalid=[s=>s.schemaVersion=99,s=>s.schemaVersion=0,s=>s.schoolName='<x>\u0000',s=>s.schoolName='x'.repeat(101),
- s=>s.ageGroups=[],s=>s.ageGroups=['6-10'],s=>s.themes=[],s=>s.themes=['unimplemented'],s=>s.themes=['theme','theme'],
+const invalid=[s=>s.schemaVersion=2,s=>s.schemaVersion=0,s=>s.formEnabled=1,s=>s.formEnabled=undefined,s=>s.levels.form=[],s=>s.schoolName='<x>\u0000',s=>s.schoolName='x'.repeat(101),
+ s=>s.ageGroups=[],s=>s.ageGroups=['6-10'],s=>s.themes=[],s=>s.themes=['unavailable'],s=>s.themes=['theme','theme'],
  s=>s.levels.theme=[],s=>s.levels.groove=[5],s=>s.levels.create=[2],s=>s.levels.puzzle=[true],
  s=>s.defaultLanguage='de',s=>s.colourPreset='custom-css',s=>s.logo='https://example.test/logo.png',
  s=>s.logo='data:image/svg+xml;base64,PHN2Zy8+',s=>s.logo='data:image/png;base64,YmFk',
@@ -53,7 +72,7 @@ for(const preset of Object.values(SC.presets)){
 }
 const temp=fs.mkdtempSync(path.join(os.tmpdir(),'school-invalid-'));
 try{
- const file=path.join(temp,'bad.json'),output=path.join(temp,'pupil');fs.writeFileSync(file,JSON.stringify({...clone(),themes:['unimplemented']}));
+ const file=path.join(temp,'bad.json'),output=path.join(temp,'pupil');fs.writeFileSync(file,JSON.stringify({...clone(),themes:['unavailable']}));
  const run=spawnSync(process.env.PYTHON||'python3',['translate.py','--school-settings',file,'--output',output,'--no-admin'],{encoding:'utf8'});
  assert.notEqual(run.status,0);assert.match(run.stderr,/temaval/);assert.equal(fs.existsSync(output),false,'Invalid config must not create a pupil output');
  const broken=Buffer.from(validLogo.slice(22),'base64');broken[broken.length-1]^=1;

@@ -28,7 +28,7 @@
   if(typeof raw!=='string'||raw.length>policy.maxTotalBytes*1.5||!/^([a-f0-9]{64})$/.test(expectedHash))fail('Ugyldig grunnpakke.');
   if(await hash(encoder.encode(raw))!==expectedHash)fail('Grunnpakken er endra eller skadd.');
   const manifest=JSON.parse(raw);
-  if(!keys(manifest,['formatVersion','settingsSchemaVersion','sourceHash','pupilRelease','files'])||manifest.formatVersion!==1||manifest.settingsSchemaVersion!==2||manifest.pupilRelease!=='BLOCKED'||!/^[a-f0-9]{64}$/.test(manifest.sourceHash)||!Array.isArray(manifest.files)||manifest.files.length!==policy.templatePaths.length)fail('Grunnpakken er ikkje støtta.');
+  if(!keys(manifest,['formatVersion','settingsSchemaVersion','sourceHash','pupilRelease','files'])||manifest.formatVersion!==1||manifest.settingsSchemaVersion!==4||manifest.pupilRelease!=='BLOCKED'||!/^[a-f0-9]{64}$/.test(manifest.sourceHash)||!Array.isArray(manifest.files)||manifest.files.length!==policy.templatePaths.length)fail('Grunnpakken er ikkje støtta.');
   const files=Object.create(null);
   for(const entry of manifest.files){
    if(!keys(entry,['path','size','sha256','base64'])||!policy.templatePaths.includes(entry.path)||Object.hasOwn(files,entry.path))fail('Ugyldig filmanifest.');

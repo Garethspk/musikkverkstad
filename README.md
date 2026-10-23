@@ -1,13 +1,37 @@
-# Issue 14 — Theme 03 implementation prototype
+# Issue18 — combined Conversation and Form integration (draft review)
 
-Theme 03 adds one-bar retain/change listening, purposeful fragment construction and
-ungraded create/listen/revise, with optional exact-copy Echo. Four freely selectable
-configurations vary the musical relation or pupil agency, not playback speed or
-memory length. See [the exact musical contract](docs/theme-03.md) and
-[the independent AI review record](docs/curriculum/issue14-reviews.md).
-Human musical validation, teacher adoption and pupil/device review remain PENDING;
-pupil release is **BLOCKED**. PR #9 remains draft and unmerged. No deployment or
-pupil distribution is part of this increment.
+The unified source preserves Theme01/02, adds reviewed bounded Theme03 from PR15,
+and retains Formverkstad as an auxiliary visual activity. No musical predicates or
+material are changed in either module. Three numbered themes and auxiliary Form
+have independent entrances, enabled levels, progress and saved before/current work.
+Echo remains separate narrow practice; creation stays ungraded.
+
+School schema4 independently validates v1/v2/v3 shapes, preserving old branding and
+restrictions without enabling newly introduced content. Both optional progress fields
+coexist; missing older fields preserve newer work independently, invalid imports
+reject atomically, and legacy Echo is not relabelled as conversation completion.
+The teacher kit remains Theme02-only. See the [migration matrix and boundaries](docs/integration-18/README.md)
+and [four independent non-human reviews](docs/integration-18/reviews.md).
+
+The existing draft PR15 is updated with the reviewed integration, preserving its
+history without a force push. PR9 is unchanged. No GitHub PR is merged; nothing
+is deployed or released.
+Human teacher/adoption, pupil, physical-device/assistive-technology validation remain
+PENDING; pupil release BLOCKED. Exact-head tests/CI are recorded in the draft PR.
+Earlier milestone entries below are historical and superseded for integration status.
+
+---
+
+# Issue16 — visual Formverkstad prototype
+
+Formverkstad adds visual musical-form puzzles, construction and ungraded map
+creation/revision. It is an auxiliary activity beside the existing two themes,
+with freely selected configurations and no required sound. See the
+[reviewed design and eleven worked cases](docs/form-design/README.md),
+[independent AI critiques](docs/form-design/reviews.md) and
+[school compatibility/PR15 integration plan](docs/form-design/integration.md).
+Human educational/adoption/device evidence remains PENDING; pupil release BLOCKED.
+PR #15 is separate and unmerged. No deployment or pupil distribution is included.
 
 # Phase 3 — pupil navigation and Theme 02 progress
 
@@ -58,8 +82,7 @@ requires only a local HTTP server, with no npm installation.
 
 This export contains the exact application source and existing built files from
 commit a05488709923114a3fa20011f1519b9c2561f198 (published version 19).
-Read PROJECT_STATUS.md first: the historical imported snapshot lacked Theme 03;
-the Issue 14 implementation above is a later development increment.
+Read PROJECT_STATUS.md first: Theme 03 is not present in the saved application.
 The application was not rebuilt or redesigned for export. The original README
 is preserved verbatim at docs/README_WORK_ORIGINAL.md and also follows below.
 

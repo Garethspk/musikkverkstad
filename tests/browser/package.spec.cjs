@@ -46,14 +46,6 @@ test('real candidate preview, viewport sizes, local audio and browser ZIP downlo
   const html=fs.readFileSync(path.join(result.folder,locale+'.html'),'utf8');expect(html).not.toContain('previewBootstrap');expect(html).not.toContain('SchoolPackage');
   await page.goto(result.url+locale+'.html');await expect(page.locator('#schoolIdentity')).toHaveText('Fjord skule');await expect(page.locator('html')).toHaveAttribute('lang',locale);
   expect(await page.locator('.brand img').evaluate(img=>img.naturalWidth)).toBe(32);
-  // Exercise the newly implemented content in the actual downloaded/extracted ZIP.
-  await page.locator('#themeSelect').selectOption('2');
-  await expect(page.locator('[data-cv-action="mode"]')).toHaveCount(3);
-  await page.locator('[data-cv-action="mode"][data-cv-value="create"]').click();
-  await page.locator('[data-cv-note="3"]').selectOption('69');
-  await page.locator('[data-cv-action="save"]').click();
-  expect(await page.evaluate(()=>data.conversationPractice.creations.at(-1).response.map(e=>e.notes))).toEqual([60,62,64,69]);
-  expect(await page.evaluate(()=>schoolSettings.schemaVersion)).toBe(2);
  }
  await audio(page);expect(await page.evaluate(()=>__audioEvents.some(e=>e.kind==='start'&&e.frames>1000))).toBe(true);
  expect((await page.request.get(result.url+'setup/index.html')).status()).toBe(404);
@@ -129,4 +121,30 @@ test('language replacement followed by scroll and one trusted pointer downloads 
   expect(JSON.parse(fs.readFileSync(path.join(result.folder,'school-settings.json'))).defaultLanguage).toBe('en');
   await expect(page.locator('#pupilPreview')).toHaveAttribute('sandbox','allow-scripts');
  }
+});
+
+test('Form availability and levels agree in isolated school preview and extracted ZIP',async({page},info)=>{
+ await open(page);const settings=SC.defaults();settings.defaultLanguage='en';settings.formEnabled=true;settings.levels.form=[2,4];
+ await page.locator('#settingsFile').setInputFiles({name:'form-school.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(settings))});await expect(page.locator('#message')).toContainText('importerte');
+ let frame=await preview(page);await expect(frame.locator('#themeSelect option')).toHaveCount(3);await frame.locator('[data-go="form"]').click();
+ await expect(frame.locator('[data-fo-action="mode"]')).toHaveCount(3);await expect(frame.locator('[data-fo-action="level"]')).toHaveCount(2);await expect(frame.locator('[data-fo-action="level"][data-fo-value="2"]')).toHaveAttribute('aria-pressed','true');
+ const enabled=await download(page,info);expect(JSON.parse(fs.readFileSync(path.join(enabled.folder,'school-settings.json'))).formEnabled).toBe(true);
+ await page.goto(enabled.url+'en.html');await page.locator('[data-go="form"]').click();await expect(page.locator('[data-fo-action="level"]')).toHaveCount(2);await expect(page.locator('[data-fo-action="level"][data-fo-value="2"]')).toHaveAttribute('aria-pressed','true');
+ await open(page);settings.formEnabled=false;await page.locator('#settingsFile').setInputFiles({name:'disabled-form.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(settings))});await expect(page.locator('#message')).toContainText('importerte');frame=await preview(page);await expect(frame.locator('[data-go="form"]')).toHaveCount(0);
+ await frame.locator('body').evaluate(()=>go('form'));expect(await frame.locator('body').evaluate(()=>route)).toBe('theme');
+ const disabled=await download(page,info);expect(JSON.parse(fs.readFileSync(path.join(disabled.folder,'school-settings.json'))).formEnabled).toBe(false);
+ await page.goto(disabled.url+'en.html');await expect(page.locator('[data-go="form"]')).toHaveCount(0);await page.evaluate(()=>go('form'));expect(await page.evaluate(()=>route)).toBe('theme');
+});
+
+test('combined Conversation and Form school preview and ZIP preserve both availability boundaries',async({page},info)=>{
+ await open(page);const settings=SC.defaults();settings.defaultLanguage='en';settings.formEnabled=true;settings.levels.form=[2,4];settings.levels.conversation=[2,4];
+ await page.locator('#settingsFile').setInputFiles({name:'combined.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(settings))});await expect(page.locator('#message')).toContainText('importerte');
+ const frame=await preview(page);await expect(frame.locator('#themeSelect option')).toHaveCount(3);await frame.locator('[data-go="form"]').click();await expect(frame.locator('[data-fo-action="level"]')).toHaveCount(2);
+ await frame.locator('#themeSelect').selectOption('2');await expect(frame.locator('[data-cv-action="mode"]')).toHaveCount(3);await expect(frame.locator('[data-cv-action="level"]')).toHaveCount(2);
+ await frame.locator('[data-cv-action="call"]').click();await expect.poll(()=>frame.locator('body').evaluate(()=>!cv.busy&&buffers?.length===5),{timeout:12000}).toBe(true);
+ const enabled=await download(page,info);expect(enabled.manifest.pupilRelease).toBe('BLOCKED');await page.goto(enabled.url+'en.html');await page.locator('[data-go="form"]').click();await expect(page.locator('[data-fo-action="level"]')).toHaveCount(2);
+ await page.selectOption('#themeSelect','2');await expect(page.locator('[data-cv-action="level"]')).toHaveCount(2);await page.locator('[data-cv-action="call"]').click();await expect.poll(()=>page.evaluate(()=>!cv.busy&&buffers?.length===5),{timeout:12000}).toBe(true);
+ await open(page);settings.themes=['groove'];settings.formEnabled=false;await page.locator('#settingsFile').setInputFiles({name:'both-disabled.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(settings))});await expect(page.locator('#message')).toContainText('importerte');const restricted=await preview(page);
+ await expect(restricted.locator('#themeSelect option')).toHaveCount(1);await expect(restricted.locator('[data-go="form"]')).toHaveCount(0);expect(await restricted.locator('body').evaluate(()=>{go('conversation');go('form');return {route,conversation:scRouteAllowed('conversation'),form:scRouteAllowed('form')};})).toEqual({route:'groove',conversation:false,form:false});
+ const disabled=await download(page,info);await page.goto(disabled.url+'en.html');expect(await page.evaluate(()=>{go('conversation');go('form');return {route,conversation:scRouteAllowed('conversation'),form:scRouteAllowed('form')};})).toEqual({route:'groove',conversation:false,form:false});await expect(page.locator('[data-cv-action], [data-fo-action]')).toHaveCount(0);
 });

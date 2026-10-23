@@ -10,8 +10,8 @@ const nvWords={
 function nvText(k){return nvWords[k][document.documentElement.lang==='en'?2:document.documentElement.lang==='nb'?1:0]}
 function nvValid(v){
  if(!v||typeof v!=='object'||Array.isArray(v)||Object.keys(v).some(k=>!['route','level','mode'].includes(k)))return null;
- if(!['theme','groove','conversation','rhythm','melody','harmony','puzzle','notation','create'].includes(v.route)||!Number.isInteger(v.level)||v.level<1||v.level>4)return null;
- const modes=v.route==='theme'?['listen','rebuild','create']:v.route==='groove'?['listen','repair','create']:v.route==='conversation'?['listen','build','create']:null;
+ if(!['theme','groove','conversation','form','rhythm','melody','harmony','puzzle','notation','create'].includes(v.route)||!Number.isInteger(v.level)||v.level<1||v.level>4)return null;
+ const modes=v.route==='theme'?['listen','rebuild','create']:v.route==='groove'?['listen','repair','create']:v.route==='form'?['puzzle','build','create']:v.route==='conversation'?['listen','build','create']:null;
  if(modes?!modes.includes(v.mode):v.mode!==undefined)return null;
  if(v.route==='create'&&v.level!==1)return null;
  if(!scRouteAllowed(v.route))return null;
@@ -25,6 +25,7 @@ function nvRemember(){let value;
  if(route==='theme')value={route,level:thState.level,mode:thState.section};
  else if(route==='groove')value={route,level:gr.level,mode:gr.mode};
  else if(route==='conversation')value={route,level:cv.level,mode:cv.mode};
+ else if(route==='form')value={route,level:fo.level,mode:fo.mode};
  else if(['rhythm','melody','harmony'].includes(route))value={route,level:data.levels[route]};
  else if(route==='puzzle')value={route,level:pp.level};
  else if(route==='notation')value={route,level:nm.level};
@@ -44,6 +45,7 @@ function nvContinue(){const v=nvValid(nvLast);if(!v){nvStart();return}stopAudio(
  if(v.route==='theme'){thState.screen='explore';thState.level=v.level;thState.section=v.mode;thNew()}
  else if(v.route==='groove'){gr.level=v.level;gr.mode=v.mode;grNew()}
  else if(v.route==='conversation'){cv.level=v.level;cv.mode=v.mode;cvNew()}
+ else if(v.route==='form'){fo.level=v.level;fo.mode=v.mode;foNew()}
  else if(v.route==='puzzle'){pp.level=v.level;ppNew()}
  else if(v.route==='notation'){nm.level=v.level;nmNew()}
  else if(['rhythm','melody','harmony'].includes(v.route))data.levels[v.route]=v.level;

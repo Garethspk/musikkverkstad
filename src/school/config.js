@@ -12,6 +12,7 @@
     {id:'rhythm', implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', name:'Rytmereparatøren', levels:[1,2,3,4]},
     {id:'melody', implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', name:'Melodidetektiven', levels:[1,2,3,4]},
     {id:'harmony', implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', name:'Finn heim', levels:[1,2,3,4]},
+    {id:'form', implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', name:'Formverkstad', levels:[1,2,3,4]},
     {id:'puzzle', implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', name:'Melodipuslespel', levels:[1,2,3,4]},
     {id:'notation', implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', name:'Lyd og notar', levels:[1,2,3,4]},
     {id:'create', implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', name:'Fri melodiverkstad', levels:[1]},
@@ -99,27 +100,35 @@
     canonicalPNG(b);
     return value;
   }
-  function defaults() { return {schemaVersion:2,schoolName:'',logo:null,defaultLanguage:'nn',colourPreset:'original',ageGroups:['11-13'],themes:availableRegistry.filter(r=>r.theme).map(r=>r.id),levels:Object.fromEntries(availableRegistry.map(r=>[r.id,[...r.levels]]))}; }
+  // Historical shapes are explicit: draft branches must never imply new-content consent.
+  const oldIDs=['theme','groove','rhythm','melody','harmony','puzzle','notation','create'];
+  const commonKeys=['schemaVersion','schoolName','logo','defaultLanguage','colourPreset','ageGroups','themes','levels'];
+  function defaults() { return {schemaVersion:4,formEnabled:availableRegistry.some(r=>r.id==='form'),schoolName:'',logo:null,defaultLanguage:'nn',colourPreset:'original',ageGroups:['11-13'],themes:availableRegistry.filter(r=>r.theme).map(r=>r.id),levels:Object.fromEntries(availableRegistry.map(r=>[r.id,[...r.levels]]))}; }
   function validate(value) {
-    object(value,['schemaVersion','schoolName','logo','defaultLanguage','colourPreset','ageGroups','themes','levels'],'skuleinnstillingar');
-    if(value.schemaVersion===1){
-      // Earlier school packages had only Themes 01/02. Never enable newly added content.
-      if(!Array.isArray(value.themes)||value.themes.some(id=>!['theme','groove'].includes(id)))fail('Ugyldig eldre temaval.');
-      object(value.levels,availableRegistry.filter(r=>r.id!=='conversation').map(r=>r.id),'eldre nivåval');
-      value={...value,schemaVersion:2,levels:{...value.levels,conversation:[1,2,3,4]}};
+    if(!value||![1,2,3,4].includes(value.schemaVersion))fail('Denne versjonen av skuleinnstillingane er ikkje støtta.');
+    const version=value.schemaVersion;
+    object(value,version===1||version===2?commonKeys:[...commonKeys,'formEnabled'],'skuleinnstillingar');
+    if(version<4){
+      const ids=[...oldIDs,...(version===2?['conversation']:version===3?['form']:[])];
+      object(value.levels,ids,'eldre nivåval');
+      const levels=Object.fromEntries(ids.map(id=>[id,list(value.levels[id],id==='create'?[1]:[1,2,3,4],'eldre nivå for '+id)]));
+      const themes=list(value.themes,version===2?['theme','groove','conversation']:['theme','groove'],'eldre temaval');
+      if(version===3&&typeof value.formEnabled!=='boolean')fail('Ugyldig val for Formverkstad.');
+      for(const id of ['conversation','form'])if(!Object.hasOwn(levels,id)&&availableRegistry.some(r=>r.id===id))levels[id]=[1,2,3,4];
+      value={...value,schemaVersion:4,formEnabled:version===3?value.formEnabled:false,themes,levels};
     }
-    if(value.schemaVersion!==2)fail('Denne versjonen av skuleinnstillingane er ikkje støtta.');
+    if(typeof value.formEnabled!=='boolean'||value.formEnabled&&!availableRegistry.some(r=>r.id==='form'))fail('Ugyldig val for Formverkstad.');
     if(typeof value.schoolName!=='string'||value.schoolName.length>100||/[\u0000-\u001f\u007f]/.test(value.schoolName))fail('Skulenamnet må vere tekst på høgst 100 teikn.');
     if(!['nn','nb','en'].includes(value.defaultLanguage))fail('Ugyldig språk.');
     if(!Object.hasOwn(presets,value.colourPreset))fail('Ugyldig fargeval.');
     object(value.levels,availableRegistry.map(r=>r.id),'nivåval');
-    return {schemaVersion:2,schoolName:value.schoolName.trim(),logo:logoValue(value.logo),defaultLanguage:value.defaultLanguage,colourPreset:value.colourPreset,
+    return {schemaVersion:4,formEnabled:value.formEnabled,schoolName:value.schoolName.trim(),logo:logoValue(value.logo),defaultLanguage:value.defaultLanguage,colourPreset:value.colourPreset,
       ageGroups:list(value.ageGroups,ageGroups,'aldersgruppe'), themes:list(value.themes,availableRegistry.filter(r=>r.theme).map(r=>r.id),'temaval'),
       levels:Object.fromEntries(availableRegistry.map(r=>[r.id,list(value.levels[r.id],r.levels,'nivå for '+r.name)]))};
   }
   function hasRestrictions(value){
     const settings=validate(value);
-    return availableRegistry.some(item => (item.theme&&!settings.themes.includes(item.id)) ||
+    return !settings.formEnabled || availableRegistry.some(item => (item.theme&&!settings.themes.includes(item.id)) ||
       item.levels.some(level=>!settings.levels[item.id].includes(level)));
   }
   function parse(text) {
