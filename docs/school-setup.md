@@ -1,3 +1,15 @@
+## Week 2 scope (Issue #25)
+
+School settings stay at schema6. The existing programme toggle/configurations now
+govern implemented Weeks1–2 together. Form detective additionally requires Form
+enabled with configuration1 or4; otherwise it explains unavailability while the
+other Week2 tasks remain independent. No new administrator task or pupil data is
+added to settings. Historical imports retain their programme/Form restrictions.
+The pupil-only ZIP/isolated preview uses the same Week2 source; teacher-review kit
+still disables programme and includes only Theme02. Week3 is not implemented.
+See [Week2 contract](week-2/README.md); human validation PENDING/release BLOCKED.
+Earlier descriptions below are historical where they describe Week1-only content.
+
 > **Issue23 integration notice:** [Current schema6 and combined availability](integration-23/README.md)
 > supersede the branch-only schema/availability/integration-status statements below.
 > The historical musical contract and review provenance remain; old test outcomes

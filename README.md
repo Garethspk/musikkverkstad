@@ -1,3 +1,7 @@
+Week 2 development increment: [three mixed activities and compatibility](docs/week-2/README.md)
+with [four AI critiques](docs/week-2/reviews.md). Weeks1–2 only; Week3 remains a
+documented follow-up. Human validation PENDING, pupil release BLOCKED.
+
 # Issue23 — combined integration (draft review)
 
 The [current integration contract and schema6 matrix](docs/integration-23/README.md)

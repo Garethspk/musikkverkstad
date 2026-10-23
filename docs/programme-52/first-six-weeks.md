@@ -1,3 +1,8 @@
+Current implementation update (Issue #25): consolidated main includes Theme03 and
+Week1. This branch implements [Week2](../week-2/README.md); Week3 below remains a
+proposal only. Historical PR15 references below are provenance, not current
+unavailability. Human validation PENDING and pupil release BLOCKED.
+
 # Six-week implementation backlog — 18 separately playable slots
 
 **Design backlog, not implemented content.** Each row is an independently accessible optional 3–5 minute experience, with a single meaningful stop after one decision, construction or revision. Multiple valid musical constructions must all be accepted; open interpretation/creation is ungraded. Labels and examples need human music/teacher review, exact NN/NB/EN authoring and accessible keyboard/touch. Current implementation: Formverkstad/Theme02 on main; Theme03 on draft PR15; remaining games proposed.

@@ -1,3 +1,14 @@
+## Week 2 optional archive (Issue #25)
+
+`week2Practice` is a separate version1 extension; see the [exact contract](week-2/README.md).
+Missing older-backup fields preserve newer Week2 independently, including when
+Week1/Theme02/Form/Conversation are present. Explicit valid Week2 replaces only
+after confirmation; invalid siblings abort all mutation. Settings/language changes
+preserve saved plans; current school restrictions control reopening. Counts describe
+objective practice only; scenarios save ungraded before/current strategy choices,
+not observed performance or mastery. Pupil data remains local and separate from
+school settings. Unfinished objective answers are not restored.
+
 > **Issue23 integration notice:** [Current schema6 and combined availability](integration-23/README.md)
 > supersede the branch-only schema/availability/integration-status statements below.
 > The historical musical contract and review provenance remain; old test outcomes
