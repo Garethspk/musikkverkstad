@@ -1,3 +1,8 @@
+> **Issue23 integration notice:** [Current schema6 and combined availability](../integration-23/README.md)
+> supersede the branch-only schema/availability/integration-status statements below.
+> The historical musical contract and review provenance remain; old test outcomes
+> do not certify the new candidate. Human validation PENDING; pupil release BLOCKED.
+
 # Issue16 integration and PR15 separation
 
 This branch starts at main `da129a711e196adf97e742fa6a5ac74382e96977`.

@@ -1,3 +1,21 @@
+> **Issue23 integration notice:** [Current schema6 and combined availability](integration-23/README.md)
+> supersede the branch-only schema/availability/integration-status statements below.
+> The historical musical contract and review provenance remain; old test outcomes
+> do not certify the new candidate. Human validation PENDING; pupil release BLOCKED.
+
+## Phase0 optional week progress (draft implementation)
+
+`programmePractice` version1 stores selected configuration, bounded completed pulse/
+symbol round counts and up to20 explicit rhythm saves with slot/challenge revision,
+brief, division/current pattern and optional before-version. Creative and physical
+choices are ungraded. Full silence is supported here without changing Theme02's
+older binary-rhythm storage semantics. No unfinished-round recovery is promised.
+Missing older-backup fields preserve newer week work; explicit valid confirmed fields
+replace it; invalid siblings reject the whole import before mutation; cancellation
+changes nothing. Language/branding changes preserve saves; unavailable work remains
+exportable but cannot reopen. Raw damaged storage is protected and denied storage
+keeps temporary work for export. Human validation PENDING; pupil release BLOCKED.
+
 # Phase 3 progress and navigation
 
 Theme 01's existing activity/level cards now appear on welcome and quick screens as

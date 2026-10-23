@@ -8,7 +8,7 @@ async function reviewOpen(locale='nn'){
  try{
   const embedded=reviewElement('school-template');
   const template=await SchoolPackage.openTemplate(embedded.textContent,embedded.dataset.sha256);
-  const settings=SchoolConfig.defaults();settings.formEnabled=false;settings.schoolName='Stord kulturskule · LÆRARTEST · IKKJE FOR ELEVAR';settings.themes=['groove'];settings.defaultLanguage='nn';
+  const settings=SchoolConfig.defaults();settings.formEnabled=false;settings.programmeEnabled=false;settings.schoolName='Stord kulturskule · LÆRARTEST · IKKJE FOR ELEVAR';settings.themes=['groove'];settings.defaultLanguage='nn';
   const prepared=await SchoolPackage.prepare(template,settings);
   const session=Array.from(crypto.getRandomValues(new Uint8Array(16)),b=>b.toString(16).padStart(2,'0')).join('');
   const source=await SchoolPackage.previewDocument(prepared,locale,session);

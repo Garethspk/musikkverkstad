@@ -76,7 +76,7 @@ for (const [locale, title] of [['nn', 'Formverkstad'], ['nb', 'Formverksted'], [
     const noAudio = await monitorNoAudio(page);
     await openForm(page, locale);
     await expect(page.locator('h1')).toHaveText(title);
-    await expect(page.locator('#themeSelect option')).toHaveCount(2);
+    await expect(page.locator('#themeSelect option')).toHaveCount(3);
     // No scroll or forced interaction: the first musical card must already
     // intersect the initial desktop/mobile viewport in every locale.
     await expect(page.locator('.fo-candidate [data-fo-section]').first()).toBeInViewport();

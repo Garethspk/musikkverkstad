@@ -12,5 +12,6 @@ assert(!html.includes('id="settingsForm"'));assert(!html.includes('id="downloadP
 assert.deepEqual(require('../src/school/package-policy.json').templatePaths.filter(p=>/teacher|review/.test(p)),[]);
 assert(!JSON.parse(template).files.some(f=>/teacher|review/.test(f.path)));
 assert(fs.readFileSync('src/school/teacher-review.js','utf8').includes('settings.formEnabled=false'),'Original adult entry must exclude the new auxiliary activity');
-assert(!fs.readFileSync('src/school/config.js','utf8').includes("id:'conversation'"));
+assert(fs.readFileSync('src/school/teacher-review.js','utf8').includes('settings.programmeEnabled=false'));
+assert(fs.readFileSync('src/school/config.js','utf8').includes("id:'conversation'"));assert(fs.readFileSync('src/school/teacher-review.js','utf8').includes("settings.themes=['groove']"));
 console.log('PASS: private adult entry identity, pinned template, no admin controls, no pupil allowlist expansion or Theme 03');
