@@ -1,3 +1,8 @@
+> **Issue23 integration notice:** [Current schema6 and combined availability](../integration-23/README.md)
+> supersede the branch-only schema/availability/integration-status statements below.
+> The historical musical contract and review provenance remain; old test outcomes
+> do not certify the new candidate. Human validation PENDING; pupil release BLOCKED.
+
 # Formverkstad — visual musical form, Issue #16
 
 **Pre-code design, revision 2 · 22 October 2026.** The four independent first

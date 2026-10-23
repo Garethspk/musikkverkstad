@@ -4,8 +4,8 @@ const {execFileSync}=require('node:child_process');
 const SC=require('../src/school/config.js');
 module.exports=async function(){
  const root=path.resolve(__dirname,'..');
- for(const theme of ['theme','groove','form','form-level3','updated']){
-  const settings=SC.defaults();settings.schoolName='Ås skule <img src=x onerror=alert(1)>';settings.logo='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGNQaPj/HwAFAgKfdqhGyQAAAABJRU5ErkJggg==';settings.defaultLanguage='nb';settings.colourPreset='blue';settings.themes=[theme==='updated'||theme.startsWith('form')?'groove':theme];settings.formEnabled=theme.startsWith('form');
+ for(const theme of ['theme','groove','conversation','form','form-level3','programme','programme-disabled','combined','combined-none','combined-no-conversation','combined-no-form','combined-no-programme','updated']){
+  const settings=SC.defaults();settings.schoolName='Ås skule <img src=x onerror=alert(1)>';settings.logo='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGNQaPj/HwAFAgKfdqhGyQAAAABJRU5ErkJggg==';settings.defaultLanguage='nb';settings.colourPreset='blue';settings.themes=['combined','combined-no-form','combined-no-programme'].includes(theme)?['theme','groove','conversation']:['theme','groove','conversation'].includes(theme)?[theme]:['groove'];settings.formEnabled=theme.startsWith('form')||['combined','combined-no-conversation','combined-no-programme'].includes(theme);settings.programmeEnabled=theme==='programme'||['combined','combined-no-conversation','combined-no-form'].includes(theme);
   if(theme==='updated'){settings.schoolName='Oppdatert skule';settings.defaultLanguage='nn';settings.colourPreset='gold';}
   for(const item of SC.registry)if(item.id!=='create')settings.levels[item.id]=[2,4];
   if(theme==='updated')settings.levels.groove=[2];

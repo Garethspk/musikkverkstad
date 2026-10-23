@@ -8,7 +8,7 @@ function buildOptions(){
   for(const item of SC.availableRegistry){
     const group=document.createElement('fieldset'), legend=document.createElement('legend');legend.textContent=item.name;group.append(legend);
     if(item.theme){const label=document.createElement('label'),check=document.createElement('input');check.type='checkbox';check.id='theme-'+item.id;label.append(check,' Ta med temaet');group.append(label);}
-    if(item.id==='form'){const label=document.createElement('label'),check=document.createElement('input');check.type='checkbox';check.id='formEnabled';label.append(check,' Ta med Formverkstad');group.append(label);}
+    if(['form','programme'].includes(item.id)){const label=document.createElement('label'),check=document.createElement('input');check.type='checkbox';check.id=item.id+'Enabled';label.append(check,' Ta med '+item.name);group.append(label);}
     const levels=document.createElement('div');levels.className='levels';
     for(const level of item.levels){const label=document.createElement('label'),check=document.createElement('input');check.type='checkbox';check.id=`level-${item.id}-${level}`;label.append(check,'Nivå '+level);levels.append(label);}
     group.append(levels);byId('contentOptions').append(group);
@@ -16,13 +16,13 @@ function buildOptions(){
 }
 function render(value){
   invalidatePackage();
-  current=value;if(byId('formEnabled'))byId('formEnabled').checked=value.formEnabled;byId('schoolName').value=value.schoolName;byId('defaultLanguage').value=value.defaultLanguage;byId('colourPreset').value=value.colourPreset;
+  current=value;if(byId('programmeEnabled'))byId('programmeEnabled').checked=value.programmeEnabled;if(byId('formEnabled'))byId('formEnabled').checked=value.formEnabled;byId('schoolName').value=value.schoolName;byId('defaultLanguage').value=value.defaultLanguage;byId('colourPreset').value=value.colourPreset;
   for(const item of SC.availableRegistry){if(item.theme)byId('theme-'+item.id).checked=value.themes.includes(item.id);for(const level of item.levels)byId(`level-${item.id}-${level}`).checked=value.levels[item.id].includes(level);}
   byId('advancedSettings').open=SC.hasRestrictions(value);
   contentStatus();
   byId('logoImage').hidden=!value.logo;if(value.logo)byId('logoImage').src=value.logo;else byId('logoImage').removeAttribute('src');
 }
-function read(){return SC.validate({schemaVersion:3,formEnabled:byId('formEnabled')?.checked??false,schoolName:byId('schoolName').value,logo:current.logo,defaultLanguage:byId('defaultLanguage').value,colourPreset:byId('colourPreset').value,ageGroups:[...current.ageGroups],themes:SC.availableRegistry.filter(r=>r.theme&&byId('theme-'+r.id).checked).map(r=>r.id),levels:Object.fromEntries(SC.availableRegistry.map(r=>[r.id,r.levels.filter(l=>byId(`level-${r.id}-${l}`).checked)]))});}
+function read(){return SC.validate({schemaVersion:6,programmeEnabled:byId('programmeEnabled')?.checked??false,formEnabled:byId('formEnabled')?.checked??false,schoolName:byId('schoolName').value,logo:current.logo,defaultLanguage:byId('defaultLanguage').value,colourPreset:byId('colourPreset').value,ageGroups:[...current.ageGroups],themes:SC.availableRegistry.filter(r=>r.theme&&byId('theme-'+r.id).checked).map(r=>r.id),levels:Object.fromEntries(SC.availableRegistry.map(r=>[r.id,r.levels.filter(l=>byId(`level-${r.id}-${l}`).checked)]))});}
 function contentStatus(){
   try{byId('contentSummary').textContent=SC.hasRestrictions(read())
     ? 'Dette oppsettet har avgrensingar. Sjå «Avanserte innstillingar». Avgrensingane blir tekne vare på ved lagring og nedlasting.'

@@ -4,9 +4,9 @@ const vm=require('node:vm');
 const SC=require('../src/school/config.js');
 const base=SC.defaults();
 assert.deepEqual(SC.parse(JSON.stringify(base)),base);
-assert.deepEqual(SC.registry.filter(r=>r.theme).map(r=>r.id),['theme','groove']);
+assert.deepEqual(SC.registry.filter(r=>r.theme).map(r=>r.id),['theme','groove','conversation']);
 const olderSettings=require('./fixtures/school-v1-restricted.json');
-const migrated=SC.parse(JSON.stringify(olderSettings));assert.equal(migrated.schemaVersion,3);assert.equal(migrated.formEnabled,false);assert.deepEqual(migrated.themes,olderSettings.themes);for(const id of Object.keys(olderSettings.levels))assert.deepEqual(migrated.levels[id],olderSettings.levels[id]);assert.deepEqual(migrated.levels.form,[1,2,3,4]);assert.equal(base.formEnabled,true);assert.throws(()=>SC.validate({...olderSettings,formEnabled:true}),'Old input must not inject new fields');
+const migrated=SC.parse(JSON.stringify(olderSettings));assert.equal(migrated.schemaVersion,6);assert.equal(migrated.formEnabled,false);assert.deepEqual(migrated.themes,olderSettings.themes);for(const id of Object.keys(olderSettings.levels))assert.deepEqual(migrated.levels[id],olderSettings.levels[id]);assert.deepEqual(migrated.levels.form,[1,2,3,4]);assert.equal(base.formEnabled,true);assert.throws(()=>SC.validate({...olderSettings,formEnabled:true}),'Old input must not inject new fields');
 assert.equal(SC.hasRestrictions(olderSettings),true);
 assert.equal(SC.hasRestrictions(base),false);
 assert.deepEqual(base.themes,SC.availableRegistry.filter(r=>r.theme).map(r=>r.id));
@@ -23,11 +23,11 @@ assert.equal(vm.runInContext("scLevels('rhythm').length",sandbox),0,'Revoked act
 assert.equal(vm.runInContext("scRouteAllowed('puzzle')",sandbox),true);
 const clone=()=>structuredClone(base);
 const invalid=[s=>s.schemaVersion=2,s=>s.schemaVersion=0,s=>s.formEnabled=1,s=>s.formEnabled=undefined,s=>s.levels.form=[],s=>s.schoolName='<x>\u0000',s=>s.schoolName='x'.repeat(101),
- s=>s.ageGroups=[],s=>s.ageGroups=['6-10'],s=>s.themes=[],s=>s.themes=['conversation'],s=>s.themes=['theme','theme'],
+ s=>s.ageGroups=[],s=>s.ageGroups=['6-10'],s=>s.themes=[],s=>s.themes=['future-theme-04'],s=>s.themes=['theme','theme'],
  s=>s.levels.theme=[],s=>s.levels.groove=[5],s=>s.levels.create=[2],s=>s.levels.puzzle=[true],
  s=>s.defaultLanguage='de',s=>s.colourPreset='custom-css',s=>s.logo='https://example.test/logo.png',
  s=>s.logo='data:image/svg+xml;base64,PHN2Zy8+',s=>s.logo='data:image/png;base64,YmFk',
- s=>s.pupilData={},s=>s.levels.conversation=[1]];
+ s=>s.pupilData={},s=>s.levels.futureTheme=[1]];
 for(const change of invalid){const value=clone();change(value);assert.throws(()=>SC.validate(value));}
 assert.throws(()=>SC.parse('{'));
 assert.throws(()=>SC.parse(' '.repeat(SC.MAX_JSON+1)));
@@ -51,7 +51,7 @@ for(const preset of Object.values(SC.presets)){
 }
 const temp=fs.mkdtempSync(path.join(os.tmpdir(),'school-invalid-'));
 try{
- const file=path.join(temp,'bad.json'),output=path.join(temp,'pupil');fs.writeFileSync(file,JSON.stringify({...clone(),themes:['conversation']}));
+ const file=path.join(temp,'bad.json'),output=path.join(temp,'pupil');fs.writeFileSync(file,JSON.stringify({...clone(),themes:['future-theme-04']}));
  const run=spawnSync(process.env.PYTHON||'python3',['translate.py','--school-settings',file,'--output',output,'--no-admin'],{encoding:'utf8'});
  assert.notEqual(run.status,0);assert.match(run.stderr,/temaval/);assert.equal(fs.existsSync(output),false,'Invalid config must not create a pupil output');
  const broken=Buffer.from(validLogo.slice(22),'base64');broken[broken.length-1]^=1;

@@ -1,3 +1,33 @@
+# Issue23 — combined integration (draft review)
+
+The [current integration contract and schema6 matrix](docs/integration-23/README.md)
+reconcile exact PR15 `e451194` and PR22 `e48480d` with main `8af7a24`. This is a new
+integration branch; neither original PR nor main is merged or modified. Theme01/02,
+Conversation, auxiliary Form and only Week1's three tasks coexist without changes
+to their musical predicates. Versions1–5 have independent historical readers; absent
+content stays disabled and explicit restrictions/branding/levels survive. Optional
+archives preserve missing newer work independently and reject invalid imports atomically.
+See [four independent AI reviews and evidence limits](docs/integration-23/reviews.md).
+Human educational/TA1–TA5/AT/speaker/device/pupil validation PENDING; pupil release
+BLOCKED. Exact candidate tests/CI belong in the new draft PR. No publishing,
+deployment, staff contact or pupil distribution. Weeks2–6/52-week banks remain future.
+Earlier branch-specific availability/schema statements below are historical and
+superseded by this combined contract, not current restrictions of this branch.
+
+# Phase0: one mixed activity week (draft implementation)
+
+The separate [Phase0 design and evidence boundaries](docs/phase-0/design.md) describe
+one playable week: Pulse trail, Symbol mechanic and Rhythm workshop. Three independent
+choices share grid/choice/revision components; no mandatory tour or audio prerequisite.
+School schema5 validates historical v1/v3 restrictions before migrating with the
+programme disabled. Draft PR15 schema4 remains unsupported on this main-based branch;
+no Conversation content is copied or enabled. Existing Theme01/02/Form and their
+archives remain intact; optional programme progress has strict missing/replacement
+import semantics. Teacher kit stays Theme02-only. Human validation PENDING and pupil
+release BLOCKED. Exact-head tests/CI and local file-policy failures belong in the draft PR.
+No merge, deployment or distribution. Weeks2–6 remain separately authorised future
+increments, not additional implemented shells. Earlier milestones below are historical.
+
 # Issue16 — visual Formverkstad prototype
 
 Formverkstad adds visual musical-form puzzles, construction and ungraded map
