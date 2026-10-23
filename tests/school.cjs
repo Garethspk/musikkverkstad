@@ -6,7 +6,7 @@ const base=SC.defaults();
 assert.deepEqual(SC.parse(JSON.stringify(base)),base);
 assert.deepEqual(SC.registry.filter(r=>r.theme).map(r=>r.id),['theme','groove']);
 const olderSettings=require('./fixtures/school-v1-restricted.json');
-const migrated=SC.parse(JSON.stringify(olderSettings));assert.equal(migrated.schemaVersion,3);assert.equal(migrated.formEnabled,false);assert.deepEqual(migrated.themes,olderSettings.themes);for(const id of Object.keys(olderSettings.levels))assert.deepEqual(migrated.levels[id],olderSettings.levels[id]);assert.deepEqual(migrated.levels.form,[1,2,3,4]);assert.equal(base.formEnabled,true);assert.throws(()=>SC.validate({...olderSettings,formEnabled:true}),'Old input must not inject new fields');
+const migrated=SC.parse(JSON.stringify(olderSettings));assert.equal(migrated.schemaVersion,5);assert.equal(migrated.formEnabled,false);assert.deepEqual(migrated.themes,olderSettings.themes);for(const id of Object.keys(olderSettings.levels))assert.deepEqual(migrated.levels[id],olderSettings.levels[id]);assert.deepEqual(migrated.levels.form,[1,2,3,4]);assert.equal(base.formEnabled,true);assert.throws(()=>SC.validate({...olderSettings,formEnabled:true}),'Old input must not inject new fields');
 assert.equal(SC.hasRestrictions(olderSettings),true);
 assert.equal(SC.hasRestrictions(base),false);
 assert.deepEqual(base.themes,SC.availableRegistry.filter(r=>r.theme).map(r=>r.id));

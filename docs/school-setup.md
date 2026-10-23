@@ -1,3 +1,16 @@
+## Phase0 programme compatibility (draft implementation)
+
+Settings schema5 adds `programmeEnabled` and `levels.programme` (1–4). New prototype
+defaults include the implemented three-task week; imported v1/v3 validate their old
+shapes and migrate with the programme disabled, preserving branding, language, levels
+and restrictions. v1 also keeps Form disabled; v3 preserves its Form flag. Draft
+schemas2/4 remain unsupported: Conversation is not merged here. Future combination
+requires an explicit reviewed migration, never reinterpretation of versions.
+The advanced setup can disable the week or restrict configurations; pupils choose
+among enabled configurations. Programme history remains exportable when disabled.
+No editor enters pupil packages; preview/ZIP use the same runtime/gates. Teacher
+review entry explicitly disables programme and Form, retaining Theme02 only.
+
 # School configuration, preview and prototype ZIP
 
 This is a development prototype. Pupil release remains **BLOCKED**. The browser can now preview the actual

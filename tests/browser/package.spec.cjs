@@ -135,3 +135,21 @@ test('Form availability and levels agree in isolated school preview and extracte
  const disabled=await download(page,info);expect(JSON.parse(fs.readFileSync(path.join(disabled.folder,'school-settings.json'))).formEnabled).toBe(false);
  await page.goto(disabled.url+'en.html');await expect(page.locator('[data-go="form"]')).toHaveCount(0);await page.evaluate(()=>go('form'));expect(await page.evaluate(()=>route)).toBe('theme');
 });
+
+test('Phase0 week settings, isolated preview and extracted ZIP agree without exposing drafts',async({page},info)=>{
+ await open(page);const settings=SC.defaults();settings.defaultLanguage='en';settings.levels.programme=[2,4];
+ await page.locator('#settingsFile').setInputFiles({name:'week.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(settings))});await expect(page.locator('#message')).toContainText('importerte');
+ let frame=await preview(page);await frame.locator('[data-go="programme"]').click();await expect(frame.locator('[data-wg="task"]')).toHaveCount(3);await expect(frame.locator('[data-wg="level"]')).toHaveCount(2);await expect(frame.locator('[data-wg="level"][data-wg-value="2"]')).toHaveAttribute('aria-pressed','true');
+ expect(await frame.locator('body').evaluate(()=>({week:WGCore.week,themeCount:scThemeIndices().length,conversation:SchoolConfig.registry.some(x=>x.id==='conversation')}))).toMatchObject({week:'pulse-space.v1',themeCount:2,conversation:false});
+ const enabled=await download(page,info);expect(enabled.manifest.pupilRelease).toBe('BLOCKED');await page.goto(enabled.url+'en.html');await page.locator('[data-go="programme"]').click();await expect(page.locator('[data-wg="task"]')).toHaveCount(3);await expect(page.locator('[data-wg="level"]')).toHaveCount(2);await expect(page.locator('#settingsForm')).toHaveCount(0);
+ await open(page);settings.programmeEnabled=false;await page.locator('#settingsFile').setInputFiles({name:'week-off.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(settings))});await expect(page.locator('#message')).toContainText('importerte');frame=await preview(page);await expect(frame.locator('[data-go="programme"]')).toHaveCount(0);
+ expect(await frame.locator('body').evaluate(()=>{const before=JSON.stringify(data.programmePractice);go('programme');wgAction('task','create');wgAction('save');return {route,allowed:scRouteAllowed('programme'),unchanged:before===JSON.stringify(data.programmePractice)};})).toEqual({route:'theme',allowed:false,unchanged:true});
+ const disabled=await download(page,info);await page.goto(disabled.url+'en.html');await expect(page.locator('[data-go="programme"]')).toHaveCount(0);await page.evaluate(()=>go('programme'));expect(await page.evaluate(()=>route)).toBe('theme');
+});
+
+test('historical schema3 admin import preserves restrictions and leaves the new week disabled',async({page},info)=>{
+ await open(page);const old=SC.defaults();old.schemaVersion=3;delete old.programmeEnabled;delete old.levels.programme;old.schoolName='Historisk skule';old.formEnabled=false;old.themes=['groove'];old.levels.groove=[3];old.defaultLanguage='en';
+ await page.locator('#settingsFile').setInputFiles({name:'old-school.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(old))});await expect(page.locator('#message')).toContainText('importerte');await expect(page.locator('#programmeEnabled')).not.toBeChecked();await expect(page.locator('#formEnabled')).not.toBeChecked();
+ const frame=await preview(page);await expect(frame.locator('#schoolIdentity')).toHaveText('Historisk skule');await expect(frame.locator('[data-go="programme"]')).toHaveCount(0);await frame.locator('[data-nv="start"]').click();await expect(frame.locator('[data-gr-action="level"]')).toHaveCount(1);
+ const out=await download(page,info);const migrated=JSON.parse(fs.readFileSync(path.join(out.folder,'school-settings.json')));expect(migrated.schemaVersion).toBe(5);expect(migrated.programmeEnabled).toBe(false);expect(migrated.formEnabled).toBe(false);expect(migrated.levels.groove).toEqual([3]);expect(migrated.themes).toEqual(['groove']);
+});

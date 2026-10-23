@@ -14,6 +14,8 @@ test('adult entry opens exact exercise, native audio matches rhythm, preserves c
  await expect(f.locator('[data-gr-action="mode"]')).toHaveCount(3);await expect(f.locator('#themeSelect option')).toHaveCount(1);
  const formBoundary=await f.locator('body').evaluate(()=>{const before=JSON.stringify(data.formPractice);go('form');foAction('mode','create');foAction('save');return {enabled:schoolSettings.formEnabled,allowed:scRouteAllowed('form'),route,unchanged:JSON.stringify(data.formPractice)===before};});
  expect(formBoundary).toEqual({enabled:false,allowed:false,route:'groove',unchanged:true});
+ const weekBoundary=await f.locator('body').evaluate(()=>{const before=JSON.stringify(data.programmePractice);go('programme');wgAction('task','create');wgAction('save');return {enabled:schoolSettings.programmeEnabled,allowed:scRouteAllowed('programme'),route,unchanged:JSON.stringify(data.programmePractice)===before};});
+ expect(weekBoundary).toEqual({enabled:false,allowed:false,route:'groove',unchanged:true});
  await expect(f.locator('[data-fo-action]')).toHaveCount(0);
 
  await expect(page.locator('#identity')).toContainText('pupilRelease=BLOCKED');
