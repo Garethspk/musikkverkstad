@@ -1,3 +1,7 @@
+Issue27 update: [Week3 implementation contract](../week-3/README.md) develops the
+three Week3 backlog slots on consolidated main. Weeks1–3 only; Week4 remains
+proposed. Older Week3-future notes below are historical. Human PENDING/release BLOCKED.
+
 Current implementation update (Issue #25): consolidated main includes Theme03 and
 Week1. This branch implements [Week2](../week-2/README.md); Week3 below remains a
 proposal only. Historical PR15 references below are provenance, not current

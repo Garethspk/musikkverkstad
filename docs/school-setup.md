@@ -1,3 +1,13 @@
+## Week3 scope (Issue27)
+
+Schema6 stays unchanged. Existing programme consent/levels cover Weeks1–3. Week3
+source briefs separately need Theme03 configuration1/4 or Form configuration2/4;
+unsupported choices show an explanation while the notation editor stays independent.
+No new administration or pupil data in settings. Teacher kit stays Theme02-only;
+opaque preview/pupil ZIP policies and release gates are unchanged. See the
+[Week3 contract](week-3/README.md); human PENDING/release BLOCKED. Older Week3-unbuilt
+or Weeks1–2-only descriptions below are historical and superseded here.
+
 ## Week 2 scope (Issue #25)
 
 School settings stay at schema6. The existing programme toggle/configurations now

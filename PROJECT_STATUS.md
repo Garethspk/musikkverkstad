@@ -1,3 +1,17 @@
+# Issue #27 — mixed Week 3 (draft implementation)
+
+[Week3 design, exact worked measures and compatibility](docs/week-3/README.md)
+extend latest main `afb44ea` with scoped Melodic response, interactive Notation
+debugger and scoped Form construction. Eight debugger cases accept20complete
+repairs; existing Conversation/Form engines, archives and school guards are reused.
+School schema6 is unchanged; programme and source consent remain independent.
+[Four independent AI critiques](docs/week-3/reviews.md) distinguish non-human design
+checks, Node simulations, native Chromium and pending human/physical evidence.
+Week4 is future only, with no routes/content/shells. Human validation PENDING and
+pupil release BLOCKED. Exact-head full regression/CI and limitations belong in the
+draft PR. No merge, deployment or distribution. Earlier entries are historical;
+Week3-as-future and Weeks1–2-only statements below are superseded by this scope.
+
 # Issue #25 — Week 2 implementation (draft review)
 
 [Week 2 design, compatibility and Week 3 follow-up](docs/week-2/README.md) extend
