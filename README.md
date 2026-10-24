@@ -1,3 +1,8 @@
+Week3 draft increment: [Melodic response, Notation debugger and Form construction](docs/week-3/README.md),
+with [exact worked cases](docs/week-3/design.md) and [four AI critiques](docs/week-3/reviews.md).
+Weeks1–3 only; Week4 future. Human validation PENDING; pupil release BLOCKED.
+Earlier week-availability notes below are historical.
+
 Week 2 development increment: [three mixed activities and compatibility](docs/week-2/README.md)
 with [four AI critiques](docs/week-2/reviews.md). Weeks1–2 only; Week3 remains a
 documented follow-up. Human validation PENDING, pupil release BLOCKED.

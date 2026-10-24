@@ -1,3 +1,13 @@
+## Week3 optional repair archive (Issue27)
+
+`week3Practice` version1 separately validates exact debugger identities, completed
+check counts and explicit valid repairs with optional faulty-before snapshots.
+All64missing-extension combinations preserve independent newer archives, including
+Theme02 and Weeks1–2. Explicit valid fields replace after confirmation; cancellation
+or malformed siblings cause no mutation. Source Conversation/Form archives remain
+separate with no copied Week3 credit. Language/branding changes preserve records;
+current school choices govern reopen. See [Week3 contract](week-3/README.md).
+
 ## Week 2 optional archive (Issue #25)
 
 `week2Practice` is a separate version1 extension; see the [exact contract](week-2/README.md).
