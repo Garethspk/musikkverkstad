@@ -1,3 +1,12 @@
+## Week4 scope (Issue29)
+
+Schema6 stays unchanged. Programme consent/levels cover Weeks1–4. Return-path
+investigation additionally requires enabled Form2/4; storyboard/rhythm are independent
+programme activities, including when Form is off. No new administrator step or pupil
+data in settings. Teacher kit stays Theme02-only, opaque preview/pupil ZIP policies
+and release gates unchanged. See [Week4 contract](week-4/README.md). Week5/6 remain
+unimplemented; older Week4-future statements below are historical.
+
 ## Week3 scope (Issue27)
 
 Schema6 stays unchanged. Existing programme consent/levels cover Weeks1–3. Week3

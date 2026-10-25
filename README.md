@@ -1,3 +1,8 @@
+Week4 draft increment: [return paths, expressive storyboards and rhythm tiles](docs/week-4/README.md),
+[worked musical cases](docs/week-4/design.md) and [four AI critiques](docs/week-4/reviews.md).
+Weeks1–4 only; Week5/6 remain future. Human validation PENDING; pupil release BLOCKED.
+Earlier availability snapshots below are historical.
+
 Week3 draft increment: [Melodic response, Notation debugger and Form construction](docs/week-3/README.md),
 with [exact worked cases](docs/week-3/design.md) and [four AI critiques](docs/week-3/reviews.md).
 Weeks1–3 only; Week4 future. Human validation PENDING; pupil release BLOCKED.

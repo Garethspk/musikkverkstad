@@ -1,3 +1,8 @@
+Issue29 update: [Week4 implementation](../week-4/README.md) develops return-path
+mapping, expressive-plan revision and variable-duration rhythmic making. Weeks1–4
+only; Week5/6 remain proposals. Earlier Week4-future notes are historical. Human
+validation PENDING; pupil release BLOCKED.
+
 Issue27 update: [Week3 implementation contract](../week-3/README.md) develops the
 three Week3 backlog slots on consolidated main. Weeks1–3 only; Week4 remains
 proposed. Older Week3-future notes below are historical. Human PENDING/release BLOCKED.

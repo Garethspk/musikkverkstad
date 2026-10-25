@@ -1,3 +1,12 @@
+## Week4 optional archive (Issue29)
+
+`week4Practice` version1 separates objective practice from ungraded expressive/free
+saves, pins slot/type/challenge/revision/configuration and validates before/current
+records. All128missing-field subsets across seven optional modules preserve newer
+work independently; explicit valid replaces after confirmation, cancel/invalidsibling
+changes nothing. Settings/language retain archives and current restrictions govern
+reopen. See [Week4 contract](week-4/README.md); source histories remain separate.
+
 ## Week3 optional repair archive (Issue27)
 
 `week3Practice` version1 separately validates exact debugger identities, completed
