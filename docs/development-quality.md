@@ -104,8 +104,11 @@ this check is to be required for merging.
 
 GitHub Actions has not been executed merely by adding the workflow locally.
 
-Issue16 adds visual Form tests in both viewport profiles. Measured case durations
-require a ten-minute whole-browser-suite ceiling on two CI workers. Individual
-30-second test bounds, no retries and all release/failure decisions stay unchanged.
-Form's visual objective is tested without audio initialization; unrelated native
-audio and required release evidence remain part of the full gate.
+Issue16 added visual Form tests in both viewport profiles. With Week 4, the expanded
+420-case suite completed locally in about 698 seconds with four workers, exceeding
+the former ten-minute aggregate ceiling. The whole-browser-process ceiling is now
+15 minutes. Individual 30-second test bounds, five-second assertion bounds, every
+test case, zero retries and all security/release/failure decisions stay unchanged.
+Managed local file-URL policy refusals remain failures; extra aggregate time does
+not waive them. Form's visual objective is tested without audio initialization;
+unrelated native audio and required release evidence remain part of the full gate.
