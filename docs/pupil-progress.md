@@ -1,3 +1,12 @@
+Week5 extension (Issue #31): optional version1 `week5Practice` stores strict pinned
+motif/staff/ensemble versions, before snapshots and objective practice counters only
+for constrained motif/staff tasks. Free motif/ensemble allocation is ungraded.
+[Contract](week-5/README.md) preserves each of eight optional module histories
+independently when absent from an older backup (256 subsets). Explicit fields replace
+after confirmation; invalid siblings/cancellation remain atomic, including raw bytes.
+Language/branding/school restrictions preserve/export histories; disabled work cannot
+reopen. No draft autosave or pupil identity.
+
 ## Week4 optional archive (Issue29)
 
 `week4Practice` version1 separates objective practice from ungraded expressive/free

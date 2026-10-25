@@ -1,3 +1,11 @@
+Issue31 update: [Week5 implementation and refinements](../week-5/README.md) preserve
+C3/N1/I2: editable pitch/rhythm component transformation, actual treble-staff placement
+and six ungraded quartet-role contexts with shared timelines. The planned C4–D4–E4
+opening, C4/G4 landmarks and pulse/melody/answer roles remain concrete worked entries.
+[Exact cases](../week-5/design.md) justify differences from Weeks1–4. Weeks1–5 only;
+Week6 remains a proposal. Older availability notes below are historical. Human
+validation PENDING; pupil release BLOCKED.
+
 Issue29 update: [Week4 implementation](../week-4/README.md) develops return-path
 mapping, expressive-plan revision and variable-duration rhythmic making. Weeks1–4
 only; Week5/6 remain proposals. Earlier Week4-future notes are historical. Human

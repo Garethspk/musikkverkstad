@@ -1,3 +1,16 @@
+# Issue #31 — mixed Week 5 (draft implementation)
+
+[Week 5 contract and worked examples](docs/week-5/README.md) implement the approved
+C3 Motif transformation, N1 Staff landmarks and I2 Ensemble roles from consolidated
+main `4c41d6a`. [Four non-human critical perspectives](docs/week-5/reviews.md) reviewed
+exact cases before code. Component transformation, staff placement and layered
+allocation preserve the planned objectives with documented refinements beyond
+Weeks1–4. Schema6 is unchanged; a separate optional archive preserves historical
+progress and independent atomic backup semantics. Weeks1–5 only; Week6 is proposed,
+not implemented. Human validation PENDING; pupil release BLOCKED. Exact observed
+tests/CI and local limitations belong in the draft PR. No merge/deployment/distribution.
+Earlier week-availability notes below are historical where superseded by this entry.
+
 # Issue29 — mixed Week4 (draft implementation)
 
 [Week4 contract and worked examples](docs/week-4/README.md) extend consolidated
