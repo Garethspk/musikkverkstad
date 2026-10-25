@@ -1,8 +1,8 @@
 /* Read-only pupil configuration: no editor, settings storage or pupil-data writes. */
-function scLevels(id){if(['week2','week3'].includes(id))id='programme';return schoolSettings.levels[id] || []}
+function scLevels(id){if(['week2','week3','week4'].includes(id))id='programme';return schoolSettings.levels[id] || []}
 function scLevel(id,preferred){const enabled=scLevels(id);return enabled.includes(preferred)?preferred:enabled[0]}
 function scNextLevel(id,current){return scLevels(id).find(level=>level>current) ?? null}
-function scRouteAllowed(id){if(['week2','week3'].includes(id))id='programme';if(SchoolConfig.registry.some(item=>item.id===id)&&!SchoolConfig.availableRegistry.some(item=>item.id===id))return false;if(id==='programme'&&!schoolSettings.programmeEnabled)return false;if(id==='form'&&!schoolSettings.formEnabled)return false;return !['theme','groove','conversation'].includes(id)||schoolSettings.themes.includes(id)}
+function scRouteAllowed(id){if(['week2','week3','week4'].includes(id))id='programme';if(SchoolConfig.registry.some(item=>item.id===id)&&!SchoolConfig.availableRegistry.some(item=>item.id===id))return false;if(id==='programme'&&!schoolSettings.programmeEnabled)return false;if(id==='form'&&!schoolSettings.formEnabled)return false;return !['theme','groove','conversation'].includes(id)||schoolSettings.themes.includes(id)}
 function scThemeIndices(){return schoolSettings.themes.map(id=>['theme','groove','conversation'].indexOf(id))}
 function scBrand(){
  if(schoolSettings.schoolName){const name=document.querySelector('.brand-name');name.textContent=schoolSettings.schoolName;name.parentElement.setAttribute('aria-label',schoolSettings.schoolName+' · Musikkverkstad');const identity=document.createElement('p');identity.id='schoolIdentity';identity.textContent=schoolSettings.schoolName;identity.style.cssText='max-width:1144px;margin:12px auto 0;padding:0 24px;overflow-wrap:anywhere;color:var(--muted);font-size:14px';document.querySelector('header').insertAdjacentElement('afterend',identity);}

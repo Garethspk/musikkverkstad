@@ -1,3 +1,15 @@
+# Issue29 — mixed Week4 (draft implementation)
+
+[Week4 contract and worked examples](docs/week-4/README.md) extend consolidated
+main `d4cf686` with return-path investigation, dynamics storyboard and variable-
+duration rhythm-tile construction. [Four critical AI critiques](docs/week-4/reviews.md)
+freeze musical rules before coding and distinguish non-human/browser/human evidence.
+School schema6 remains unchanged; programme/Form guards and separate optional
+archive semantics preserve all old work. Weeks1–4 only; Week5/6 are not implemented.
+Human validation PENDING; pupil release BLOCKED. Exact tests/CI belong in the draft
+PR. No merge, deployment or distribution. Earlier week-availability notes below are
+historical and superseded where they call Week4 future or Weeks1–3-only.
+
 # Issue #27 — mixed Week 3 (draft implementation)
 
 [Week3 design, exact worked measures and compatibility](docs/week-3/README.md)
