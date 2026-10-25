@@ -12,7 +12,7 @@
     {id:'rhythm', implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', name:'Rytmereparatøren', levels:[1,2,3,4]},
     {id:'melody', implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', name:'Melodidetektiven', levels:[1,2,3,4]},
     {id:'harmony', implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', name:'Finn heim', levels:[1,2,3,4]},
-    {id:'programme', implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', name:'Vekeprogram · Veke 1–4', levels:[1,2,3,4]},
+    {id:'programme', implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', name:'Vekeprogram · Veke 1–5', levels:[1,2,3,4]},
     {id:'form', implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', name:'Formverkstad', levels:[1,2,3,4]},
     {id:'puzzle', implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', name:'Melodipuslespel', levels:[1,2,3,4]},
     {id:'notation', implemented:true, prototypeEligible:true, pupilRelease:'BLOCKED', name:'Lyd og notar', levels:[1,2,3,4]},

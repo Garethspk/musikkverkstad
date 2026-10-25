@@ -1,3 +1,9 @@
+Implementation status (Issue #31): Weeks1–5 now have separately documented prototype
+implementations; Week5 follows C3/N1/I2 in the row below with [justified refinements](../week-5/README.md).
+This does not turn the remaining editorial map into available content. Week6 and
+later rows remain proposals, with no new routes/shells here. Human validation PENDING;
+pupil release BLOCKED.
+
 # 52-week mixed programme — 156 slots
 
 **Editorial map, not authored or tested content.** Weeks 1–38 core; 39–52 optional. Any week may be repeated, skipped, resequenced. Three independent choices per week, no assignment/streak. IDs in activity-types.md. Repeated later combinations are CONTENT BACKLOG PLACEHOLDERS, not finished varied questions; each must be reauthored with genuinely fresh material and teacher review.

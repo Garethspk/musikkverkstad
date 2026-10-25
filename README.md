@@ -1,3 +1,8 @@
+Week 5 update (Issue #31): [Motif laboratory, Staff landmarks and Ensemble roles](docs/week-5/README.md)
+add three independent choices from the approved curriculum. [Worked cases and critiques](docs/week-5/design.md)
+record exact rules and justified refinements. Weeks1–5 only; Week6 remains proposed.
+Human validation PENDING; pupil release BLOCKED. Exact test/CI outcomes are in the draft PR.
+
 Week4 draft increment: [return paths, expressive storyboards and rhythm tiles](docs/week-4/README.md),
 [worked musical cases](docs/week-4/design.md) and [four AI critiques](docs/week-4/reviews.md).
 Weeks1–4 only; Week5/6 remain future. Human validation PENDING; pupil release BLOCKED.

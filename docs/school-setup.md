@@ -1,3 +1,11 @@
+Week5 availability update (Issue #31): schema6 fields/IDs/migrations are unchanged.
+Programme consent/configurations govern three new neutral Week5 tasks. Existing
+Form/Conversation availability and Notation enabled-level restrictions remain
+independent and are not bypassed by opening source exercises. Week5 archives remain
+exportable when disabled; reopening/Continue/actions require enabled programme levels.
+Actual compiled preview/ZIP includes Weeks1–5, with no Week6 shell or administrator
+editor in pupil files. Human validation PENDING; pupil release BLOCKED.
+
 ## Week4 scope (Issue29)
 
 Schema6 stays unchanged. Programme consent/levels cover Weeks1–4. Return-path
