@@ -34,5 +34,6 @@ jobs:
           path: |
             .quality/
             !.quality/teacher-kit/**
+            !.quality/staff-review/**
             playwright-report/
             test-results/
