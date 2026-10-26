@@ -5,6 +5,7 @@
   "engines": { "node": ">=24" },
   "scripts": {
     "build": "python3 translate.py",
+    "staff:prepare": "node scripts/build-staff-review.cjs",
     "test:browser": "playwright test",
     "quality": "node scripts/quality-gate.cjs",
     "quality:prototype": "node scripts/quality-gate.cjs --prototype"

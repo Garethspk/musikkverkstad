@@ -1,0 +1,36 @@
+MUSIKKVERKSTAD — PRIVAT LÆRARTEST AV HEILE APPEN
+
+Berre tilsette. Ikkje del med elevar. Elevpublisering BLOCKED.
+Menneskeleg validering, inkludert TA1–TA5, er PENDING.
+
+LÆRAR: Opne avtalt privat HTTPS-lenkje frå Teams i vanleg Edge/Chrome.
+Vel språk. Prøv éi valfri oppgåve i 3–5 minutt; alle tillatne aktivitetar
+og seks veker er med. Ingen oppsett eller installasjon. Lyd startar berre
+når du trykkjer spel; bruk låg styrke. Gi tilbakemelding til avtalt intern
+kontakt. LAERARTILBAKEMELDING.md er eit tomt notat, ikkje nettinnsamling.
+Ingen elevnamn eller elevdata. Arbeid/språk ligg lokalt i nettlesaren.
+
+IT: Pakken er IKKJE tilgangssikra av seg sjølv. LES IT-DRIFT.md før bruk.
+Vern HEILE site/-treet med kommunalt godkjend privat HTTPS og autorisasjon
+for godkjende tilsette, også direkte språk-/lyd-/manifeststiar. Merkingen
+på skjermen er ikkje autentisering. Ingen hemmelege nøklar er innebygde.
+Ikkje bruk offentleg GitHub Pages, offentleg origin eller anonym lenkje.
+Berre site/-innhaldet er webrot; ikkje server repo, ZIP, oppsett eller CI.
+Verifiser checksums.sha256 og staff-review-manifest.json før installasjon.
+ZIP-sjekksummen ligg separat ved arkivet. Hash er integritet, ikkje release-PASS.
+Kjeldecommit og underliggjande appkandidathash er synlege under Versjon.
+
+Teams/SharePoint Filer er ikkje ein JavaScript-vert. Ei vanleg Teams-lenkje
+til den godkjende private nettsida er nok; bruk Opne i nettlesar dersom
+innebygging/innlogging/lyd blir blokkert. Ikkje be lærarar slå av vern.
+
+Denne fleirfilspakken krev HTTP/HTTPS for lyd. Dobbelklikk/file:// er ikkje
+støtta. Etter at ei språkpage og samples er lasta, kan den opne sida bruke
+minnet utan nett; reload/språkbyte/ny fane krev normalt nett. Ingen service
+worker, installasjon eller lovnad om offline-kopi. Privat vert kan ha
+ordinære tilgangs-/SSO-loggar; avklar logging med IT. Appen har ikkje
+kontoar, analyse, mikrofon, database eller skyinnsamling av framgang.
+
+Heile appen er ulik den eldre Theme02-only teacher-review.html. Ingen admin
+eller redigeringsgrensesnitt er med. Dette arbeidet klargjer berre filer;
+ingen vert, Teams-melding, invitasjon, utrulling eller elevløyve er oppretta.

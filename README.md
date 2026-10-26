@@ -262,3 +262,7 @@ can Continue at their last activity, mode and chosen level. Only validated
 navigation preferences are stored separately from practice results. Continue
 is not a promise to restore unfinished answers after reloading. Browser storage
 restrictions may prevent remembering the location between visits.
+
+Private full-app teacher testing through Teams: see the
+[staff-review package and IT workflow](docs/staff-review/hosting-and-teams.md).
+Preparation only: no host or link is deployed, and pupil release remains BLOCKED.

@@ -4,6 +4,10 @@ const {execFileSync}=require('node:child_process');
 const SC=require('../src/school/config.js');
 module.exports=async function(){
  const root=path.resolve(__dirname,'..');
+ const staff=require('./build-staff-review.cjs');
+ await staff.build(path.join(root,'.quality/staff-review/full'));
+ const restricted=SC.defaults();restricted.themes=['groove'];restricted.formEnabled=false;restricted.programmeEnabled=false;restricted.levels.groove=[2];
+ await staff.build(path.join(root,'.quality/staff-review/restricted'),restricted);
  for(const theme of ['theme','groove','conversation','form','form-level3','programme','programme-disabled','combined','combined-none','combined-no-conversation','combined-no-form','combined-no-programme','updated']){
   const settings=SC.defaults();settings.schoolName='Ås skule <img src=x onerror=alert(1)>';settings.logo='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGNQaPj/HwAFAgKfdqhGyQAAAABJRU5ErkJggg==';settings.defaultLanguage='nb';settings.colourPreset='blue';settings.themes=['combined','combined-no-form','combined-no-programme'].includes(theme)?['theme','groove','conversation']:['theme','groove','conversation'].includes(theme)?[theme]:['groove'];settings.formEnabled=theme.startsWith('form')||['combined','combined-no-conversation','combined-no-programme'].includes(theme);settings.programmeEnabled=theme==='programme'||['combined','combined-no-conversation','combined-no-form'].includes(theme);
   if(theme==='updated'){settings.schoolName='Oppdatert skule';settings.defaultLanguage='nn';settings.colourPreset='gold';}

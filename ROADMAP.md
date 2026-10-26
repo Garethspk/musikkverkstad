@@ -1,3 +1,20 @@
+# Issue #35 — private full-app staff review (draft preparation)
+
+The [private HTTPS/Teams workflow](docs/staff-review/hosting-and-teams.md) and
+[short blank teacher-feedback guide](docs/staff-review/teacher-feedback.md) prepare
+all six weeks and existing activities for staff review on main `21459b5` (PR34).
+`npm run staff:prepare` creates a reproducible checksummed package only in ignored
+`.quality/staff-review/`, with unchanged application scripts/audio, NN/NB/EN,
+validated schema6 restrictions, visible provenance and no editor. The older adult
+teacher kit remains Theme02-only. No host/account/Teams message is configured.
+IT must approve private HTTPS and enforce staff authorisation on every file;
+a normal browser link from Teams is the default, not uploaded HTML execution.
+Generated staff bundles are excluded from public CI artifacts. Actual municipal
+HTTPS/authentication, Teams, TA1–TA5, music/translation, pupil, human AT/device/audio
+validation PENDING; pupil release BLOCKED. No merge/deployment/distribution, Week7
+or PR9 changes. Exact Node/native/default-gate/CI evidence belongs in the draft PR.
+Earlier milestone snapshots below remain historical where superseded here.
+
 # Issue #33 — mixed Week 6 (draft implementation)
 
 [Week6 implementation and compatibility](docs/week-6/README.md) follow the approved

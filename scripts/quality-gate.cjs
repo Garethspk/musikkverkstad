@@ -57,10 +57,10 @@ function run(root = path.resolve(__dirname, '..')) {
   ];
   for (const [name, command, args] of commands) {
     // The 420-case Week 4 suite measured ~698 seconds locally with four workers.
-    // Allow 15 minutes for the whole browser process; keep per-test bounds intact.
+    // Allow 20 minutes for the whole browser process; keep per-test bounds intact.
     const result = name === 'browser' && !browserCLI
       ? {status: 1, error: new Error('Playwright is missing. Run npm ci and npx playwright install chromium.')}
-      : spawnSync(command, args, {encoding: 'utf8', timeout: name === 'browser' ? 900000 : 60000, maxBuffer: 16 * 1024 * 1024});
+      : spawnSync(command, args, {encoding: 'utf8', timeout: name === 'browser' ? 1200000 : 60000, maxBuffer: 16 * 1024 * 1024});
     const status = result.status === 0 && !result.error ? 'PASS' : 'FAIL';
     checks.push({name, status, exitCode: result.status, output: (result.stdout || '') + (result.stderr || ''), error: result.error?.message || null});
     console.log(name + ': ' + status);

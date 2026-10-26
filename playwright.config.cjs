@@ -23,6 +23,7 @@ module.exports = defineConfig({
     {name: 'chromium-mobile', use: {browserName: 'chromium', viewport: {width: 390, height: 844}, isMobile: true, hasTouch: true}},
   ],
   webServer: [
+    {command:'node tests/helpers/staff-http-server.cjs', url:'http://127.0.0.1:8768/review/full/', reuseExistingServer:false, timeout:15000},
     {command: `${process.env.PYTHON || 'python3'} -m http.server 8765 --bind 127.0.0.1 --directory dist`, url:'http://127.0.0.1:8765', reuseExistingServer:false, timeout:15000},
     {command: `${process.env.PYTHON || 'python3'} -m http.server 8766 --bind 127.0.0.1 --directory setup`, url:'http://127.0.0.1:8766', reuseExistingServer:false, timeout:15000},
     {command: `${process.env.PYTHON || 'python3'} -m http.server 8767 --bind 127.0.0.1 --directory .quality`, url:'http://127.0.0.1:8767', reuseExistingServer:false, timeout:15000},

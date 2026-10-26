@@ -112,3 +112,14 @@ test case, zero retries and all security/release/failure decisions stay unchange
 Managed local file-URL policy refusals remain failures; extra aggregate time does
 not waive them. Form's visual objective is tested without audio initialization;
 unrelated native audio and required release evidence remain part of the full gate.
+
+## Private full-app staff-review preparation (Issue35)
+
+See [private hosting/Teams requirements](staff-review/hosting-and-teams.md).
+`npm run staff:prepare` generates only ignored local artifacts; it does not deploy
+or send messages. Both teacher-kit and staff-review generated directories are
+excluded from public CI uploads. `tests/staff-review.cjs` checks real file/ZIP
+integrity and unchanged scripts/audio; native staff-review cases use real loopback
+HTTP with public dummy Basic fixture credentials, response headers and nested paths.
+They are not municipal HTTPS/SSO/Teams or human validation. No release evidence
+adapter, gate waiver, schema migration or pupil-release decision is changed.
