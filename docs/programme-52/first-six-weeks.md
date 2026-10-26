@@ -1,3 +1,9 @@
+Issue33 update: [Week6](../week-6/README.md) implements the approved R3/C2/E3 slots
+with intentional source reuse and ungraded interpretation planning. Weeks1–6 only;
+Week7 remains proposed. [Six-week retrospective](six-week-retrospective-checklist.md)
+is documentation only: human validation PENDING, pupil release BLOCKED. Older
+availability snapshots below are historical. No merge/deployment/distribution.
+
 Issue31 update: [Week5 implementation and refinements](../week-5/README.md) preserve
 C3/N1/I2: editable pitch/rhythm component transformation, actual treble-staff placement
 and six ungraded quartet-role contexts with shared timelines. The planned C4–D4–E4

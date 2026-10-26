@@ -1,3 +1,9 @@
+Issue33 update: [Week6](../week-6/README.md) implements the approved R3/C2/E3 slots
+with intentional source reuse and ungraded interpretation planning. Weeks1–6 only;
+Week7 remains proposed. [Six-week retrospective](six-week-retrospective-checklist.md)
+is documentation only: human validation PENDING, pupil release BLOCKED. Older
+availability snapshots below are historical. No merge/deployment/distribution.
+
 # Activity types, media and reusable mechanics
 
 Status: proposed unless otherwise noted. Each type requires original content, 3–5-minute teacher recommendation, accessible keyboard and text alternatives, NN/NB/EN, and musical validity review. Audio is optional unless central to that type's objective.
