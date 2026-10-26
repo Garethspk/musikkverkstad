@@ -1,3 +1,19 @@
+# Issue #33 — mixed Week 6 (draft implementation)
+
+[Week6 implementation and compatibility](docs/week-6/README.md) follow the approved
+R3 Groove repair, C2 Form arranger and E3 Interpretation scenario on main `b139cc3`.
+Scoped real source activities preserve independent restrictions/history; six open
+interpretation contexts add articulation/attack planning without aesthetic scoring.
+[Exact pre-code examples](docs/week-6/design.md) and [four non-human critiques](docs/week-6/reviews.md)
+distinguish reuse from new mechanics and technical from human evidence. School
+schema6 remains unchanged; optional Week6 plans retain independent atomic backup
+semantics. Weeks1–6 only; Week7 is not implemented. The documentation-only
+[six-week retrospective checklist](docs/programme-52/six-week-retrospective-checklist.md)
+leaves TA1–TA5/music/translation/pupil/AT/device/audio validation PENDING. Pupil
+release BLOCKED. Exact observed tests/CI and honest local limitations belong in the
+draft PR. No merge/deployment/distribution; PR9 unchanged. Earlier snapshots below
+are historical where their availability conflicts with this entry.
+
 # Issue #31 — mixed Week 5 (draft implementation)
 
 [Week 5 contract and worked examples](docs/week-5/README.md) implement the approved

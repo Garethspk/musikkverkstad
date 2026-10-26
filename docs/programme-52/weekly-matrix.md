@@ -1,3 +1,9 @@
+Issue33 update: [Week6](../week-6/README.md) implements the approved R3/C2/E3 slots
+with intentional source reuse and ungraded interpretation planning. Weeks1–6 only;
+Week7 remains proposed. [Six-week retrospective](six-week-retrospective-checklist.md)
+is documentation only: human validation PENDING, pupil release BLOCKED. Older
+availability snapshots below are historical. No merge/deployment/distribution.
+
 Implementation status (Issue #31): Weeks1–5 now have separately documented prototype
 implementations; Week5 follows C3/N1/I2 in the row below with [justified refinements](../week-5/README.md).
 This does not turn the remaining editorial map into available content. Week6 and
