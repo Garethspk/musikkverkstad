@@ -106,3 +106,15 @@ all activity/error strings, screen-reader/AT operation, curriculum/teacher valid
 and an unseeded full21task pupil-like walkthrough. A managed browser's local-file
 block must remain a failure, never a security exception or skipped test. Existing
 Theme01 quick-entry expected failures also remain explicitly unresolved.
+
+## Portable build correction
+
+The builder explicitly reads/writes UTF-8 and writes LF newlines, so Windows locale
+and newline defaults cannot corrupt NN/NB strings or invalidate the emitted checksum.
+The actual builder is exercised under `LC_ALL=C`, `PYTHONUTF8=0` and
+`PYTHONCOERCECLOCALE=0`; this is a build portability check, not a Windows device test.
+The generated HTML SHA256 remains exactly the one exercised by the native runs above.
+An initial default-gate run passed all Node suites but was explicitly interrupted during
+its browser phase when this portability issue was found; its partial report is retained
+as `.quality/seven-gate-superseded.json`, not presented as a completed regression run.
+The corrected candidate's complete default-gate result is recorded after execution.

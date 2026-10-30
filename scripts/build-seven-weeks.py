@@ -4,7 +4,7 @@ import re,json,hashlib,base64
 root=Path(__file__).resolve().parents[1]
 versions=[3,3,2,5,5,6,1]
 titles={'nn':['Puls og rytme','Melodi og gjentaking','Tonar og notar','Akkordar og harmoni','Form og variasjon','Klang og samspel','Taktartar'],'nb':['Puls og rytme','Melodi og gjentakelse','Toner og noter','Akkorder og harmoni','Form og variasjon','Klang og samspill','Taktarter'],'en':['Pulse and rhythm','Melody and repetition','Pitches and notation','Chords and harmony','Form and variation','Timbre and ensemble','Time signatures']}
-expected=json.loads((root/'latest-week-prototypes/SHA256.json').read_text())
+expected=json.loads((root/'latest-week-prototypes/SHA256.json').read_text(encoding='utf-8'))
 bank=[];manifest=[]
 for week,version in enumerate(versions,1):
  p=root/'latest-week-prototypes'/f'musikkverkstad-veke{week}-v{version}.html';raw=p.read_bytes();html=raw.decode();assert hashlib.sha256(raw).hexdigest()==expected[p.name], 'Authoritative source checksum mismatch: '+p.name;manifest.append({'week':week,'source':str(p.relative_to(root)),'sha256':hashlib.sha256(raw).hexdigest()})
@@ -25,7 +25,7 @@ for week,version in enumerate(versions,1):
  if week==7:html=html.replace("==='6/8'?.23:.35","==='6/8'?.175:.35")
  # Keep the supplied NN copy natural without silently changing musical data.
  html=re.sub(r'\bmedan\b','samtidig som',html)
- common=(root/'src/seven-week/bridge.js').read_text();patch=(root/f'src/seven-week/week-{week}.js').read_text();lifecycle=(root/'src/seven-week/lifecycle.js').read_text()
+ common=(root/'src/seven-week/bridge.js').read_text(encoding='utf-8');patch=(root/f'src/seven-week/week-{week}.js').read_text(encoding='utf-8');lifecycle=(root/'src/seven-week/lifecycle.js').read_text(encoding='utf-8')
  # Hide repeated source headers; preserve cards, task navigation, help, controls and fonts.
  css='<style>button{min-height:48px}header.top,.topbar{display:none!important}.head{margin:8px 0}.bodygrid{gap:12px}.aside{font-size:14px}.donebox{background:transparent!important;border:0!important;padding:0!important}#status{scroll-margin-top:10px}</style>'
  csp="<meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; media-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'\">"
@@ -34,7 +34,7 @@ for week,version in enumerate(versions,1):
  if patch not in html:raise RuntimeError('Missing body insertion '+str(week))
  html=html.replace('</head>',csp+css+'</head>')
  bank.append(base64.b64encode(html.encode()).decode())
-shell=(root/'src/seven-week/shell.html').read_text().replace('/* SEVEN_SOURCES */',json.dumps(bank,separators=(',',':'))).replace('/* WEEK_TITLES */',json.dumps(titles,ensure_ascii=False))
-out=root/'.quality/weeks-1-7';out.mkdir(parents=True,exist_ok=True);(out/'musikkverkstad.html').write_text(shell)
-(out/'source-manifest.json').write_text(json.dumps({'formatVersion':1,'pupilRelease':'BLOCKED','humanValidation':'PENDING','sources':manifest,'artifactSha256':hashlib.sha256(shell.encode()).hexdigest()},indent=2)+'\n')
+shell=(root/'src/seven-week/shell.html').read_text(encoding='utf-8').replace('/* SEVEN_SOURCES */',json.dumps(bank,separators=(',',':'))).replace('/* WEEK_TITLES */',json.dumps(titles,ensure_ascii=False))
+out=root/'.quality/weeks-1-7';out.mkdir(parents=True,exist_ok=True);(out/'musikkverkstad.html').write_text(shell,encoding='utf-8',newline='\n')
+(out/'source-manifest.json').write_text(json.dumps({'formatVersion':1,'pupilRelease':'BLOCKED','humanValidation':'PENDING','sources':manifest,'artifactSha256':hashlib.sha256(shell.encode()).hexdigest()},indent=2)+'\n',encoding='utf-8',newline='\n')
 print('Built offline 21-activity prototype integration:',out/'musikkverkstad.html')

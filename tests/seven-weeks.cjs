@@ -1,6 +1,6 @@
 // Actual built child scripts, original identities and musical data; Node checks are simulations.
 const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict'),crypto=require('node:crypto'),{execFileSync}=require('node:child_process');
-execFileSync(process.env.PYTHON||'python3',['scripts/build-seven-weeks.py']);
+execFileSync(process.env.PYTHON||'python3',['scripts/build-seven-weeks.py'],{env:{...process.env,LC_ALL:'C',PYTHONCOERCECLOCALE:'0',PYTHONUTF8:'0'}});
 const html=fs.readFileSync('.quality/weeks-1-7/musikkverkstad.html','utf8'),manifest=JSON.parse(fs.readFileSync('.quality/weeks-1-7/source-manifest.json'));
 assert.equal(crypto.createHash('sha256').update(html).digest('hex'),manifest.artifactSha256);assert.equal(manifest.sources.length,7);assert.equal(manifest.pupilRelease,'BLOCKED');
 const source=html.match(/<script>([^]*?)<\/script>/)[1];new vm.Script(source);const bank=JSON.parse(source.match(/const BANK=(\[[^;]+\]),titles=/)[1]);assert.equal(bank.length,7);
@@ -11,4 +11,4 @@ const w2=scripts[1].match(/function phraseStaff\(pitches\)\{([^]*?)\n\}/)[0];con
 const diat=scripts[4].match(/const nextDiatonic=m=>\{[^\n]+/)[0];const events=scripts[4].match(/function w5events\(bars\)\{[^\n]+/)[0];const test=vm.runInNewContext(diat+'\n'+events+'\nJSON.stringify([64,71,79].map(p=>w5events([[{kind:"pair",pitch:p}]]).events.map(e=>e.midi)))');assert.deepEqual(JSON.parse(test),[[64,65],[71,72],[79,79]]);
 const phrase=scripts[6].match(/phrase=\(meter,variant=0\)=>\{[^\n]+/)[0];for(let v=0;v<8;v++){const a=JSON.parse(vm.runInNewContext(phrase+`;JSON.stringify(phrase('6/8',${v}))`));assert.equal(a.length,24);for(let b=0;b<4;b++)assert.deepEqual(a.slice(b*6,b*6+6).flatMap((n,i)=>n===2?[i]:[]),[0,3])}
 assert(scripts[4].includes('data-rhythm="${i}:${j}"'));assert(scripts[4].includes("const seq=['q','pair','rest']"));assert(scripts[6].includes("x%meter===0"));
-console.log('PASS: 7 pinned originals,21-slot standalone build, all child JS syntax, corrected C/D staff and diatonic pairs, compound6/8 grouping, retained duration controls. Node simulations; human validation PENDING.');
+console.log('PASS: UTF-8/LF build under ASCII locale,7 pinned originals,21-slot standalone build, all child JS syntax, corrected C/D staff and diatonic pairs, compound6/8 grouping, retained duration controls. Node simulations; human validation PENDING.');
