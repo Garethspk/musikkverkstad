@@ -1,0 +1,2 @@
+# Uploaded authoritative prototypes are checksum-pinned bytes on every platform.
+latest-week-prototypes/*.html -text

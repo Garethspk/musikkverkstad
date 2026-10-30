@@ -19,7 +19,7 @@ try {
   // Hash tests use isolated fixture files, not simulated browser/device evidence.
   for (const dir of ['src', 'dist', 'setup', 'tests', 'scripts', '.github', 'latest-week-prototypes', 'docs/weeks-1-7']) fs.mkdirSync(path.join(temp, dir), {recursive: true});
   for (const file of ['translate.py', 'translations-extra.txt', 'README.md', 'AGENTS.md',
-    'PROJECT_REQUIREMENTS.md', 'PROJECT_STATUS.md', 'ROADMAP.md', 'docs/development-quality.md', 'docs/school-setup.md', 'package.json', 'package-lock.json', 'playwright.config.cjs', 'playwright.seven.config.cjs']) {
+    'PROJECT_REQUIREMENTS.md', 'PROJECT_STATUS.md', 'ROADMAP.md', 'docs/development-quality.md', 'docs/school-setup.md', 'package.json', 'package-lock.json', 'playwright.config.cjs', 'playwright.seven.config.cjs', '.gitattributes']) {
     fs.mkdirSync(path.dirname(path.join(temp, file)), {recursive: true});
     fs.writeFileSync(path.join(temp, file), file);
   }
