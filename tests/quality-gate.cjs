@@ -17,12 +17,15 @@ for (const suite of ['audio', 'full-audit', 'groove', 'navigation', 'notation', 
 const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'musikkverkstad-gate-'));
 try {
   // Hash tests use isolated fixture files, not simulated browser/device evidence.
-  for (const dir of ['src', 'dist', 'setup', 'tests', 'scripts', '.github']) fs.mkdirSync(path.join(temp, dir));
+  for (const dir of ['src', 'dist', 'setup', 'tests', 'scripts', '.github', 'latest-week-prototypes', 'docs/weeks-1-7']) fs.mkdirSync(path.join(temp, dir), {recursive: true});
   for (const file of ['translate.py', 'translations-extra.txt', 'README.md', 'AGENTS.md',
-    'PROJECT_REQUIREMENTS.md', 'PROJECT_STATUS.md', 'ROADMAP.md', 'docs/development-quality.md', 'docs/school-setup.md', 'package.json', 'package-lock.json', 'playwright.config.cjs']) {
+    'PROJECT_REQUIREMENTS.md', 'PROJECT_STATUS.md', 'ROADMAP.md', 'docs/development-quality.md', 'docs/school-setup.md', 'package.json', 'package-lock.json', 'playwright.config.cjs', 'playwright.seven.config.cjs']) {
     fs.mkdirSync(path.dirname(path.join(temp, file)), {recursive: true});
     fs.writeFileSync(path.join(temp, file), file);
   }
+  const emptySources = contentHash(temp);
+  fs.writeFileSync(path.join(temp, 'latest-week-prototypes/upload.html'), 'source fixture');
+  assert.notEqual(contentHash(temp), emptySources, 'Authoritative prototypes must bind candidate identity');
   const withoutHosting = contentHash(temp);
   assert.equal(contentHash(temp), withoutHosting, 'Hash must be stable without hosting metadata');
   fs.mkdirSync(path.join(temp, '.openai'));

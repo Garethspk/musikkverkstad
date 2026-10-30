@@ -266,3 +266,9 @@ restrictions may prevent remembering the location between visits.
 Private full-app teacher testing through Teams: see the
 [staff-review package and IT workflow](docs/staff-review/hosting-and-teams.md).
 Preparation only: no host or link is deployed, and pupil release remains BLOCKED.
+
+The separate [Weeks1–7 prototype integration](docs/weeks-1-7/README.md) builds all21
+activities from the seven supplied authoritative HTML prototypes into one offline
+HTML trial (`npm run build:seven-weeks`). It preserves the historical application's
+school settings and pupil data by using a separate, session-only application.
+This development trial is not a pupil release; human validation remains PENDING.

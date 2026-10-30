@@ -354,3 +354,15 @@ Historical developer notes remain in docs/quality-status.md and the original REA
 4. Obtain supported browser and physical-device audio evidence before pupil release.
 5. Grow the activity bank and curriculum while retaining bounded independent
    teacher/test review, unambiguous answers and honest completion reporting.
+
+## Authoritative seven-week offline trial (2026-10-30)
+
+The seven newly supplied standalone HTMLs are preserved byte-for-byte in
+`latest-week-prototypes/`, pinned by SHA256. A separate source-maintained build
+integrates their21actual activities into a single offline HTML, with sequential
+within-week unlocks, NN/NB/EN, native synth audio, session reset and opaque frame
+isolation. See `docs/weeks-1-7/README.md`, migration matrix and verification record.
+The existing application, school schema6 restrictions, progress, backups and teacher
+kit remain separate. No data migration or school-publishing integration is claimed.
+This trial does not change the two documented Theme01 quick-entry expected failures
+or any managed local-file failures. Human validation PENDING; pupil release BLOCKED.
