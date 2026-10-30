@@ -364,5 +364,9 @@ within-week unlocks, NN/NB/EN, native synth audio, session reset and opaque fram
 isolation. See `docs/weeks-1-7/README.md`, migration matrix and verification record.
 The existing application, school schema6 restrictions, progress, backups and teacher
 kit remain separate. No data migration or school-publishing integration is claimed.
-This trial does not change the two documented Theme01 quick-entry expected failures
-or any managed local-file failures. Human validation PENDING; pupil release BLOCKED.
+Historical Theme01 quick-entry failures remain documented above; their current
+unmodified desktop/mobile checks pass on this branch. Managed local-file failures
+remain failures. The final gate has all29Node suites passing and559legacy browser
+passes/five failures (four policy blocks plus a mobile teacher-kit timeout that passes
+in an unchanged isolated desktop/mobile rerun). New trial tests have120passes/two
+file-policy failures, plus four additional focused passes. See the verification record. Human validation PENDING; pupil release BLOCKED.

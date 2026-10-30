@@ -104,8 +104,10 @@ NOT TESTED: Windows Edge local-file opening, physical Android local-file opening
 audible sound balance/pitches/timbres on real speakers, natural-language review of
 all activity/error strings, screen-reader/AT operation, curriculum/teacher validation,
 and an unseeded full21task pupil-like walkthrough. A managed browser's local-file
-block must remain a failure, never a security exception or skipped test. Existing
-Theme01 quick-entry expected failures also remain explicitly unresolved.
+block must remain a failure, never a security exception or skipped test. Historical Theme01 quick-entry failures remain documented in the older project history.
+On this branch their current unmodified browser tests pass on both desktop and mobile
+(2.202s /2.607s); there are no expected-failure annotations or skipped cases in the
+current full run. This integration did not implement those earlier fixes.
 
 ## Portable build correction
 
@@ -118,3 +120,46 @@ An initial default-gate run passed all Node suites but was explicitly interrupte
 its browser phase when this portability issue was found; its partial report is retained
 as `.quality/seven-gate-superseded.json`, not presented as a completed regression run.
 The corrected candidate's complete default-gate result is recorded after execution.
+
+## Completed default gate and targeted investigation
+
+Executed on code commit `8d6d9c63a532f0122e709c8f2428c8a8dea03ef5`:
+
+```
+PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium node scripts/quality-gate.cjs
+```
+
+- Build: **PASS**. All **29 Node suites PASS**, including the original13, sound-compare,
+  school schemas, progress/backups, teacher/staff packages and the seven-week suite.
+- Full legacy browser suite: **559PASS,5FAIL**,0skips,0retries;
+  duration1,032.347seconds. No aggregate timeout occurred.
+- Four failures: standalone setup and standalone teacher entry, each desktop/mobile,
+  all `net::ERR_BLOCKED_BY_ADMINISTRATOR` for `file://` navigation. Policy unchanged.
+- Fifth failure: mobile `adult entry opens exact exercise, native audio matches rhythm,
+  preserves controls and resets storage`. The operation was the final reopened iframe
+  `body.evaluate(()=>data.groovePractice.done)` at teacher-kit.spec.cjs:48. It started
+  at trace time832812.6ms and was interrupted314.6ms later by the **overall**30second
+  test budget; this was not an individual30second DOM wait. The preceding reopened
+  reference control had already become visible. Full-run desktop passed in27.749s;
+  mobile timed out with32.008s total including teardown.
+- Isolated rerun of that unchanged case in **both configurations**:2PASS,0FAIL,
+  desktop19.126s/mobile19.362s, unchanged30second limit, zero retries. This is consistent
+  with full-suite load consuming the test budget. It does not conclusively prove
+  machine load or eliminate every intermittent app race. No app defect was reproduced,
+  no assertions were weakened and no old application code was changed.
+- The first targeted attempt could not start the localhost server because the renewed
+  session lacked network permission. That infrastructure failure is not a browser-test
+  pass; after the permission was granted, the actual desktop/mobile rerun passed.
+
+The original full-gate failure remains recorded; a focused rerun does **not** turn it
+into PASS. Exact gate result: **codeChecks=FAIL; pupilRelease=FAIL**. All four required
+release-evidence categories remain **BLOCKED**, human validation **PENDING**, and
+pupil publication remains prohibited. The result is a development handoff for review,
+not a release approval. CI has not been run on GitHub for these local commits.
+
+Retained local diagnostics (ignored, not published):
+`.quality/seven-complete-default-gate.json`, `.quality/seven-legacy-full-browser.json`,
+`.quality/seven-legacy-teacher-timeout-trace.zip`,
+`.quality/seven-legacy-teacher-rerun.json`, `.quality/seven-final-main.json`,
+`.quality/seven-final-extra.json`. The final documentation commit records these
+observations; it does not change the application bytes tested above.
