@@ -127,3 +127,46 @@ This discrepancy remains **unresolved**, not converted into PASS by the isolated
 rerun. It is held for further clock/device evidence after the bounded repair passes.
 The update addresses the verified fixed-phase rejection and passes the focused human-
 scenario regressions; it is not an unconditional fallback/device validation claim.
+
+
+## Complete default-gate result
+
+Executed on `0964bc180383b7a1b6a5326694e41f9db11a5fc9` using:
+
+```
+PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium node scripts/quality-gate.cjs
+```
+
+- Build **PASS**, all **30 Node suites PASS**, including the original regressions,
+  sound-compare, pulse assessment, school/progress/backups and preview freshness.
+- Existing legacy browser suite: **559PASS/5FAIL**,0skips,0retries,
+  966.653seconds. The20minute aggregate allowance did not expire.
+- Four failures are the existing managed `file://` blocks for standalone setup and
+  adult teacher entry on desktop/mobile: `ERR_BLOCKED_BY_ADMINISTRATOR`.
+- The remaining failure is the previously documented mobile adult-teacher-entry
+  case at `tests/browser/teacher-kit.spec.cjs:10`: the unchanged30second whole-test
+  limit expired (30.901s including final handling). Legacy teacher-kit application
+  code was not changed by this pulse correction. No speculative repair, retry or
+  assertion/timeout change was made to conceal that recurrence.
+- Exact gate result: **codeChecks=FAIL, pupilRelease=FAIL**; required release-evidence
+  categories remain **BLOCKED**. These failures do not authorise pupil publication.
+  The new-suite145/3 result and focused22/0 and isolated2/0 results above remain
+  separate evidence, not substitutes for a passing complete gate.
+
+Retained ignored reports: `.quality/pulse-default-gate-report.json`,
+`.quality/pulse-legacy-browser-report.json`, `.quality/pulse-seven-full.json`,
+`.quality/pulse-browser-batch-1.json`, `.quality/pulse-browser-batch-2.json`,
+`.quality/pulse-fallback-isolated.json`, `.quality/pulse-fallback-full-trace.zip`.
+The gate's candidate content hash is
+`c5114220364336e48194f42d55123860c26280cee949a81dd674d4dc38e00cb7`.
+The final documentation-only commit records observations after the test run and
+makes no further application changes. No new GitHub Actions run is claimed: the
+branch's earlier PR36 was already merged by the owner, and this workflow does not
+trigger for an ordinary development-branch push without an open PR.
+
+Corrected staff preview SHA256:
+`1cf97fb202482eab39a7220126da2c6a46fbc3708ec1710648054378a149a0cf`.
+The file downloaded back from GitHub matches the tested build byte-for-byte.
+All seven original uploads remain checksum-identical. No merge, deployment,
+security-policy change, release-gate change or pupil distribution was performed.
+Human retesting and physical-device/speaker validation remain **PENDING**.

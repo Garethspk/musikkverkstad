@@ -385,3 +385,13 @@ See `docs/weeks-1-7/pulse-assessment.md` for criteria, independent AI reviews an
 verification limits. Focused native checks:22PASS after one bounded repair batch.
 Wider regression results remain separate; human/device/audio validation PENDING,
 pupil release BLOCKED. No merge or deployment is authorised.
+
+
+Pulse correction final observations: default build/all30Node suites PASS;
+legacy browser559PASS/5FAIL (four managed file-policy blocks and the known mobile
+teacher-kit whole-test timeout). New seven-week browser suite145PASS/3FAIL,
+including two file blocks and one unresolved tablet missing-output-timestamp
+fallback discrepancy. Focused pulse22PASS; unchanged isolated fallback2PASS.
+No failed full result is replaced by those focused passes. See the exact-candidate
+record above in `docs/weeks-1-7/pulse-assessment.md`. Human retest PENDING; pupil
+publication remains blocked. No main merge or deployment.
