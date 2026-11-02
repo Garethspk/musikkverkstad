@@ -20,6 +20,8 @@ async function attempt(page,times,{pointer=false}={}){
     }else await page.keyboard.press('Space');
   }
   await expect.poll(()=>run(f,()=>pulseAssessment),{timeout:5000}).not.toBeNull();
+  const timing=await run(f,()=>({taps:pulseTimes.slice(),assessment:pulseAssessment,clock:pulseClockSource,audioStart:pulseAudioStart,contextTime:audio.currentTime,baseLatency:audio.baseLatency,outputLatency:audio.outputLatency}));
+  await test.info().attach('pulse-timing',{body:JSON.stringify(timing),contentType:'application/json'});
   return f;
 }
 for(const [name,times,pointer] of [

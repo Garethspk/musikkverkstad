@@ -98,3 +98,32 @@ build and checked byte-for-byte by the Node suite. The seven uploaded originals
 remain checksum-identical. No release-gate decision, security policy or legacy
 browser assertion is changed. Windows/Android hardware latency, audible alignment,
 AT usability and beginner suitability remain **NOT TESTED/PENDING** for this change.
+
+## Wider new-suite observation and held discrepancy
+
+On code commit `ba1b0181b6629a8e5683c84249a65d5276ce4a95`, the full148case
+new browser suite recorded **145PASS/3FAIL**,0skips,0retries,528.755seconds.
+Two failures are unchanged managed `file://` policy blocks. The third is the tablet
+fallback-clock case: eight taps registered, but the assessment returned false/fast.
+Normal output-timestamp cases, delayed touch tapping, all feedback languages, retry
+and visible-unlock cases passed. The previously focused22case suite passed in full.
+
+The full-run failure trace is retained as `.quality/pulse-fallback-full-trace.zip`.
+Its Space request gaps were294.763,551.264,550.866,653.720,552.793,551.124 and546.555ms,
+so the driver's actual requests were not uniformly550ms. However, those wall-clock
+intervals alone do not reproduce the failure in the pure scorer. Actual tap/audio
+clock readings were not attached in that original run, so neither machine load nor
+an application fallback defect can be established as the cause.
+
+The unchanged fallback assertion was rerun independently in both configurations,
+with trace retention and non-behavioural timing attachments: **2PASS**,
+12.589seconds total. Desktop scored8/8 at550.937ms fitted period; tablet8/8 at549.549ms.
+Both reported baseLatency10ms/outputLatency32ms. A read-only independent QA review
+confirmed this evidence limitation. No application patch was made on speculation.
+The test now attaches raw automated tap/clock diagnostics for any future occurrence;
+individual bounds, assertions and zero retries are unchanged.
+
+This discrepancy remains **unresolved**, not converted into PASS by the isolated
+rerun. It is held for further clock/device evidence after the bounded repair passes.
+The update addresses the verified fixed-phase rejection and passes the focused human-
+scenario regressions; it is not an unconditional fallback/device validation claim.
