@@ -370,3 +370,18 @@ remain failures. The final gate has all29Node suites passing and559legacy browse
 passes/five failures (four policy blocks plus a mobile teacher-kit timeout that passes
 in an unchanged isolated desktop/mobile rerun). New trial tests have120passes/two
 file-policy failures, plus four additional focused passes. See the verification record. Human validation PENDING; pupil release BLOCKED.
+
+## Week1 pulse assessment correction (2026-11-02)
+
+Human testing reported eight registered taps without completion. Read-only diagnosis
+confirmed that the previous absolute175ms phase threshold rejects perfectly steady
+220ms-delayed tapping, and that tap scoring did not use the audio output clock.
+The integration now shares an output-audio timeline for input/visuals/finishing and
+fits one whole-attempt tempo/offset with beginner tolerance, coverage and regularity
+checks. NN/NB/EN feedback explains what to improve; success visibly unlocks Next.
+The three repetitions, musical pattern, design, original prototype bytes and release
+rules are unchanged. The staff-preview HTML is refreshed and checked for freshness.
+See `docs/weeks-1-7/pulse-assessment.md` for criteria, independent AI reviews and
+verification limits. Focused native checks:22PASS after one bounded repair batch.
+Wider regression results remain separate; human/device/audio validation PENDING,
+pupil release BLOCKED. No merge or deployment is authorised.

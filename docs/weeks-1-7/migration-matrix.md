@@ -15,7 +15,7 @@ selector; prototype typography/cards/help/taskcontrols remain. Exact source mapp
 
 |Week/task|Original functions|Integrated correction module / acceptance tests|
 |---|---|---|
-|1 Hald pulsen|renderPulse/startPulse/onTap/scorePulse|week-1.js;12beat timed run,5 distinct covered taps, no clickspam credit; native pulse timing|
+|1 Hald pulsen|renderPulse/startPulse/onTap/scorePulse|pulse.js / week-1.js;12beat audio-aligned run,6 consistent beat positions across both final repeats, one fitted tempo/offset, no clickspam credit; native pulse tests|
 |1 Finn noteverdien|seedQuiz/renderQuiz/onQuiz/noteSvg|week-1.js;5 correct note/rest duration answers, wrong/repeat lock|
 |1 Bygg ein rytme|renderBuild/playBars/finishBuildRound|week-1.js;4 complete bars, edit then additional rest, completed playback eachstage, real loop|
 |2 Høyr forskjellen|compareData/renderCompare/answerCompare|week-2.js;4 heard exact-match rounds, varied genuine distractors|

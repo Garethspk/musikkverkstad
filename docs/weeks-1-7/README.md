@@ -53,6 +53,9 @@ Stop earns nothing. Week6 loop is deliberately unavailable with a translated
 explanation: each stage needs a single complete audition. Week7's supplied v1 has no
 loop control, so none is invented. None of these checks proves audible speaker output.
 
+See [the pulse assessment investigation](pulse-assessment.md) for the Week1 human-test
+feedback correction, beginner thresholds, audio-clock mapping and verification limits.
+
 ## Intentional corrections and limits
 
 - Correct C4/D4 staff positions in Week2 and reset-before-render in Week3.

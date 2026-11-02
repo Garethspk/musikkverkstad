@@ -1,2 +1,4 @@
 # Uploaded authoritative prototypes are checksum-pinned bytes on every platform.
 latest-week-prototypes/*.html -text
+# The downloadable staff preview is verified by its exact byte checksum.
+staff-preview/*.html -text
