@@ -395,3 +395,19 @@ fallback discrepancy. Focused pulse22PASS; unchanged isolated fallback2PASS.
 No failed full result is replaced by those focused passes. See the exact-candidate
 record above in `docs/weeks-1-7/pulse-assessment.md`. Human retest PENDING; pupil
 publication remains blocked. No main merge or deployment.
+
+## Human testing corrections, Round1 (2026-11-03)
+
+The pre-code21activity audit in `docs/weeks-1-7/human-corrections-round-1.md`
+records the confirmed playback-receipt silent-tail race and additional completion
+control defects before modification. Content-answer validation now uses original
+musical criteria instead of injected listening flags; Week3question/count labels
+and optional notation-adjacent replay are corrected. Shared week completion moves
+1–6forward with stop/ack cancellation and retained flags; Week7programme completion
+requires all21activities, otherwise reports actual progress. Requested Week7barline
+redesign uses direct touch/keyboard boundaries, correct accented reference, specific
+feedback and3/4then4/4review. Finished assessment controls no longer overrun counts
+or appear actionable when blocked; completed rhythm playback remains usable.
+Original seven prototype files and musical banks are preserved. Two bounded AI
+reviews passed; focused native50PASS. Full regression verification pending; human
+retesting PENDING, pupil release BLOCKED. No merge or deployment.

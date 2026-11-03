@@ -26,6 +26,7 @@ for week,version in enumerate(versions,1):
  # Keep the supplied NN copy natural without silently changing musical data.
  html=re.sub(r'\bmedan\b','samtidig som',html)
  common=(root/'src/seven-week/bridge.js').read_text(encoding='utf-8');patch=(root/f'src/seven-week/week-{week}.js').read_text(encoding='utf-8');lifecycle=(root/'src/seven-week/lifecycle.js').read_text(encoding='utf-8')
+ if week==7:patch=(root/'src/seven-week/barlines.js').read_text(encoding='utf-8')+'\n'+patch
  if week==1:patch=(root/'src/seven-week/pulse.js').read_text(encoding='utf-8')+'\n'+patch
  # Hide repeated source headers; preserve cards, task navigation, help, controls and fonts.
  css='<style>button{min-height:48px}header.top,.topbar{display:none!important}.head{margin:8px 0}.bodygrid{gap:12px}.aside{font-size:14px}.donebox{background:transparent!important;border:0!important;padding:0!important}#status{scroll-margin-top:10px}</style>'

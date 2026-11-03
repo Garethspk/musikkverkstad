@@ -9,8 +9,8 @@ const w1pulse=renderPulse;renderPulse=()=>{
   button.onclick=e=>{if(e.detail===0)onTap(e)};
   $('status').setAttribute('aria-live','polite');
 };
-playBars=()=>{if(completed[2]||buildPlaying||!bars.every((_,i)=>barSum(i)===4))return;if(buildRound===1&&!changedSinceBaseline())return show(T().buildChange,'error');if(buildRound===2&&restCount()<=buildRestCount)return show(T().buildRestMore,'error');stopSound();const snapshot=JSON.stringify(bars),stage=buildRound;let at=0;const events=[];for(let bi=0;bi<4;bi++)for(const id of bars[bi]){const n=ALL[id];events.push({midi:n.rest?null:bi%2===0?67:69,at:at*.36,dur:n.duration*.36-.05});at+=n.duration}buildPlaying=true;playedBuild=false;const cycle=()=>X.play(events,16*.36,()=>{if(task!==2||stage!==buildRound||snapshot!==JSON.stringify(bars))return;buildCycles++;if(loopBuild){cycle();return}buildPlaying=false;playedBuild=true;finishBuildRound()});buildCycles=0;cycle();$('stopbars').disabled=false};
-const w1build=renderBuild;renderBuild=()=>{w1build();$('stopbars').onclick=()=>{const earned=buildCycles>0&&buildPlaying;stopSound();playedBuild=earned;if(earned)finishBuildRound();renderBuild()};$('loopbars').onchange=e=>{loopBuild=e.target.checked;if(!loopBuild&&buildPlaying){const earned=buildCycles>0&&buildPlaying;stopSound();playedBuild=earned;if(earned)finishBuildRound();renderBuild()}};for(const b of document.querySelectorAll('[data-remove]'))b.setAttribute('aria-label',X.text('Fjern note','Fjern note','Remove note'))};
+playBars=()=>{if(buildPlaying||!bars.every((_,i)=>barSum(i)===4))return;if(buildRound===1&&!changedSinceBaseline())return show(T().buildChange,'error');if(buildRound===2&&restCount()<=buildRestCount)return show(T().buildRestMore,'error');stopSound();const snapshot=JSON.stringify(bars),stage=buildRound;let at=0;const events=[];for(let bi=0;bi<4;bi++)for(const id of bars[bi]){const n=ALL[id];events.push({midi:n.rest?null:bi%2===0?67:69,at:at*.36,dur:n.duration*.36-.05});at+=n.duration}buildPlaying=true;playedBuild=false;const cycle=()=>X.play(events,16*.36,()=>{if(task!==2||stage!==buildRound||snapshot!==JSON.stringify(bars))return;buildCycles++;if(loopBuild){cycle();return}buildPlaying=false;if(completed[2]){renderBuild();return}playedBuild=true;finishBuildRound()});buildCycles=0;cycle();$('stopbars').disabled=false};
+const w1build=renderBuild;renderBuild=()=>{w1build();$('stopbars').onclick=()=>{const earned=!completed[2]&&buildCycles>0&&buildPlaying;stopSound();playedBuild=earned;if(earned)finishBuildRound();renderBuild()};$('loopbars').onchange=e=>{loopBuild=e.target.checked;if(!loopBuild&&buildPlaying){const earned=!completed[2]&&buildCycles>0&&buildPlaying;stopSound();playedBuild=earned;if(earned)finishBuildRound();renderBuild()}};for(const b of document.querySelectorAll('[data-remove]'))b.setAttribute('aria-label',X.text('Fjern note','Fjern note','Remove note'))};
 // Editing always invalidates the frozen playback version; original tap/drag controls remain.
 const w1append=appendToBar;appendToBar=(...args)=>{stopSound();w1append(...args)};
 let pulseAudioStart=0,pulseClockSource='',pulseAssessment=null;
@@ -73,3 +73,6 @@ startPulse=async()=>{
     stopSound();renderPulse();show(pulseFeedback[lang].audio,'error');
   }
 };
+
+function w1DisableFinishedQuiz(){if(completed[1])for(const b of document.querySelectorAll('.answers button'))b.disabled=true}
+const w1quizRender=renderQuiz;renderQuiz=()=>{w1quizRender();w1DisableFinishedQuiz()};const w1quizAnswer=onQuiz;onQuiz=(...args)=>{w1quizAnswer(...args);w1DisableFinishedQuiz()};
