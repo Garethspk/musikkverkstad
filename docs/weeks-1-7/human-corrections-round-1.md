@@ -134,3 +134,25 @@ approval. The seven uploaded originals remain checksum-identical; original conte
 answers and3/5/4correct counts, three-consecutive melody rule and creative action/
 whole-playback conditions are retained. All21native checks and default-gate results
 will be reported separately after their complete runs.
+
+Second bounded UI repair, after extended keyboard/revisit verification: on a390px
+phone viewport the new continuous strip forced its grid panel to942px and the body
+to954px, leaving the strip itself unscrollable (clientWidth=scrollWidth=912px).
+Constrain the redesigned activity's grid panel minimum width so scrolling remains
+inside the beat strip. Keep the44px handles; do not reduce target size or weaken
+keyboard/pan assertions. The same completed-assessment audit found Week7metre
+choices recreated enabled after completion although their handler returns; disable
+those finished answer controls on render while retaining its reference replay.
+Both are narrow presentation/state repairs; no additional musical criteria change.
+
+The first complete200case native run on155710e recorded198PASS/2FAIL,
+0skips/retries,709.343seconds. Both failures were managed `file://` blocks; every
+HTTP activity check passed, including all pulse cases. This does not erase the
+previously recorded fallback-clock inconsistency or provide physical-device proof.
+The additional metadata/keyboard batch then recorded11PASS/1FAIL: its failing
+phone scroll assertion led to the measured panel-width repair documented above.
+The repaired additional batch recorded **14PASS**,0FAIL,20.6seconds. It verifies
+correct content answers without receipts in the other five affected drills, real
+keyboard toggle/pan preservation and completed metre-answer state. W3matching/
+placement were already checked with absent receipts in the focused50case batch.
+The final full run includes all214cases against the final responsive build.

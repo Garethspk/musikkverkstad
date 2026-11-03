@@ -1,7 +1,7 @@
 X.context=async()=>{const c=ctx();X.audioContext=c;return c};X.voice=(e,at)=>X.synth(e,at,e.accent?'triangle':'sine',e.accent?.19:.085);const w7stop=silence;silence=()=>{X.stop();w7stop();clearBarHighlights()};
 notes=(events,step=.35,onEnd)=>{const tsk=task,key='meter-'+count;return X.play(events.map((v,i)=>({midi:v===0?null:v===2?69:64,accent:v===2,at:i*step,dur:step*.66})),events.length*step,()=>{if(tsk===0)X.heard.add(key);if(onEnd)onEnd()})};
 phrase=(meter,variant=0)=>{const pattern=meter==='3/4'?[2,1,1]:meter==='4/4'?[2,1,1,1]:[2,1,1,2,1,1];return Array.from({length:4},(_,j)=>pattern.map((v,i)=>v!==2&&(j+variant+i)%5===0?0:v)).flat()};
-const w7draw1=draw1;draw1=()=>{w7draw1();for(const b of $('activity').querySelectorAll('[data-meter]')){const old=b.onclick;b.onclick=()=>{if(complete[0])return;old()}}};
+const w7draw1=draw1;draw1=()=>{w7draw1();for(const b of $('activity').querySelectorAll('[data-meter]')){b.disabled=complete[0];const old=b.onclick;b.onclick=()=>{if(complete[0])return;old()}}};
 const w7initialise=initialise;initialise=meter=>{const a=w7initialise(meter);if(meter==='6/8')a.forEach(b=>b[3]=2);return a};
 
 let barReview=false;
@@ -31,6 +31,8 @@ draw2=()=>{
   $('intro').textContent=b.instruction(meter);
   $('progress').textContent=(barStage+(barReview?1:0))+'/2';
   $('activity').innerHTML=`<style>
+    .bodygrid>.panel{min-width:0}
+    .metric .counter{background:var(--lime);color:#172739}
     .meter-strip{display:flex;overflow-x:auto;padding:8px 24px;border-block:1px solid var(--line);margin:14px 0;scroll-padding:24px}
     .meter-beat{position:relative;flex:0 0 72px;min-height:68px;display:grid;place-items:center}
     .meter-beat>span{display:grid;place-items:center;width:28px;height:34px;border:1px solid var(--line);border-radius:9px;background:var(--panel)}
@@ -42,7 +44,7 @@ draw2=()=>{
   </style><div class="metric"><span class="counter">${barStage+1}/2</span><strong>${meter}/4</strong><span>12 ${w.beat.toLowerCase()}</span></div>
   <p class="small">${b.swipe}</p><div class="meter-strip" role="group" aria-label="${b.strip}">
   ${Array.from({length:12},(_,i)=>`<div class="meter-beat" data-bar-beat="${i}"><span>${i+1}</span>${i<11?`<button class="meter-boundary" data-pos="${i+1}" aria-label="${barLines.has(i+1)?b.remove:b.add}${b.after.toLowerCase()}${i+1}" aria-pressed="${barLines.has(i+1)}" ${barReview?'disabled':''}>${barLines.has(i+1)?'┃':'+'}</button>`:''}</div>`).join('')}</div>
-  <div class="actions"><button id="hear" class="primary">${w.play} ▶</button><button id="stop">${w.stop}</button><button id="check" ${barReview?'disabled':''}>${w.check}</button><button id="reset" ${barReview?'disabled':''}>${w.clear}</button>${barReview&&barStage===0?`<button id="nextMeter" class="primary">${b.next}</button>`:''}</div>`;
+  <div class="actions"><button id="hear" class="primary">${w.play}</button><button id="stop">${w.stop}</button><button id="check" ${barReview?'disabled':''}>${w.check}</button><button id="reset" ${barReview?'disabled':''}>${w.clear}</button>${barReview&&barStage===0?`<button id="nextMeter" class="primary">${b.next}</button>`:''}</div>`;
   $('activity').querySelector('.meter-strip').scrollLeft=previousScroll;
   for(const button of $('activity').querySelectorAll('[data-pos]'))button.onclick=()=>{
     silence();const n=+button.dataset.pos;if(barLines.has(n))barLines.delete(n);else barLines.add(n);draw2();

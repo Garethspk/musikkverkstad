@@ -68,7 +68,8 @@ for(const locale of ['nn','nb','en']){
   });
   test(`Round1 barlines ${locale}: direct boundaries, specific feedback, two stages and replay`,async({page},info)=>{
     const f=await open(page,7,1,locale),tap=async n=>{const b=f.locator(`[data-pos="${n}"]`);if(info.project.use.hasTouch)await b.tap();else await b.click()};
-    await expect(f.locator('.meter-strip')).toBeVisible();await expect(f.locator('[data-pos]')).toHaveCount(11);
+    await expect(f.locator('.meter-strip')).toBeVisible();
+    expect(await run(f,()=>document.body.scrollWidth<=innerWidth+1)).toBe(true);await expect(f.locator('[data-pos]')).toHaveCount(11);
     await expect(f.locator('.beatgrid,.barlinegrid')).toHaveCount(0);
     await f.locator('#check').click();await expect(f.locator('#status')).toContainText('3, 6, 9');
     for(const n of [2,3,6,9])await tap(n);await f.locator('#check').click();
@@ -159,4 +160,43 @@ test('Round1 successful barline stages keep their correct metre available for re
   await f.locator('#nextMeter').click();for(const n of [4,8])await f.locator(`[data-pos="${n}"]`).click();await f.locator('#check').click();
   await play(f,'#hear');expect(await run(f,()=>X.events.filter(e=>e.accent).map(e=>Math.round(e.at/.36)))).toEqual([0,4,8]);
   await expect(f.locator('#next')).toBeEnabled();await expect(f.locator('#progress')).toHaveText('2/2');
+});
+for(const [week,task]of [[2,0],[2,2],[5,0],[6,1],[7,0]]){
+  test(`Round1 optional listening metadata ${week}.${task+1}: original correct content still advances`,async({page})=>{
+    const f=await open(page,week,task);
+    // Fault injection only: do not fabricate a completed-listening receipt.
+    await run(f,()=>{X.heard.clear();X.need=()=>{throw Error('Answer validation called the forbidden receipt gate')}});
+    if(week===2&&task===0){
+      const correct=await run(f,()=>compareData().matchA);await f.locator(correct?'#answerA':'#answerB').click();expect(await run(f,()=>compareRound)).toBe(1);
+    }else if(week===2){
+      for(const n of await run(f,()=>expectedMelody()))await f.locator(`[data-pitch="${n}"]`).click();
+      await f.locator('#checkNotes').click();expect(await run(f,()=>streak)).toBe(1);
+    }else if(week===5){
+      const correct=await run(f,()=>formSong.findIndex((bar,i)=>i>0&&bar.join()===formSong[0].join()));
+      await f.locator(`[data-pick="${correct}"]`).click();expect(await run(f,()=>round)).toBe(1);
+    }else if(week===6){
+      const correct=await run(f,()=>missingIndex);await f.locator(`[data-answer="${correct}"]`).click();expect(await run(f,()=>round)).toBe(1);
+    }else{
+      const correct=await run(f,()=>question.meter);await f.locator(`[data-meter="${correct}"]`).click();expect(await run(f,()=>count)).toBe(1);
+    }
+  });
+}
+test('Round1 direct barline handles support keyboard activation and preserve horizontal position',async({page},info)=>{
+  const f=await open(page,7,1),third=f.locator('[data-pos="3"]');
+  await third.focus();await page.keyboard.press('Space');await expect(third).toHaveAttribute('aria-pressed','true');
+  await page.keyboard.press('Enter');await expect(third).toHaveAttribute('aria-pressed','false');
+  const ninth=f.locator('[data-pos="9"]');await ninth.focus();
+  if(info.project.use.hasTouch)await expect.poll(()=>f.locator('.meter-strip').evaluate(e=>e.scrollLeft)).toBeGreaterThan(0);
+  const before=await f.locator('.meter-strip').evaluate(e=>e.scrollLeft);
+  if(info.project.use.hasTouch)expect(before).toBeGreaterThan(0);
+  await page.keyboard.press('Space');await expect(ninth).toHaveAttribute('aria-pressed','true');
+  const after=await f.locator('.meter-strip').evaluate(e=>e.scrollLeft);expect(Math.abs(after-before)).toBeLessThanOrEqual(1);
+  expect((await ninth.boundingBox()).width).toBeGreaterThanOrEqual(44);
+});
+
+test('Round1 completed metre answers stay disabled on language rerender while replay remains available',async({page})=>{
+  const f=await open(page,7);await run(f,()=>{complete[0]=true;count=4;draw()});
+  await expect(f.locator('[data-meter]:enabled')).toHaveCount(0);await expect(f.locator('#hear')).toBeEnabled();
+  await page.selectOption('#language','en');await expect(f.locator('[data-meter]:enabled')).toHaveCount(0);
+  await expect(f.locator('#hear')).toBeEnabled();
 });
