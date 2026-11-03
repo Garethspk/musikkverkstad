@@ -409,5 +409,14 @@ redesign uses direct touch/keyboard boundaries, correct accented reference, spec
 feedback and3/4then4/4review. Finished assessment controls no longer overrun counts
 or appear actionable when blocked; completed rhythm playback remains usable.
 Original seven prototype files and musical banks are preserved. Two bounded AI
-reviews passed; focused native50PASS. Full regression verification pending; human
-retesting PENDING, pupil release BLOCKED. No merge or deployment.
+reviews passed; focused native50PASS. Final code candidate
+`eb9a0c451ea5754fd412fefaf296cce1a01ceec3`: seven-week native browser212PASS/2FAIL;
+default gate build/all31Node suites PASS, legacy browser560PASS/4FAIL. All six
+browser failures are managed file:// navigation blocks before app execution;
+no timeout occurred in these final runs. Zero skips/retries; security and timeout
+limits unchanged. Gate exit1, codeChecks=FAIL/pupilRelease=FAIL; required evidence
+remains BLOCKED. The linked audit now includes the scoped21activity checklist,
+exact results/limits and tested staff-preview checksum. The seven supplied HTMLs
+remain byte-identical. Historical fallback/teacher-kit timing failures are retained
+in earlier records. Human retesting PENDING, pupil release BLOCKED. No merge or
+deployment. Final result documentation is recorded after the tested code commit.

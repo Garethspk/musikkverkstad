@@ -156,3 +156,116 @@ correct content answers without receipts in the other five affected drills, real
 keyboard toggle/pan preservation and completed metre-answer state. W3matching/
 placement were already checked with absent receipts in the focused50case batch.
 The final full run includes all214cases against the final responsive build.
+
+
+## Final complete verification
+
+Tested code commit: `eb9a0c451ea5754fd412fefaf296cce1a01ceec3`, with a clean
+working tree throughout both final runs. Subsequent result/checklist documentation
+is not a new application build and is not represented as the same content hash.
+
+|Check|Exact result|
+|---|---|
+|Final seven-week native browser suite|214 cases: **212 PASS / 2 FAIL**, 0 skips, 0 retries, 716.384 seconds|
+|Default gate build|PASS|
+|Default gate Node regressions|All **31 suites PASS**, including sound-compare, pulse, round1, school, backups, staff-review and seven-weeks|
+|Default gate legacy browser suite|564 cases: **560 PASS / 4 FAIL**, 0 skips, 0 retries, 993.817 seconds|
+|Default gate process|Exit **1**; `codeChecks=FAIL`, `pupilRelease=FAIL`; all four required-evidence fields remain `BLOCKED`|
+
+The two seven-week failures are direct standalone HTML navigation on desktop and
+mobile. The four legacy failures are standalone setup and adult teacher entry on
+both viewports. All six report `page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR`
+before app execution. The managed Chromium URL policy blocks all URLs except its
+allowlist, which includes HTTP/HTTPS but not `file://`. This documents a local
+policy limitation, not a successful standalone-file check. Every assertion and
+security restriction remains enabled; no skips, retries or timeout changes.
+No mobile teacher-kit timeout or pulse fallback discrepancy occurred in these
+final runs. Historical failures remain recorded, not retroactively passed.
+
+Reproduction commands (installed system Chromium selected explicitly):
+
+```sh
+PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium npx playwright test -c playwright.seven.config.cjs
+PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium node scripts/quality-gate.cjs
+```
+
+Ignored local evidence: `.quality/round1-final-seven-full.json`,
+`.quality/round1-final-seven-full.log`, `.quality/round1-default-gate.json`,
+`.quality/round1-default-browser.json`, `.quality/round1-default-gate.log`.
+The default gate's recorded content hash is
+`c98085c22255d06a629e1417973dc652cfdcd1bb4686417ff39c82b53de21195`.
+This is local Chromium evidence; no new GitHub Actions result is claimed. The
+existing PR36 is closed/merged; this development-branch push alone does not match
+its main-only push workflow trigger. No merge or deployment is performed.
+
+## Staff preview handoff
+
+The standalone [HTML on the development branch](https://github.com/Garethspk/musikkverkstad/blob/issue-35-private-staff-review/staff-preview/musikkverkstad.html)
+is the exact tested generated file. Use GitHub's **Download raw file** button,
+then open the downloaded HTML in Microsoft Edge. Do not open a stale older copy.
+This is a repository artifact for staff retesting, not a deployed site or pupil
+release. The repository is public, as previously authorised by the owner; the
+branch name does not provide private access control.
+
+SHA-256:
+
+```text
+34c55ef0611bca570c5712faeb529d012e4d9e95ce375f7fc4b76489f0918f25
+```
+
+All seven uploaded prototype checksums still match their original pins. Their
+source bytes are unchanged; scoped corrections live in the integration modules.
+Human retesting and required release evidence remain PENDING; pupil release
+**BLOCKED**. No release decision or prototype security boundary was weakened.
+
+## Final integrated activity checklist (2026-11-03)
+
+`PASS` below means the stated automated HTTP Chromium regression passed on both
+configured desktop and mobile-emulation projects against code commit
+`eb9a0c451ea5754fd412fefaf296cce1a01ceec3`. It does not mean teacher approval,
+audible speaker verification, physical-device testing, or an uninterrupted pupil
+walkthrough. Tests deliberately seed earlier completion flags to reach individual
+activities; several long creative activities also seed the stage under test before
+exercising real controls and native audio. Shared footer tests use explicitly
+labelled completion fixtures. All human retesting remains **PENDING**.
+
+|Activity|Desktop/mobile automated result|What the regression actually verifies|
+|---|---|---|
+|1.1 Pulse|PASS / PASS|Three repetitions, real scheduled input, steady/delayed/irregular cases, repeated attempts and unlock; output-clock fallback included|
+|1.2 Values|PASS / PASS|Five note/rest questions, wrong-answer rejection, rapid-answer lock and completion|
+|1.3 Rhythm|PASS / PASS|Each staged rhythm with real playback/edit/rest conditions; loop/stop credit and completed replay without advancing again|
+|2.1 Compare|PASS / PASS|Four round boundaries, reference/A/B playback, wrong rejection and correct grading without listening metadata|
+|2.2 Phrase assembly|PASS / PASS|3/6/9-card stages, actual reorder controls, wrong check, completed-state controls|
+|2.3 Memory|PASS / PASS|Three consecutive correct melodies, wrong answer resets streak, fresh targets, actual third success and next-week transition|
+|3.1 Pitch match|PASS / PASS|Three correct matches, full/different-order/repeated playback, native-ended receipt race, absent receipts and visible Task2 unlock|
+|3.2 Note name|PASS / PASS|Five staff/name mappings, replay below notation before answers, repeated replay, final displayed MIDI 69, stale hint removal and count labels|
+|3.3 Placement|PASS / PASS|Four exact pitch placements, wrong rejection, next-question reset, absent receipts and completed count guard|
+|4.1 Chords|PASS / PASS|Four unordered target triads, non-root-first input and wrong formed-chord rejection|
+|4.2 Chord exploration|PASS / PASS|Each seeded phase, meaningful alterations, actual changed/target playback and retained comparison|
+|4.3 Progression|PASS / PASS|Each seeded phase, original/edit/compare playback, edited-credit invalidation, native second loop and Stop cancellation|
+|5.1 Return|PASS / PASS|Each round's original/alternative, wrong phrase rejection, correct match without receipts and completed count guard|
+|5.2 Reconstruction|PASS / PASS|Three four-bar orders using click controls, wrong check, completed count guard|
+|5.3 Variation|PASS / PASS|Each seeded stage's pitch/duration/rest controls and full playback of the current revision|
+|6.1 Timbre|PASS / PASS|Three distinct native oscillator types, same pitches, stopped-playback rejection, separate parts and together completion|
+|6.2 Missing layer|PASS / PASS|Each round's omission and eight positions, correct grading without receipts, wrong rejection and rapid-answer lock|
+|6.3 Ensemble|PASS / PASS|Each seeded four-bar stage, required revision, empty-plan rejection, stopped-playback rejection and final automatic completion|
+|7.1 Metre|PASS / PASS|Four round boundaries, compound 3+3 reference, wrong rejection, grading without receipts and completed rerender controls|
+|7.2 Barlines|PASS / PASS|All three languages, exact 3/4 and 4/4 sets, too many/few/wrong-position feedback, correct reference accents, replay, keyboard/touch and contained phone scrolling|
+|7.3 Dancing metres|PASS / PASS|Each seeded stage's metre/edit/accent/rest/playback conditions and retained final plan|
+
+Shared coverage passes for all seven weeks: NN/NB/EN, initial locks, one isolated
+activity frame, no external requests, keyboard/touch navigation and audio
+cancellation. Weeks 1–6 next-week controls, flag retention and Week 7 truthful partial
+versus all 21completion pass. The complete all 21programme-completion assertion uses
+a fixture, not 21 consecutive human-performed activities. Completion flags survive
+navigation only within the open tab; unfinished drafts/rounds are not saved.
+
+**NOT TESTED:** human teacher/pupil usability, hearing correctness through speakers,
+Windows Edge, physical phones/tablets, assistive technology and physical latency.
+**FAIL:** direct local-file opening in this managed Chromium environment, on both
+projects, before application execution (`ERR_BLOCKED_BY_ADMINISTRATOR`). The
+policy allows HTTP/HTTPS and blocks `file://`; no bypass or skip was added.
+Offline-after-HTTP-load coverage passes but does not replace the failed direct-file
+check. The previously documented intermittent pulse fallback result remains in
+`pulse-assessment.md`; its cases passed in both full Round1 runs, which is not proof
+of all-device stability.
